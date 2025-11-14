@@ -91,15 +91,14 @@ const Index = () => {
             
             {/* Bottom Section */}
             <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
-  {/* Bottom left */}
-<div className="flex flex-col items-start space-y-1">
-  <p className="text-sm text-muted-foreground">
-    Monday - Sunday 9:00 - 17:00
-  </p>
-  <p className="text-sm text-muted-foreground">
-    Largo do Rato, 4A
-  </p>
-</div>
+            {/* Bottom left */}
+                <div className="flex flex-col items-start space-y-1">
+                    <p className="text-sm text-muted-foreground">
+                          Monday - Sunday 9:00 - 17:00
+                    </br>
+                          Largo do Rato, 4A
+                    </p>
+                </div>
 
               {/* Instagram - Bottom Right */}
               <a
