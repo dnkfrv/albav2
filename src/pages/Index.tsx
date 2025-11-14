@@ -6,9 +6,9 @@ import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-// фото и их относительные высоты (как доля высоты контейнера)
+// Фото и их относительные высоты (процент от высоты контейнера)
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
-const heroHeights = ["88%", "96%", "92%", "100%"];
+const heroHeights = ["80%", "88%", "84%", "92%"]; // чуть ниже => больше отступ снизу
 
 const Index = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,13 +24,8 @@ const Index = () => {
     return idx;
   };
 
-  const nextImage = () => {
-    setCurrentIndex((prev) => clampIndex(prev + 1));
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => clampIndex(prev - 1));
-  };
+  const nextImage = () => setCurrentIndex((prev) => clampIndex(prev + 1));
+  const prevImage = () => setCurrentIndex((prev) => clampIndex(prev - 1));
 
   const startDrag = (clientX: number) => {
     setDragStartX(clientX);
@@ -52,11 +47,8 @@ const Index = () => {
     const width = containerRef.current?.offsetWidth ?? 1;
     const threshold = width * 0.2;
 
-    if (dragOffset < -threshold) {
-      nextImage();
-    } else if (dragOffset > threshold) {
-      prevImage();
-    }
+    if (dragOffset < -threshold) nextImage();
+    else if (dragOffset > threshold) prevImage();
 
     setIsDragging(false);
     setDragStartX(null);
@@ -70,33 +62,29 @@ const Index = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    // не даём странице ехать по вертикали во время свайпа
+    // блокируем вертикальный скролл во время свайпа
     e.preventDefault();
     const t = e.touches[0];
     moveDrag(t.clientX);
   };
 
-  const handleTouchEnd = () => {
-    endDrag();
-  };
+  const handleTouchEnd = () => endDrag();
 
   // MOUSE (desktop)
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     startDrag(e.clientX);
   };
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     moveDrag(e.clientX);
   };
-
   const handleMouseUp = () => {
     if (!isDragging) return;
     endDrag();
   };
 
-  // transform для карусели
+  // transform для ленты слайдов
   const width = containerRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
   const translate = -currentIndex * 100 + dragPercent;
@@ -107,9 +95,8 @@ const Index = () => {
   };
 
   return (
-    // фиксированная высота, без вертикального скролла страницы
     <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* Центральный блок с паспарту вокруг всех слайдов */}
+      {/* Паспарту вокруг всего блока, без внутреннего padding у слайдера */}
       <div
         ref={containerRef}
         className="
@@ -118,7 +105,6 @@ const Index = () => {
           w-full
           max-w-5xl
           mx-6 md:mx-10
-          px-3 md:px-5
           overflow-hidden
           cursor-grab
           active:cursor-grabbing
@@ -142,12 +128,13 @@ const Index = () => {
                 w-full
                 h-full
                 flex
-                items-end   /* ВЫРАВНИВАНИЕ ПО НИЖНЕМУ КРАЮ */
+                items-end           /* выравнивание по нижнему краю */
                 justify-center
               "
             >
+              {/* Сам кадр уже контейнера => между двумя кадрами получается тонкий просвет */}
               <div
-                className="relative w-full"
+                className="relative w-[94%]"  // 3% отступ слева и справа
                 style={{ height: heroHeights[index % heroHeights.length] }}
               >
                 <img
@@ -164,7 +151,7 @@ const Index = () => {
 
       {/* Угловые элементы */}
 
-      {/* Логотип */}
+      {/* Лого */}
       <div className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-8">
         <div className="pointer-events-auto">
           <img
