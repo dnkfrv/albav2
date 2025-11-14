@@ -6,9 +6,9 @@ import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-// фото и их относительные высоты (проценты от высоты контейнера)
+// фото и их относительные высоты (как доля высоты контейнера)
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
-const heroHeights = ["82%", "90%", "86%", "94%"];
+const heroHeights = ["88%", "96%", "92%", "100%"];
 
 const Index = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,7 +50,7 @@ const Index = () => {
     }
 
     const width = containerRef.current?.offsetWidth ?? 1;
-    const threshold = width * 0.2; // нужно протянуть ~20% ширины
+    const threshold = width * 0.2;
 
     if (dragOffset < -threshold) {
       nextImage();
@@ -70,7 +70,7 @@ const Index = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    // блокируем вертикальный скролл страницы во время перетаскивания
+    // не даём странице ехать по вертикали во время свайпа
     e.preventDefault();
     const t = e.touches[0];
     moveDrag(t.clientX);
@@ -96,7 +96,7 @@ const Index = () => {
     endDrag();
   };
 
-  // transform для всей ленты
+  // transform для карусели
   const width = containerRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
   const translate = -currentIndex * 100 + dragPercent;
@@ -107,9 +107,9 @@ const Index = () => {
   };
 
   return (
-    // overflow-hidden, чтобы страница не ехала и не было вертикального скролла
+    // фиксированная высота, без вертикального скролла страницы
     <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* Центральный блок с большим паспарту */}
+      {/* Центральный блок с паспарту вокруг всех слайдов */}
       <div
         ref={containerRef}
         className="
@@ -118,11 +118,12 @@ const Index = () => {
           w-full
           max-w-5xl
           mx-6 md:mx-10
+          px-3 md:px-5
           overflow-hidden
           cursor-grab
           active:cursor-grabbing
         "
-        style={{ touchAction: "none" }} // подсказываем браузеру, что здесь свой жест
+        style={{ touchAction: "none" }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -141,12 +142,10 @@ const Index = () => {
                 w-full
                 h-full
                 flex
-                items-center
+                items-end   /* ВЫРАВНИВАНИЕ ПО НИЖНЕМУ КРАЮ */
                 justify-center
-                px-3 md:px-5
               "
             >
-              {/* Внутри – сам кадр, выше паспарту, с небольшим зазором между слайдами */}
               <div
                 className="relative w-full"
                 style={{ height: heroHeights[index % heroHeights.length] }}
@@ -163,9 +162,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Угловые элементы – поверх и паспарту, и части фотографий */}
+      {/* Угловые элементы */}
 
-      {/* Логотип – верхний левый угол */}
+      {/* Логотип */}
       <div className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-8">
         <div className="pointer-events-auto">
           <img
@@ -176,14 +175,14 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Menu – верхний правый угол */}
+      {/* Menu */}
       <div className="pointer-events-none absolute top-4 right-4 md:top-6 md:right-8">
         <div className="pointer-events-auto">
           <MenuSheet />
         </div>
       </div>
 
-      {/* Адрес – нижний левый угол */}
+      {/* Адрес */}
       <div className="pointer-events-none absolute bottom-4 left-4 md:bottom-6 md:left-8">
         <div className="pointer-events-auto">
           <p className="text-xs md:text-sm text-muted-foreground">
@@ -194,7 +193,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Instagram + email – нижний правый угол */}
+      {/* Instagram + email */}
       <div className="pointer-events-none absolute bottom-4 right-4 md:bottom-6 md:right-8">
         <div className="pointer-events-auto flex flex-col items-end text-right space-y-1">
           <a
