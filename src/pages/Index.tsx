@@ -1,4 +1,4 @@
-import { Instagram, Clock, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { useState, useEffect } from "react";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
