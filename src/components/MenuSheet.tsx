@@ -46,7 +46,7 @@ export const MenuSheet = () => {
           <img
             src={menuImage}
             alt="Menu"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-6 md:h-8 w-auto object-contain"
           />
         </button>
       </SheetTrigger>
