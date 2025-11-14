@@ -1,3 +1,4 @@
+// src/components/MenuSheet.tsx
 import {
   Sheet,
   SheetContent,
@@ -40,12 +41,12 @@ export const MenuSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* кнопка с изображением Menu.png */}
+        {/* изображение Menu.png того же размера, что logo.png */}
         <button className="transition-opacity hover:opacity-80 focus:outline-none">
           <img
             src={menuImage}
             alt="Menu"
-            className="h-10 w-10 md:h-12 md:w-12 object-contain"
+            className="h-10 md:h-12 w-auto object-contain"
           />
         </button>
       </SheetTrigger>
