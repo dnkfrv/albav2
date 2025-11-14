@@ -75,7 +75,7 @@ const Index = () => {
             {/* Top Section */}
             <header className="flex justify-between items-start p-6 md:p-8">
               {/* Logo - Top Left */}
-              <div className="flex items-center space-x-3 backdrop-blur-sm bg-glass-bg/60 rounded-full px-4 py-2 shadow-elegant">
+              <div className="flex items-center space-x-3">
                 <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
                 
               </div>
