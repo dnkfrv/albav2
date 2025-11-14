@@ -6,10 +6,9 @@ import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-// Фото и их относительные высоты (процент от высоты контейнера)
-// Чуть меньше значения — фото приподняты над нижней границей
+// фото и их относительные высоты (как доля высоты контейнера)
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
-const heroHeights = ["76%", "84%", "80%", "88%"];
+const heroHeights = ["88%", "96%", "92%", "100%"];
 
 const Index = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,8 +24,13 @@ const Index = () => {
     return idx;
   };
 
-  const nextImage = () => setCurrentIndex((prev) => clampIndex(prev + 1));
-  const prevImage = () => setCurrentIndex((prev) => clampIndex(prev - 1));
+  const nextImage = () => {
+    setCurrentIndex((prev) => clampIndex(prev + 1));
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => clampIndex(prev - 1));
+  };
 
   const startDrag = (clientX: number) => {
     setDragStartX(clientX);
@@ -59,14 +63,14 @@ const Index = () => {
     setDragOffset(0);
   };
 
-  // TOUCH-обработчики
+  // TOUCH
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const t = e.touches[0];
     startDrag(t.clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    // блокируем вертикальный скролл во время свайпа
+    // не даём странице ехать по вертикали во время свайпа
     e.preventDefault();
     const t = e.touches[0];
     moveDrag(t.clientX);
@@ -76,7 +80,7 @@ const Index = () => {
     endDrag();
   };
 
-  // MOUSE-обработчики (desktop)
+  // MOUSE (desktop)
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     startDrag(e.clientX);
@@ -92,7 +96,7 @@ const Index = () => {
     endDrag();
   };
 
-  // transform для ленты слайдов
+  // transform для карусели
   const width = containerRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
   const translate = -currentIndex * 100 + dragPercent;
@@ -103,8 +107,9 @@ const Index = () => {
   };
 
   return (
+    // фиксированная высота, без вертикального скролла страницы
     <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* Центральный блок с «паспарту» по периметру */}
+      {/* Центральный блок с паспарту вокруг всех слайдов */}
       <div
         ref={containerRef}
         className="
@@ -113,6 +118,7 @@ const Index = () => {
           w-full
           max-w-5xl
           mx-6 md:mx-10
+          px-3 md:px-5
           overflow-hidden
           cursor-grab
           active:cursor-grabbing
@@ -136,11 +142,10 @@ const Index = () => {
                 w-full
                 h-full
                 flex
-                items-end          /* выравнивание по нижнему краю */
+                items-end   /* ВЫРАВНИВАНИЕ ПО НИЖНЕМУ КРАЮ */
                 justify-center
               "
             >
-              {/* Кадр ровно по ширине контейнера — без внутренних белых полей */}
               <div
                 className="relative w-full"
                 style={{ height: heroHeights[index % heroHeights.length] }}
