@@ -44,14 +44,13 @@ export const MenuSheet = () => {
             font-kommon
             text-[20px] md:text-[24px]
             leading-none
-            uppercase
             tracking-[0.12em]
             text-[#644A42]
             hover:text-[#644A42]
             transition-colors
           "
         >
-          menu
+          Menu
         </button>
       </SheetTrigger>
 
