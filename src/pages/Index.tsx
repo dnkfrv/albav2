@@ -6,32 +6,36 @@ import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-// на случай, если какой-то импорт по какой-то причине undefined
+// На случай, если какой-то импорт вдруг undefined
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
 
 const Index = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // троттлинг колеса, чтобы пролистывание было более плавным
   const isScrollingRef = useRef(false);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  // Прокрутка колесом (десктоп)
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
 
-      // если анимация ещё не закончилась – игнорируем новые события
       if (isScrollingRef.current) return;
       isScrollingRef.current = true;
 
       if (e.deltaY > 0) {
-        // вниз – следующая картинка
-        setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+        nextImage();
       } else if (e.deltaY < 0) {
-        // вверх – предыдущая
-        setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+        prevImage();
       }
 
-      // небольшой таймаут, чтобы прокрутка ощущалась плавнее
       setTimeout(() => {
         isScrollingRef.current = false;
       }, 600);
@@ -41,12 +45,53 @@ const Index = () => {
     return () => window.removeEventListener("wheel", handleWheel);
   }, []);
 
+  // Свайп (тач-экраны)
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const t = e.changedTouches[0];
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+
+      // Горизонтальный свайп сильнее вертикального и больше порога
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+        if (dx < 0) {
+          nextImage();
+        } else {
+          prevImage();
+        }
+      }
+    };
+
+    el.addEventListener("touchstart", handleTouchStart, { passive: true });
+    el.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener("touchstart", handleTouchStart);
+      el.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
+
   return (
     <div className="relative h-screen w-full bg-background overflow-hidden">
-      {/* Основной контейнер – ровно высота экрана */}
-      <div className="h-full flex flex-col p-4 md:p-8 lg:p-12">
+      {/* На мобиле убираем внешние отступы и рамку, на десктопе оставляем */}
+      <div className="h-full flex flex-col p-0 md:p-8 lg:p-12">
         {/* Контейнер с картинкой */}
-        <div className="flex-1 relative rounded-2xl overflow-hidden shadow-elegant">
+        <div
+          ref={carouselRef}
+          className="flex-1 relative rounded-none md:rounded-2xl overflow-hidden shadow-elegant"
+        >
           {/* Картинка + оверлей */}
           <div className="relative h-full w-full">
             <img
@@ -54,45 +99,44 @@ const Index = () => {
               alt="Restaurant"
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
             />
-            {/* если вдруг будет слишком тёмно/серо – можно временно закомментировать этот блок */}
             <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
           </div>
 
-          {/* Контент поверх картинки */}
+          {/* Контент поверх */}
           <div className="absolute inset-0 z-10 flex flex-col">
             {/* Верхняя часть */}
-            <header className="flex justify-between items-start p-6 md:p-8">
+            <header className="flex justify-between items-start p-4 md:p-6 lg:p-8">
               <div className="flex items-center space-x-3">
-                <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
+                <img src={logoImage} alt="Restaurant Logo" className="h-10 w-10 md:h-12 md:w-12 object-contain" />
               </div>
 
               <MenuSheet />
             </header>
 
             {/* Нижняя часть */}
-            <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
+            <footer className="mt-auto p-4 md:p-6 lg:p-8 flex justify-between items-end">
               {/* Слева – часы и адрес */}
-              <div className="flex items-start space-x-6">
-                <p className="text-sm text-muted-foreground">
+              <div className="flex items-start space-x-4 md:space-x-6">
+                <p className="text-xs md:text-sm text-muted-foreground">
                   Monday - Sunday 9:00 - 17:00
                   <br />
                   Largo do Rato, 4A
                 </p>
               </div>
 
-              {/* Справа – Instagram и email, прижаты к правому краю */}
+              {/* Справа – Instagram и email */}
               <div className="flex flex-col items-end text-right space-y-1">
                 <a
                   href="https://instagram.com/albabistro.lisbon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Instagram
                 </a>
                 <a
                   href="mailto:hello@albabistrolisbon.com"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   email
                 </a>
