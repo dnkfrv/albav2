@@ -87,11 +87,12 @@ const Index = () => {
             {/* Bottom Section */}
             <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
               {/* Hours & Address - Bottom Left */}
-              <div className="backdrop-blur-md bg-glass-bg/70 rounded-2xl px-6 py-4 shadow-elegant space-y-3 max-w-sm">
+              <div className=="flex items-center">
                 <div className="flex items-start space-x-3">
+                  </div>
                   
                   <div>
-                   <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
+                   <p className="text-sm text-muted-foreground">Every day 9:00 - 17:00</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -99,9 +100,8 @@ const Index = () => {
                   <div>
                     <p className="text-sm font-medium text-foreground">Адрес</p>
                     <p className="text-sm text-muted-foreground">
-                      ул. Пример, 123
+                      Largo do Rato, 4A
                       <br />
-                      Москва, Россия
                     </p>
                   </div>
                 </div>
