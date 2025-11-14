@@ -44,7 +44,7 @@ export const MenuSheet = () => {
             font-kommon
             text-[20px] md:text-[24px]
             leading-none
-            tracking-[0.12em]
+            tracking-[0.02em]
             text-[#644A42]
             hover:text-[#644A42]
             transition-colors
