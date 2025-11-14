@@ -7,8 +7,9 @@ import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
 // Фото и их относительные высоты (процент от высоты контейнера)
+// Чуть меньше значения — фото приподняты над нижней границей
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
-const heroHeights = ["80%", "88%", "84%", "92%"]; // чуть ниже => больше отступ снизу
+const heroHeights = ["76%", "84%", "80%", "88%"];
 
 const Index = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,15 +48,18 @@ const Index = () => {
     const width = containerRef.current?.offsetWidth ?? 1;
     const threshold = width * 0.2;
 
-    if (dragOffset < -threshold) nextImage();
-    else if (dragOffset > threshold) prevImage();
+    if (dragOffset < -threshold) {
+      nextImage();
+    } else if (dragOffset > threshold) {
+      prevImage();
+    }
 
     setIsDragging(false);
     setDragStartX(null);
     setDragOffset(0);
   };
 
-  // TOUCH
+  // TOUCH-обработчики
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const t = e.touches[0];
     startDrag(t.clientX);
@@ -68,17 +72,21 @@ const Index = () => {
     moveDrag(t.clientX);
   };
 
-  const handleTouchEnd = () => endDrag();
+  const handleTouchEnd = () => {
+    endDrag();
+  };
 
-  // MOUSE (desktop)
+  // MOUSE-обработчики (desktop)
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     startDrag(e.clientX);
   };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     moveDrag(e.clientX);
   };
+
   const handleMouseUp = () => {
     if (!isDragging) return;
     endDrag();
@@ -96,7 +104,7 @@ const Index = () => {
 
   return (
     <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* Паспарту вокруг всего блока, без внутреннего padding у слайдера */}
+      {/* Центральный блок с «паспарту» по периметру */}
       <div
         ref={containerRef}
         className="
@@ -128,13 +136,13 @@ const Index = () => {
                 w-full
                 h-full
                 flex
-                items-end           /* выравнивание по нижнему краю */
+                items-end          /* выравнивание по нижнему краю */
                 justify-center
               "
             >
-              {/* Сам кадр уже контейнера => между двумя кадрами получается тонкий просвет */}
+              {/* Кадр ровно по ширине контейнера — без внутренних белых полей */}
               <div
-                className="relative w-[94%]"  // 3% отступ слева и справа
+                className="relative w-full"
                 style={{ height: heroHeights[index % heroHeights.length] }}
               >
                 <img
@@ -151,7 +159,7 @@ const Index = () => {
 
       {/* Угловые элементы */}
 
-      {/* Лого */}
+      {/* Логотип */}
       <div className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-8">
         <div className="pointer-events-auto">
           <img
