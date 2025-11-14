@@ -6,6 +6,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+import menuImage from "@/assets/Menu.png";
+
 const menuItems = [
   {
     category: "Напитки",
@@ -38,19 +40,13 @@ export const MenuSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* надпись menu шрифтом Kommon Grotesk, уменьшенный размер и цвет #644A42 */}
-        <button
-          className="
-            font-kommon
-            text-[16px] md:text-[18px]
-            leading-none
-            tracking-[0.01em]
-            text-[#644A42]
-            hover:text-[#644A42]
-            transition-colors
-          "
-        >
-          Menu
+        {/* кнопка с изображением Menu.png */}
+        <button className="transition-opacity hover:opacity-80 focus:outline-none">
+          <img
+            src={menuImage}
+            alt="Menu"
+            className="h-10 md:h-12 w-auto"
+          />
         </button>
       </SheetTrigger>
 
