@@ -77,10 +77,7 @@ const Index = () => {
               {/* Logo - Top Left */}
               <div className="flex items-center space-x-3 backdrop-blur-sm bg-glass-bg/60 rounded-full px-4 py-2 shadow-elegant">
                 <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
-                <div className="hidden md:block">
-                  <h1 className="text-xl font-bold text-foreground">Your Restaurant</h1>
-                  <p className="text-sm text-muted-foreground">Coffee & Dine</p>
-                </div>
+                
               </div>
 
               {/* Menu Button - Top Right */}
