@@ -1,71 +1,150 @@
-import { Instagram, Clock, MapPin } from "lucide-react";
+import { Instagram, Clock, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { MenuSheet } from "@/components/MenuSheet";
-import heroImage from "@/assets/hero-restaurant.jpg";
+import { useState, useEffect } from "react";
+import heroImage1 from "@/assets/hero-restaurant.jpg";
+import heroImage2 from "@/assets/hero-restaurant-2.jpg";
+import heroImage3 from "@/assets/hero-restaurant-3.jpg";
+import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
+const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
+
 const Index = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      
+      if (e.deltaY > 0) {
+        // Scroll down = next image
+        setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+      } else if (e.deltaY < 0) {
+        // Scroll up = previous image
+        setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => window.removeEventListener("wheel", handleWheel);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Hero Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
+    <div className="relative min-h-screen w-full bg-background overflow-hidden">
+      {/* Main Content Container with padding for white margins */}
+      <div className="min-h-screen flex flex-col p-4 md:p-8 lg:p-12">
+        {/* Image Container - centered with aspect ratio */}
+        <div className="flex-1 relative rounded-2xl overflow-hidden shadow-elegant">
+          {/* Hero Image with Carousel */}
+          <div className="relative w-full h-full">
+            <img
+              src={heroImages[currentImageIndex]}
+              alt="Restaurant"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              key={currentImageIndex}
+            />
+            <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
+          </div>
+
+          {/* Carousel Navigation Arrows */}
+          <button
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 backdrop-blur-md bg-glass-bg/70 rounded-full p-3 shadow-elegant hover:bg-primary/20 transition-all duration-300 group z-20"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 backdrop-blur-md bg-glass-bg/70 rounded-full p-3 shadow-elegant hover:bg-primary/20 transition-all duration-300 group z-20"
+            aria-label="Next image"
+          >
+            <ChevronRight className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
+          </button>
+
+          {/* Carousel Indicators */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+            {heroImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex
+                    ? "bg-primary w-8"
+                    : "bg-muted-foreground/50 hover:bg-muted-foreground/80"
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Content Layer */}
+          <div className="absolute inset-0 z-10 flex flex-col">
+            {/* Top Section */}
+            <header className="flex justify-between items-start p-6 md:p-8">
+              {/* Logo - Top Left */}
+              <div className="flex items-center space-x-3 backdrop-blur-sm bg-glass-bg/60 rounded-full px-4 py-2 shadow-elegant">
+                <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
+                <div className="hidden md:block">
+                  <h1 className="text-xl font-bold text-foreground">Your Restaurant</h1>
+                  <p className="text-sm text-muted-foreground">Coffee & Dine</p>
+                </div>
+              </div>
+
+              {/* Menu Button - Top Right */}
+              <MenuSheet />
+            </header>
+
+            {/* Bottom Section */}
+            <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
+              {/* Hours & Address - Bottom Left */}
+              <div className="backdrop-blur-md bg-glass-bg/70 rounded-2xl px-6 py-4 shadow-elegant space-y-3 max-w-sm">
+                <div className="flex items-start space-x-3">
+                  <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-medium text-foreground">Часы работы</p>
+                    <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-medium text-foreground">Адрес</p>
+                    <p className="text-sm text-muted-foreground">
+                      ул. Пример, 123
+                      <br />
+                      Москва, Россия
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Instagram - Bottom Right */}
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="backdrop-blur-md bg-glass-bg/70 rounded-full p-4 shadow-elegant hover:bg-primary/20 transition-all duration-300 group"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-8 w-8 text-foreground group-hover:text-primary transition-colors" />
+              </a>
+            </footer>
+          </div>
+        </div>
       </div>
 
-      {/* Content Layer */}
-      <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Top Section */}
-        <header className="flex justify-between items-start p-6 md:p-8">
-          {/* Logo - Top Left */}
-          <div className="flex items-center space-x-3 backdrop-blur-sm bg-glass-bg/60 rounded-full px-4 py-2 shadow-elegant">
-            <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
-            <div className="hidden md:block">
-              <h1 className="text-xl font-bold text-foreground">Your Restaurant</h1>
-              <p className="text-sm text-muted-foreground">Coffee & Dine</p>
-            </div>
-          </div>
-
-          {/* Menu Button - Top Right */}
-          <MenuSheet />
-        </header>
-
-        {/* Bottom Section */}
-        <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
-          {/* Hours & Address - Bottom Left */}
-          <div className="backdrop-blur-md bg-glass-bg/70 rounded-2xl px-6 py-4 shadow-elegant space-y-3 max-w-sm">
-            <div className="flex items-start space-x-3">
-              <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm font-medium text-foreground">Часы работы</p>
-                <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm font-medium text-foreground">Адрес</p>
-                <p className="text-sm text-muted-foreground">
-                  ул. Пример, 123
-                  <br />
-                  Москва, Россия
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Instagram - Bottom Right */}
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="backdrop-blur-md bg-glass-bg/70 rounded-full p-4 shadow-elegant hover:bg-primary/20 transition-all duration-300 group"
-            aria-label="Instagram"
-          >
-            <Instagram className="h-8 w-8 text-foreground group-hover:text-primary transition-colors" />
-          </a>
-        </footer>
+      {/* Scroll hint */}
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 backdrop-blur-md bg-glass-bg/70 rounded-full px-4 py-2 shadow-elegant z-30">
+        <p className="text-xs text-muted-foreground">Прокрутите для смены фото</p>
       </div>
     </div>
   );
