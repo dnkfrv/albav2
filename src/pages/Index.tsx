@@ -58,7 +58,7 @@ const Index: React.FC = () => {
             <img
               src={img}
               alt="Restaurant"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover -translate-y-[10px]"
             />
             <div className="absolute inset-0 bg-black/25" />
           </div>
