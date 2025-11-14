@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { useState, useEffect } from "react";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
@@ -102,7 +102,7 @@ const Index = () => {
 
               {/* Instagram - Bottom Right */}
               <a
-                href="https://instagram.com/albabistro.lisbon"
+                href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="backdrop-blur-md bg-glass-bg/70 rounded-full p-4 shadow-elegant hover:bg-primary/20 transition-all duration-300 group"
