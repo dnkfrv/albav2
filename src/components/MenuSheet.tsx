@@ -1,6 +1,10 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const menuItems = [
   {
@@ -34,19 +38,16 @@ export const MenuSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          size="lg"
-          className="text-foreground hover:bg-primary/10 transition-all duration-300 backdrop-blur-sm bg-glass-bg/60"
-        >
-          <Menu className="h-6 w-6 mr-2" />
-          <span className="text-lg font-medium">Меню</span>
-        </Button>
+        <button className="text-sm md:text-base text-foreground hover:text-primary transition-colors">
+          Menu
+        </button>
       </SheetTrigger>
+
       <SheetContent className="w-full sm:w-[540px] overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Наше меню</SheetTitle>
         </SheetHeader>
+
         <div className="space-y-8 py-4">
           {menuItems.map((section) => (
             <div key={section.category} className="space-y-4">
@@ -60,7 +61,9 @@ export const MenuSheet = () => {
                     className="flex justify-between items-center py-2 hover:bg-muted/50 px-3 rounded-md transition-colors"
                   >
                     <span className="text-lg text-foreground">{item.name}</span>
-                    <span className="text-lg font-medium text-primary">{item.price}</span>
+                    <span className="text-lg font-medium text-primary">
+                      {item.price}
+                    </span>
                   </div>
                 ))}
               </div>
