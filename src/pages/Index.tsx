@@ -62,7 +62,7 @@ const Index: React.FC = () => {
         <img
           src={logoImage}
           alt="Restaurant Logo"
-          className="h-10 md:h-12 w-auto object-contain"
+          className="h-6 md:h-8 w-auto object-contain"
         />
       </div>
 
