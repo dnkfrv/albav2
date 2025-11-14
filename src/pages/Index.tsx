@@ -95,7 +95,7 @@ const Index = () => {
   <div className="flex items-start space-x-6">
     <p className="text-sm text-muted-foreground">
       Monday - Sunday 9:00 - 17:00
-        </br>
+        <br/>
       Largo do Rato, 4A
     </p>
   </div>
