@@ -38,16 +38,16 @@ export const MenuSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* надпись menu шрифтом Kommon Grotesk, размер как логотип */}
+        {/* надпись menu шрифтом Kommon Grotesk, уменьшенный размер и цвет #644A42 */}
         <button
           className="
             font-kommon
-            text-[40px] md:text-[48px]
+            text-[20px] md:text-[24px]
             leading-none
             uppercase
             tracking-[0.12em]
-            text-foreground
-            hover:text-primary
+            text-[#644A42]
+            hover:text-[#644A42]
             transition-colors
           "
         >
