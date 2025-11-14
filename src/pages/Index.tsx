@@ -91,17 +91,15 @@ const Index = () => {
                               <div className="flex items-start space-x-3">
                   
                   <div>
-                   <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
+                   <p className="text-sm text-muted-foreground">Monday - Sunday 9:00 - 17:00</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   
                   <div>
-                    <p className="text-sm font-medium text-foreground">Адрес</p>
-                    <p className="text-sm text-muted-foreground">
-                      ул. Пример, 123
+                     <p className="text-sm text-muted-foreground">
+                      Largo do Rato, 4A
                       <br />
-                      Москва, Россия
                     </p>
                   </div>
                 </div>
