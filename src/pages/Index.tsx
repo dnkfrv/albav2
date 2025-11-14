@@ -103,6 +103,15 @@ const Index = () => {
               >
                 Instagram
               </a>
+              {/* email - Bottom Right (text link instead of icon) */}
+              <a
+                href="mailto:hello@albabistrolibon.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                email
+              </a>              
             </footer>
           </div>
         </div>
