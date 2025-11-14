@@ -42,9 +42,9 @@ export const MenuSheet = () => {
         <button
           className="
             font-kommon
-            text-[20px] md:text-[24px]
+            text-[16px] md:text-[24px]
             leading-none
-            tracking-[0.02em]
+            tracking-[0.01em]
             text-[#644A42]
             hover:text-[#644A42]
             transition-colors
