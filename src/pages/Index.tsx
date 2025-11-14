@@ -92,7 +92,7 @@ const Index = () => {
               {/* Hours & Address - Bottom Left */}
               <div className="backdrop-blur-md bg-glass-bg/70 rounded-2xl px-6 py-4 shadow-elegant space-y-3 max-w-sm">
                 <div className="flex items-start space-x-3">
-                  <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  
                   <div>
                    <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
                   </div>
