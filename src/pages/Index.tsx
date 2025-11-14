@@ -70,22 +70,6 @@ const Index = () => {
             <ChevronRight className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
           </button>
 
-          {/* Carousel Indicators */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-            {heroImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentImageIndex
-                    ? "bg-primary w-8"
-                    : "bg-muted-foreground/50 hover:bg-muted-foreground/80"
-                }`}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
-          </div>
-
           {/* Content Layer */}
           <div className="absolute inset-0 z-10 flex flex-col">
             {/* Top Section */}
