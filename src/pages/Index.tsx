@@ -93,10 +93,7 @@ const Index = () => {
                   <div>
                    <p className="text-sm text-muted-foreground">Monday - Sunday 9:00 - 17:00</p>
                   </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                                    <div>
-                     <br></br><p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                       Largo do Rato, 4A
                       <br />
                     </p>
