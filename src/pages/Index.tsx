@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
 import heroImage2 from "@/assets/hero-restaurant-2.jpg";
@@ -6,118 +6,43 @@ import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-// на всякий случай отбрасываем битые импорты
+// Фото и их относительные высоты (чуть разные, как в примере)
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
+const heroHeights = ["65svh", "72svh", "68svh", "75svh"];
 
 const Index = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const isScrollingRef = useRef(false);
-  const carouselRef = useRef<HTMLDivElement | null>(null);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
-
-  // тап/клик по левой/правой части экрана
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const width = window.innerWidth || document.documentElement.clientWidth;
-    const x = e.clientX;
-
-    // левая часть экрана (40%) – предыдущее фото
-    if (x < width * 0.4) {
-      prevImage();
-    }
-    // правая часть экрана (40%) – следующее фото
-    else if (x > width * 0.6) {
-      nextImage();
-    }
-    // середина — ничего не делаем
-  };
-
-  // прокрутка колёсиком (десктоп)
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-
-      if (isScrollingRef.current) return;
-      isScrollingRef.current = true;
-
-      if (e.deltaY > 0) {
-        nextImage();
-      } else if (e.deltaY < 0) {
-        prevImage();
-      }
-
-      setTimeout(() => {
-        isScrollingRef.current = false;
-      }, 600);
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, []);
-
-  // свайп (тач-экраны)
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      const t = e.touches[0];
-      touchStartX = t.clientX;
-      touchStartY = t.clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const t = e.changedTouches[0];
-      const dx = t.clientX - touchStartX;
-      const dy = t.clientY - touchStartY;
-
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
-        if (dx < 0) {
-          nextImage();
-        } else {
-          prevImage();
-        }
-      }
-    };
-
-    el.addEventListener("touchstart", handleTouchStart, { passive: true });
-    el.addEventListener("touchend", handleTouchEnd, { passive: true });
-
-    return () => {
-      el.removeEventListener("touchstart", handleTouchStart);
-      el.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, []);
-
   return (
-    // страница = высота экрана, паспарту по периметру
+    // Вся страница = высота экрана, паспарту по краям
     <div className="h-svh w-full bg-background flex items-center justify-center relative">
-      {/* карточка с фотографией, без скругления, с широким паспарту */}
+      {/* Центральный блок с фотографиями: внутри вертикальный скролл и snap */}
       <div
-        ref={carouselRef}
-        onClick={handleClick}
-        className="relative h-[84svh] w-full max-w-5xl mx-6 md:mx-10 shadow-elegant overflow-hidden"
+        className="
+          relative
+          h-[84svh]
+          w-full
+          max-w-5xl
+          mx-6 md:mx-10
+          overflow-y-auto
+          snap-y snap-mandatory
+        "
       >
-        <div className="relative h-full w-full">
-          <img
-            src={heroImages[currentImageIndex]}
-            alt="Restaurant"
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-          />
-          <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
-        </div>
+        {heroImages.map((img, index) => (
+          <div
+            key={index}
+            className="relative w-full snap-center mb-6 md:mb-8 last:mb-0"
+            style={{ height: heroHeights[index % heroHeights.length] }}
+          >
+            <img
+              src={img}
+              alt="Restaurant"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
+          </div>
+        ))}
       </div>
 
-      {/* Угловые элементы – поверх и паспарту, и фото */}
+      {/* Угловые элементы – частично на паспарту, частично на фото */}
       {/* ЛОГО СЛЕВА СВЕРХУ */}
       <div className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-8">
         <div className="pointer-events-auto">
@@ -129,14 +54,14 @@ const Index = () => {
         </div>
       </div>
 
-      {/* КНОПКА MENU СПРАВА СВЕРХУ (стили самой кнопки меняются в MenuSheet) */}
+      {/* MENU СПРАВА СВЕРХУ */}
       <div className="pointer-events-none absolute top-4 right-4 md:top-6 md:right-8">
         <div className="pointer-events-auto">
           <MenuSheet />
         </div>
       </div>
 
-      {/* ВРЕМЯ И АДРЕС СЛЕВА СНИЗУ */}
+      {/* АДРЕС СЛЕВА СНИЗУ */}
       <div className="pointer-events-none absolute bottom-4 left-4 md:bottom-6 md:left-8">
         <div className="pointer-events-auto">
           <p className="text-xs md:text-sm text-muted-foreground">
