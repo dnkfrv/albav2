@@ -1,15 +1,22 @@
 // src/pages/Index.tsx
 import React, { useState, useEffect } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
-import heroImage1 from "@/assets/hero-restaurant.jpg";
-import heroImage2 from "@/assets/hero-restaurant-2.jpg";
-import heroImage3 from "@/assets/hero-restaurant-3.jpg";
-import heroImage4 from "@/assets/hero-restaurant-4.jpg";
+
+// новые фото
+import img1 from "@/assets/A-130.jpg";
+import img2 from "@/assets/A-188.jpg";
+import img3 from "@/assets/A-20.jpg";
+import img4 from "@/assets/A-55.jpg";
+import img5 from "@/assets/a-113.jpg";
+import img6 from "@/assets/a-155.jpg";
+import img7 from "@/assets/a-183.jpg";
+import img8 from "@/assets/a-54.jpg";
+
 import logoImage from "@/assets/logo.png";
 
-const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
+const heroImages = [img1, img2, img3, img4, img5, img6, img7, img8].filter(Boolean);
 
-const SLIDE_INTERVAL = 6000; // 6 секунд между сменой фото - можно поменять
+const SLIDE_INTERVAL = 6000; // 6 секунд между сменой фото
 
 const Index: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
