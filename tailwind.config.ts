@@ -60,27 +60,26 @@ export default {
         "hero-overlay": "hsl(var(--hero-overlay))",
         "glass-bg": "hsl(var(--glass-bg))",
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
+      // ← ВСТАВКА ЗДЕСЬ
+      fontFamily: {
+        kommon: ['"Kommon Grotesk"', "system-ui", "sans-serif"],
+      },
+
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
