@@ -1,4 +1,3 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { useState, useEffect } from "react";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
@@ -29,14 +28,6 @@ const Index = () => {
     return () => window.removeEventListener("wheel", handleWheel);
   }, []);
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
-
   return (
     <div className="relative min-h-screen w-full bg-background overflow-hidden">
       {/* Main Content Container with padding for white margins */}
@@ -51,24 +42,9 @@ const Index = () => {
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
               key={currentImageIndex}
             />
+            {/* если картинка не видна — временно закомментируй блок ниже */}
             <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
           </div>
-
-          {/* Carousel Navigation Arrows */}
-          <button
-            onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 backdrop-blur-md bg-glass-bg/70 rounded-full p-3 shadow-elegant hover:bg-primary/20 transition-all duration-300 group z-20"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 backdrop-blur-md bg-glass-bg/70 rounded-full p-3 shadow-elegant hover:bg-primary/20 transition-all duration-300 group z-20"
-            aria-label="Next image"
-          >
-            <ChevronRight className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
-          </button>
 
           {/* Content Layer */}
           <div className="absolute inset-0 z-10 flex flex-col">
@@ -94,31 +70,27 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Instagram - Bottom Right (text link instead of icon) */}
-              <a
-                href="https://instagram.com/albabistro.lisbon"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Instagram
-              </a>
-              {/* email - Bottom Right (text link instead of icon) */}
-              <br />
-              <a
-                href="mailto:hello@albabistrolibon.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                email
-              </a>              
+              {/* Bottom right: Instagram + email, выровнены по правому краю */}
+              <div className="flex flex-col items-end text-right space-y-1">
+                <a
+                  href="https://instagram.com/albabistro.lisbon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="mailto:hello@albabistrolisbon.com"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  email
+                </a>
+              </div>
             </footer>
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };
