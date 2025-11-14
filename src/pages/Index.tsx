@@ -39,10 +39,10 @@ const Index = () => {
             <img
               src={heroImages[currentImageIndex]}
               alt="Restaurant"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              className="w-full h-full object-cover transition-opacity duration-500"
               key={currentImageIndex}
             />
-            {/* если картинка не видна — временно закомментируй блок ниже */}
+            {/* если вдруг всё ещё будет белый фон — закомментируй строку ниже */}
             <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
           </div>
 
