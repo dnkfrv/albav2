@@ -1,3 +1,4 @@
+// src/pages/Index.tsx
 import React, { useState, useEffect } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
@@ -13,7 +14,6 @@ const SLIDE_INTERVAL = 6000; // 6 секунд между сменой фото 
 const Index: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // авто-смена фотографий, как на лендинге-галерее
   useEffect(() => {
     if (heroImages.length <= 1) return;
 
@@ -25,9 +25,8 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    // страница во весь экран, без вертикального скролла
     <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* Центральный блок с фотографиями, как у SIGHT */}
+      {/* Центральный блок с фотографиями */}
       <div
         className="
           relative
@@ -38,7 +37,6 @@ const Index: React.FC = () => {
           overflow-hidden
         "
       >
-        {/* все фотографии лежат друг над другом, видна только активная */}
         {heroImages.map((img, index) => (
           <div
             key={index}
@@ -54,20 +52,17 @@ const Index: React.FC = () => {
               alt="Restaurant"
               className="w-full h-full object-cover"
             />
-            {/* лёгкий затемняющий слой поверх фото, чтобы текст в углах читался */}
             <div className="absolute inset-0 bg-black/25" />
           </div>
         ))}
       </div>
-
-      {/* Угловые элементы - логотип, меню, адрес, соцсети */}
 
       {/* Логотип слева сверху */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <img
           src={logoImage}
           alt="Restaurant Logo"
-          className="h-10 w-10 md:h-12 md:w-12 object-contain"
+          className="h-10 md:h-12 w-auto object-contain"
         />
       </div>
 
