@@ -1,4 +1,4 @@
-import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { useState, useEffect } from "react";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
@@ -15,7 +15,7 @@ const Index = () => {
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      
+
       if (e.deltaY > 0) {
         // Scroll down = next image
         setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
@@ -77,7 +77,6 @@ const Index = () => {
               {/* Logo - Top Left */}
               <div className="flex items-center space-x-3">
                 <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
-                
               </div>
 
               {/* Menu Button - Top Right */}
@@ -86,34 +85,23 @@ const Index = () => {
 
             {/* Bottom Section */}
             <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
-              {/* Hours & Address - Bottom Left */}
-              <div className="flex items-start space-x-3">
-                              <div className="flex items-start space-x-3">
-                  
-                  <div>
-                   <p className="text-sm text-muted-foreground">Monday - Sunday 9:00 - 17:00</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  
-                  <div>
-                     <p className="text-sm text-muted-foreground">
-                      Largo do Rato, 4A
-                      <br />
-                    </p>
-                  </div>
-                </div>
+              {/* Bottom left */}
+              <div className="flex items-start space-x-6">
+                <p className="text-sm text-muted-foreground">
+                  Monday - Sunday 9:00 - 17:00
+                  <br />
+                  Largo do Rato, 4A
+                </p>
               </div>
 
-              {/* Instagram - Bottom Right */}
+              {/* Instagram - Bottom Right (text link instead of icon) */}
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="backdrop-blur-md bg-glass-bg/70 rounded-full p-4 shadow-elegant hover:bg-primary/20 transition-all duration-300 group"
-                aria-label="Instagram"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                <Instagram className="h-8 w-8 text-foreground group-hover:text-primary transition-colors" />
+                Instagram
               </a>
             </footer>
           </div>
