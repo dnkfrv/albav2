@@ -75,10 +75,10 @@ const Index = () => {
             {/* Top Section */}
             <header className="flex justify-between items-start p-6 md:p-8">
               {/* Logo - Top Left */}
-             <div className="flex items-center">
-  <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
-</div>
-             
+              <div className="flex items-center space-x-3 backdrop-blur-sm bg-glass-bg/60 rounded-full px-4 py-2 shadow-elegant">
+                <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
+                
+              </div>
 
               {/* Menu Button - Top Right */}
               <MenuSheet />
@@ -87,12 +87,11 @@ const Index = () => {
             {/* Bottom Section */}
             <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
               {/* Hours & Address - Bottom Left */}
-              <div className=="flex items-center">
+              <div className="backdrop-blur-md bg-glass-bg/70 rounded-2xl px-6 py-4 shadow-elegant space-y-3 max-w-sm">
                 <div className="flex items-start space-x-3">
-                  </div>
                   
                   <div>
-                   <p className="text-sm text-muted-foreground">Every day 9:00 - 17:00</p>
+                   <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -100,8 +99,9 @@ const Index = () => {
                   <div>
                     <p className="text-sm font-medium text-foreground">Адрес</p>
                     <p className="text-sm text-muted-foreground">
-                      Largo do Rato, 4A
+                      ул. Пример, 123
                       <br />
+                      Москва, Россия
                     </p>
                   </div>
                 </div>
