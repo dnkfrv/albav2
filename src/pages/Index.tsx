@@ -85,7 +85,7 @@ const Index = () => {
             </header>
 
             {/* Bottom Section */}
-            <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
+            <footer className="mt-auto p-6 md:p-8 flex justify-between items-start">
               {/* Hours & Address - Bottom Left */}
               <div className="flex items-start space-x-3">
               <div className="flex items-start space-x-3">
@@ -95,7 +95,7 @@ const Index = () => {
                     </div>
                        <div className="flex items-start space-x-3">
                          <div>
-                          <br></br>
+                          <br>
                            <p className="text-sm text-muted-foreground">
                              Largo do Rato, 4A
                       <br/>
