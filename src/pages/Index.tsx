@@ -42,7 +42,7 @@ const Index: React.FC = () => {
           w-full
           max-w-5xl
           mx-6 md:mx-10
-          overflow-hidden
+          overflow-visible
         "
       >
         {heroImages.map((img, index) => (
