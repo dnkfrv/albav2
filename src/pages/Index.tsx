@@ -96,7 +96,7 @@ const Index = () => {
 
               {/* Instagram - Bottom Right (text link instead of icon) */}
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/albabistro.lisbon"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
