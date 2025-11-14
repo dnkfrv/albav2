@@ -22,15 +22,20 @@ const Index = () => {
     setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
   };
 
-  // клик / тап в правой части экрана -> следующее фото
+  // тап/клик по левой/правой части экрана
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const width = window.innerWidth || document.documentElement.clientWidth;
     const x = e.clientX;
 
-    // реагируем только на правые 40% экрана
-    if (x > width * 0.6) {
+    // левая часть экрана (40%) – предыдущее фото
+    if (x < width * 0.4) {
+      prevImage();
+    }
+    // правая часть экрана (40%) – следующее фото
+    else if (x > width * 0.6) {
       nextImage();
     }
+    // середина — ничего не делаем
   };
 
   // прокрутка колёсиком (десктоп)
@@ -94,15 +99,14 @@ const Index = () => {
   }, []);
 
   return (
-    // страница целиком = высота экрана, без скролла
-    <div className="h-svh w-full bg-background flex items-center justify-center">
-      {/* карточка немного меньше экрана -> паспарту по периметру */}
+    // страница = высота экрана, паспарту по периметру
+    <div className="h-svh w-full bg-background flex items-center justify-center relative">
+      {/* карточка с фотографией, без скругления, с широким паспарту */}
       <div
         ref={carouselRef}
         onClick={handleClick}
         className="relative h-[84svh] w-full max-w-5xl mx-6 md:mx-10 shadow-elegant overflow-hidden"
       >
-        {/* картинка + оверлей */}
         <div className="relative h-full w-full">
           <img
             src={heroImages[currentImageIndex]}
@@ -111,50 +115,55 @@ const Index = () => {
           />
           <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
         </div>
+      </div>
 
-        {/* контент поверх картинки */}
-        <div className="absolute inset-0 z-10 flex flex-col">
-          {/* верхние элементы ближе к углам */}
-          <header className="flex justify-between items-start p-3 md:p-5 lg:p-6">
-            <div className="flex items-center space-x-3">
-              <img
-                src={logoImage}
-                alt="Restaurant Logo"
-                className="h-10 w-10 md:h-12 md:w-12 object-contain"
-              />
-            </div>
+      {/* Угловые элементы – поверх и паспарту, и фото */}
+      {/* ЛОГО СЛЕВА СВЕРХУ */}
+      <div className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-8">
+        <div className="pointer-events-auto">
+          <img
+            src={logoImage}
+            alt="Restaurant Logo"
+            className="h-10 w-10 md:h-12 md:w-12 object-contain"
+          />
+        </div>
+      </div>
 
-            {/* сам компонент MenuSheet – кнопку поменяем внутри него */}
-            <MenuSheet />
-          </header>
+      {/* КНОПКА MENU СПРАВА СВЕРХУ (стили самой кнопки меняются в MenuSheet) */}
+      <div className="pointer-events-none absolute top-4 right-4 md:top-6 md:right-8">
+        <div className="pointer-events-auto">
+          <MenuSheet />
+        </div>
+      </div>
 
-          {/* нижние элементы ближе к углам */}
-          <footer className="mt-auto p-3 md:p-5 lg:p-6 flex justify-between items-end">
-            <div className="flex items-start space-x-4 md:space-x-6">
-              <p className="text-xs md:text-sm text-muted-foreground">
-                Monday - Sunday 9:00 - 17:00
-                <br />
-                Largo do Rato, 4A
-              </p>
-            </div>
+      {/* ВРЕМЯ И АДРЕС СЛЕВА СНИЗУ */}
+      <div className="pointer-events-none absolute bottom-4 left-4 md:bottom-6 md:left-8">
+        <div className="pointer-events-auto">
+          <p className="text-xs md:text-sm text-muted-foreground">
+            Monday - Sunday 9:00 - 17:00
+            <br />
+            Largo do Rato, 4A
+          </p>
+        </div>
+      </div>
 
-            <div className="flex flex-col items-end text-right space-y-1">
-              <a
-                href="https://instagram.com/albabistro.lisbon"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Instagram
-              </a>
-              <a
-                href="mailto:hello@albabistrolisbon.com"
-                className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                email
-              </a>
-            </div>
-          </footer>
+      {/* INSTAGRAM + EMAIL СПРАВА СНИЗУ */}
+      <div className="pointer-events-none absolute bottom-4 right-4 md:bottom-6 md:right-8">
+        <div className="pointer-events-auto flex flex-col items-end text-right space-y-1">
+          <a
+            href="https://instagram.com/albabistro.lisbon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            Instagram
+          </a>
+          <a
+            href="mailto:hello@albabistrolisbon.com"
+            className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            email
+          </a>
         </div>
       </div>
     </div>
