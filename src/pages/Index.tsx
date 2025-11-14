@@ -11,6 +11,7 @@ import img5 from "@/assets/a-113.jpg";
 import img6 from "@/assets/a-155.jpg";
 import img7 from "@/assets/a-183.jpg";
 import img8 from "@/assets/a-54.jpg";
+import img9 from "@/assets/a-17.jpg";
 
 import logoImage from "@/assets/logo.png";
 
