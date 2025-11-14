@@ -90,21 +90,21 @@ const Index = () => {
             {/* Bottom Section */}
             <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
               {/* Hours & Address - Bottom Left */}
-            
+              <div className="backdrop-blur-md bg-glass-bg/70 rounded-2xl px-6 py-4 shadow-elegant space-y-3 max-w-sm">
                 <div className="flex items-start space-x-3">
                   
                   <div>
-                   <p className="text-sm text-muted-foreground">Every day from 9:00 to 17:00</p>
+                   <p className="text-sm text-muted-foreground">Пн-Вс: 08:00 - 22:00</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   
                   <div>
-                  
+                    <p className="text-sm font-medium text-foreground">Адрес</p>
                     <p className="text-sm text-muted-foreground">
-                     Largo do Rato, 4A
+                      ул. Пример, 123
                       <br />
-                      Lisbon, Portugal
+                      Москва, Россия
                     </p>
                   </div>
                 </div>
