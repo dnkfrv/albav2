@@ -108,10 +108,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Scroll hint */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 backdrop-blur-md bg-glass-bg/70 rounded-full px-4 py-2 shadow-elegant z-30">
-        <p className="text-xs text-muted-foreground">Прокрутите для смены фото</p>
-      </div>
+      
     </div>
   );
 };
