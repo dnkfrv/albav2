@@ -98,7 +98,7 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  
                   <div>
                     <p className="text-sm font-medium text-foreground">Адрес</p>
                     <p className="text-sm text-muted-foreground">
