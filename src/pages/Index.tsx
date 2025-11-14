@@ -1,27 +1,40 @@
 import { MenuSheet } from "@/components/MenuSheet";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import heroImage1 from "@/assets/hero-restaurant.jpg";
 import heroImage2 from "@/assets/hero-restaurant-2.jpg";
 import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
+// на случай, если какой-то импорт по какой-то причине undefined
+const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
 
 const Index = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // троттлинг колеса, чтобы пролистывание было более плавным
+  const isScrollingRef = useRef(false);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
 
+      // если анимация ещё не закончилась – игнорируем новые события
+      if (isScrollingRef.current) return;
+      isScrollingRef.current = true;
+
       if (e.deltaY > 0) {
-        // Scroll down = next image
+        // вниз – следующая картинка
         setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
       } else if (e.deltaY < 0) {
-        // Scroll up = previous image
+        // вверх – предыдущая
         setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
       }
+
+      // небольшой таймаут, чтобы прокрутка ощущалась плавнее
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 600);
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
@@ -29,39 +42,36 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-background overflow-hidden">
-      {/* Main Content Container with padding for white margins */}
-      <div className="min-h-screen flex flex-col p-4 md:p-8 lg:p-12">
-        {/* Image Container - centered with aspect ratio */}
+    <div className="relative h-screen w-full bg-background overflow-hidden">
+      {/* Основной контейнер – ровно высота экрана */}
+      <div className="h-full flex flex-col p-4 md:p-8 lg:p-12">
+        {/* Контейнер с картинкой */}
         <div className="flex-1 relative rounded-2xl overflow-hidden shadow-elegant">
-          {/* Hero Image with Carousel */}
-          <div className="relative w-full h-full">
+          {/* Картинка + оверлей */}
+          <div className="relative h-full w-full">
             <img
               src={heroImages[currentImageIndex]}
               alt="Restaurant"
-              className="w-full h-full object-cover transition-opacity duration-500"
-              key={currentImageIndex}
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
             />
-            {/* если вдруг всё ещё будет белый фон — закомментируй строку ниже */}
+            {/* если вдруг будет слишком тёмно/серо – можно временно закомментировать этот блок */}
             <div className="absolute inset-0 bg-hero-overlay/40 backdrop-blur-[2px]" />
           </div>
 
-          {/* Content Layer */}
+          {/* Контент поверх картинки */}
           <div className="absolute inset-0 z-10 flex flex-col">
-            {/* Top Section */}
+            {/* Верхняя часть */}
             <header className="flex justify-between items-start p-6 md:p-8">
-              {/* Logo - Top Left */}
               <div className="flex items-center space-x-3">
                 <img src={logoImage} alt="Restaurant Logo" className="h-12 w-12 object-contain" />
               </div>
 
-              {/* Menu Button - Top Right */}
               <MenuSheet />
             </header>
 
-            {/* Bottom Section */}
+            {/* Нижняя часть */}
             <footer className="mt-auto p-6 md:p-8 flex justify-between items-end">
-              {/* Bottom left */}
+              {/* Слева – часы и адрес */}
               <div className="flex items-start space-x-6">
                 <p className="text-sm text-muted-foreground">
                   Monday - Sunday 9:00 - 17:00
@@ -70,7 +80,7 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Bottom right: Instagram + email, выровнены по правому краю */}
+              {/* Справа – Instagram и email, прижаты к правому краю */}
               <div className="flex flex-col items-end text-right space-y-1">
                 <a
                   href="https://instagram.com/albabistro.lisbon"
@@ -84,7 +94,7 @@ const Index = () => {
                   href="mailto:hello@albabistrolisbon.com"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Email
+                  email
                 </a>
               </div>
             </footer>
