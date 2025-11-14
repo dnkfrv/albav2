@@ -42,7 +42,7 @@ export const MenuSheet = () => {
         <button
           className="
             font-kommon
-            text-[16px] md:text-[24px]
+            text-[16px] md:text-[18px]
             leading-none
             tracking-[0.01em]
             text-[#644A42]
