@@ -104,6 +104,7 @@ const Index = () => {
                 Instagram
               </a>
               {/* email - Bottom Right (text link instead of icon) */}
+              <br />
               <a
                 href="mailto:hello@albabistrolibon.com"
                 target="_blank"
