@@ -6,9 +6,9 @@ import heroImage3 from "@/assets/hero-restaurant-3.jpg";
 import heroImage4 from "@/assets/hero-restaurant-4.jpg";
 import logoImage from "@/assets/logo.png";
 
-// фото и их высоты (чуть разные, чтобы было живее)
+// фото и их относительные высоты (проценты от высоты контейнера)
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4].filter(Boolean);
-const heroHeights = ["60svh", "68svh", "64svh", "72svh"];
+const heroHeights = ["82%", "90%", "86%", "94%"];
 
 const Index = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,13 +50,11 @@ const Index = () => {
     }
 
     const width = containerRef.current?.offsetWidth ?? 1;
-    const threshold = width * 0.2; // нужно протянуть примерно 20% ширины
+    const threshold = width * 0.2; // нужно протянуть ~20% ширины
 
     if (dragOffset < -threshold) {
-      // протянули влево — следующая фотка
       nextImage();
     } else if (dragOffset > threshold) {
-      // протянули вправо — предыдущая
       prevImage();
     }
 
@@ -65,13 +63,15 @@ const Index = () => {
     setDragOffset(0);
   };
 
-  // обработчики для тач
+  // TOUCH
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const t = e.touches[0];
     startDrag(t.clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    // блокируем вертикальный скролл страницы во время перетаскивания
+    e.preventDefault();
     const t = e.touches[0];
     moveDrag(t.clientX);
   };
@@ -80,7 +80,7 @@ const Index = () => {
     endDrag();
   };
 
-  // обработчики для мыши (на десктопе)
+  // MOUSE (desktop)
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     startDrag(e.clientX);
@@ -96,7 +96,7 @@ const Index = () => {
     endDrag();
   };
 
-  // вычисляем transform для всей ленты
+  // transform для всей ленты
   const width = containerRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
   const translate = -currentIndex * 100 + dragPercent;
@@ -107,13 +107,14 @@ const Index = () => {
   };
 
   return (
-    <div className="h-svh w-full bg-background flex items-center justify-center relative">
-      {/* Центральный блок с паспарту и слайдером */}
+    // overflow-hidden, чтобы страница не ехала и не было вертикального скролла
+    <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
+      {/* Центральный блок с большим паспарту */}
       <div
         ref={containerRef}
         className="
           relative
-          h-[84svh]
+          h-[88svh]
           w-full
           max-w-5xl
           mx-6 md:mx-10
@@ -121,6 +122,7 @@ const Index = () => {
           cursor-grab
           active:cursor-grabbing
         "
+        style={{ touchAction: "none" }} // подсказываем браузеру, что здесь свой жест
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -130,15 +132,21 @@ const Index = () => {
         onMouseLeave={handleMouseUp}
       >
         {/* Лента слайдов */}
-        <div
-          className="flex h-full w-full"
-          style={trackStyle}
-        >
+        <div className="flex h-full w-full" style={trackStyle}>
           {heroImages.map((img, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full h-full flex items-center justify-center"
+              className="
+                flex-shrink-0
+                w-full
+                h-full
+                flex
+                items-center
+                justify-center
+                px-3 md:px-5
+              "
             >
+              {/* Внутри – сам кадр, выше паспарту, с небольшим зазором между слайдами */}
               <div
                 className="relative w-full"
                 style={{ height: heroHeights[index % heroHeights.length] }}
@@ -155,7 +163,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Угловые элементы – поверх паспарту и фото */}
+      {/* Угловые элементы – поверх и паспарту, и части фотографий */}
+
+      {/* Логотип – верхний левый угол */}
       <div className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-8">
         <div className="pointer-events-auto">
           <img
@@ -166,12 +176,14 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Menu – верхний правый угол */}
       <div className="pointer-events-none absolute top-4 right-4 md:top-6 md:right-8">
         <div className="pointer-events-auto">
           <MenuSheet />
         </div>
       </div>
 
+      {/* Адрес – нижний левый угол */}
       <div className="pointer-events-none absolute bottom-4 left-4 md:bottom-6 md:left-8">
         <div className="pointer-events-auto">
           <p className="text-xs md:text-sm text-muted-foreground">
@@ -182,6 +194,7 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Instagram + email – нижний правый угол */}
       <div className="pointer-events-none absolute bottom-4 right-4 md:bottom-6 md:right-8">
         <div className="pointer-events-auto flex flex-col items-end text-right space-y-1">
           <a
