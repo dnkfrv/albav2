@@ -1,9 +1,8 @@
 // src/pages/Index.tsx
-import React, { useState, useEffect, useRef } from "react";
-import type { CSSProperties } from "react";
+import React, { useState, useEffect, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 
-// новые фото
+// фото
 import img1 from "@/assets/A-130.jpg";
 import img2 from "@/assets/A-188.jpg";
 import img3 from "@/assets/A-20.jpg";
@@ -17,14 +16,14 @@ import logoImage from "@/assets/logo.png";
 
 const heroImages = [img1, img2, img3, img4, img5, img6, img7, img8].filter(Boolean);
 
-// десктопный автослайд (фейд)
-const SLIDE_INTERVAL = 6000; // 6 секунд между сменой фото
+// автосмена для десктопа
+const SLIDE_INTERVAL = 6000;
 
 const Index: React.FC = () => {
-  // ДЕСКТОПНЫЙ ИНДЕКС (фейд)
+  // десктопный индекс (fade)
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // МОБИЛЬНЫЙ СЛАЙДЕР (свайп)
+  // мобильный слайдер (свайп)
   const [mobileIndex, setMobileIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
@@ -35,27 +34,23 @@ const Index: React.FC = () => {
   useEffect(() => {
     if (heroImages.length <= 1) return;
 
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, SLIDE_INTERVAL);
+    const timer = setInterval(
+      () => setCurrentIndex((prev) => (prev + 1) % heroImages.length),
+      SLIDE_INTERVAL
+    );
 
     return () => clearInterval(timer);
   }, []);
 
-  // helper для мобильного слайдера
+  // хелперы мобильного слайдера
   const clampIndex = (idx: number) => {
     if (idx < 0) return 0;
     if (idx > heroImages.length - 1) return heroImages.length - 1;
     return idx;
   };
 
-  const nextMobile = () => {
-    setMobileIndex((prev) => clampIndex(prev + 1));
-  };
-
-  const prevMobile = () => {
-    setMobileIndex((prev) => clampIndex(prev - 1));
-  };
+  const nextMobile = () => setMobileIndex((prev) => clampIndex(prev + 1));
+  const prevMobile = () => setMobileIndex((prev) => clampIndex(prev - 1));
 
   const startDrag = (clientX: number) => {
     setDragStartX(clientX);
@@ -75,35 +70,17 @@ const Index: React.FC = () => {
     }
 
     const width = mobileRef.current?.offsetWidth ?? 1;
-    const threshold = width * 0.2; // 20% ширины для смены слайда
+    const threshold = width * 0.2;
 
-    if (dragOffset < -threshold) {
-      nextMobile();
-    } else if (dragOffset > threshold) {
-      prevMobile();
-    }
+    if (dragOffset < -threshold) nextMobile();
+    else if (dragOffset > threshold) prevMobile();
 
     setIsDragging(false);
     setDragStartX(null);
     setDragOffset(0);
   };
 
-  // TOUCH handlers (mobile)
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const t = e.touches[0];
-    startDrag(t.clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    const t = e.touches[0];
-    moveDrag(t.clientX);
-  };
-
-  const handleTouchEnd = () => {
-    endDrag();
-  };
-
-  // стили для мобильного трека
+  // мобильный track transform
   const width = mobileRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
   const translate = -mobileIndex * 100 + dragPercent;
@@ -114,20 +91,10 @@ const Index: React.FC = () => {
   };
 
   return (
-    // общий контейнер + угловые элементы
-    <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* ФОТО ДЛЯ ДЕСКТОПА (авто-фейд) */}
-      <div
-        className="
-          hidden md:block
-          relative
-          h-[88svh]
-          w-full
-          max-w-5xl
-          mx-6 md:mx-10
-          overflow-visible
-        "
-      >
+    // корневой контейнер, фото лежат ПОД ним на весь экран
+    <div className="relative h-svh w-full overflow-hidden bg-background">
+      {/* ФОН: фото на весь экран — ДЕСКТОП */}
+      <div className="absolute inset-0 hidden md:block">
         {heroImages.map((img, index) => (
           <div
             key={index}
@@ -150,22 +117,14 @@ const Index: React.FC = () => {
         ))}
       </div>
 
-      {/* ФОТО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (свайп с перетягиванием следующего кадра) */}
+      {/* ФОН: фото на весь экран — МОБИЛЬНЫЙ (свайп) */}
       <div
         ref={mobileRef}
-        className="
-          block md:hidden
-          relative
-          h-[88svh]
-          w-full
-          max-w-5xl
-          mx-4
-          overflow-x-hidden
-        "
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        style={{ touchAction: "pan-y" }} // разрешаем вертикальный скролл жестами
+        className="absolute inset-0 block md:hidden overflow-x-hidden"
+        onTouchStart={(e) => startDrag(e.touches[0].clientX)}
+        onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
+        onTouchEnd={endDrag}
+        style={{ touchAction: "pan-y" }}
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
@@ -186,6 +145,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
+      {/* ВСЕ УГЛОВЫЕ ЭЛЕМЕНТЫ СВЕРХУ ФОТО */}
       {/* Логотип слева сверху */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <img
@@ -200,7 +160,7 @@ const Index: React.FC = () => {
         <MenuSheet />
       </div>
 
-      {/* Часы работы и адрес слева снизу (адрес кликабелен) */}
+      {/* Часы работы и адрес слева снизу (адрес — ссылка на карты) */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
         <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
           Monday - Sunday 9:00 - 17:00
