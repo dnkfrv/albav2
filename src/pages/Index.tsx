@@ -1,5 +1,6 @@
 // src/pages/Index.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 
 // новые фото
@@ -16,11 +17,21 @@ import logoImage from "@/assets/logo.png";
 
 const heroImages = [img1, img2, img3, img4, img5, img6, img7, img8].filter(Boolean);
 
+// десктопный автослайд (фейд)
 const SLIDE_INTERVAL = 6000; // 6 секунд между сменой фото
 
 const Index: React.FC = () => {
+  // ДЕСКТОПНЫЙ ИНДЕКС (фейд)
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // МОБИЛЬНЫЙ СЛАЙДЕР (свайп)
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const mobileRef = useRef<HTMLDivElement | null>(null);
+
+  // авто-смена для десктопа
   useEffect(() => {
     if (heroImages.length <= 1) return;
 
@@ -31,11 +42,81 @@ const Index: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // helper для мобильного слайдера
+  const clampIndex = (idx: number) => {
+    if (idx < 0) return 0;
+    if (idx > heroImages.length - 1) return heroImages.length - 1;
+    return idx;
+  };
+
+  const nextMobile = () => {
+    setMobileIndex((prev) => clampIndex(prev + 1));
+  };
+
+  const prevMobile = () => {
+    setMobileIndex((prev) => clampIndex(prev - 1));
+  };
+
+  const startDrag = (clientX: number) => {
+    setDragStartX(clientX);
+    setIsDragging(true);
+  };
+
+  const moveDrag = (clientX: number) => {
+    if (dragStartX === null) return;
+    setDragOffset(clientX - dragStartX);
+  };
+
+  const endDrag = () => {
+    if (dragStartX === null) {
+      setIsDragging(false);
+      setDragOffset(0);
+      return;
+    }
+
+    const width = mobileRef.current?.offsetWidth ?? 1;
+    const threshold = width * 0.2; // 20% ширины для смены слайда
+
+    if (dragOffset < -threshold) {
+      nextMobile();
+    } else if (dragOffset > threshold) {
+      prevMobile();
+    }
+
+    setIsDragging(false);
+    setDragStartX(null);
+    setDragOffset(0);
+  };
+
+  // TOUCH handlers (mobile)
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const t = e.touches[0];
+    startDrag(t.clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const t = e.touches[0];
+    moveDrag(t.clientX);
+  };
+
+  const handleTouchEnd = () => {
+    endDrag();
+  };
+
+  // стили для мобильного трека
+  const width = mobileRef.current?.offsetWidth ?? 1;
+  const dragPercent = (dragOffset / width) * 100;
+  const translate = -mobileIndex * 100 + dragPercent;
+
+  const mobileTrackStyle: CSSProperties = {
+    transform: `translateX(${translate}%)`,
+    transition: isDragging ? "none" : "transform 0.4s ease",
+  };
+
   return (
-    // На десктопе – full height, по центру.
-    // На мобиле высота авто, страница скроллится обычным образом.
-    <div className="w-full bg-background relative overflow-hidden md:h-svh md:flex md:items-center md:justify-center">
-      {/* ФОТО ДЛЯ ДЕСКТОПА (слайдер) */}
+    // общий контейнер + угловые элементы
+    <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
+      {/* ФОТО ДЛЯ ДЕСКТОПА (авто-фейд) */}
       <div
         className="
           hidden md:block
@@ -57,7 +138,6 @@ const Index: React.FC = () => {
               ${index === currentIndex ? "opacity-100" : "opacity-0"}
             `}
           >
-            {/* сдвигаем фото и оверлей вверх на 10px */}
             <div className="relative w-full h-full -translate-y-[10px]">
               <img
                 src={img}
@@ -70,25 +150,37 @@ const Index: React.FC = () => {
         ))}
       </div>
 
-      {/* ФОТО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (лента, скроллится вся страница) */}
+      {/* ФОТО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (свайп с перетягиванием следующего кадра) */}
       <div
+        ref={mobileRef}
         className="
           block md:hidden
+          relative
+          h-[88svh]
           w-full
           max-w-5xl
           mx-4
-          mt-4 mb-24
+          overflow-x-hidden
         "
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ touchAction: "pan-y" }} // разрешаем вертикальный скролл жестами
       >
-        <div className="relative w-full -translate-y-[10px] space-y-2">
+        <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
-            <div key={index} className="relative w-full">
-              <img
-                src={img}
-                alt="Restaurant"
-                className="w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/25" />
+            <div
+              key={index}
+              className="flex-shrink-0 w-full h-full relative"
+            >
+              <div className="relative w-full h-full -translate-y-[10px]">
+                <img
+                  src={img}
+                  alt="Restaurant"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/25" />
+              </div>
             </div>
           ))}
         </div>
@@ -108,7 +200,7 @@ const Index: React.FC = () => {
         <MenuSheet />
       </div>
 
-      {/* Часы работы и адрес слева снизу */}
+      {/* Часы работы и адрес слева снизу (адрес кликабелен) */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
         <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
           Monday - Sunday 9:00 - 17:00
@@ -117,7 +209,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline underline-offset-4"
+            className="underline-offset-4 hover:underline"
           >
             Largo do Rato, 4A
           </a>
