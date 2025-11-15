@@ -163,7 +163,7 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ДЕСКТОП: фото занимают половину экрана, меняются при движении мышки */}
+      {/* ДЕСКТОП: фото занимают половину экрана, прижаты вправо, сохраняют соотношение сторон */}
       <div
         className="absolute inset-0 hidden md:flex justify-end"
         onMouseMove={handleDesktopMouseMove}
@@ -174,25 +174,26 @@ const Index: React.FC = () => {
               key={index}
               className={`
                 absolute inset-0
-                w-full h-full
+                flex items-center justify-center
                 transition-opacity duration-700
                 ${index === currentIndex ? "opacity-100" : "opacity-0"}
               `}
             >
-              <div className="relative w-full h-full -translate-y-[10px]">
+              {/* контейнер, который слегка сдвинут вверх, картинка внутри в оригинальном соотношении */}
+              <div className="relative -translate-y-[10px] max-w-full max-h-full">
                 <img
                   src={img}
                   alt="Restaurant"
-                  className="w-full h-full object-cover"
+                  className="w-auto h-auto max-w-full max-h-full object-contain"
                 />
-                <div className="absolute inset-0 bg-black/25" />
+                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 90% ширины */}
+      {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 93% ширины */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
