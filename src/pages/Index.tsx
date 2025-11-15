@@ -181,11 +181,11 @@ const Index: React.FC = () => {
             `}
           >
             {/* Контейнер под фото: ОГРАНИЧИВАЕМ ТОЛЬКО ВЫСОТУ, ШИРИНА — КАК ПОЛУЧИТСЯ */}
-            <div className="relative max-h-full mr-0">
+            <div className="relative max-h-[95vh] mr-0">
               <img
                 src={img}
                 alt="Restaurant"
-                className="w-auto h-auto max-h-full max-w-full object-contain"
+                className="w-auto h-auto max-h-[95vh] max-w-full object-contain"
               />
               <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
