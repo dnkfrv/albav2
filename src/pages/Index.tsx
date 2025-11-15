@@ -1,6 +1,7 @@
 // src/pages/Index.tsx
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
+import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 
 // НОВЫЕ ФОТО + старые
 import imgA11 from "@/assets/A-11.jpg";
@@ -163,7 +164,6 @@ const Index: React.FC = () => {
   };
 
   return (
-    // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
       {/* ДЕСКТОП: фото прижаты вправо, сохраняют пропорции и всегда полностью влезают по высоте */}
       <div
@@ -180,12 +180,11 @@ const Index: React.FC = () => {
               ${index === currentIndex ? "opacity-100" : "opacity-0"}
             `}
           >
-            {/* Контейнер под фото: ОГРАНИЧИВАЕМ ТОЛЬКО ВЫСОТУ, ШИРИНА — КАК ПОЛУЧИТСЯ */}
-            <div className="relative max-h-[95vh] mr-0">
+            <div className="relative max-h-[100vh] mr-0">
               <img
                 src={img}
                 alt="Restaurant"
-                className="w-auto h-auto max-h-[95vh] max-w-full object-contain"
+                className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
               />
               <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
@@ -252,11 +251,12 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Инстаграм и Email справа снизу */}
+      {/* Join our team + Instagram + Email справа снизу */}
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
         <div className="flex flex-col items-end text-right space-y-1">
+          <JoinTeamSheet />
           <a
-            href="https://instagram.com/albabistro.lisbon"
+            href="https://instagram.com/albabistrolisbon"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
