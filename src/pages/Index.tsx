@@ -93,9 +93,9 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ФОН: фото на весь экран — ДЕСКТОП (ширина не более 1070px, справа) */}
+      {/* ФОН: фото на ДЕСКТОПЕ — занимают ровно половину экрана по ширине и прижаты вправо */}
       <div className="absolute inset-0 hidden md:flex justify-end">
-        <div className="relative h-full w-full max-w-[1070px]">
+        <div className="relative h-full w-1/2">
           {heroImages.map((img, index) => (
             <div
               key={index}
@@ -119,7 +119,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ФОН: фото на весь экран — МОБИЛЬНЫЙ (свайп) */}
+      {/* ФОН: фото на МОБИЛЬНОМ — свайп на весь экран */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
