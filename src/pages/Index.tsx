@@ -251,7 +251,7 @@ const Index: React.FC = () => {
         <div className="flex flex-col items-end text-right space-y-1">
           <JoinTeamSheet />
           <a
-            href="https://instagram.com/albabistrolisbon"
+            href="https://instagram.com/albabistro.lisbon"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs md:text-sm text-[#644A42] hover:text-[#934A37] transition-colors"
