@@ -162,7 +162,7 @@ const Index: React.FC = () => {
         <MenuSheet />
       </div>
 
-      {/* Часы работы и адрес слева снизу (адрес — ссылка на карты) */}
+      {/* Часы работы и адрес слева снизу */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
         <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
           Monday - Sunday 9:00 - 17:00
@@ -171,7 +171,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
           >
             Largo do Rato, 4A
           </a>
@@ -185,13 +185,13 @@ const Index: React.FC = () => {
             href="https://instagram.com/albabistrolisbon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
           >
             Instagram
           </a>
           <a
             href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
           >
             Email
           </a>
@@ -202,4 +202,3 @@ const Index: React.FC = () => {
 };
 
 export default Index;
-
