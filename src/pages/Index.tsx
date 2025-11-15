@@ -2,19 +2,71 @@
 import React, { useState, useEffect, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 
-// фото
-import img1 from "@/assets/A-130.jpg";
-import img2 from "@/assets/A-188.jpg";
-import img3 from "@/assets/A-20.jpg";
-import img4 from "@/assets/A-55.jpg";
-import img5 from "@/assets/a-113.jpg";
-import img6 from "@/assets/a-155.jpg";
-import img7 from "@/assets/a-183.jpg";
-import img8 from "@/assets/a-54.jpg";
+// НОВЫЕ ФОТО + старые
+import img1_11 from "@/assets/1-11.jpg";
+import img1_23 from "@/assets/1-23.jpg";
+
+import imgA113_2 from "@/assets/A-113-2.jpg";
+import imgA121 from "@/assets/A-121.jpg";
+import imgA130 from "@/assets/A-130.jpg";
+import imgA179 from "@/assets/A-179.jpg";
+import imgA188 from "@/assets/A-188.jpg";
+import imgA20 from "@/assets/A-20.jpg";
+import imgA208 from "@/assets/A-208.jpg";
+import imgA217 from "@/assets/A-217.jpg";
+import imgA23 from "@/assets/A-23.jpg";
+import imgA31 from "@/assets/A-31.jpg";
+import imgA55 from "@/assets/A-55.jpg";
+import imgA73 from "@/assets/A-73.jpg";
+import imgA90 from "@/assets/A-90.jpg";
+
+import imga5 from "@/assets/a-5.jpg";
+import imga10 from "@/assets/a-10.jpg";
+import imga40 from "@/assets/a-40.jpg";
+import imga54 from "@/assets/a-54.jpg";
+import imga94 from "@/assets/a-94.jpg";
+import imga113 from "@/assets/a-113.jpg";
+import imga132 from "@/assets/a-132.jpg";
+import imga150 from "@/assets/a-150.jpg";
+import imga155 from "@/assets/a-155.jpg";
+import imga172 from "@/assets/a-172.jpg";
+import imga183 from "@/assets/a-183.jpg";
+import imga184 from "@/assets/a-184.jpg";
+import imga197 from "@/assets/a-197.jpg";
 
 import logoImage from "@/assets/logo.png";
 
-const heroImages = [img1, img2, img3, img4, img5, img6, img7, img8].filter(Boolean);
+// все фото, и старые, и новые
+const heroImages = [
+  img1_11,
+  img1_23,
+  imgA113_2,
+  imgA121,
+  imgA130,
+  imgA179,
+  imgA188,
+  imgA20,
+  imgA208,
+  imgA217,
+  imgA23,
+  imgA31,
+  imgA55,
+  imgA73,
+  imgA90,
+  imga5,
+  imga10,
+  imga40,
+  imga54,
+  imga94,
+  imga113,
+  imga132,
+  imga150,
+  imga155,
+  imga172,
+  imga183,
+  imga184,
+  imga197,
+].filter(Boolean);
 
 // автосмена для десктопа
 const SLIDE_INTERVAL = 6000;
@@ -57,148 +109,4 @@ const Index: React.FC = () => {
     setIsDragging(true);
   };
 
-  const moveDrag = (clientX: number) => {
-    if (dragStartX === null) return;
-    setDragOffset(clientX - dragStartX);
-  };
-
-  const endDrag = () => {
-    if (dragStartX === null) {
-      setIsDragging(false);
-      setDragOffset(0);
-      return;
-    }
-
-    const width = mobileRef.current?.offsetWidth ?? 1;
-    const threshold = width * 0.2;
-
-    if (dragOffset < -threshold) nextMobile();
-    else if (dragOffset > threshold) prevMobile();
-
-    setIsDragging(false);
-    setDragStartX(null);
-    setDragOffset(0);
-  };
-
-  // мобильный track transform
-  const width = mobileRef.current?.offsetWidth ?? 1;
-  const dragPercent = (dragOffset / width) * 100;
-  const translate = -mobileIndex * 100 + dragPercent;
-
-  const mobileTrackStyle: CSSProperties = {
-    transform: `translateX(${translate}%)`,
-    transition: isDragging ? "none" : "transform 0.4s ease",
-  };
-
-  return (
-    // фиксированная высота, без вертикального скролла / overscroll
-    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ФОН: фото на ДЕСКТОПЕ — занимают половину экрана по ширине и прижаты вправо */}
-      <div className="absolute inset-0 hidden md:flex justify-end">
-        <div className="relative h-full w-1/2">
-          {heroImages.map((img, index) => (
-            <div
-              key={index}
-              className={`
-                absolute inset-0
-                w-full h-full
-                transition-opacity duration-700
-                ${index === currentIndex ? "opacity-100" : "opacity-0"}
-              `}
-            >
-              <div className="relative w-full h-full -translate-y-[10px]">
-                <img
-                  src={img}
-                  alt="Restaurant"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/25" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ФОН: фото на МОБИЛЬНОМ — свайп, центрирование, не более 90% ширины экрана */}
-      <div
-        ref={mobileRef}
-        className="absolute inset-0 block md:hidden overflow-x-hidden"
-        onTouchStart={(e) => startDrag(e.touches[0].clientX)}
-        onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
-        onTouchEnd={endDrag}
-        style={{ touchAction: "pan-x" }} // только горизонтальный свайп
-      >
-        <div className="flex h-full w-full" style={mobileTrackStyle}>
-          {heroImages.map((img, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-full h-full flex items-center justify-center"
-            >
-              {/* контейнер с фото: максимум 90% ширины экрана, по центру */}
-              <div className="relative h-full w-[90vw] max-w-[90vw] -translate-y-[10px]">
-                <img
-                  src={img}
-                  alt="Restaurant"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/25" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Логотип слева сверху */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <img
-          src={logoImage}
-          alt="Restaurant Logo"
-          className="h-3 md:h-5 w-auto object-contain"
-        />
-      </div>
-
-      {/* Меню справа сверху */}
-      <div className="absolute top-4 right-4 md:top-6 md:right-8">
-        <MenuSheet />
-      </div>
-
-      {/* Часы работы и адрес слева снизу */}
-      <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
-        <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
-          Monday - Sunday 9:00 - 17:00
-          <br />
-          <a
-            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#8C3119] transition-colors"
-          >
-            Largo do Rato, 4A
-          </a>
-        </p>
-      </div>
-
-      {/* Инстаграм и Email справа снизу */}
-      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
-        <div className="flex flex-col items-end text-right space-y-1">
-          <a
-            href="https://instagram.com/albabistro.lisbon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#8C3119] transition-colors"
-          >
-            Instagram
-          </a>
-          <a
-            href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#8C3119] transition-colors"
-          >
-            Email
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Index;
+  const moveDrag = (
