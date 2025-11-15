@@ -3,6 +3,7 @@ import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 
 // НОВЫЕ ФОТО + старые
+import imgA11 from "@/assets/A-11.jpg";
 import img1_11 from "@/assets/1-11.jpg";
 import img1_23 from "@/assets/1-23.jpg";
 import imgA1113 from "@/assets/A-1113.jpg";
@@ -36,6 +37,7 @@ import logoImage from "@/assets/logo.png";
 
 // все фото, и старые, и новые
 const heroImages = [
+  imga11,
   img1_11,
   img1_23,
   imgA1113,
