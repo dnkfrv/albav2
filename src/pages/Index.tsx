@@ -5,7 +5,7 @@ import { MenuSheet } from "@/components/MenuSheet";
 // НОВЫЕ ФОТО + старые
 import img1_11 from "@/assets/1-11.jpg";
 import img1_23 from "@/assets/1-23.jpg";
-import imgA113_2 from "@/assets/A-113_2.jpg";
+import imgA1113 from "@/assets/A-1113.jpg";
 import imgA121 from "@/assets/A-121.jpg";
 import imgA130 from "@/assets/A-130.jpg";
 import imgA179 from "@/assets/A-179.jpg";
@@ -38,7 +38,7 @@ import logoImage from "@/assets/logo.png";
 const heroImages = [
   img1_11,
   img1_23,
-  imgA113_2,
+  imgA1113,
   imgA121,
   imgA130,
   imgA179,
