@@ -23,7 +23,7 @@ export const AboutSheet: React.FC = () => {
           />
 
           <div className="text-left leading-tight mt-0.1">
-            <p className="font-kommon text-[6px] md:10 tracking-[0.16em] text-[#644A42]">
+            <p className="font-kommon text-[8px] md:10 tracking-[0.16em] text-[#644A42]">
               BISTRO • SPECIALTY COFFEE • MATCHA BAR
             </p>
           </div>
