@@ -191,7 +191,7 @@ const Index: React.FC = () => {
             href="mailto:hello@albabistrolisbon.com"
             className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            email
+            Email
           </a>
         </div>
       </div>
