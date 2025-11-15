@@ -93,28 +93,30 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ФОН: фото на весь экран — ДЕСКТОП */}
-      <div className="absolute inset-0 hidden md:block">
-        {heroImages.map((img, index) => (
-          <div
-            key={index}
-            className={`
-              absolute inset-0
-              w-full h-full
-              transition-opacity duration-700
-              ${index === currentIndex ? "opacity-100" : "opacity-0"}
-            `}
-          >
-            <div className="relative w-full h-full -translate-y-[10px]">
-              <img
-                src={img}
-                alt="Restaurant"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/25" />
+      {/* ФОН: фото на весь экран — ДЕСКТОП (ширина не более 1070px, справа) */}
+      <div className="absolute inset-0 hidden md:flex justify-end">
+        <div className="relative h-full w-full max-w-[1070px]">
+          {heroImages.map((img, index) => (
+            <div
+              key={index}
+              className={`
+                absolute inset-0
+                w-full h-full
+                transition-opacity duration-700
+                ${index === currentIndex ? "opacity-100" : "opacity-0"}
+              `}
+            >
+              <div className="relative w-full h-full -translate-y-[10px]">
+                <img
+                  src={img}
+                  alt="Restaurant"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/25" />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* ФОН: фото на весь экран — МОБИЛЬНЫЙ (свайп) */}
@@ -124,7 +126,7 @@ const Index: React.FC = () => {
         onTouchStart={(e) => startDrag(e.touches[0].clientX)}
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
-        style={{ touchAction: "pan-x" }} // только горизонтальный свайп, без вертикального скролла
+        style={{ touchAction: "pan-x" }} // только горизонтальный свайп
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
