@@ -11,7 +11,8 @@ All colors MUST be HSL.
   src: url("/Kommon Grotesk Ext SemiBold.otf") format("opentype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap; }
+  font-display: swap; 
+}
 
 @layer base {
   :root {
