@@ -214,8 +214,8 @@ const Index: React.FC = () => {
               key={index}
               className="flex-shrink-0 w-full h-full flex items-center justify-center"
             >
-              {/* ширина ограничена 90% экрана, высота авто, соотношение сторон оригинальное */}
-              <div className="relative w-[90vw] max-w-[90vw] -translate-y-[10px]">
+              {/* ширина ограничена 95% экрана, высота авто, соотношение сторон оригинальное */}
+              <div className="relative w-[95vw] max-w-[95vw] -translate-y-[10px]">
                 <img
                   src={img}
                   alt="Restaurant"
