@@ -19,7 +19,7 @@ export const AboutSheet: React.FC = () => {
           <img
             src={logoImage}
             alt="Alba Bistro Logo"
-            className="h-3 md:h-5 w-auto object-contain"
+            className="h-3 md:h-6 w-auto object-contain"
           />
         </button>
       </SheetTrigger>
