@@ -11,7 +11,6 @@ import img5 from "@/assets/a-113.jpg";
 import img6 from "@/assets/a-155.jpg";
 import img7 from "@/assets/a-183.jpg";
 import img8 from "@/assets/a-54.jpg";
-import img9 from "@/assets/a-17.jpg";
 
 import logoImage from "@/assets/logo.png";
 
@@ -55,12 +54,15 @@ const Index: React.FC = () => {
               ${index === currentIndex ? "opacity-100" : "opacity-0"}
             `}
           >
-            <img
-              src={img}
-              alt="Restaurant"
-              className="w-full h-full object-cover -translate-y-[10px]"
-            />
-            <div className="absolute inset-0 bg-black/25" />
+            {/* сдвигаем фото и оверлей вверх на 10px */}
+            <div className="relative w-full h-full -translate-y-[10px]">
+              <img
+                src={img}
+                alt="Restaurant"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/25" />
+            </div>
           </div>
         ))}
       </div>
