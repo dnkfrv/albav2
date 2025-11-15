@@ -171,7 +171,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-4 hover:underline"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
           >
             Largo do Rato, 4A
           </a>
@@ -182,7 +182,7 @@ const Index: React.FC = () => {
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
         <div className="flex flex-col items-end text-right space-y-1">
           <a
-            href="https://instagram.com/albabistro.lisbon"
+            href="https://instagram.com/albabistrolisbon"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
@@ -202,3 +202,4 @@ const Index: React.FC = () => {
 };
 
 export default Index;
+
