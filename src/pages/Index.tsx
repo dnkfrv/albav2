@@ -1,5 +1,5 @@
 // src/pages/Index.tsx
-import React, { useState, useEffect, useRef, CSSProperties } from "react";
+import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 
 // НОВЫЕ ФОТО + старые
@@ -66,32 +66,17 @@ const heroImages = [
   imga197,
 ].filter(Boolean);
 
-// автосмена для десктопа
-const SLIDE_INTERVAL = 6000;
-
 const Index: React.FC = () => {
-  // десктопный индекс (fade)
+  // десктопный индекс (меняется от движения мышки)
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // мобильный слайдер (свайп)
+  // мобильный слайдер (свайп + тап)
   const [mobileIndex, setMobileIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const mobileRef = useRef<HTMLDivElement | null>(null);
-  const swipedRef = useRef(false); // чтобы отличать свайп от тапа
-
-  // авто-смена для десктопа
-  useEffect(() => {
-    if (heroImages.length <= 1) return;
-
-    const timer = setInterval(
-      () => setCurrentIndex((prev) => (prev + 1) % heroImages.length),
-      SLIDE_INTERVAL
-    );
-
-    return () => clearInterval(timer);
-  }, []);
+  const swipedRef = useRef(false);
 
   // хелперы мобильного слайдера
   const clampIndex = (idx: number) => {
@@ -113,8 +98,6 @@ const Index: React.FC = () => {
     if (dragStartX === null) return;
     const delta = clientX - dragStartX;
     setDragOffset(delta);
-
-    // если палец реально сдвинулся больше 10px — считаем это свайпом
     if (Math.abs(delta) > 10) {
       swipedRef.current = true;
     }
@@ -138,25 +121,33 @@ const Index: React.FC = () => {
     setDragOffset(0);
   };
 
-  // тап по левой / правой части экрана
+  // тап по левой / правой части экрана (только мобилка)
   const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
-    // если до этого был свайп — игнорируем клик
     if (swipedRef.current) {
       swipedRef.current = false;
       return;
     }
-
     const rect = mobileRef.current?.getBoundingClientRect();
     if (!rect) return;
 
     const x = e.clientX - rect.left;
     const isLeft = x < rect.width / 2;
+    if (isLeft) prevMobile();
+    else nextMobile();
+  };
 
-    if (isLeft) {
-      prevMobile();
-    } else {
-      nextMobile();
-    }
+  // изменение кадра на десктопе от движения мышки
+  const handleDesktopMouseMove = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    if (!heroImages.length) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const ratio = x / rect.width; // 0..1
+    let idx = Math.floor(ratio * heroImages.length);
+    if (idx < 0) idx = 0;
+    if (idx > heroImages.length - 1) idx = heroImages.length - 1;
+    setCurrentIndex(idx);
   };
 
   // мобильный track transform
@@ -172,8 +163,11 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ФОН: фото на ДЕСКТОПЕ — занимают половину экрана по ширине и прижаты вправо */}
-      <div className="absolute inset-0 hidden md:flex justify-end">
+      {/* ДЕСКТОП: фото занимают половину экрана, меняются при движении мышки */}
+      <div
+        className="absolute inset-0 hidden md:flex justify-end"
+        onMouseMove={handleDesktopMouseMove}
+      >
         <div className="relative h-full w-1/2">
           {heroImages.map((img, index) => (
             <div
@@ -198,7 +192,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ФОН: фото на МОБИЛЬНОМ — свайп, тап по краям, оригинальное соотношение сторон */}
+      {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 90% ширины */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
@@ -206,7 +200,7 @@ const Index: React.FC = () => {
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
         onClick={handleTap}
-        style={{ touchAction: "pan-x" }} // только горизонтальный свайп
+        style={{ touchAction: "pan-x" }}
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
@@ -214,8 +208,7 @@ const Index: React.FC = () => {
               key={index}
               className="flex-shrink-0 w-full h-full flex items-center justify-center"
             >
-              {/* ширина ограничена 95% экрана, высота авто, соотношение сторон оригинальное */}
-              <div className="relative w-[95vw] max-w-[95vw] -translate-y-[10px]">
+              <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
                 <img
                   src={img}
                   alt="Restaurant"
