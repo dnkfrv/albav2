@@ -220,10 +220,29 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Логотип слева сверху (теперь шторка About) */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <AboutSheet />
-      </div>
+     {/* Логотип + подписи слева сверху */}
+<div className="absolute top-4 left-4 md:top-6 md:left-8">
+  <div className="flex flex-col items-start gap-1">
+    <img
+      src={logoImage}
+      alt="Alba Bistro Logo"
+      className="h-4 md:h-6 w-auto object-contain"
+    />
+
+    <div className="text-left leading-tight mt-1">
+      <p className="font-kommon text-[10px] md:text-xs tracking-[0.16em] text-[#644A42]">
+        BISTRO • SPECIALTY COFFEE • MATCHA BAR
+      </p>
+      <p className="font-martian text-[9px] md:text-xs text-[#644A42]/80 mt-0.5">
+        Fresh take on breakfast and brunch
+      </p>
+      <p className="font-martian text-[8px] md:text-[11px] text-[#644A42]/80 mt-0.5">
+        Every day, 9:00–17:00
+      </p>
+    </div>
+  </div>
+</div>
+
 
       {/* Меню справа сверху */}
       <div className="absolute top-4 right-4 md:top-6 md:right-8">
