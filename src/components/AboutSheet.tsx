@@ -22,8 +22,8 @@ export const AboutSheet: React.FC = () => {
             className="h-4 md:h-6 w-auto object-contain"
           />
 
-          <div className="text-left leading-tight mt-1">
-            <p className="font-kommon text-[6px] md:6 tracking-[0.16em] text-[#644A42]">
+          <div className="text-left leading-tight mt-0.1">
+            <p className="font-kommon text-[6px] md:8 tracking-[0.16em] text-[#644A42]">
               BISTRO • SPECIALTY COFFEE • MATCHA BAR
             </p>
           </div>
