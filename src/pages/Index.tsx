@@ -8,7 +8,7 @@ import img1_23 from "@/assets/1-23.jpg";
 import imgA1113 from "@/assets/A-1113.jpg";
 import imgA121 from "@/assets/A-121.jpg";
 import imgA130 from "@/assets/A-130.jpg";
-import imgA17 from "@/assets/A-17.jpg";
+import imga17 from "@/assets/a-17.jpg";
 import imgA188 from "@/assets/A-188.jpg";
 import imgA20 from "@/assets/A-20.jpg";
 import imgA208 from "@/assets/A-208.jpg";
@@ -41,7 +41,7 @@ const heroImages = [
   imgA1113,
   imgA121,
   imgA130,
-  imgA17,
+  imga17,
   imgA188,
   imgA20,
   imgA208,
