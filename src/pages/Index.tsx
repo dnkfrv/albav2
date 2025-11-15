@@ -32,10 +32,12 @@ const Index: React.FC = () => {
   }, []);
 
   return (
+    // общий контейнер + угловые элементы
     <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* Центральный блок с фотографиями */}
+      {/* ФОТО ДЛЯ ДЕСКТОПА (анимация-слайдер) */}
       <div
         className="
+          hidden md:block
           relative
           h-[88svh]
           w-full
@@ -65,6 +67,33 @@ const Index: React.FC = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* ФОТО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (вертикальная лента) */}
+      <div
+        className="
+          block md:hidden
+          relative
+          h-[88svh]
+          w-full
+          max-w-5xl
+          mx-4
+          overflow-y-auto
+          overflow-x-hidden
+        "
+      >
+        <div className="relative w-full -translate-y-[10px] space-y-2">
+          {heroImages.map((img, index) => (
+            <div key={index} className="relative w-full">
+              <img
+                src={img}
+                alt="Restaurant"
+                className="w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/25" />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Логотип слева сверху */}
@@ -105,7 +134,7 @@ const Index: React.FC = () => {
             href="mailto:hello@albabistrolisbon.com"
             className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            email
+            Email
           </a>
         </div>
       </div>
