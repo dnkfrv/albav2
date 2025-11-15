@@ -163,6 +163,7 @@ const Index: React.FC = () => {
   };
 
   return (
+    // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
       {/* ДЕСКТОП: фото прижаты вправо, сохраняют пропорции и всегда полностью влезают по высоте */}
       <div
@@ -220,29 +221,10 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-     {/* Логотип + подписи слева сверху */}
-<div className="absolute top-4 left-4 md:top-6 md:left-8">
-  <div className="flex flex-col items-start gap-1">
-    <img
-      src={logoImage}
-      alt="Alba Bistro Logo"
-      className="h-4 md:h-6 w-auto object-contain"
-    />
-
-    <div className="text-left leading-tight mt-1">
-      <p className="font-kommon text-[10px] md:text-xs tracking-[0.16em] text-[#644A42]">
-        BISTRO • SPECIALTY COFFEE • MATCHA BAR
-      </p>
-      <p className="font-martian text-[9px] md:text-xs text-[#644A42]/80 mt-0.5">
-        Fresh take on breakfast and brunch
-      </p>
-      <p className="font-martian text-[8px] md:text-[11px] text-[#644A42]/80 mt-0.5">
-        Every day, 9:00–17:00
-      </p>
-    </div>
-  </div>
-</div>
-
+      {/* Логотип + подпись + шторка About слева сверху */}
+      <div className="absolute top-4 left-4 md:top-6 md:left-8">
+        <AboutSheet />
+      </div>
 
       {/* Меню справа сверху */}
       <div className="absolute top-4 right-4 md:top-6 md:right-8">
@@ -258,7 +240,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#934A37] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
           >
             Largo do Rato, 4A
           </a>
@@ -273,13 +255,13 @@ const Index: React.FC = () => {
             href="https://instagram.com/albabistrolisbon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#934A37] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
           >
             Instagram
           </a>
           <a
             href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#934A37] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
           >
             Email
           </a>
