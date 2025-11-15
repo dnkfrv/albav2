@@ -165,7 +165,7 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ДЕСКТОП: фото прижаты вправо, сохраняют пропорции и всегда полностью влезают */}
+      {/* ДЕСКТОП: фото прижаты вправо, сохраняют пропорции и всегда полностью влезают по высоте */}
       <div
         className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
@@ -180,12 +180,12 @@ const Index: React.FC = () => {
               ${index === currentIndex ? "opacity-100" : "opacity-0"}
             `}
           >
-            {/* Контейнер под фото: не больше 50% ширины и 90% высоты экрана */}
-            <div className="relative max-w-[50vw] max-h-[90vh] mr-0">
+            {/* Контейнер под фото: ОГРАНИЧИВАЕМ ТОЛЬКО ВЫСОТУ, ШИРИНА — КАК ПОЛУЧИТСЯ */}
+            <div className="relative max-h-[90vh] mr-0">
               <img
                 src={img}
                 alt="Restaurant"
-                className="w-auto h-auto max-w-full max-h-full object-contain"
+                className="w-auto h-auto max-h-[90vh] max-w-full object-contain"
               />
               <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
@@ -256,7 +256,7 @@ const Index: React.FC = () => {
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
         <div className="flex flex-col items-end text-right space-y-1">
           <a
-            href="https://instagram.com/albabistrolisbon"
+            href="https://instagram.com/albabistro.lisbon"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
