@@ -171,7 +171,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#8C3119] transition-colors"
           >
             Largo do Rato, 4A
           </a>
@@ -185,13 +185,13 @@ const Index: React.FC = () => {
             href="https://instagram.com/albabistrolisbon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#8C3119] transition-colors"
           >
             Instagram
           </a>
           <a
             href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#8C3119] transition-colors"
           >
             Email
           </a>
