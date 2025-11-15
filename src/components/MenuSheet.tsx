@@ -134,7 +134,7 @@ const menuItems = [
   },
 ];
 
-// полноэкранная секция (если решишь где-то использовать её как отдельный блок)
+// полноэкранная секция (если захочешь использовать её отдельно)
 const Menu: React.FC = () => {
   return (
     <section id="menu" className="py-20 px-6 bg-card">
@@ -201,11 +201,6 @@ export const MenuSheet: React.FC = () => {
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
-        {/* дальше твой контент меню */}
-      </SheetContent>
-    </Sheet>
-  );
-};
 
         <div className="space-y-8 py-4">
           {menuItems.map((section) => (
