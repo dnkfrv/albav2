@@ -164,7 +164,7 @@ const Index: React.FC = () => {
 
       {/* Часы работы и адрес слева снизу (адрес — ссылка на карты) */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
-        <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+        <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
           Monday - Sunday 9:00 - 17:00
           <br />
           <a
@@ -178,22 +178,22 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Инстаграм и email справа снизу */}
+      {/* Инстаграм и Email справа снизу */}
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
         <div className="flex flex-col items-end text-right space-y-1">
           <a
             href="https://instagram.com/albabistro.lisbon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
           >
             Instagram
           </a>
           <a
             href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#644A42] transition-colors"
           >
-            email
+            Email
           </a>
         </div>
       </div>
