@@ -26,12 +26,6 @@ export const AboutSheet: React.FC = () => {
             <p className="font-kommon text-[10px] md:text-xs tracking-[0.16em] text-[#644A42]">
               BISTRO • SPECIALTY COFFEE • MATCHA BAR
             </p>
-            <p className="font-martian text-[9px] md:text-xs text-[#644A42]/80 mt-0.5">
-              Fresh take on breakfast and brunch
-            </p>
-            <p className="font-martian text-[8px] md:text-[11px] text-[#644A42]/80 mt-0.5">
-              Every day, 9:00–17:00
-            </p>
           </div>
         </button>
       </SheetTrigger>
