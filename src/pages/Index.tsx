@@ -9,7 +9,7 @@ import img1_23 from "@/assets/1-23.jpg";
 import imgA1113 from "@/assets/A-1113.jpg";
 import imgA121 from "@/assets/A-121.jpg";
 import imgA130 from "@/assets/A-130.jpg";
-import imga17 from "@/assets/a-17.jpg";
+import imgA17 from "@/assets/A-17.jpg";
 import imgA188 from "@/assets/A-188.jpg";
 import imgA20 from "@/assets/A-20.jpg";
 import imgA208 from "@/assets/A-208.jpg";
@@ -43,7 +43,7 @@ const heroImages = [
   imgA1113,
   imgA121,
   imgA130,
-  imga17,
+  imgA17,
   imgA188,
   imgA20,
   imgA208,
@@ -165,34 +165,32 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ДЕСКТОП: фото занимают половину экрана, прижаты вправо, сохраняют соотношение сторон и полностью влезают по высоте */}
+      {/* ДЕСКТОП: фото прижаты вправо, сохраняют пропорции и всегда полностью влезают */}
       <div
-        className="absolute inset-0 hidden md:flex justify-end"
+        className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
       >
-        <div className="relative h-full w-1/2">
-          {heroImages.map((img, index) => (
-            <div
-              key={index}
-              className={`
-                absolute inset-0
-                flex items-center justify-center
-                transition-opacity duration-700
-                ${index === currentIndex ? "opacity-100" : "opacity-0"}
-              `}
-            >
-              {/* без сдвига вверх, картинка вписывается целиком */}
-              <div className="relative max-w-full max-h-full">
-                <img
-                  src={img}
-                  alt="Restaurant"
-                  className="w-auto h-auto max-w-full max-h-full object-contain"
-                />
-                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-              </div>
+        {heroImages.map((img, index) => (
+          <div
+            key={index}
+            className={`
+              absolute inset-0
+              flex items-center justify-end
+              transition-opacity duration-700
+              ${index === currentIndex ? "opacity-100" : "opacity-0"}
+            `}
+          >
+            {/* Контейнер под фото: не больше 50% ширины и 90% высоты экрана */}
+            <div className="relative max-w-[50vw] max-h-[90vh] mr-0">
+              <img
+                src={img}
+                alt="Restaurant"
+                className="w-auto h-auto max-w-full max-h-full object-contain"
+              />
+              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 93% ширины */}
