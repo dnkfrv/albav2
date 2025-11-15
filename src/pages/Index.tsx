@@ -91,8 +91,8 @@ const Index: React.FC = () => {
   };
 
   return (
-    // корневой контейнер, фото лежат ПОД ним на весь экран
-    <div className="relative h-svh w-full overflow-hidden bg-background">
+    // фиксированная высота, без вертикального скролла / overscroll
+    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
       {/* ФОН: фото на весь экран — ДЕСКТОП */}
       <div className="absolute inset-0 hidden md:block">
         {heroImages.map((img, index) => (
@@ -124,7 +124,7 @@ const Index: React.FC = () => {
         onTouchStart={(e) => startDrag(e.touches[0].clientX)}
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
-        style={{ touchAction: "pan-y" }}
+        style={{ touchAction: "pan-x" }} // только горизонтальный свайп, без вертикального скролла
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
@@ -145,7 +145,6 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ВСЕ УГЛОВЫЕ ЭЛЕМЕНТЫ СВЕРХУ ФОТО */}
       {/* Логотип слева сверху */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <img
@@ -169,7 +168,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="underline-offset-4 hover:underline"
           >
             Largo do Rato, 4A
           </a>
@@ -191,7 +190,7 @@ const Index: React.FC = () => {
             href="mailto:hello@albabistrolisbon.com"
             className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            Email
+            email
           </a>
         </div>
       </div>
