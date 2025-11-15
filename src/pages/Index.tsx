@@ -169,7 +169,7 @@ const Index: React.FC = () => {
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-4 hover:underline"
+            className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
           >
             Largo do Rato, 4A
           </a>
