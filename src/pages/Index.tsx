@@ -169,7 +169,8 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ФОН: фото на МОБИЛЬНОМ — свайп, центрирование, не более 90% ширины экрана */}
+      {/* ФОН: фото на МОБИЛЬНОМ — свайп, центрирование, не более 90% ширины экрана,
+          при этом сохраняем исходное соотношение сторон (h-auto + object-contain) */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
@@ -184,14 +185,14 @@ const Index: React.FC = () => {
               key={index}
               className="flex-shrink-0 w-full h-full flex items-center justify-center"
             >
-              {/* контейнер с фото: максимум 90% ширины экрана, по центру */}
-              <div className="relative h-full w-[90vw] max-w-[90vw] -translate-y-[10px]">
+              {/* ширина ограничена 90% экрана, высота авто, соотношение сторон оригинальное */}
+              <div className="relative w-[90vw] max-w-[90vw] -translate-y-[10px]">
                 <img
                   src={img}
                   alt="Restaurant"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain"
                 />
-                <div className="absolute inset-0 bg-black/25" />
+                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
               </div>
             </div>
           ))}
