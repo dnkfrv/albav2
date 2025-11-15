@@ -37,7 +37,7 @@ import logoImage from "@/assets/logo.png";
 
 // все фото, и старые, и новые
 const heroImages = [
-  imga11,
+  imgA11,
   img1_11,
   img1_23,
   imgA1113,
