@@ -5,8 +5,7 @@ import { MenuSheet } from "@/components/MenuSheet";
 // НОВЫЕ ФОТО + старые
 import img1_11 from "@/assets/1-11.jpg";
 import img1_23 from "@/assets/1-23.jpg";
-
-import imgA113_2 from "@/assets/A-113-2.jpg";
+import imgA113_2 from "@/assets/A-113_2.jpg";
 import imgA121 from "@/assets/A-121.jpg";
 import imgA130 from "@/assets/A-130.jpg";
 import imgA179 from "@/assets/A-179.jpg";
@@ -19,7 +18,6 @@ import imgA31 from "@/assets/A-31.jpg";
 import imgA55 from "@/assets/A-55.jpg";
 import imgA73 from "@/assets/A-73.jpg";
 import imgA90 from "@/assets/A-90.jpg";
-
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 import imga40 from "@/assets/a-40.jpg";
