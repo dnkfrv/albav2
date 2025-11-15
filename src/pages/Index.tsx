@@ -248,7 +248,7 @@ const Index: React.FC = () => {
 
       {/* Join our team + Instagram + Email справа снизу */}
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
-        <div className="flex flex-col items-end text-right space-y-1">
+        <div className="text-xs md:text-sm text-[#644A42] hover:text-[#934A37] transition-colors">
           <JoinTeamSheet />
           <a
             href="https://instagram.com/albabistro.lisbon"
