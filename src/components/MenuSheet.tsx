@@ -188,11 +188,11 @@ export const MenuSheet: React.FC = () => {
     <Sheet>
       <SheetTrigger asChild>
         {/* изображение Menu.png того же размера, что logo.png */}
-        <button className="transition-opacity hover:opacity-80 focus:outline-none">
+        <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
           <img
             src={menuImage}
             alt="Menu"
-            className="h-5 md:h-7 w-auto object-contain"
+            className="h-3 md:h-5 w-auto object-contain"
           />
         </button>
       </SheetTrigger>
@@ -201,6 +201,11 @@ export const MenuSheet: React.FC = () => {
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
+        {/* дальше твой контент меню */}
+      </SheetContent>
+    </Sheet>
+  );
+};
 
         <div className="space-y-8 py-4">
           {menuItems.map((section) => (
