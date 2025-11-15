@@ -221,19 +221,20 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Логотип слева сверху */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <img
-          src={logoImage}
-          alt="Restaurant Logo"
-          className="h-3 md:h-5 w-auto object-contain"
-        />
-      </div>
+           {/* Логотип слева сверху */}
+        <div className="absolute top-[18px] left-4 md:top-[26px] md:left-8">
+          <img
+            src={logoImage}
+            alt="Restaurant Logo"
+            className="h-3 md:h-5 w-auto object-contain"
+          />
+        </div>
 
-      {/* Меню справа сверху */}
-      <div className="absolute top-4 right-4 md:top-6 md:right-8">
-        <MenuSheet />
-      </div>
+
+                {/* Меню справа сверху */}
+          <div className="absolute top-[18px] right-4 md:top-[26px] md:right-8">
+            <MenuSheet />
+          </div>
 
       {/* Часы работы и адрес слева снизу */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
