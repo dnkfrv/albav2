@@ -79,6 +79,7 @@ const Index: React.FC = () => {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const mobileRef = useRef<HTMLDivElement | null>(null);
+  const swipedRef = useRef(false); // чтобы отличать свайп от тапа
 
   // авто-смена для десктопа
   useEffect(() => {
@@ -105,11 +106,18 @@ const Index: React.FC = () => {
   const startDrag = (clientX: number) => {
     setDragStartX(clientX);
     setIsDragging(true);
+    swipedRef.current = false;
   };
 
   const moveDrag = (clientX: number) => {
     if (dragStartX === null) return;
-    setDragOffset(clientX - dragStartX);
+    const delta = clientX - dragStartX;
+    setDragOffset(delta);
+
+    // если палец реально сдвинулся больше 10px — считаем это свайпом
+    if (Math.abs(delta) > 10) {
+      swipedRef.current = true;
+    }
   };
 
   const endDrag = () => {
@@ -128,6 +136,27 @@ const Index: React.FC = () => {
     setIsDragging(false);
     setDragStartX(null);
     setDragOffset(0);
+  };
+
+  // тап по левой / правой части экрана
+  const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
+    // если до этого был свайп — игнорируем клик
+    if (swipedRef.current) {
+      swipedRef.current = false;
+      return;
+    }
+
+    const rect = mobileRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const x = e.clientX - rect.left;
+    const isLeft = x < rect.width / 2;
+
+    if (isLeft) {
+      prevMobile();
+    } else {
+      nextMobile();
+    }
   };
 
   // мобильный track transform
@@ -169,14 +198,14 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ФОН: фото на МОБИЛЬНОМ — свайп, центрирование, не более 90% ширины экрана,
-          при этом сохраняем исходное соотношение сторон (h-auto + object-contain) */}
+      {/* ФОН: фото на МОБИЛЬНОМ — свайп, тап по краям, оригинальное соотношение сторон */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
         onTouchStart={(e) => startDrag(e.touches[0].clientX)}
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
+        onClick={handleTap}
         style={{ touchAction: "pan-x" }} // только горизонтальный свайп
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
