@@ -163,7 +163,7 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ДЕСКТОП: фото занимают половину экрана, прижаты вправо, сохраняют соотношение сторон */}
+      {/* ДЕСКТОП: фото занимают половину экрана, прижаты вправо, сохраняют соотношение сторон и полностью влезают по высоте */}
       <div
         className="absolute inset-0 hidden md:flex justify-end"
         onMouseMove={handleDesktopMouseMove}
@@ -179,8 +179,8 @@ const Index: React.FC = () => {
                 ${index === currentIndex ? "opacity-100" : "opacity-0"}
               `}
             >
-              {/* контейнер, который слегка сдвинут вверх, картинка внутри в оригинальном соотношении */}
-              <div className="relative -translate-y-[10px] max-w-full max-h-full">
+              {/* без сдвига вверх, картинка вписывается целиком */}
+              <div className="relative max-w-full max-h-full">
                 <img
                   src={img}
                   alt="Restaurant"
