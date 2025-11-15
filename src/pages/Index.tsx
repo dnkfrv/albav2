@@ -93,7 +93,7 @@ const Index: React.FC = () => {
   return (
     // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ФОН: фото на ДЕСКТОПЕ — занимают ровно половину экрана по ширине и прижаты вправо */}
+      {/* ФОН: фото на ДЕСКТОПЕ — занимают половину экрана по ширине и прижаты вправо */}
       <div className="absolute inset-0 hidden md:flex justify-end">
         <div className="relative h-full w-1/2">
           {heroImages.map((img, index) => (
@@ -119,7 +119,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ФОН: фото на МОБИЛЬНОМ — свайп на весь экран */}
+      {/* ФОН: фото на МОБИЛЬНОМ — свайп, центрирование, не более 90% ширины экрана */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
@@ -132,9 +132,10 @@ const Index: React.FC = () => {
           {heroImages.map((img, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full h-full relative"
+              className="flex-shrink-0 w-full h-full flex items-center justify-center"
             >
-              <div className="relative w-full h-full -translate-y-[10px]">
+              {/* контейнер с фото: максимум 90% ширины экрана, по центру */}
+              <div className="relative h-full w-[90vw] max-w-[90vw] -translate-y-[10px]">
                 <img
                   src={img}
                   alt="Restaurant"
