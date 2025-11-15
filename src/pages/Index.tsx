@@ -32,9 +32,10 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    // общий контейнер + угловые элементы
-    <div className="h-svh w-full bg-background flex items-center justify-center relative overflow-hidden">
-      {/* ФОТО ДЛЯ ДЕСКТОПА (анимация-слайдер) */}
+    // На десктопе – full height, по центру.
+    // На мобиле высота авто, страница скроллится обычным образом.
+    <div className="w-full bg-background relative overflow-hidden md:h-svh md:flex md:items-center md:justify-center">
+      {/* ФОТО ДЛЯ ДЕСКТОПА (слайдер) */}
       <div
         className="
           hidden md:block
@@ -69,17 +70,14 @@ const Index: React.FC = () => {
         ))}
       </div>
 
-      {/* ФОТО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (вертикальная лента) */}
+      {/* ФОТО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (лента, скроллится вся страница) */}
       <div
         className="
           block md:hidden
-          relative
-          h-[88svh]
           w-full
           max-w-5xl
           mx-4
-          overflow-y-auto
-          overflow-x-hidden
+          mt-4 mb-24
         "
       >
         <div className="relative w-full -translate-y-[10px] space-y-2">
@@ -115,7 +113,14 @@ const Index: React.FC = () => {
         <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
           Monday - Sunday 9:00 - 17:00
           <br />
-          Largo do Rato, 4A
+          <a
+            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline underline-offset-4"
+          >
+            Largo do Rato, 4A
+          </a>
         </p>
       </div>
 
@@ -134,7 +139,7 @@ const Index: React.FC = () => {
             href="mailto:hello@albabistrolisbon.com"
             className="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            Email
+            email
           </a>
         </div>
       </div>
