@@ -2,6 +2,7 @@
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
+import { AboutSheet } from "@/components/AboutSheet";
 
 // НОВЫЕ ФОТО + старые
 import imgA11 from "@/assets/A-11.jpg";
@@ -33,8 +34,6 @@ import imga172 from "@/assets/a-172.jpg";
 import imga183 from "@/assets/a-183.jpg";
 import imga184 from "@/assets/a-184.jpg";
 import imga197 from "@/assets/a-197.jpg";
-
-import logoImage from "@/assets/logo.png";
 
 // все фото, и старые, и новые
 const heroImages = [
@@ -221,20 +220,15 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-           {/* Логотип слева сверху */}
-        <div className="absolute top-[18px] left-4 md:top-[26px] md:left-8">
-          <img
-            src={logoImage}
-            alt="Restaurant Logo"
-            className="h-3 md:h-6 w-auto object-contain"
-          />
-        </div>
+      {/* Логотип слева сверху (теперь шторка About) */}
+      <div className="absolute top-4 left-4 md:top-6 md:left-8">
+        <AboutSheet />
+      </div>
 
-
-                {/* Меню справа сверху */}
-          <div className="absolute top-[18px] right-4 md:top-[26px] md:right-8">
-            <MenuSheet />
-          </div>
+      {/* Меню справа сверху */}
+      <div className="absolute top-4 right-4 md:top-6 md:right-8">
+        <MenuSheet />
+      </div>
 
       {/* Часы работы и адрес слева снизу */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
