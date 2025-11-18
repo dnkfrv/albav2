@@ -4,7 +4,7 @@ import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import { AboutSheet } from "@/components/AboutSheet";
 
-// НОВЫЕ ФОТО + старые
+// НОВЫЕ ФОТО + старые (импорты оставляем как есть)
 import imgA130 from "@/assets/A-130.jpg";
 import imga17 from "@/assets/a-17.jpg";
 import imgA20 from "@/assets/A-20.jpg";
@@ -32,7 +32,7 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
-// все фото, и старые, и новые
+// все фото для МОБИЛЬНОЙ версии (как было)
 const heroImages = [
   imgA130,
   imga17,
@@ -60,7 +60,29 @@ const heroImages = [
   imgA1113,
   imga5,
   imga10,
-  ].filter(Boolean);
+].filter(Boolean);
+
+// ОТДЕЛЬНЫЙ набор фото для ДЕСКТОПА (только указанные тобой)
+// порядок соблюдён, регистр имён файлов не трогаем
+const desktopImages = [
+  imgA130,  // A-130
+  imgA20,   // A-20
+  imga94,   // a-94
+  imga150,  // a-150
+  imga113,  // a-113
+  img1_38,  // 1-38
+  img1_23,  // 1-23
+  imgA11,   // A-11
+  imgA55,   // A-55
+  imgA121,  // A-121
+  imgA90,   // A-90
+  imga172,  // a-172
+  imga155,  // a-155
+  imga132,  // a-132
+  imga40,   // a-40
+  imgA1113, // A-1113
+  imga5,    // a-5
+].filter(Boolean);
 
 const Index: React.FC = () => {
   // десктопный индекс (меняется от движения мышки)
@@ -74,7 +96,7 @@ const Index: React.FC = () => {
   const mobileRef = useRef<HTMLDivElement | null>(null);
   const swipedRef = useRef(false);
 
-  // хелперы мобильного слайдера
+  // хелперы мобильного слайдера (работают по heroImages)
   const clampIndex = (idx: number) => {
     if (idx < 0) return 0;
     if (idx > heroImages.length - 1) return heroImages.length - 1;
@@ -132,17 +154,17 @@ const Index: React.FC = () => {
     else nextMobile();
   };
 
-  // изменение кадра на десктопе от движения мышки
+  // изменение кадра на десктопе от движения мышки — используем desktopImages
   const handleDesktopMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
-    if (!heroImages.length) return;
+    if (!desktopImages.length) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const ratio = x / rect.width; // 0..1
-    let idx = Math.floor(ratio * heroImages.length);
+    let idx = Math.floor(ratio * desktopImages.length);
     if (idx < 0) idx = 0;
-    if (idx > heroImages.length - 1) idx = heroImages.length - 1;
+    if (idx > desktopImages.length - 1) idx = desktopImages.length - 1;
     setCurrentIndex(idx);
   };
 
@@ -157,14 +179,13 @@ const Index: React.FC = () => {
   };
 
   return (
-    // фиксированная высота, без вертикального скролла / overscroll
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
-      {/* ДЕСКТОП: фото прижаты вправо, сохраняют пропорции и всегда полностью влезают по высоте */}
+      {/* ДЕСКТОП: фото прижаты вправо, только desktopImages */}
       <div
         className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
       >
-        {heroImages.map((img, index) => (
+        {desktopImages.map((img, index) => (
           <div
             key={index}
             className={`
@@ -186,7 +207,7 @@ const Index: React.FC = () => {
         ))}
       </div>
 
-      {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 93% ширины */}
+      {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 93% ширины — используем heroImages */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
