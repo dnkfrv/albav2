@@ -243,15 +243,24 @@ const Index: React.FC = () => {
 
           {/* Текст под логотипом – только на десктопе */}
           <div className="hidden md:flex flex-col items-start text-left mt-10 space-y-1.5">
+            {/* Строка: Lisbon — 60px — Largo do Rato, 4A */}
             <a
               href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors flex items-baseline"
+            >
+              <span>Lisbon</span>
+              <span className="ml-[60px]">Largo do Rato, 4A</span>
+            </a>
+
+            {/* Блок из трёх строк под адресом: Email → Instagram → Join our team */}
+            <a
+              href="mailto:hello@albabistrolisbon.com"
               className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
             >
-              Lisbon, Largo do Rato, 4A
+              Email
             </a>
-            <JoinTeamSheet />
             <a
               href="https://instagram.com/albabistrolisbon"
               target="_blank"
@@ -260,12 +269,7 @@ const Index: React.FC = () => {
             >
               Instagram
             </a>
-            <a
-              href="mailto:hello@albabistrolisbon.com"
-              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-            >
-              Email
-            </a>
+            <JoinTeamSheet />
           </div>
         </div>
       </div>
