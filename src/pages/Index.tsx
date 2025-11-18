@@ -63,26 +63,25 @@ const heroImages = [
   imga10,
 ].filter(Boolean);
 
-// ОТДЕЛЬНЫЙ набор фото для ДЕСКТОПА (только указанные тобой)
-// порядок соблюдён, регистр имён файлов не трогаем
+// ОТДЕЛЬНЫЙ набор фото для ДЕСКТОПА (только указанные)
 const desktopImages = [
-  imgA130,  // A-130
-  imgA20,   // A-20
-  imga94,   // a-94
-  imga150,  // a-150
-  imga113,  // a-113
-  img1_38,  // 1-38
-  img1_23,  // 1-23
-  imgA11,   // A-11
-  imgA55,   // A-55
-  imgA121,  // A-121
-  imgA90,   // A-90
-  imga172,  // a-172
-  imga155,  // a-155
-  imga132,  // a-132
-  imga40,   // a-40
+  imgA130, // A-130
+  imgA20, // A-20
+  imga94, // a-94
+  imga150, // a-150
+  imga113, // a-113
+  img1_38, // 1-38
+  img1_23, // 1-23
+  imgA11, // A-11
+  imgA55, // A-55
+  imgA121, // A-121
+  imgA90, // A-90
+  imga172, // a-172
+  imga155, // a-155
+  imga132, // a-132
+  imga40, // a-40
   imgA1113, // A-1113
-  imga5,    // a-5
+  imga5, // a-5
 ].filter(Boolean);
 
 const Index: React.FC = () => {
@@ -239,7 +238,41 @@ const Index: React.FC = () => {
 
       {/* Логотип + подпись + шторка About слева сверху */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <AboutSheet />
+        <div className="flex flex-col items-start gap-2">
+          <AboutSheet />
+
+          {/* Текст под логотипом – только на десктопе */}
+          <div className="hidden md:flex flex-col items-start text-left space-y-1">
+            <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
+              Monday - Sunday 9:00 - 17:00
+            </p>
+            <a
+              href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            >
+              Lisbon, Largo do Rato, 4A
+            </a>
+            <div className="flex flex-col items-start text-left space-y-1 pt-2">
+              <JoinTeamSheet />
+              <a
+                href="https://instagram.com/albabistrolisbon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+              >
+                Instagram
+              </a>
+              <a
+                href="mailto:hello@albabistrolisbon.com"
+                className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+              >
+                Email
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Меню справа сверху */}
@@ -247,8 +280,8 @@ const Index: React.FC = () => {
         <MenuSheet />
       </div>
 
-      {/* Часы работы и адрес слева снизу */}
-      <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8">
+      {/* Часы работы и адрес слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+      <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8 md:hidden">
         <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
           Monday - Sunday 9:00 - 17:00
           <br />
@@ -263,12 +296,12 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Join our team + Instagram + Email справа снизу */}
-      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8">
+      {/* Join our team + Instagram + Email справа снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1">
           <JoinTeamSheet />
           <a
-            href="https://instagram.com/albabistrolisbon"
+            href="https://instagram.com/albabistro.lisbon"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
@@ -282,6 +315,11 @@ const Index: React.FC = () => {
             Email
           </a>
         </div>
+      </div>
+
+      {/* Правый нижний угол – Created by AlbaFamily (только десктоп) */}
+      <div className="hidden md:block absolute bottom-6 right-8">
+        <p className="text-xs text-[#644A42]">Created by AlbaFamily</p>
       </div>
     </div>
   );
