@@ -17,7 +17,7 @@ import imgA31 from "@/assets/A-31.jpg";
 import img1_38 from "@/assets/1-38.jpg";
 import img1_23 from "@/assets/1-23.jpg";
 import imgA11 from "@/assets/A-11.jpg";
-import imga38 from "@/assets/A-11.jpg";
+import imga38 from "@/assets/a-38.jpg";
 import imgA55 from "@/assets/A-55.jpg";
 import imgA121 from "@/assets/A-121.jpg";
 import imgA90 from "@/assets/A-90.jpg";
