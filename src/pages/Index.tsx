@@ -160,7 +160,7 @@ const Index: React.FC = () => {
   ) => {
     if (!desktopImages.length) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
+       const x = e.clientX - rect.left;
     const ratio = x / rect.width; // 0..1
     let idx = Math.floor(ratio * desktopImages.length);
     if (idx < 0) idx = 0;
@@ -241,35 +241,49 @@ const Index: React.FC = () => {
         <div className="flex flex-col items-start gap-2">
           <AboutSheet />
 
-          {/* Текст под логотипом – только на десктопе */}
-          <div className="hidden md:flex flex-col items-start text-left mt-10 space-y-1.5">
-            {/* Строка: Lisbon — 60px — Largo do Rato, 4A */}
-            <a
-              href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors flex items-baseline"
+          {/* Блок с Lisbon / адресом / ссылками – только на десктопе */}
+          <div className="hidden md:block mt-10">
+            <div
+              className="grid gap-y-1.5 text-xs md:text-sm text-[#644A42]"
+              style={{ gridTemplateColumns: "auto auto" }}
             >
+              {/* строка 1: Lisbon | Largo do Rato, 4A */}
               <span>Lisbon</span>
-              <span className="ml-[60px]">Largo do Rato, 4A</span>
-            </a>
+              <a
+                href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#4B362F] transition-colors"
+              >
+                Largo do Rato, 4A
+              </a>
 
-            {/* Блок из трёх строк под адресом: Email → Instagram → Join our team */}
-            <a
-              href="mailto:hello@albabistrolisbon.com"
-              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-            >
-              Email
-            </a>
-            <a
-              href="https://instagram.com/albabistrolisbon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-            >
-              Instagram
-            </a>
-            <JoinTeamSheet />
+              {/* строка 2:  | Email */}
+              <span />
+              <a
+                href="mailto:hello@albabistrolisbon.com"
+                className="hover:text-[#4B362F] transition-colors"
+              >
+                Email
+              </a>
+
+              {/* строка 3:  | Instagram */}
+              <span />
+              <a
+                href="https://instagram.com/albabistrolisbon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#4B362F] transition-colors"
+              >
+                Instagram
+              </a>
+
+              {/* строка 4:  | Join our team */}
+              <span />
+              <div className="justify-self-start">
+                <JoinTeamSheet />
+              </div>
+            </div>
           </div>
         </div>
       </div>
