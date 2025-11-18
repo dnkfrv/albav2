@@ -274,8 +274,8 @@ const Index: React.FC = () => {
       <div className="absolute top-4 right-4 md:top-6 md:right-8">
         <MenuSheet />
       </div>
-
-      {/* Часы/адрес/Instagram слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+      
+ {/* Часы/адрес слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8 md:hidden">
         <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-[18px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
@@ -287,35 +287,30 @@ const Index: React.FC = () => {
           >
             Largo do Rato, 4A
           </a>
-          <a
-            href="https://instagram.com/albabistrolisbon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#4B362F] transition-colors"
-          >
-            Instagram
-          </a>
         </div>
       </div>
 
-      {/* Join our team + Email + Instagram справа снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+     {/* Join our team + (Instagram / Email) справа снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet />
-          <a
-            href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-          >
-            Email
-          </a>
-          <a
-            href="https://instagram.com/albabistro.lisbon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-          >
-            Instagram
-          </a>
+          <div className="flex flex-row items-center gap-1 text-xs md:text-sm text-[#644A42]">
+            <a
+              href="https://instagram.com/albabistro.lisbon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Instagram
+            </a>
+            <span>/</span>
+            <a
+              href="mailto:hello@albabistrolisbon.com"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Email
+            </a>
+          </div>
         </div>
       </div>
 
