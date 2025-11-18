@@ -25,6 +25,7 @@ import imgA73 from "@/assets/A-73.jpg";
 import imga155 from "@/assets/a-155.jpg";
 import imga172 from "@/assets/a-172.jpg";
 import imga132 from "@/assets/a-132.jpg";
+import imga40 from "@/assets/a-40.jpg";
 import imgA217 from "@/assets/A-217.jpg";
 import imgA23 from "@/assets/A-23.jpg";
 import imgA188 from "@/assets/A-188.jpg";
