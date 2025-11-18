@@ -160,7 +160,7 @@ const Index: React.FC = () => {
   ) => {
     if (!desktopImages.length) return;
     const rect = e.currentTarget.getBoundingClientRect();
-       const x = e.clientX - rect.left;
+    const x = e.clientX - rect.left;
     const ratio = x / rect.width; // 0..1
     let idx = Math.floor(ratio * desktopImages.length);
     if (idx < 0) idx = 0;
@@ -286,6 +286,28 @@ const Index: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Текстовый блок с описанием — только ДЕСКТОП, позиция 200px / 200px */}
+      <div
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed"
+        style={{ top: 200, left: 200 }}
+      >
+        <p className="mb-3">
+          Welcome to Alba Bistro, your new corner of taste and style in Lisbon!
+          Our bright space with a sunny terrace at Rato Square invites you to
+          immerse yourself in an atmosphere of comfort and enjoyment.
+        </p>
+        <p className="mb-3">
+          Alba Bistro offers a fresh take on breakfast and brunch - our
+          exquisite menu is crafted for those who appreciate subtle taste and
+          originality.
+        </p>
+        <p>
+          Try our signature coffee cocktails and explore the rich variety of
+          matcha options. Visit us for new gastronomic experiences and comfort!
+          We eagerly await your visit.
+        </p>
       </div>
 
       {/* Меню справа сверху */}
