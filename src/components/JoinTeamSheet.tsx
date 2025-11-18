@@ -18,21 +18,27 @@ export const JoinTeamSheet: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* Выглядит как выделенный текст, а не кнопка */}
+        {/* 
+          Мобилка: просто текст-ссылка.
+          Десктоп: «выделенный» текст (фон + светлый текст).
+        */}
         <button
           className="
             inline-block
-            px-1.5
-            py-[1px]
             text-xs md:text-sm
             font-kommon
             leading-snug
-            bg-[#644A42]
-            text-[#F5F1EC]
+            text-[#644A42]
+            bg-transparent
+            px-0 py-0
+            hover:text-[#4B362F]
+            md:px-1.5 md:py-[1px]
+            md:bg-[#644A42]
+            md:text-[#F5F1EC]
+            md:hover:bg-[#644A42]
+            md:hover:text-[#F5F1EC]
             rounded-[2px]
             select-none
-            hover:bg-[#644A42]
-            hover:text-[#F5F1EC]
             focus:outline-none
           "
         >
