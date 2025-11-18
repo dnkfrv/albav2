@@ -179,7 +179,7 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none">
+    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon">
       {/* ДЕСКТОП: фото прижаты вправо, только desktopImages */}
       <div
         className="absolute inset-0 hidden md:block"
@@ -236,65 +236,20 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Логотип + подпись + шторка About слева сверху */}
+      {/* Логотип + шторка About слева сверху */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <div className="flex flex-col items-start gap-2">
           <AboutSheet />
-
-          {/* Блок с Lisbon / адресом / ссылками – только на десктопе */}
-          <div className="hidden md:block mt-10">
-            <div
-              className="grid gap-y-1.5 text-xs md:text-sm text-[#644A42]"
-              style={{ gridTemplateColumns: "auto auto" }}
-            >
-              {/* строка 1: Lisbon | Largo do Rato, 4A */}
-              <span>Lisbon</span>
-              <a
-                href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#4B362F] transition-colors"
-              >
-                Largo do Rato, 4A
-              </a>
-
-              {/* строка 2:  | Email */}
-              <span />
-              <a
-                href="mailto:hello@albabistrolisbon.com"
-                className="hover:text-[#4B362F] transition-colors"
-              >
-                Email
-              </a>
-
-              {/* строка 3:  | Instagram */}
-              <span />
-              <a
-                href="https://instagram.com/albabistrolisbon"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#4B362F] transition-colors"
-              >
-                Instagram
-              </a>
-
-              {/* строка 4:  | Join our team */}
-              <span />
-              <div className="justify-self-start">
-                <JoinTeamSheet />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Текстовый блок с описанием — только ДЕСКТОП, позиция 200px / 200px */}
+      {/* Текстовый блок с описанием + Join our team — только ДЕСКТОП, позиция 200px / 200px */}
       <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed"
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
         style={{ top: 200, left: 200 }}
       >
         <p className="mb-3">
-          Welcome to Alba Bistro, your new corner of taste and style in Lisbon!
+          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
           Our bright space with a sunny terrace at Rato Square invites you to
           immerse yourself in an atmosphere of comfort and enjoyment.
         </p>
@@ -308,6 +263,11 @@ const Index: React.FC = () => {
           matcha options. Visit us for new gastronomic experiences and comfort!
           We eagerly await your visit.
         </p>
+
+        {/* Join our team на ~50px ниже текста */}
+        <div className="mt-12">
+          <JoinTeamSheet />
+        </div>
       </div>
 
       {/* Меню справа сверху */}
@@ -315,26 +275,39 @@ const Index: React.FC = () => {
         <MenuSheet />
       </div>
 
-      {/* Часы работы и адрес слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+      {/* Часы/адрес/Instagram слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8 md:hidden">
-        <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
-          Monday - Sunday 9:00 - 17:00
-          <br />
+        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon">
+          <span>Monday - Sunday 9:00 - 17:00</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            className="hover:text-[#4B362F] transition-colors"
           >
             Largo do Rato, 4A
           </a>
-        </p>
+          <a
+            href="https://instagram.com/albabistrolisbon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#4B362F] transition-colors"
+          >
+            Instagram
+          </a>
+        </div>
       </div>
 
-      {/* Join our team + Instagram + Email справа снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+      {/* Join our team + Email + Instagram справа снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8 md:hidden">
-        <div className="flex flex-col items-end text-right space-y-1">
+        <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet />
+          <a
+            href="mailto:hello@albabistrolisbon.com"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+          >
+            Email
+          </a>
           <a
             href="https://instagram.com/albabistro.lisbon"
             target="_blank"
@@ -343,25 +316,37 @@ const Index: React.FC = () => {
           >
             Instagram
           </a>
+        </div>
+      </div>
+
+      {/* Часы работы + адрес + Instagram в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
+      <div className="hidden md:block absolute bottom-6 left-8">
+        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon">
+          <span>Monday - Sunday 9:00 - 17:00</span>
           <a
-            href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#4B362F] transition-colors"
           >
-            Email
+            Largo do Rato, 4A
+          </a>
+          <a
+            href="https://instagram.com/albabistrolisbon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#4B362F] transition-colors"
+          >
+            Instagram
           </a>
         </div>
       </div>
 
-      {/* Часы работы в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
-      <div className="hidden md:block absolute bottom-6 left-8">
-        <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
-          Monday - Sunday 9:00 - 17:00
-        </p>
-      </div>
-
       {/* Правый нижний угол – Created by AlbaFamily (только десктоп) */}
       <div className="hidden md:block absolute bottom-6 right-8">
-        <p className="text-xs text-[#644A42]">Created by AlbaFamily</p>
+        <p className="text-xs text-[#644A42] font-kommon">
+          Created by AlbaFamily
+        </p>
       </div>
     </div>
   );
