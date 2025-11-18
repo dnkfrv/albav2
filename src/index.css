@@ -7,12 +7,30 @@ All colors MUST be HSL.
 */
 
 @font-face {
-  font-family: "Kommon Grotesk";
+  font-family: "Kommon Grotesk Ext";
+  src: url("/Kommon Grotesk Ext Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Kommon Grotesk Ext";
   src: url("/Kommon Grotesk Ext SemiBold.otf") format("opentype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap; 
+  font-display: swap;
 }
+
+/* если нужно, оставь Martian для кода/цифр */
+@font-face {
+  font-family: "Martian Mono Condensed";
+  src: url("/MartianMono_Condensed-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 @layer base {
   :root {
