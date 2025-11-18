@@ -1,3 +1,5 @@
+// src/components/JoinTeamSheet.tsx
+import React from "react";
 import {
   Sheet,
   SheetContent,
@@ -6,7 +8,6 @@ import {
   SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import React from "react";
 
 export const JoinTeamSheet: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,17 +19,18 @@ export const JoinTeamSheet: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors">
+        {/* «выделенный» текст: фон как основной цвет шрифта, текст — цвет фона сайта */}
+        <button className="inline-flex items-center justify-center px-3 py-1 rounded-sm bg-[#644A42] text-background text-xs md:text-sm font-kommon tracking-wide transition-colors hover:bg-[#4B362F]">
           Join our team
         </button>
       </SheetTrigger>
 
       <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background">
         <SheetHeader>
-          <SheetTitle className="text-xl font-semibold tracking-wide text-[#644A42]">
+          <SheetTitle className="text-xl font-semibold tracking-wide text-[#644A42] font-kommon">
             Join Alba Bistro
           </SheetTitle>
-          <SheetDescription className="mt-2 text-sm text-[#644A42]/80 text-center">
+          <SheetDescription className="mt-2 text-sm text-[#644A42]/80 text-center font-kommon">
             Join Alba Bistro and be part of a team that values creativity,
             quality, and community. We&apos;re always looking for passionate
             individuals who share our love for exceptional food, drinks and
@@ -36,7 +38,7 @@ export const JoinTeamSheet: React.FC = () => {
           </SheetDescription>
         </SheetHeader>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6 font-kommon">
           {/* Full Name */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-[#644A42]">
