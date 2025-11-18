@@ -26,7 +26,7 @@ export const JoinTeamSheet: React.FC = () => {
           </span>
 
           {/* десктопная версия — как текст под выделением */}
-          <span className="hidden md:inline-block bg-[#644A42] text-[#f4f0eb] px-[1px] py-[1px] leading-[1.2]">
+          <span className="hidden md:inline-block bg-[#644A42] text-[#f4f0eb] px-[0.5px] py-[2px] leading-[1.2]">
             Join our team
           </span>
         </button>
