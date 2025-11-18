@@ -302,12 +302,7 @@ const Index: React.FC = () => {
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet />
-          <a
-            href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-          >
-            Email
-          </a>
+          
           <a
             href="https://instagram.com/albabistro.lisbon"
             target="_blank"
@@ -316,10 +311,17 @@ const Index: React.FC = () => {
           >
             Instagram
           </a>
+          <span>/</span>
+          <a
+            href="mailto:hello@albabistrolisbon.com"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+          >
+            Email
+          </a>
         </div>
       </div>
 
-      {/* Часы работы + адрес + Instagram в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
+      {/* Часы работы + адрес + Instagram/Email в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
       <div className="hidden md:block absolute bottom-6 left-8">
         <div className="flex flex-col space-y-0 text-xs md:text-sm text-[#644A42] leading-[14px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
@@ -331,20 +333,23 @@ const Index: React.FC = () => {
           >
             Largo do Rato, 4A
           </a>
-          <a
-            href="https://instagram.com/albabistrolisbon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#4B362F] transition-colors"
-          >
-            Instagram
-          </a>
-          <a
-            href="mailto:hello@albabistrolisbon.com"
-            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-          >
-            Email
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://instagram.com/albabistrolisbon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Instagram
+            </a>
+            <span>/</span>
+            <a
+              href="mailto:hello@albabistrolisbon.com"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Email
+            </a>
+          </div>
         </div>
       </div>
 
