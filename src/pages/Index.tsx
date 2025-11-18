@@ -33,7 +33,7 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
-// все фото для МОБИЛЬНОЙ версии (как было)
+// все фото для мобильной версии (как было)
 const heroImages = [
   imgA130,
   imga17,
@@ -63,7 +63,7 @@ const heroImages = [
   imga10,
 ].filter(Boolean);
 
-// ОТДЕЛЬНЫЙ набор фото для ДЕСКТОПА (только указанные)
+// ОТДЕЛЬНЫЙ набор фото для десктопа (только указанные)
 const desktopImages = [
   imgA130, // A-130
   imgA20, // A-20
@@ -85,16 +85,20 @@ const desktopImages = [
 ].filter(Boolean);
 
 const Index: React.FC = () => {
-  // десктопный индекс (меняется от движения мышки)
+  // текущий кадр на десктопе
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // мобильный слайдер (свайп + тап)
+  // состояние слайдера для мобильной версии
   const [mobileIndex, setMobileIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+
   const mobileRef = useRef<HTMLDivElement | null>(null);
   const swipedRef = useRef(false);
+
+  // последняя позиция мыши на десктопе – для отслеживания движения во всех направлениях
+  const lastDesktopMousePos = useRef<{ x: number; y: number } | null>(null);
 
   // хелперы мобильного слайдера (работают по heroImages)
   const clampIndex = (idx: number) => {
@@ -139,7 +143,7 @@ const Index: React.FC = () => {
     setDragOffset(0);
   };
 
-  // тап по левой / правой части экрана (только мобилка)
+  // тап по левой / правой части экрана (только мобильная версия)
   const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
     if (swipedRef.current) {
       swipedRef.current = false;
@@ -154,18 +158,42 @@ const Index: React.FC = () => {
     else nextMobile();
   };
 
-  // изменение кадра на десктопе от движения мышки — используем desktopImages
+  // ДЕСКТОП: смена кадра при движении мыши в любом направлении (x и/или y), с рандомным выбором изображения
   const handleDesktopMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     if (!desktopImages.length) return;
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const ratio = x / rect.width; // 0..1
-    let idx = Math.floor(ratio * desktopImages.length);
-    if (idx < 0) idx = 0;
-    if (idx > desktopImages.length - 1) idx = desktopImages.length - 1;
-    setCurrentIndex(idx);
+    const y = e.clientY - rect.top;
+
+    // инициализация – просто запоминаем первую позицию
+    if (!lastDesktopMousePos.current) {
+      lastDesktopMousePos.current = { x, y };
+      return;
+    }
+
+    const dx = x - lastDesktopMousePos.current.x;
+    const dy = y - lastDesktopMousePos.current.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // порог, чтобы кадр не менялся при каждом небольшом движении
+    const threshold = Math.min(rect.width, rect.height) * 0.08; // ~8% от меньшей стороны
+
+    if (distance < threshold) return;
+
+    // запоминаем новую позицию
+    lastDesktopMousePos.current = { x, y };
+
+    // выбираем случайный кадр, отличный от текущего
+    if (desktopImages.length > 1) {
+      let nextIndex = currentIndex;
+      while (nextIndex === currentIndex) {
+        nextIndex = Math.floor(Math.random() * desktopImages.length);
+      }
+      setCurrentIndex(nextIndex);
+    }
   };
 
   // мобильный track transform
@@ -207,7 +235,7 @@ const Index: React.FC = () => {
         ))}
       </div>
 
-      {/* МОБИЛЬНЫЙ: свайп + тап */}
+      {/* МОБИЛЬНАЯ версия: свайп + нажатие по краям экрана */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
@@ -243,7 +271,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Текстовый блок с описанием + Join our team — только ДЕСКТОП */}
+      {/* Текстовый блок с описанием + Join our team — только десктоп */}
       <div
         className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
         style={{ top: 200, left: 200 }}
@@ -274,8 +302,8 @@ const Index: React.FC = () => {
       <div className="absolute top-4 right-4 md:top-6 md:right-8">
         <MenuSheet />
       </div>
-      
- {/* Часы/адрес слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+
+      {/* Часы/адрес слева снизу — только мобильная версия */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8 md:hidden">
         <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-[18px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
@@ -290,7 +318,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-     {/* Join our team + (Instagram / Email) справа снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
+      {/* Join our team + (Instagram / Email) справа снизу — только мобильная версия */}
       <div className="absolute bottom-4 right-4 md:bottom-6 md:right-8 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet />
@@ -314,7 +342,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Часы работы + адрес + Instagram/Email в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
+      {/* Часы работы + адрес + Instagram/Email в левом нижнем углу — только десктоп */}
       <div className="hidden md:block absolute bottom-6 left-8">
         <div className="flex flex-col space-y-0 text-xs md:text-sm text-[#644A42] leading-[14px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
