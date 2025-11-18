@@ -265,7 +265,7 @@ const Index: React.FC = () => {
         </p>
 
         {/* Join our team на ~50px ниже текста */}
-        <div className="mt-12">
+        <div className="mt-20">
           <JoinTeamSheet />
         </div>
       </div>
@@ -321,7 +321,7 @@ const Index: React.FC = () => {
 
       {/* Часы работы + адрес + Instagram в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
       <div className="hidden md:block absolute bottom-6 left-8">
-        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-[18px] font-kommon">
+        <div className="flex flex-col space-y-0 text-xs md:text-sm text-[#644A42] leading-[14px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
