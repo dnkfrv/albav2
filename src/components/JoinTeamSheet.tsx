@@ -1,4 +1,3 @@
-// src/components/JoinTeamSheet.tsx
 import React from "react";
 import {
   Sheet,
@@ -19,18 +18,34 @@ export const JoinTeamSheet: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* «выделенный» текст: фон как основной цвет шрифта, текст — цвет фона сайта */}
-        <button className="inline-flex items-center justify-center px-3 py-1 rounded-sm bg-[#644A42] text-background text-xs md:text-sm font-kommon tracking-wide transition-colors hover:bg-[#4B362F]">
+        {/* Выглядит как выделенный текст, а не кнопка */}
+        <button
+          className="
+            inline-block
+            px-1.5
+            py-[1px]
+            text-xs md:text-sm
+            font-kommon
+            leading-snug
+            bg-[#644A42]
+            text-[#F5F1EC]
+            rounded-[2px]
+            select-none
+            hover:bg-[#644A42]
+            hover:text-[#F5F1EC]
+            focus:outline-none
+          "
+        >
           Join our team
         </button>
       </SheetTrigger>
 
-      <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background">
+      <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background font-kommon">
         <SheetHeader>
-          <SheetTitle className="text-xl font-semibold tracking-wide text-[#644A42] font-kommon">
+          <SheetTitle className="text-xl font-semibold tracking-wide text-[#644A42]">
             Join Alba Bistro
           </SheetTitle>
-          <SheetDescription className="mt-2 text-sm text-[#644A42]/80 text-center font-kommon">
+          <SheetDescription className="mt-2 text-sm text-[#644A42]/80 text-center">
             Join Alba Bistro and be part of a team that values creativity,
             quality, and community. We&apos;re always looking for passionate
             individuals who share our love for exceptional food, drinks and
@@ -38,7 +53,7 @@ export const JoinTeamSheet: React.FC = () => {
           </SheetDescription>
         </SheetHeader>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6 font-kommon">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           {/* Full Name */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-[#644A42]">
