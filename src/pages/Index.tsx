@@ -207,7 +207,7 @@ const Index: React.FC = () => {
         ))}
       </div>
 
-      {/* МОБИЛЬНЫЙ: свайп + тап, оригинальное соотношение сторон, до 93% ширины — используем heroImages */}
+      {/* МОБИЛЬНЫЙ: свайп + тап */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
@@ -243,7 +243,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Текстовый блок с описанием + Join our team — только ДЕСКТОП, позиция 200px / 200px */}
+      {/* Текстовый блок с описанием + Join our team — только ДЕСКТОП */}
       <div
         className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
         style={{ top: 200, left: 200 }}
@@ -277,7 +277,7 @@ const Index: React.FC = () => {
 
       {/* Часы/адрес/Instagram слева снизу — ТОЛЬКО МОБИЛЬНАЯ ВЕРСИЯ */}
       <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8 md:hidden">
-        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon">
+        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-[18px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
@@ -321,7 +321,7 @@ const Index: React.FC = () => {
 
       {/* Часы работы + адрес + Instagram в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
       <div className="hidden md:block absolute bottom-6 left-8">
-        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon">
+        <div className="flex flex-col space-y-1 text-xs md:text-sm text-[#644A42] leading-[18px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
