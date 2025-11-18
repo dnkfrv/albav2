@@ -242,10 +242,7 @@ const Index: React.FC = () => {
           <AboutSheet />
 
           {/* Текст под логотипом – только на десктопе */}
-          <div className="hidden md:flex flex-col items-start text-left space-y-1">
-            <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
-              Monday - Sunday 9:00 - 17:00
-            </p>
+          <div className="hidden md:flex flex-col items-start text-left mt-10 space-y-1.5">
             <a
               href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
               target="_blank"
@@ -254,23 +251,21 @@ const Index: React.FC = () => {
             >
               Lisbon, Largo do Rato, 4A
             </a>
-            <div className="flex flex-col items-start text-left space-y-1 pt-2">
-              <JoinTeamSheet />
-              <a
-                href="https://instagram.com/albabistrolisbon"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-              >
-                Instagram
-              </a>
-              <a
-                href="mailto:hello@albabistrolisbon.com"
-                className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
-              >
-                Email
-              </a>
-            </div>
+            <JoinTeamSheet />
+            <a
+              href="https://instagram.com/albabistrolisbon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            >
+              Instagram
+            </a>
+            <a
+              href="mailto:hello@albabistrolisbon.com"
+              className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+            >
+              Email
+            </a>
           </div>
         </div>
       </div>
@@ -315,6 +310,13 @@ const Index: React.FC = () => {
             Email
           </a>
         </div>
+      </div>
+
+      {/* Часы работы в левом нижнем углу — ТОЛЬКО ДЕСКТОП */}
+      <div className="hidden md:block absolute bottom-6 left-8">
+        <p className="text-xs md:text-sm text-[#644A42] leading-relaxed">
+          Monday - Sunday 9:00 - 17:00
+        </p>
       </div>
 
       {/* Правый нижний угол – Created by AlbaFamily (только десктоп) */}
