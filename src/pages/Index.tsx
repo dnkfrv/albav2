@@ -339,6 +339,12 @@ const Index: React.FC = () => {
           >
             Instagram
           </a>
+          <a
+            href="mailto:hello@albabistrolisbon.com"
+            className="text-xs md:text-sm text-[#644A42] hover:text-[#4B362F] transition-colors"
+          >
+            Email
+          </a>
         </div>
       </div>
 
