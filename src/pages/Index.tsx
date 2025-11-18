@@ -5,68 +5,62 @@ import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import { AboutSheet } from "@/components/AboutSheet";
 
 // НОВЫЕ ФОТО + старые
-import imgA11 from "@/assets/A-11.jpg";
-import img1_11 from "@/assets/1-11.jpg";
-import img1_23 from "@/assets/1-23.jpg";
-import imgA1113 from "@/assets/A-1113.jpg";
-import imgA121 from "@/assets/A-121.jpg";
 import imgA130 from "@/assets/A-130.jpg";
 import imga17 from "@/assets/a-17.jpg";
-import imgA188 from "@/assets/A-188.jpg";
 import imgA20 from "@/assets/A-20.jpg";
-import imgA208 from "@/assets/A-208.jpg";
-import imgA217 from "@/assets/A-217.jpg";
-import imgA23 from "@/assets/A-23.jpg";
-import imgA31 from "@/assets/A-31.jpg";
-import imgA55 from "@/assets/A-55.jpg";
-import imgA73 from "@/assets/A-73.jpg";
-import imgA90 from "@/assets/A-90.jpg";
-import imga5 from "@/assets/a-5.jpg";
-import imga10 from "@/assets/a-10.jpg";
-import imga40 from "@/assets/a-40.jpg";
 import imga54 from "@/assets/a-54.jpg";
+import imgA208 from "@/assets/A-208.jpg";
 import imga94 from "@/assets/a-94.jpg";
-import imga113 from "@/assets/a-113.jpg";
-import imga132 from "@/assets/a-132.jpg";
 import imga150 from "@/assets/a-150.jpg";
+import imga113 from "@/assets/a-113.jpg";
+import imgA31 from "@/assets/A-31.jpg";
+import img1_38 from "@/assets/1-38.jpg";
+import img1_23 from "@/assets/1-23.jpg";
+import imgA11 from "@/assets/A-11.jpg";
+import imga38 from "@/assets/A-11.jpg";
+import imgA55 from "@/assets/A-55.jpg";
+import imgA121 from "@/assets/A-121.jpg";
+import imgA90 from "@/assets/A-90.jpg";
+import imgA73 from "@/assets/A-73.jpg";
 import imga155 from "@/assets/a-155.jpg";
 import imga172 from "@/assets/a-172.jpg";
-import imga183 from "@/assets/a-183.jpg";
-import imga184 from "@/assets/a-184.jpg";
-import imga197 from "@/assets/a-197.jpg";
+import imga132 from "@/assets/a-132.jpg";
+import imgA217 from "@/assets/A-217.jpg";
+import imgA23 from "@/assets/A-23.jpg";
+import imgA188 from "@/assets/A-188.jpg";
+import imgA1113 from "@/assets/A-1113.jpg";
+import imga5 from "@/assets/a-5.jpg";
+import imga10 from "@/assets/a-10.jpg";
 
 // все фото, и старые, и новые
 const heroImages = [
-  imgA11,
-  img1_11,
-  img1_23,
-  imgA1113,
-  imgA121,
   imgA130,
   imga17,
-  imgA188,
   imgA20,
-  imgA208,
-  imgA217,
-  imgA23,
-  imgA31,
-  imgA55,
-  imgA73,
-  imgA90,
-  imga5,
-  imga10,
-  imga40,
   imga54,
+  imgA208,
   imga94,
-  imga113,
-  imga132,
   imga150,
+  imga113,
+  imgA31,
+  img1_38,
+  img1_23,
+  imgA11,
+  imga38,
+  imgA55,
+  imgA121,
+  imgA90,
+  imgA73,
   imga155,
   imga172,
-  imga183,
-  imga184,
-  imga197,
-].filter(Boolean);
+  imga132,
+  imgA217,
+  imgA23,
+  imgA188,
+  imgA1113,
+  imga5,
+  imga10,
+  ].filter(Boolean);
 
 const Index: React.FC = () => {
   // десктопный индекс (меняется от движения мышки)
