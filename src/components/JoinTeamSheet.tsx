@@ -1,3 +1,4 @@
+// src/components/JoinTeamSheet.tsx
 import React from "react";
 import {
   Sheet,
@@ -11,38 +12,23 @@ import {
 export const JoinTeamSheet: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: сюда можно будет добавить отправку формы на backend / почту
+    // сюда позже можно добавить отправку формы
     console.log("Join our team form submitted");
   };
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* 
-          Мобилка: просто текст-ссылка.
-          Десктоп: «выделенный» текст (фон + светлый текст).
-        */}
-        <button
-          className="
-            inline-block
-            text-xs md:text-sm
-            font-kommon
-            leading-snug
-            text-[#644A42]
-            bg-transparent
-            px-0 py-0
-            hover:text-[#4B362F]
-            md:px-1.5 md:py-[1px]
-            md:bg-[#644A42]
-            md:text-[#F5F1EC]
-            md:hover:bg-[#644A42]
-            md:hover:text-[#F5F1EC]
-            rounded-[2px]
-            select-none
-            focus:outline-none
-          "
-        >
-          Join our team
+        <button className="font-kommon text-xs md:text-sm focus:outline-none">
+          {/* мобильная версия — просто текст-ссылка */}
+          <span className="inline-block md:hidden text-[#644A42] hover:text-[#4B362F] transition-colors">
+            Join our team
+          </span>
+
+          {/* десктопная версия — как текст под выделением */}
+          <span className="hidden md:inline-block bg-[#644A42] text-[#f4f0eb] px-[3px] py-[1px] leading-[1.2]">
+            Join our team
+          </span>
         </button>
       </SheetTrigger>
 
