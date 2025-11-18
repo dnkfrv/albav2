@@ -67,10 +67,13 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
 
-      // ← ВСТАВКА ЗДЕСЬ
-      fontFamily: {
-        kommon: ['"Kommon Grotesk"', "system-ui", "sans-serif"],
-      },
+  // tailwind.config.(js|cjs|ts)
+extend: {
+  fontFamily: {
+    kommon: ['"Kommon Grotesk Ext"', "system-ui", "sans-serif"],
+    martian: ['"Martian Mono Condensed"', "monospace"],
+  },
+},
 
       keyframes: {
         "accordion-down": {
