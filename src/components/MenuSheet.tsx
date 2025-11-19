@@ -189,9 +189,51 @@ export const MenuSheet: React.FC = () => {
       </SheetTrigger>
 
       {/* ПЕРВАЯ ШТОРКА (МЕНЮ) */}
-   <SheetContent side="left" className="w-[300px] bg-white">
-  test
-</SheetContent>
+   <<SheetContent
+        side="left"
+        className="w-full sm:w-[540px] overflow-y-auto relative"
+      >
+        <SheetHeader>
+          <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
+        </SheetHeader>
+
+        <div className="space-y-8 py-4">
+          {menuItems.map((section) => (
+            <div key={section.category} className="space-y-4">
+              <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
+                {section.category}
+              </h3>
+
+              <div className="space-y-3">
+                {section.items.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
+                    onClick={() => {
+                      if (window.innerWidth >= 768) {
+                        setSelectedItem(item);
+                      }
+                    }}
+                  >
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-lg text-foreground">{item.name}</span>
+                      <span className="text-lg font-medium text-primary">
+                        {item.price}
+                      </span>
+                    </div>
+
+                    {item.description && (
+                      <span className="text-sm text-muted-foreground">
+                        {item.description}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </SheetContent>
 
       {/* ВТОРАЯ ШТОРКА (КАРТОЧКА БЛЮДА) — ВЫЕЗЖАЕТ НАЛЕВО */}
       {selectedItem && (
