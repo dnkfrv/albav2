@@ -265,11 +265,11 @@ const Index: React.FC = () => {
       </div>
 
       {/* Логотип + шторка About слева сверху */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <div className="flex flex-col items-start gap-2">
-          <AboutSheet />
-        </div>
-      </div>
+     <div className="absolute top-4 left-4 md:top-6 md:left-8">
+  <div className="flex flex-col items-start gap-2">
+    {/* <AboutSheet /> */}
+  </div>
+</div>
 
       {/* Текстовый блок с описанием + Join our team — только десктоп */}
       <div
