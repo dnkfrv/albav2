@@ -184,10 +184,37 @@ export default Menu;
 
 // иконка-кнопка в углу экрана
 export const MenuSheet: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+
+  // начало свайпа
+  const startX = React.useRef<number | null>(null);
+  const currentX = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startX.current = e.touches[0].clientX;
+    currentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    currentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (
+      startX.current !== null &&
+      currentX.current !== null &&
+      currentX.current - startX.current > 70 // порог свайпа вправо
+    ) {
+      setOpen(false);
+    }
+
+    startX.current = null;
+    currentX.current = null;
+  };
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        {/* изображение Menu.png того же размера, что logo.png */}
         <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
           <img
             src={menuImage}
@@ -197,7 +224,12 @@ export const MenuSheet: React.FC = () => {
         </button>
       </SheetTrigger>
 
-      <SheetContent className="w-full sm:w-[540px] overflow-y-auto">
+      <SheetContent
+        className="w-full sm:w-[540px] overflow-y-auto"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
