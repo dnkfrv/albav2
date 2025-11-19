@@ -10,11 +10,7 @@ import {
 
 import menuImage from "@/assets/Menu.png";
 
-// фото для SCRAMBLED EGGS
-import eggImg1 from "@/assets/A-213.jpg";
-import eggImg2 from "@/assets/A-216.jpg";
-
-// МЕНЮ — с расширенными данными для детальной карточки
+// общий массив блюд, используется и в полноэкранной секции, и в шторке
 const menuItems = [
   {
     category: "MAIN",
@@ -24,249 +20,252 @@ const menuItems = [
         description:
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
-        images: [eggImg1, eggImg2],
-        nutrition: {
-          kcal: 520,
-          proteins: 22,
-          fats: 31,
-          carbs: 38,
-        },
-        ingredients: [
-          "Eggs",
-          "Sourdough bread",
-          "Parmesan cheese",
-          "Butter",
-          "Salt",
-          "Pepper",
-        ],
-        allergens: ["Eggs", "Gluten", "Dairy"],
       },
-
       {
         name: "DANISH BREAKFAST",
         description:
           "sourdough bread, gouda cheese, avocado, creamy hard-boiled egg, whipped butter and berry jam",
         price: "9",
       },
-
       {
         name: "VEGAN MISO GRANOLA",
         description:
           "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water",
         price: "8",
       },
-
       {
         name: "FETA VEGAN TOAST",
         description:
           "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate",
         price: "10",
       },
+      {
+        name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR",
+        description:
+          "cheesy potato croquettes with lemon cream cheese and red caviar",
+        price: "12",
+      },
+      {
+        name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGG",
+        description:
+          "puff roti with lemon cream cheese, salmon, asparagus and boiled egg",
+        price: "12",
+      },
+      {
+        name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO",
+        description:
+          "savory oatmeal with truffle sauce, poached egg and Prosciutto Crudo",
+        price: "12",
+      },
+      {
+        name: "CROQUE MADAME WITH TRUFFLE SAUCE",
+        description:
+          "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce",
+        price: "13",
+      },
+      {
+        name: "EGGS BENEDICT WITH SALMON AND SPINACH",
+        description:
+          "brioche with avocado cream, salmon, poached eggs, yogurt hollandaise and fresh herbs",
+        price: "13",
+      },
+      {
+        name: "OMELETTE WITH MUSHROOMS",
+        description:
+          "French omelette with sliced mushrooms and a hint of truffle",
+        price: "14",
+      },
+      {
+        name: "OMELETTE WITH SHRIMP AND TOMATO",
+        description:
+          "French omelette with shrimp, sun-dried tomatoes and cheese inside, garnished with lemon zest",
+        price: "14",
+      },
+      {
+        name: "GREEN OMLETTE WITH ASPARAGUS",
+        description:
+          "spinach omelette with peas, asparagus, zesty lemon cream and fresh herbs",
+        price: "14",
+      },
+    ],
+  },
+  {
+    category: "DESSERTS",
+    items: [
+      {
+        name: "MATCHA COOKIE",
+        description:
+          "white chocolate custard cream, matcha, and dried raspberry",
+        price: "4",
+      },
+      {
+        name: "CREME BRULEE",
+        description:
+          "classic creme brulee with a crisp caramelized sugar crust",
+        price: "7",
+      },
+      {
+        name: "WHITE CHOCOLATE YOGURT GANACHE WITH BERRY JAM",
+        description: "delicate white chocolate yogurt with berry jam",
+        price: "7",
+      },
+      {
+        name: "RICE PUDDING WITH MANGO AND COCONUT MILK",
+        description:
+          "rice pudding infused with tropical mango and smooth coconut milk",
+        price: "8",
+      },
+    ],
+  },
+  {
+    category: "DRINKS",
+    items: [
+      { name: "SINGLE ESPRESSO", price: "1.5" },
+      { name: "DOUBLE ESPRESSO", price: "2.5" },
+      { name: "AMERICANO", price: "3" },
+      { name: "BATCH BREW", price: "3.5" },
+      { name: "HAND BREW EXCEPTIONAL", price: "7" },
+      {
+        name: "BARISTA SET",
+        description: "espresso, batch brew, cappuccino",
+        price: "6",
+      },
     ],
   },
 ];
 
-// ✦ ОСНОВНОЙ КОМПОНЕНТ
+// полноэкранная секция (если захочешь использовать её отдельно)
+const Menu: React.FC = () => {
+  return (
+    <section id="menu" className="py-20 px-6 bg-card">
+      <div className="container mx-auto max-w-4xl">
+        <h2 className="font-kommon text-4xl font-bold text-center mb-1">
+          Menu
+        </h2>
+        <p className="text-center text-muted-foreground mb-6">
+          Fall / Winter 2025 / 2026
+        </p>
+
+        <div className="space-y-12">
+          {menuItems.map((section) => (
+            <div key={section.category}>
+              <h3 className="font-kommon text-3xl font-bold mb-2">
+                {section.category}
+              </h3>
+              <div className="space-y-3">
+                {section.items.map((item) => (
+                  <div
+                    key={item.name}
+                    className="border-b border-border pb-2 last:border-0"
+                  >
+                    <div className="flex justify-between items-baseline mb-1">
+                      <h4 className="font-martian text-lg">{item.name}</h4>
+                      <span className="font-martian text-muted-foreground">
+                        {item.price}
+                      </span>
+                    </div>
+                    {item.description && (
+                      <p className="font-martian text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Menu;
+
+// иконка-кнопка в углу экрана
 export const MenuSheet: React.FC = () => {
   const [open, setOpen] = React.useState(false);
-  const [selectedItem, setSelectedItem] = React.useState<any>(null);
-  const [lightboxImg, setLightboxImg] = React.useState<string | null>(null);
 
-  // свайп-закрытие для карточки блюда
-  const detailStartX = React.useRef<number | null>(null);
-  const detailCurrentX = React.useRef<number | null>(null);
+  // начало свайпа
+  const startX = React.useRef<number | null>(null);
+  const currentX = React.useRef<number | null>(null);
 
-  const touchStartDetail = (e: React.TouchEvent) => {
-    detailStartX.current = e.touches[0].clientX;
-    detailCurrentX.current = e.touches[0].clientX;
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startX.current = e.touches[0].clientX;
+    currentX.current = e.touches[0].clientX;
   };
 
-  const touchMoveDetail = (e: React.TouchEvent) => {
-    detailCurrentX.current = e.touches[0].clientX;
+  const handleTouchMove = (e: React.TouchEvent) => {
+    currentX.current = e.touches[0].clientX;
   };
 
-  const touchEndDetail = () => {
+  const handleTouchEnd = () => {
     if (
-      detailStartX.current !== null &&
-      detailCurrentX.current !== null &&
-      detailCurrentX.current - detailStartX.current > 60
+      startX.current !== null &&
+      currentX.current !== null &&
+      currentX.current - startX.current > 70 // порог свайпа вправо
     ) {
-      setSelectedItem(null);
-    }
-    detailStartX.current = null;
-    detailCurrentX.current = null;
-  };
-
-  // свайпы для лайтбокса
-  const lightboxStartX = React.useRef<number | null>(null);
-  const lightboxCurrentX = React.useRef<number | null>(null);
-
-  const touchStartLb = (e: React.TouchEvent) => {
-    lightboxStartX.current = e.touches[0].clientX;
-    lightboxCurrentX.current = e.touches[0].clientX;
-  };
-
-  const touchMoveLb = (e: React.TouchEvent) => {
-    lightboxCurrentX.current = e.touches[0].clientX;
-  };
-
-  const touchEndLb = () => {
-    if (!selectedItem || !lightboxImg) return;
-
-    const imgs = selectedItem.images;
-    const idx = imgs.indexOf(lightboxImg);
-
-    if (
-      lightboxStartX.current !== null &&
-      lightboxCurrentX.current !== null
-    ) {
-      const dx = lightboxCurrentX.current - lightboxStartX.current;
-
-      if (dx < -40 && idx < imgs.length - 1) {
-        setLightboxImg(imgs[idx + 1]);
-      }
-      if (dx > 40 && idx > 0) {
-        setLightboxImg(imgs[idx - 1]);
-      }
+      setOpen(false);
     }
 
-    lightboxStartX.current = null;
-    lightboxCurrentX.current = null;
+    startX.current = null;
+    currentX.current = null;
   };
 
   return (
-    <>
-      {/* Лайтбокс поверх всего */}
-      {lightboxImg && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center"
-          onClick={() => setLightboxImg(null)}
-          onTouchStart={touchStartLb}
-          onTouchMove={touchMoveLb}
-          onTouchEnd={touchEndLb}
-        >
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
           <img
-            src={lightboxImg}
-            className="max-w-[90vw] max-h-[90vh] object-contain"
+            src={menuImage}
+            alt="Menu"
+            className="h-4 md:h-6 w-auto object-contain"
           />
-        </div>
-      )}
+        </button>
+      </SheetTrigger>
 
-      <Sheet open={open} onOpenChange={setOpen}>
-        {/* Кнопка меню */}
-        <SheetTrigger asChild>
-          <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
-            <img
-              src={menuImage}
-              alt="Menu"
-              className="h-4 md:h-6 w-auto object-contain"
-            />
-          </button>
-        </SheetTrigger>
+      <SheetContent
+        className="w-full sm:w-[540px] overflow-y-auto"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <SheetHeader>
+          <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
+        </SheetHeader>
 
-        {/* ЛЕВАЯ ШТОРКА — меню */}
-        <SheetContent className="w-full sm:w-[480px] overflow-y-auto">
-          <SheetHeader>
-            <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
-          </SheetHeader>
-
-          <div className="space-y-8 py-4">
-            {menuItems.map((section) => (
-              <div key={section.category} className="space-y-4">
-                <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
-                  {section.category}
-                </h3>
-
-                <div className="space-y-3">
-                  {section.items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
-                      onClick={() => {
-                        if (window.innerWidth >= 768)
-                          setSelectedItem(item);
-                      }}
-                    >
-                      <div className="flex justify-between items-baseline">
-                        <span className="text-lg text-foreground">
-                          {item.name}
-                        </span>
-                        <span className="text-lg font-medium text-primary">
-                          {item.price}
-                        </span>
-                      </div>
-
-                      {item.description && (
-                        <span className="text-sm text-muted-foreground">
-                          {item.description}
-                        </span>
-                      )}
+        <div className="space-y-8 py-4">
+          {menuItems.map((section) => (
+            <div key={section.category} className="space-y-4">
+              <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
+                {section.category}
+              </h3>
+              <div className="space-y-3">
+                {section.items.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors"
+                  >
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-lg text-foreground">
+                        {item.name}
+                      </span>
+                      <span className="text-lg font-medium text-primary">
+                        {item.price}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </SheetContent>
-
-        {/* ПРАВАЯ ШТОРКА — карточка блюда (ТОЛЬКО DESKTOP) */}
-        {selectedItem && (
-          <div className="hidden md:block fixed top-0 right-0 h-full w-[480px] bg-white border-l z-[999] overflow-y-auto animate-slide-left"
-            onTouchStart={touchStartDetail}
-            onTouchMove={touchMoveDetail}
-            onTouchEnd={touchEndDetail}
-          >
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">{selectedItem.name}</h2>
-
-              {/* Фото */}
-              <div className="space-y-4 mb-6">
-                {selectedItem.images?.map((img: string, i: number) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={selectedItem.name}
-                    className="w-full h-auto rounded-md cursor-pointer"
-                    onClick={() => setLightboxImg(img)}
-                  />
+                    {item.description && (
+                      <span className="text-sm text-muted-foreground">
+                        {item.description}
+                      </span>
+                    )}
+                  </div>
                 ))}
               </div>
-
-              {/* КБЖУ */}
-              {selectedItem.nutrition && (
-                <div className="mb-6 text-sm text-muted-foreground space-y-1">
-                  <p><strong>Calories:</strong> {selectedItem.nutrition.kcal} kcal</p>
-                  <p><strong>Proteins:</strong> {selectedItem.nutrition.proteins} g</p>
-                  <p><strong>Fats:</strong> {selectedItem.nutrition.fats} g</p>
-                  <p><strong>Carbs:</strong> {selectedItem.nutrition.carbs} g</p>
-                </div>
-              )}
-
-              {/* Ингредиенты */}
-              {selectedItem.ingredients && (
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-2">Ingredients</h3>
-                  <ul className="list-disc pl-5 text-sm text-muted-foreground">
-                    {selectedItem.ingredients.map((ing: string) => (
-                      <li key={ing}>{ing}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Аллергены */}
-              {selectedItem.allergens && (
-                <div className="mb-10">
-                  <h3 className="text-lg font-semibold mb-2">Allergens</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {selectedItem.allergens.join(", ")}
-                  </p>
-                </div>
-              )}
             </div>
-          </div>
-        )}
-      </Sheet>
-    </>
+          ))}
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
