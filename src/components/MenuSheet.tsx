@@ -10,7 +10,11 @@ import {
 
 import menuImage from "@/assets/Menu.png";
 
-// общий массив блюд, используется и в полноэкранной секции, и в шторке
+// ФОТО ДЛЯ SCRAMBLED EGGS (ТВОИ НОВЫЕ ФОТО)
+import eggImg1 from "@/assets/A-213.jpg";
+import eggImg2 from "@/assets/A-216.jpg";
+
+// МЕНЮ + добавленные поля (фото, кбжу, ингредиенты, аллергены)
 const menuItems = [
   {
     category: "MAIN",
@@ -20,67 +24,101 @@ const menuItems = [
         description:
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
+
+        // Новая секция: фото
+        images: [eggImg1, eggImg2],
+
+        // КБЖУ — Можешь заменить числа
+        nutrition: {
+          kcal: 520,
+          proteins: 22,
+          fats: 31,
+          carbs: 38,
+        },
+
+        // Ингредиенты — можешь расширить
+        ingredients: [
+          "Eggs",
+          "Sourdough bread",
+          "Parmesan cheese",
+          "Butter",
+          "Salt",
+          "Pepper",
+        ],
+
+        allergens: ["Eggs", "Gluten", "Dairy"],
       },
+
       {
         name: "DANISH BREAKFAST",
         description:
           "sourdough bread, gouda cheese, avocado, creamy hard-boiled egg, whipped butter and berry jam",
         price: "9",
       },
+
       {
         name: "VEGAN MISO GRANOLA",
         description:
           "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water",
         price: "8",
       },
+
       {
         name: "FETA VEGAN TOAST",
         description:
           "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate",
         price: "10",
       },
+
       {
         name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR",
         description:
           "cheesy potato croquettes with lemon cream cheese and red caviar",
         price: "12",
       },
+
       {
         name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGG",
         description:
           "puff roti with lemon cream cheese, salmon, asparagus and boiled egg",
         price: "12",
       },
+
       {
         name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO",
         description:
           "savory oatmeal with truffle sauce, poached egg and Prosciutto Crudo",
         price: "12",
       },
+
       {
         name: "CROQUE MADAME WITH TRUFFLE SAUCE",
         description:
           "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce",
         price: "13",
       },
+
       {
         name: "EGGS BENEDICT WITH SALMON AND SPINACH",
         description:
           "brioche with avocado cream, salmon, poached eggs, yogurt hollandaise and fresh herbs",
         price: "13",
       },
+
       {
         name: "OMELETTE WITH MUSHROOMS",
         description:
           "French omelette with sliced mushrooms and a hint of truffle",
         price: "14",
       },
+
       {
         name: "OMELETTE WITH SHRIMP AND TOMATO",
         description:
           "French omelette with shrimp, sun-dried tomatoes and cheese inside, garnished with lemon zest",
         price: "14",
       },
+
       {
         name: "GREEN OMLETTE WITH ASPARAGUS",
         description:
@@ -89,19 +127,18 @@ const menuItems = [
       },
     ],
   },
+
   {
     category: "DESSERTS",
     items: [
       {
         name: "MATCHA COOKIE",
-        description:
-          "white chocolate custard cream, matcha, and dried raspberry",
+        description: "white chocolate custard cream, matcha, and dried raspberry",
         price: "4",
       },
       {
         name: "CREME BRULEE",
-        description:
-          "classic creme brulee with a crisp caramelized sugar crust",
+        description: "classic creme brulee with a crisp caramelized sugar crust",
         price: "7",
       },
       {
@@ -117,6 +154,7 @@ const menuItems = [
       },
     ],
   },
+
   {
     category: "DRINKS",
     items: [
@@ -125,95 +163,21 @@ const menuItems = [
       { name: "AMERICANO", price: "3" },
       { name: "BATCH BREW", price: "3.5" },
       { name: "HAND BREW EXCEPTIONAL", price: "7" },
-      {
-        name: "BARISTA SET",
-        description: "espresso, batch brew, cappuccino",
-        price: "6",
-      },
+      { name: "BARISTA SET", description: "espresso, batch brew, cappuccino", price: "6" },
     ],
   },
 ];
 
-// полноэкранная секция (если захочешь использовать её отдельно)
-const Menu: React.FC = () => {
-  return (
-    <section id="menu" className="py-20 px-6 bg-card">
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="font-kommon text-4xl font-bold text-center mb-1">
-          Menu
-        </h2>
-        <p className="text-center text-muted-foreground mb-6">
-          Fall / Winter 2025 / 2026
-        </p>
-
-        <div className="space-y-12">
-          {menuItems.map((section) => (
-            <div key={section.category}>
-              <h3 className="font-kommon text-3xl font-bold mb-2">
-                {section.category}
-              </h3>
-              <div className="space-y-3">
-                {section.items.map((item) => (
-                  <div
-                    key={item.name}
-                    className="border-b border-border pb-2 last:border-0"
-                  >
-                    <div className="flex justify-between items-baseline mb-1">
-                      <h4 className="font-martian text-lg">{item.name}</h4>
-                      <span className="font-martian text-muted-foreground">
-                        {item.price}
-                      </span>
-                    </div>
-                    {item.description && (
-                      <p className="font-martian text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Menu;
-
-// иконка-кнопка в углу экрана
+// ✦ Основной компонент
 export const MenuSheet: React.FC = () => {
   const [open, setOpen] = React.useState(false);
 
-  // начало свайпа
-  const startX = React.useRef<number | null>(null);
-  const currentX = React.useRef<number | null>(null);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    startX.current = e.touches[0].clientX;
-    currentX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    currentX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (
-      startX.current !== null &&
-      currentX.current !== null &&
-      currentX.current - startX.current > 70 // порог свайпа вправо
-    ) {
-      setOpen(false);
-    }
-
-    startX.current = null;
-    currentX.current = null;
-  };
+  // второй уровень — карточка блюда
+  const [selectedItem, setSelectedItem] = React.useState<any>(null);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
+      {/* Кнопка меню */}
       <SheetTrigger asChild>
         <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
           <img
@@ -224,12 +188,8 @@ export const MenuSheet: React.FC = () => {
         </button>
       </SheetTrigger>
 
-      <SheetContent
-        className="w-full sm:w-[540px] overflow-y-auto"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
+      {/* ЛЕВАЯ ШТОРКА — список блюд */}
+      <SheetContent className="w-full sm:w-[540px] overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
@@ -240,20 +200,23 @@ export const MenuSheet: React.FC = () => {
               <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
                 {section.category}
               </h3>
+
               <div className="space-y-3">
                 {section.items.map((item) => (
                   <div
                     key={item.name}
-                    className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors"
+                    className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
+                    onClick={() => {
+                      if (window.innerWidth >= 768) {
+                        setSelectedItem(item);
+                      }
+                    }}
                   >
                     <div className="flex justify-between items-baseline">
-                      <span className="text-lg text-foreground">
-                        {item.name}
-                      </span>
-                      <span className="text-lg font-medium text-primary">
-                        {item.price}
-                      </span>
+                      <span className="text-lg text-foreground">{item.name}</span>
+                      <span className="text-lg font-medium text-primary">{item.price}</span>
                     </div>
+
                     {item.description && (
                       <span className="text-sm text-muted-foreground">
                         {item.description}
@@ -266,6 +229,64 @@ export const MenuSheet: React.FC = () => {
           ))}
         </div>
       </SheetContent>
+
+      {/* ПРАВАЯ ШТОРКА — карточка блюда (ТОЛЬКО DESKTOP) */}
+      {selectedItem && (
+        <SheetContent
+          side="right"
+          className="hidden md:block w-[480px] border-l overflow-y-auto"
+        >
+          <SheetHeader>
+            <SheetTitle className="text-2xl font-bold mb-4">
+              {selectedItem.name}
+            </SheetTitle>
+          </SheetHeader>
+
+          {/* Фото */}
+          <div className="space-y-4 mb-6">
+            {selectedItem.images?.map((img: string, i: number) => (
+              <img
+                key={i}
+                src={img}
+                alt={selectedItem.name}
+                className="w-full h-auto rounded-md"
+              />
+            ))}
+          </div>
+
+          {/* КБЖУ */}
+          {selectedItem.nutrition && (
+            <div className="mb-6 text-sm text-muted-foreground space-y-1">
+              <p><strong>Calories:</strong> {selectedItem.nutrition.kcal} kcal</p>
+              <p><strong>Proteins:</strong> {selectedItem.nutrition.proteins} g</p>
+              <p><strong>Fats:</strong> {selectedItem.nutrition.fats} g</p>
+              <p><strong>Carbs:</strong> {selectedItem.nutrition.carbs} g</p>
+            </div>
+          )}
+
+          {/* Ингредиенты */}
+          {selectedItem.ingredients && (
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-2">Ingredients</h3>
+              <ul className="list-disc pl-5 text-sm text-muted-foreground">
+                {selectedItem.ingredients.map((ing: string) => (
+                  <li key={ing}>{ing}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Аллергены */}
+          {selectedItem.allergens && (
+            <div className="mb-10">
+              <h3 className="text-lg font-semibold mb-2">Allergens</h3>
+              <p className="text-sm text-muted-foreground">
+                {selectedItem.allergens.join(", ")}
+              </p>
+            </div>
+          )}
+        </SheetContent>
+      )}
     </Sheet>
   );
 };
