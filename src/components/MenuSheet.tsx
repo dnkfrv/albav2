@@ -194,77 +194,74 @@ export const MenuSheet: React.FC = () => {
 </SheetContent>
 
       {/* ВТОРАЯ ШТОРКА (КАРТОЧКА БЛЮДА) — ВЫЕЗЖАЕТ НАЛЕВО */}
-      {selectedItem && (
-        <SheetContent
-          side="left"
-          className="
-            hidden md:block 
-            w-[480px] 
-            border-r 
-            overflow-y-auto 
-            translate-x-[-540px] 
-            fixed top-0 h-full bg-background shadow-xl
-          "
-        >
-          {/* Крестик */}
-          <button
-            onClick={() => setSelectedItem(null)}
-            className="absolute right-4 top-4 text-xl opacity-60 hover:opacity-100"
-          >
-            ✕
-          </button>
+     {selectedItem && (
+  <div
+    className="
+      hidden md:block
+      fixed top-0 left-0 
+      h-full w-[480px]
+      bg-white shadow-xl border-r 
+      z-[999] 
+      animate-in slide-in-from-left
+    "
+  >
+    {/* Крестик */}
+    <button
+      onClick={() => setSelectedItem(null)}
+      className="absolute right-4 top-4 text-xl opacity-60 hover:opacity-100"
+    >
+      ✕
+    </button>
 
-          <SheetHeader>
-            <SheetTitle className="text-2xl font-bold mb-4 mt-8">
-              {selectedItem.name}
-            </SheetTitle>
-          </SheetHeader>
+    <div className="p-6 overflow-y-auto h-full">
+      <h2 className="text-2xl font-bold mb-4 mt-6">
+        {selectedItem.name}
+      </h2>
 
-          {/* Фото */}
-          <div className="space-y-4 mb-6">
-            {selectedItem.images?.map((img: string, i: number) => (
-              <img
-                key={i}
-                src={img}
-                alt={selectedItem.name}
-                className="w-full h-auto rounded-md"
-              />
-            ))}
-          </div>
+      {/* Фото */}
+      <div className="space-y-4 mb-6">
+        {selectedItem.images?.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={selectedItem.name}
+            className="w-full rounded-md"
+          />
+        ))}
+      </div>
 
-          {/* КБЖУ */}
-          {selectedItem.nutrition && (
-            <div className="mb-6 text-sm text-muted-foreground space-y-1 px-1">
-              <p><strong>Calories:</strong> {selectedItem.nutrition.kcal} kcal</p>
-              <p><strong>Proteins:</strong> {selectedItem.nutrition.proteins} g</p>
-              <p><strong>Fats:</strong> {selectedItem.nutrition.fats} g</p>
-              <p><strong>Carbs:</strong> {selectedItem.nutrition.carbs} g</p>
-            </div>
-          )}
-
-          {/* Ингредиенты */}
-          {selectedItem.ingredients && (
-            <div className="mb-6 px-1">
-              <h3 className="text-lg font-semibold mb-2">Ingredients</h3>
-              <ul className="list-disc pl-5 text-sm text-muted-foreground">
-                {selectedItem.ingredients.map((ing: string) => (
-                  <li key={ing}>{ing}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Аллергены */}
-          {selectedItem.allergens && (
-            <div className="mb-10 px-1">
-              <h3 className="text-lg font-semibold mb-2">Allergens</h3>
-              <p className="text-sm text-muted-foreground">
-                {selectedItem.allergens.join(", ")}
-              </p>
-            </div>
-          )}
-        </SheetContent>
+      {/* КБЖУ */}
+      {selectedItem.nutrition && (
+        <div className="mb-6 text-sm text-muted-foreground space-y-1">
+          <p><strong>Calories:</strong> {selectedItem.nutrition.kcal} kcal</p>
+          <p><strong>Proteins:</strong> {selectedItem.nutrition.proteins} g</p>
+          <p><strong>Fats:</strong> {selectedItem.nutrition.fats} g</p>
+          <p><strong>Carbs:</strong> {selectedItem.nutrition.carbs} g</p>
+        </div>
       )}
-    </Sheet>
-  );
-};
+
+      {/* Ингредиенты */}
+      {selectedItem.ingredients && (
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">Ingredients</h3>
+          <ul className="list-disc pl-5 text-sm text-muted-foreground">
+            {selectedItem.ingredients.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Аллергены */}
+      {selectedItem.allergens && (
+        <div className="mb-10">
+          <h3 className="text-lg font-semibold mb-2">Allergens</h3>
+          <p className="text-sm text-muted-foreground">
+            {selectedItem.allergens.join(", ")}
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
