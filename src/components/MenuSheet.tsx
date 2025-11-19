@@ -192,7 +192,7 @@ export const MenuSheet: React.FC = () => {
           <img
             src={menuImage}
             alt="Menu"
-            className="h-4 md:h-5 w-auto object-contain"
+            className="h-4 md:h-6 w-auto object-contain"
           />
         </button>
       </SheetTrigger>
