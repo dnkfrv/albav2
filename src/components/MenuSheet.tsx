@@ -194,7 +194,7 @@ export const MenuSheet: React.FC = () => {
 </SheetContent>
 
       {/* ВТОРАЯ ШТОРКА (КАРТОЧКА БЛЮДА) — ВЫЕЗЖАЕТ НАЛЕВО */}
-     {selectedItem && (
+      {selectedItem && (
   <div
     className="
       hidden md:block
@@ -264,4 +264,6 @@ export const MenuSheet: React.FC = () => {
     </div>
   </div>
 )}
-
+    </Sheet>
+  );
+};
