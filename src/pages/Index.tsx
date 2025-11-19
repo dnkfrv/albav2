@@ -3,6 +3,7 @@ import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import { AboutSheet } from "@/components/AboutSheet";
+import logoImage from "@/assets/logo.png";
 
 // НОВЫЕ ФОТО + старые (импорты оставляем как есть)
 import imgA130 from "@/assets/A-130.jpg";
@@ -270,7 +271,7 @@ const Index: React.FC = () => {
           {/* Статичный логотип без шторки */}
 <div className="flex flex-col items-start gap-1 select-none pointer-events-none">
   <img 
-    src="/logo.svg"   /* <-- путь к твоему лого, укажи такой же как в AboutSheet */
+    src="/logo.png"   /* <-- путь к твоему лого, укажи такой же как в AboutSheet */
     alt="Alba Bistro" 
     className="w-14 md:w-16"
   />
