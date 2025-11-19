@@ -10,11 +10,10 @@ import {
 
 import menuImage from "@/assets/Menu.png";
 
-// ФОТО ДЛЯ SCRAMBLED EGGS (ТВОИ НОВЫЕ ФОТО)
+// Фото для Scrambled Eggs
 import eggImg1 from "@/assets/A-213.jpg";
 import eggImg2 from "@/assets/A-216.jpg";
 
-// МЕНЮ + добавленные поля (фото, кбжу, ингредиенты, аллергены)
 const menuItems = [
   {
     category: "MAIN",
@@ -25,10 +24,8 @@ const menuItems = [
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
 
-        // Новая секция: фото
         images: [eggImg1, eggImg2],
 
-        // КБЖУ — Можешь заменить числа
         nutrition: {
           kcal: 520,
           proteins: 22,
@@ -36,7 +33,6 @@ const menuItems = [
           carbs: 38,
         },
 
-        // Ингредиенты — можешь расширить
         ingredients: [
           "Eggs",
           "Sourdough bread",
@@ -133,12 +129,14 @@ const menuItems = [
     items: [
       {
         name: "MATCHA COOKIE",
-        description: "white chocolate custard cream, matcha, and dried raspberry",
+        description:
+          "white chocolate custard cream, matcha, and dried raspberry",
         price: "4",
       },
       {
         name: "CREME BRULEE",
-        description: "classic creme brulee with a crisp caramelized sugar crust",
+        description:
+          "classic creme brulee with a crisp caramelized sugar crust",
         price: "7",
       },
       {
@@ -168,15 +166,17 @@ const menuItems = [
   },
 ];
 
-// ✦ Основной компонент
+
+// ★★★ Основной компонент
 export const MenuSheet: React.FC = () => {
   const [open, setOpen] = React.useState(false);
-
-  // второй уровень — карточка блюда
   const [selectedItem, setSelectedItem] = React.useState<any>(null);
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={(o) => {
+      setOpen(o);
+      if (!o) setSelectedItem(null);
+    }}>
       {/* Кнопка меню */}
       <SheetTrigger asChild>
         <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
@@ -188,8 +188,11 @@ export const MenuSheet: React.FC = () => {
         </button>
       </SheetTrigger>
 
-      {/* ЛЕВАЯ ШТОРКА — список блюд */}
-      <SheetContent className="w-full sm:w-[540px] overflow-y-auto">
+      {/* ПЕРВАЯ ШТОРКА (МЕНЮ) */}
+      <SheetContent
+        side="left"
+        className="w-full sm:w-[540px] overflow-y-auto relative"
+      >
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
@@ -214,7 +217,9 @@ export const MenuSheet: React.FC = () => {
                   >
                     <div className="flex justify-between items-baseline">
                       <span className="text-lg text-foreground">{item.name}</span>
-                      <span className="text-lg font-medium text-primary">{item.price}</span>
+                      <span className="text-lg font-medium text-primary">
+                        {item.price}
+                      </span>
                     </div>
 
                     {item.description && (
@@ -230,14 +235,29 @@ export const MenuSheet: React.FC = () => {
         </div>
       </SheetContent>
 
-      {/* ПРАВАЯ ШТОРКА — карточка блюда (ТОЛЬКО DESKTOP) */}
+      {/* ВТОРАЯ ШТОРКА (КАРТОЧКА БЛЮДА) — ВЫЕЗЖАЕТ НАЛЕВО */}
       {selectedItem && (
         <SheetContent
-          side="right"
-          className="hidden md:block w-[480px] border-l overflow-y-auto"
+          side="left"
+          className="
+            hidden md:block 
+            w-[480px] 
+            border-r 
+            overflow-y-auto 
+            translate-x-[-540px] 
+            fixed top-0 h-full bg-background shadow-xl
+          "
         >
+          {/* Крестик */}
+          <button
+            onClick={() => setSelectedItem(null)}
+            className="absolute right-4 top-4 text-xl opacity-60 hover:opacity-100"
+          >
+            ✕
+          </button>
+
           <SheetHeader>
-            <SheetTitle className="text-2xl font-bold mb-4">
+            <SheetTitle className="text-2xl font-bold mb-4 mt-8">
               {selectedItem.name}
             </SheetTitle>
           </SheetHeader>
@@ -256,7 +276,7 @@ export const MenuSheet: React.FC = () => {
 
           {/* КБЖУ */}
           {selectedItem.nutrition && (
-            <div className="mb-6 text-sm text-muted-foreground space-y-1">
+            <div className="mb-6 text-sm text-muted-foreground space-y-1 px-1">
               <p><strong>Calories:</strong> {selectedItem.nutrition.kcal} kcal</p>
               <p><strong>Proteins:</strong> {selectedItem.nutrition.proteins} g</p>
               <p><strong>Fats:</strong> {selectedItem.nutrition.fats} g</p>
@@ -266,7 +286,7 @@ export const MenuSheet: React.FC = () => {
 
           {/* Ингредиенты */}
           {selectedItem.ingredients && (
-            <div className="mb-6">
+            <div className="mb-6 px-1">
               <h3 className="text-lg font-semibold mb-2">Ingredients</h3>
               <ul className="list-disc pl-5 text-sm text-muted-foreground">
                 {selectedItem.ingredients.map((ing: string) => (
@@ -278,7 +298,7 @@ export const MenuSheet: React.FC = () => {
 
           {/* Аллергены */}
           {selectedItem.allergens && (
-            <div className="mb-10">
+            <div className="mb-10 px-1">
               <h3 className="text-lg font-semibold mb-2">Allergens</h3>
               <p className="text-sm text-muted-foreground">
                 {selectedItem.allergens.join(", ")}
