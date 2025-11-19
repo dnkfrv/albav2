@@ -267,7 +267,17 @@ const Index: React.FC = () => {
       {/* Логотип + шторка About слева сверху */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <div className="flex flex-col items-start gap-2">
-          <AboutSheet />
+          {/* Статичный логотип без шторки */}
+<div className="flex flex-col items-start gap-1 select-none pointer-events-none">
+  <img 
+    src="/logo.svg"   /* <-- путь к твоему лого, укажи такой же как в AboutSheet */
+    alt="Alba Bistro" 
+    className="w-14 md:w-16"
+  />
+  <span className="text-[10px] md:text-xs text-[#644A42] tracking-wide">
+    About
+  </span>
+</div>
         </div>
       </div>
 
