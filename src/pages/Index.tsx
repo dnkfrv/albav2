@@ -2,7 +2,6 @@
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
-import { AboutSheet } from "@/components/AboutSheet";
 import logoImage from "@/assets/logo.png";
 
 // НОВЫЕ ФОТО + старые (импорты оставляем как есть)
@@ -265,19 +264,18 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Логотип + шторка About слева сверху */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <div className="flex flex-col items-start gap-2">
-          {/* Статичный логотип без шторки */}
-<div className="flex flex-col items-start gap-1 select-none pointer-events-none">
-  <img 
-    src="/logo.png"   /* <-- путь к твоему лого, укажи такой же как в AboutSheet */
-    alt="Alba Bistro" 
-    className="w-14 md:w-16"
-  />
-  <span className="text-[10px] md:text-xs text-[#644A42] tracking-wide">
-    About
-  </span>
+     {/* Логотип слева сверху — без шторки */}
+<div className="absolute top-4 left-4 md:top-6 md:left-8">
+  <div className="flex flex-col items-start gap-1 select-none">
+    <img
+      src={logoImage}
+      alt="Alba Bistro Logo"
+      className="h-4 md:h-6 w-auto object-contain"
+    />
+    <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
+      BISTRO • SPECIALTY COFFEE • MATCHA BAR
+    </p>
+  </div>
 </div>
         </div>
       </div>
