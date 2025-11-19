@@ -179,7 +179,7 @@ const Index: React.FC = () => {
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     // порог, чтобы кадр не менялся при каждом небольшом движении
-    const threshold = Math.min(rect.width, rect.height) * 0.08; // ~8% от меньшей стороны
+    const threshold = Math.min(rect.width, rect.height) * 0.1; // ~8% от меньшей стороны
 
     if (distance < threshold) return;
 
