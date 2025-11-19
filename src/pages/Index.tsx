@@ -306,7 +306,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* Меню справа сверху */}
-      <div className="absolute top-4 right-4 md:top-4.5 md:right-8">
+      <div className="absolute top-4 right-4 md:top-7 md:right-8">
         <MenuSheet />
       </div>
 
