@@ -25,50 +25,16 @@ import imga40 from "@/assets/a-40.jpg";
 import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 
-// старые мобилные фото
-import img1_1 from "@/assets/1-1.jpg";
-import img1_2 from "@/assets/1-2.jpg";
-import img1_3 from "@/assets/1-3.jpg";
-import img1_4 from "@/assets/1-4.jpg";
-import img1_5 from "@/assets/1-5.jpg";
-import img1_6 from "@/assets/1-6.jpg";
-import img1_7 from "@/assets/1-7.jpg";
-import img1_8 from "@/assets/1-8.jpg";
-
-// НОВЫЕ мобилные фото
-import img1_16 from "@/assets/1-16.jpg";
-import img1_17 from "@/assets/1-17.jpg";
-import img1_18 from "@/assets/1-18.jpg";
-import img1_19 from "@/assets/1-19.jpg";
-import img1_21 from "@/assets/1-21.jpg";
+// мобилные фото (только существующие файлы)
+import img1_11 from "@/assets/1-11.jpg";
 import img1_23 from "@/assets/1-23.jpg";
-import img1_24 from "@/assets/1-24.jpg";
-import img1_31 from "@/assets/1-31.jpg";
 import img1_38 from "@/assets/1-38.jpg";
-import img1_47 from "@/assets/1-47.jpg";
-import img1_52 from "@/assets/1-52.jpg";
 
 // массив фото для мобильного слайдера
 const heroImages = [
-  img1_1,
-  img1_2,
-  img1_3,
-  img1_4,
-  img1_5,
-  img1_6,
-  img1_7,
-  img1_8,
-  img1_16,
-  img1_17,
-  img1_18,
-  img1_19,
-  img1_21,
+  img1_11,
   img1_23,
-  img1_24,
-  img1_31,
   img1_38,
-  img1_47,
-  img1_52,
 ].filter(Boolean);
 
 // ОТДЕЛЬНЫЙ набор фото для десктопа
