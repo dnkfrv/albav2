@@ -26,13 +26,13 @@ export const JoinTeamSheet: React.FC = () => {
           </span>
 
           {/* десктопная версия — как текст под выделением */}
-          <span className="hidden md:inline-block bg-[#644A42] text-[#f4f0eb] px-[0.5px] py-[2px] leading-[1.2]">
+          <span className="hidden md:inline-block bg-[#644A42] text-[#f4f0eb] px-[3px] py-[2px] leading-[1.2]">
             Join our team
           </span>
         </button>
       </SheetTrigger>
 
-      <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background font-kommon">
+      <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background font-kommon" aria-label="Join Alba Bistro">
         <SheetHeader>
           <SheetTitle className="text-xl font-semibold tracking-wide text-[#644A42]">
             Join Alba Bistro
@@ -54,7 +54,9 @@ export const JoinTeamSheet: React.FC = () => {
             <input
               type="text"
               required
-              className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
+              name="fullName"
+              autoComplete="name"
+              className="w-full rounded-md border border-[#e0d5c...one focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
             />
           </div>
 
@@ -67,7 +69,9 @@ export const JoinTeamSheet: React.FC = () => {
               <input
                 type="email"
                 required
-                className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
+                name="email"
+                autoComplete="email"
+                className="w-full rounded-md border border-[#...one focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
               />
             </div>
             <div className="space-y-1">
@@ -76,7 +80,9 @@ export const JoinTeamSheet: React.FC = () => {
               </label>
               <input
                 type="tel"
-                className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
+                name="phone"
+                autoComplete="tel"
+                className="w-full rounded-md border border-[#...one focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
               />
             </div>
           </div>
@@ -88,8 +94,9 @@ export const JoinTeamSheet: React.FC = () => {
             </label>
             <input
               type="text"
+              name="position"
               placeholder="e.g., Chef, Server, Barista"
-              className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
+              className="w-full rounded-md border border-[#...one focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
             />
           </div>
 
@@ -100,15 +107,16 @@ export const JoinTeamSheet: React.FC = () => {
             </label>
             <textarea
               rows={5}
+              name="experience"
               placeholder="Tell us about your background and why you'd like to join our team..."
-              className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42] resize-vertical"
+              className="w-full rounded-md border border-[#... focus:ring-[#644A42]/40 focus:border-[#644A42] resize-vertical"
             />
           </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="mt-2 w-full rounded-md bg-[#3b302b] px-4 py-2.5 text-sm font-semibold text-white tracking-wide hover:bg-[#2b211d] transition-colors"
+            className="mt-2 w-full rounded-md bg-[#3b302b] ...d text-white tracking-wide hover:bg-[#2b211d] transition-colors"
           >
             Submit Application
           </button>
