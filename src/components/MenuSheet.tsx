@@ -116,7 +116,7 @@ export const MenuSheet: React.FC<{
                     className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
                     onClick={() => {
                       onSelect(item);
-                      handleOpenChange(false); // сразу закрываем меню при выборе блюда
+                      // Sheet остаётся открытым
                     }}
                   >
                     <div className="flex justify-between items-baseline">
