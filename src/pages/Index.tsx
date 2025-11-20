@@ -1,10 +1,11 @@
+// src/pages/Index.tsx
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import { DishSheet } from "@/components/DishSheet";
 import logoImage from "@/assets/logo.png";
 
-// PHOTOS
+// Фотографии
 import imgA130 from "@/assets/A-130.jpg";
 import imga17 from "@/assets/a-17.jpg";
 import imgA20 from "@/assets/A-20.jpg";
@@ -33,14 +34,14 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
-// MOBILE
+// MOBILE slider photos
 const heroImages = [
   imgA130, imga17, imgA20, imga54, imgA208, imga94, imga150, imga113, imgA31,
   img1_38, img1_23, imgA11, imga38, imgA55, imgA121, imgA90, imgA73, imga155,
   imga172, imga132, imgA217, imgA23, imgA188, imgA1113, imga5, imga10
 ].filter(Boolean);
 
-// DESKTOP
+// DESKTOP photos
 const desktopImages = [
   imgA130, imgA20, imga94, imga150, imga113, img1_38, img1_23, imgA11,
   imgA55, imgA121, imgA90, imga172, imga155, imga132, imga40, imgA1113, imga5
@@ -48,48 +49,49 @@ const desktopImages = [
 
 const Index: React.FC = () => {
 
-  // MENU SHEET STATE
-  const [openMenu, setOpenMenu] = useState(false);
-
-  // DISH SHEET STATE
-  const [showDish, setShowDish] = useState(false);
+  // SECOND SHEET (DishSheet)
   const [selectedDish, setSelectedDish] = useState(null);
+  const [dishSheetOpen, setDishSheetOpen] = useState(false);
 
-  const openDish = (dish: any) => {
+  const handleOpenDish = (dish: any) => {
     setSelectedDish(dish);
-    setShowDish(true);
+    setDishSheetOpen(true);
   };
 
   // DESKTOP IMAGE SWAP
   const [currentIndex, setCurrentIndex] = useState(0);
-  const lastPos = useRef<{ x: number; y: number } | null>(null);
+  const lastDesktopMousePos = useRef<{ x: number; y: number } | null>(null);
 
   const handleDesktopMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
+    if (!desktopImages.length) return;
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    if (!lastPos.current) {
-      lastPos.current = { x, y };
+    if (!lastDesktopMousePos.current) {
+      lastDesktopMousePos.current = { x, y };
       return;
     }
 
-    const dx = x - lastPos.current.x;
-    const dy = y - lastPos.current.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    const dx = x - lastDesktopMousePos.current.x;
+    const dy = y - lastDesktopMousePos.current.y;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
     const threshold = Math.min(rect.width, rect.height) * 0.08;
 
-    if (dist < threshold) return;
+    if (distance < threshold) return;
 
-    lastPos.current = { x, y };
+    lastDesktopMousePos.current = { x, y };
 
-    let next = currentIndex;
-    while (next === currentIndex) {
-      next = Math.floor(Math.random() * desktopImages.length);
+    let nextIndex = currentIndex;
+    while (nextIndex === currentIndex) {
+      nextIndex = Math.floor(Math.random() * desktopImages.length);
     }
-    setCurrentIndex(next);
+
+    setCurrentIndex(nextIndex);
   };
 
   // MOBILE SWIPE
@@ -122,6 +124,7 @@ const Index: React.FC = () => {
   const endDrag = () => {
     if (dragStartX === null) {
       setIsDragging(false);
+      setDragOffset(0);
       return;
     }
 
@@ -136,111 +139,198 @@ const Index: React.FC = () => {
     setDragOffset(0);
   };
 
+  const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (swipedRef.current) {
+      swipedRef.current = false;
+      return;
+    }
+
+    const rect = mobileRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const x = e.clientX - rect.left;
+    x < rect.width / 2 ? prevMobile() : nextMobile();
+  };
+
+  // MOBILE transform
   const width = mobileRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
+  const translate = -mobileIndex * 100 + dragPercent;
+
   const mobileTrackStyle: CSSProperties = {
-    transform: `translateX(${-mobileIndex * 100 + dragPercent}%)`,
+    transform: `translateX(${translate}%)`,
     transition: isDragging ? "none" : "transform 0.4s ease",
   };
 
   return (
-    <div className="relative h-svh bg-background font-kommon overflow-hidden">
+    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon">
 
-      {/* DESKTOP BACKGROUND IMAGES */}
+      {/* DESKTOP IMAGES */}
       <div
-        className="hidden md:block absolute inset-0"
+        className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
       >
-        {desktopImages.map((img, i) => (
+        {desktopImages.map((img, index) => (
           <div
-            key={i}
+            key={index}
             className={`
               absolute inset-0 flex items-center justify-end
               transition-opacity duration-700
-              ${i === currentIndex ? "opacity-100" : "opacity-0"}
+              ${index === currentIndex ? "opacity-100" : "opacity-0"}
             `}
           >
-            <div className="relative max-h-[100vh]">
-              <img src={img} className="max-h-[100vh] object-contain" />
-              <div className="absolute inset-0 bg-black/25" />
+            <div className="relative max-h-[100vh] mr-0">
+              <img
+                src={img}
+                alt="Restaurant"
+                className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
+              />
+              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
           </div>
         ))}
       </div>
 
-      {/* MOBILE SLIDER */}
+      {/* MOBILE IMAGES */}
       <div
         ref={mobileRef}
-        className="md:hidden absolute inset-0 overflow-hidden"
+        className="absolute inset-0 block md:hidden overflow-x-hidden"
         onTouchStart={(e) => startDrag(e.touches[0].clientX)}
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
+        onClick={handleTap}
+        style={{ touchAction: "pan-x" }}
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
-          {heroImages.map((img, i) => (
+          {heroImages.map((img, index) => (
             <div
-              key={i}
-              className="w-full h-full flex items-center justify-center"
+              key={index}
+              className="flex-shrink-0 w-full h-full flex items-center justify-center"
             >
-              <img
-                src={img}
-                className="w-[93vw] object-contain -translate-y-[10px]"
-              />
+              <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
+                <img
+                  src={img}
+                  alt="Restaurant"
+                  className="w-full h-auto object-contain"
+                />
+                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* LOGO */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8 z-50 select-none">
-        <img src={logoImage} className="h-4 md:h-6" />
-        <p className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
-          BISTRO • SPECIALTY COFFEE • MATCHA BAR
-        </p>
+      <div className="absolute top-4 left-4 md:top-6 md:left-8">
+        <div className="flex flex-col items-start gap-1 select-none">
+          <img
+            src={logoImage}
+            alt="Alba Bistro Logo"
+            className="h-4 md:h-6 w-auto object-contain"
+          />
+          <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
+            BISTRO • SPECIALTY COFFEE • MATCHA BAR
+          </p>
+        </div>
       </div>
 
-      {/* ABOUT (DESKTOP) */}
+      {/* ABOUT SECTION + JOIN TEAM (DESKTOP) */}
       <div
-        className="hidden md:block absolute text-[#644A42] top-[200px] left-[200px] max-w-md"
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
+        style={{ top: 200, left: 200 }}
       >
-        <p className="mb-3 text-sm">
+        <p className="mb-3">
           Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
+          Our bright space with a sunny terrace at Rato Square invites you to
+          immerse yourself in an atmosphere of comfort and enjoyment.
         </p>
-        <p className="mb-3 text-sm">
-          Alba Bistro offers a fresh take on breakfast and brunch.
+        <p className="mb-3">
+          Alba Bistro offers a fresh take on breakfast and brunch - our
+          exquisite menu is crafted for those who appreciate subtle taste and
+          originality.
         </p>
-        <p className="text-sm">
-          Try our signature coffee cocktails and explore matcha options.
+        <p>
+          Try our signature coffee cocktails and explore the rich variety of
+          matcha options. Visit us for new gastronomic experiences and comfort!
+          We eagerly await your visit.
         </p>
-
         <div className="mt-20">
           <JoinTeamSheet />
         </div>
       </div>
 
-      {/* RIGHT PANEL – FLEX CONTAINER */}
-      <div className="absolute right-0 top-0 h-full flex z-[999] pointer-events-none">
-
-        {/* DISH SHEET (LEFT) */}
-        {showDish && selectedDish && (
-          <div className="pointer-events-auto">
-            <DishSheet
-              dish={selectedDish}
-              onClose={() => setShowDish(false)}
-            />
-          </div>
-        )}
-
-        {/* MENU SHEET (RIGHT) */}
-        <div className="pointer-events-auto">
-          <MenuSheet
-            onDishClick={openDish}
-            open={openMenu}
-            onOpenChange={setOpenMenu}
-          />
-        </div>
-
+      {/* MENU BUTTON */}
+      <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
+        <MenuSheet onDishClick={handleOpenDish} />
       </div>
+
+      {/* MOBILE ADDRESS */}
+      <div className="absolute bottom-4 left-4 md:hidden">
+        <div className="flex flex-col space-y-1 text-xs text-[#644A42] leading-[18px] font-kommon">
+          <span>Monday - Sunday 9:00 - 17:00</span>
+          <a
+            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Largo do Rato, 4A
+          </a>
+        </div>
+      </div>
+
+      {/* MOBILE JOIN + LINKS */}
+      <div className="absolute bottom-4 right-4 md:hidden">
+        <div className="flex flex-col items-end text-right space-y-1 font-kommon">
+          <JoinTeamSheet />
+          <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
+            <a
+              href="https://instagram.com/albabistro.lisbon"
+              target="_blank"
+            >
+              Instagram
+            </a>
+            <span>/</span>
+            <a href="mailto:hello@albabistrolisbon.com">Email</a>
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP FOOTER */}
+      <div className="hidden md:block absolute bottom-6 left-8">
+        <div className="flex flex-col text-xs text-[#644A42] leading-[14px] font-kommon">
+          <span>Monday - Sunday 9:00 - 17:00</span>
+          <a
+            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            target="_blank"
+          >
+            Largo do Rato, 4A
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://instagram.com/albabistrolisbon"
+              target="_blank"
+            >
+              Instagram
+            </a>
+            <span>/</span>
+            <a href="mailto:hello@albabistrolisbon.com">Email</a>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden md:block absolute bottom-6 right-8">
+        <p className="text-xs text-[#644A42] font-kommon">
+          Created by AlbaFamily
+        </p>
+      </div>
+
+      {/* SECOND SHEET: Dish */}
+      <DishSheet
+        dish={selectedDish}
+        open={dishSheetOpen}
+        onClose={() => setDishSheetOpen(false)}
+      />
+
     </div>
   );
 };
