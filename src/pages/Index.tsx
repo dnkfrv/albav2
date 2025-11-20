@@ -1,7 +1,7 @@
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
-import { DishModal } from "@/components/DishModal"; // ← добавлено
+import { DishModal } from "@/components/DishModal";
 import logoImage from "@/assets/logo.png";
 
 // НОВЫЕ ФОТО + старые (импорты оставляем как есть)
@@ -88,7 +88,7 @@ const Index: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // МОДАЛКА ДЛЯ БЛЮД
-  const [selectedDish, setSelectedDish] = useState(null);
+  const [selectedDish, setSelectedDish] = useState<any | null>(null);
 
   // мобильный слайдер
   const [mobileIndex, setMobileIndex] = useState(0);
@@ -276,7 +276,7 @@ const Index: React.FC = () => {
 
       {/* КНОПКА МЕНЮ */}
       <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
-        <MenuSheet onSelect={setSelectedDish} selectedDish={selectedDish} /> 
+        <MenuSheet onSelect={setSelectedDish} />
       </div>
 
       {/* Мобильная нижняя инфа */}
