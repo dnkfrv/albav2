@@ -84,6 +84,9 @@ const desktopImages = [
   imga5, // a-5
 ].filter(Boolean);
 
+const [selectedDish, setSelectedDish] = useState(null);
+const [isDishSheetOpen, setDishSheetOpen] = useState(false);
+
 const Index: React.FC = () => {
   // текущий кадр на десктопе
   const [currentIndex, setCurrentIndex] = useState(0);
