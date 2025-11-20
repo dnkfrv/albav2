@@ -1,9 +1,10 @@
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
-import { DishModal } from "@/components/DishModal";
+import { DishModal } from "@/components/DishModal"; // ← добавлено
 import logoImage from "@/assets/logo.png";
 
+// НОВЫЕ ФОТО + старые (импорты оставляем как есть)
 import imgA130 from "@/assets/A-130.jpg";
 import imga17 from "@/assets/a-17.jpg";
 import imgA20 from "@/assets/A-20.jpg";
@@ -32,24 +33,64 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
+// все фото для мобильной версии (как было)
 const heroImages = [
-  imgA130, imga17, imgA20, imga54, imgA208, imga94, imga150,
-  imga113, imgA31, img1_38, img1_23, imgA11, imga38,
-  imgA55, imgA121, imgA90, imgA73, imga155, imga172,
-  imga132, imgA217, imgA23, imgA188, imgA1113, imga5, imga10,
+  imgA130,
+  imga17,
+  imgA20,
+  imga54,
+  imgA208,
+  imga94,
+  imga150,
+  imga113,
+  imgA31,
+  img1_38,
+  img1_23,
+  imgA11,
+  imga38,
+  imgA55,
+  imgA121,
+  imgA90,
+  imgA73,
+  imga155,
+  imga172,
+  imga132,
+  imgA217,
+  imgA23,
+  imgA188,
+  imgA1113,
+  imga5,
+  imga10,
 ].filter(Boolean);
 
+// ОТДЕЛЬНЫЙ набор фото для десктопа
 const desktopImages = [
-  imgA130, imgA20, imga94, imga150, imga113,
-  img1_38, img1_23, imgA11, imgA55, imgA121,
-  imgA90, imga172, imga155, imga132, imga40,
-  imgA1113, imga5,
+  imgA130,
+  imgA20,
+  imga94,
+  imga150,
+  imga113,
+  img1_38,
+  img1_23,
+  imgA11,
+  imgA55,
+  imgA121,
+  imgA90,
+  imga172,
+  imga155,
+  imga132,
+  imga40,
+  imgA1113,
+  imga5,
 ].filter(Boolean);
 
 const Index: React.FC = () => {
-  const [selectedDish, setSelectedDish] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // МОДАЛКА ДЛЯ БЛЮД
+  const [selectedDish, setSelectedDish] = useState(null);
+
+  // мобильный слайдер
   const [mobileIndex, setMobileIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
@@ -57,13 +98,14 @@ const Index: React.FC = () => {
 
   const mobileRef = useRef<HTMLDivElement | null>(null);
   const swipedRef = useRef(false);
+
   const lastDesktopMousePos = useRef<{ x: number; y: number } | null>(null);
 
   const clampIndex = (idx: number) =>
     Math.max(0, Math.min(idx, heroImages.length - 1));
 
-  const nextMobile = () => setMobileIndex((p) => clampIndex(p + 1));
-  const prevMobile = () => setMobileIndex((p) => clampIndex(p - 1));
+  const nextMobile = () => setMobileIndex((prev) => clampIndex(prev + 1));
+  const prevMobile = () => setMobileIndex((prev) => clampIndex(prev - 1));
 
   const startDrag = (clientX: number) => {
     setDragStartX(clientX);
@@ -84,6 +126,7 @@ const Index: React.FC = () => {
       setDragOffset(0);
       return;
     }
+
     const width = mobileRef.current?.offsetWidth ?? 1;
     const threshold = width * 0.2;
 
@@ -108,7 +151,11 @@ const Index: React.FC = () => {
     else nextMobile();
   };
 
-  const handleDesktopMouseMove = (e) => {
+  const handleDesktopMouseMove = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    if (!desktopImages.length) return;
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -120,6 +167,7 @@ const Index: React.FC = () => {
 
     const dx = x - lastDesktopMousePos.current.x;
     const dy = y - lastDesktopMousePos.current.y;
+
     const distance = Math.sqrt(dx * dx + dy * dy);
     const threshold = Math.min(rect.width, rect.height) * 0.08;
 
@@ -127,11 +175,13 @@ const Index: React.FC = () => {
 
     lastDesktopMousePos.current = { x, y };
 
-    let nextIndex = currentIndex;
-    while (nextIndex === currentIndex) {
-      nextIndex = Math.floor(Math.random() * desktopImages.length);
+    if (desktopImages.length > 1) {
+      let nextIndex = currentIndex;
+      while (nextIndex === currentIndex) {
+        nextIndex = Math.floor(Math.random() * desktopImages.length);
+      }
+      setCurrentIndex(nextIndex);
     }
-    setCurrentIndex(nextIndex);
   };
 
   const width = mobileRef.current?.offsetWidth ?? 1;
@@ -144,9 +194,9 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="relative h-svh w-full overflow-hidden bg-background font-kommon">
-
-      {/* Десктоп галерея */}
+    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon">
+      
+      {/* ДЕСКТОП ФОТО */}
       <div
         className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
@@ -154,22 +204,25 @@ const Index: React.FC = () => {
         {desktopImages.map((img, index) => (
           <div
             key={index}
-            className={`absolute inset-0 flex items-center justify-end transition-opacity duration-700 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
+            className={`
+              absolute inset-0 flex items-center justify-end
+              transition-opacity duration-700
+              ${index === currentIndex ? "opacity-100" : "opacity-0"}
+            `}
           >
-            <div className="relative max-h-[100vh]">
+            <div className="relative max-h-[100vh] mr-0">
               <img
                 src={img}
-                className="max-h-[100vh] object-contain"
+                alt="Restaurant"
+                className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
               />
-              <div className="absolute inset-0 bg-black/25" />
+              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
           </div>
         ))}
       </div>
 
-      {/* Мобильная галерея */}
+      {/* МОБИЛЬНЫЙ СЛАЙДЕР */}
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
@@ -181,50 +234,130 @@ const Index: React.FC = () => {
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
-            <div key={index} className="w-full h-full flex items-center justify-center">
-              <div className="relative w-[93vw] -translate-y-[10px]">
-                <img src={img} className="w-full object-contain" />
-                <div className="absolute inset-0 bg-black/25" />
+            <div key={index} className="flex-shrink-0 w-full h-full flex items-center justify-center">
+              <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
+                <img src={img} alt="Restaurant" className="w-full h-auto object-contain" />
+                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Логотип */}
+      {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <img src={logoImage} className="h-4 md:h-6" />
-        <p className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
-          BISTRO • SPECIALTY COFFEE • MATCHA BAR
-        </p>
+        <div className="flex flex-col items-start gap-1 select-none">
+          <img src={logoImage} alt="Alba Bistro Logo" className="h-4 md:h-6 w-auto object-contain"/>
+          <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
+            BISTRO • SPECIALTY COFFEE • MATCHA BAR
+          </p>
+        </div>
       </div>
 
-      {/* Текст (десктоп) */}
+      {/* ТЕКСТ ДЛЯ ДЕСКТОПА */}
       <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42]"
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
         style={{ top: 200, left: 200 }}
       >
         <p className="mb-3">
-          Welcome to Alba Bistro...
+          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style! Our bright space with a sunny terrace at Rato Square invites you to immerse yourself in an atmosphere of comfort and enjoyment.
         </p>
         <p className="mb-3">
-          Alba Bistro offers a fresh take on breakfast...
+          Alba Bistro offers a fresh take on breakfast and brunch - our exquisite menu is crafted for those who appreciate subtle taste and originality.
         </p>
-        <p>Try our signature coffee cocktails...</p>
+        <p>
+          Try our signature coffee cocktails and explore the rich variety of matcha options. Visit us for new gastronomic experiences and comfort! We eagerly await your visit.
+        </p>
 
         <div className="mt-20">
           <JoinTeamSheet />
         </div>
       </div>
 
-      {/* Кнопка меню */}
+      {/* КНОПКА МЕНЮ */}
       <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
-        <MenuSheet onSelect={setSelectedDish} />
+        <MenuSheet onSelect={setSelectedDish} /> 
       </div>
 
-      {/* Модалка блюда */}
-      <DishModal dish={selectedDish} onClose={() => setSelectedDish(null)} />
+      {/* Мобильная нижняя инфа */}
+      <div className="absolute bottom-4 left-4 md:hidden">
+        <div className="flex flex-col space-y-1 text-xs text-[#644A42] leading-[18px] font-kommon">
+          <span>Monday - Sunday 9:00 - 17:00</span>
+          <a
+            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#4B362F] transition-colors"
+          >
+            Largo do Rato, 4A
+          </a>
+        </div>
+      </div>
 
+      <div className="absolute bottom-4 right-4 md:hidden">
+        <div className="flex flex-col items-end text-right space-y-1 font-kommon">
+          <JoinTeamSheet />
+          <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
+            <a
+              href="https://instagram.com/albabistro.lisbon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Instagram
+            </a>
+            <span>/</span>
+            <a
+              href="mailto:hello@albabistrolisbon.com"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Email
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ДЕСКТОП — нижний левый угол */}
+      <div className="hidden md:block absolute bottom-6 left-8">
+        <div className="flex flex-col space-y-0 text-xs text-[#644A42] leading-[14px] font-kommon">
+          <span>Monday - Sunday 9:00 - 17:00</span>
+          <a
+            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#4B362F] transition-colors"
+          >
+            Largo do Rato, 4A
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://instagram.com/albabistrolisbon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Instagram
+            </a>
+            <span>/</span>
+            <a
+              href="mailto:hello@albabistrolisbon.com"
+              className="hover:text-[#4B362F] transition-colors"
+            >
+              Email
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden md:block absolute bottom-6 right-8">
+        <p className="text-xs text-[#644A42] font-kommon">Created by AlbaFamily</p>
+      </div>
+
+      {/* МОДАЛКА БЛЮДА */}
+      <DishModal
+        dish={selectedDish}
+        onClose={() => setSelectedDish(null)}
+      />
     </div>
   );
 };
