@@ -8,17 +8,9 @@ import {
 } from "@/components/ui/sheet";
 
 import menuImage from "@/assets/Menu.png";
-import imgA213 from "@/assets/A-213.jpg";
-import imgA216 from "@/assets/A-216.jpg";
 
-export type Dish = {
-  name: string;
-  description?: string;
-  price: string;
-  images?: string[];
-};
-
-const menuItems: { category: string; items: Dish[] }[] = [
+// общий массив блюд
+const menuItems = [
   {
     category: "MAIN",
     items: [
@@ -27,7 +19,6 @@ const menuItems: { category: string; items: Dish[] }[] = [
         description:
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
-        images: [imgA213, imgA216], // фото для этого блюда
       },
       {
         name: "DANISH BREAKFAST",
@@ -142,19 +133,13 @@ const menuItems: { category: string; items: Dish[] }[] = [
   },
 ];
 
-type MenuSheetProps = {
-  onSelect?: (item: Dish) => void;
-};
-
-export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
+export const MenuSheet: React.FC<{
+  onSelect: (item: any) => void;
+}> = ({ onSelect }) => {
   const [open, setOpen] = React.useState(false);
-  const [selectedDish, setSelectedDish] = React.useState<Dish | null>(null);
 
   const handleOpenChange = (nextOpen: boolean) => {
     setOpen(nextOpen);
-    if (!nextOpen) {
-      setSelectedDish(null);
-    }
   };
 
   const startX = React.useRef<number | null>(null);
@@ -182,11 +167,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
     currentX.current = null;
   };
 
-  const handleDishClick = (item: Dish) => {
-    setSelectedDish(item);
-    if (onSelect) onSelect(item);
-  };
-
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
@@ -200,7 +180,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
       </SheetTrigger>
 
       <SheetContent
-        className="w-full sm:w-[800px] overflow-y-auto" // шире примерно в 1.5 раза
+        className="w-full sm:w-[800px] overflow-y-auto"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -209,7 +189,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-8 py-4 pb-24">
+        <div className="space-y-8 py-4">
           {menuItems.map((section) => (
             <div key={section.category} className="space-y-4">
               <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
@@ -218,11 +198,10 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
 
               <div className="space-y-3">
                 {section.items.map((item) => (
-                  <button
+                  <div
                     key={item.name}
-                    type="button"
-                    className="w-full text-left flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
-                    onClick={() => handleDishClick(item)}
+                    className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
+                    onClick={() => onSelect(item)}
                   >
                     <div className="flex justify-between items-baseline">
                       <span className="text-lg text-foreground">
@@ -238,55 +217,12 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                         {item.description}
                       </span>
                     )}
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-
-        {selectedDish && (
-          <div className="sticky bottom-0 left-0 right-0 bg-background border-t border-border mt-2 pt-4 pb-4 px-3">
-            <div className="flex justify-between items-start gap-4">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h4 className="text-lg font-semibold truncate">
-                    {selectedDish.name}
-                  </h4>
-                  <span className="text-lg font-medium flex-shrink-0">
-                    €{selectedDish.price}
-                  </span>
-                </div>
-                {selectedDish.description && (
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {selectedDish.description}
-                  </p>
-                )}
-
-                {selectedDish.images && selectedDish.images.length > 0 && (
-                  <div className="mt-3 flex gap-2 overflow-x-auto">
-                    {selectedDish.images.map((src, index) => (
-                      <img
-                        key={index}
-                        src={src}
-                        alt={selectedDish.name}
-                        className="h-24 w-24 object-cover rounded-md flex-shrink-0"
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedDish(null)}
-                className="text-xl leading-none opacity-70 hover:opacity-100 flex-shrink-0"
-                aria-label="Close dish details"
-              >
-                ×
-              </button>
-            </div>
-          </div>
-        )}
       </SheetContent>
     </Sheet>
   );
