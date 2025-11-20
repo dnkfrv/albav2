@@ -8,11 +8,14 @@ import {
 } from "@/components/ui/sheet";
 
 import menuImage from "@/assets/Menu.png";
+import imgA213 from "@/assets/A-213.jpg";
+import imgA216 from "@/assets/A-216.jpg";
 
 export type Dish = {
   name: string;
   description?: string;
   price: string;
+  images?: string[];
 };
 
 const menuItems: { category: string; items: Dish[] }[] = [
@@ -24,6 +27,7 @@ const menuItems: { category: string; items: Dish[] }[] = [
         description:
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
+        images: [imgA213, imgA216], // подключили A-213 и A-216 к этому блюду
       },
       {
         name: "DANISH BREAKFAST",
@@ -244,10 +248,12 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
         {selectedDish && (
           <div className="sticky bottom-0 left-0 right-0 bg-background border-t border-border mt-2 pt-4 pb-4 px-3">
             <div className="flex justify-between items-start gap-4">
-              <div>
+              <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h4 className="text-lg font-semibold">{selectedDish.name}</h4>
-                  <span className="text-lg font-medium">
+                  <h4 className="text-lg font-semibold truncate">
+                    {selectedDish.name}
+                  </h4>
+                  <span className="text-lg font-medium flex-shrink-0">
                     €{selectedDish.price}
                   </span>
                 </div>
@@ -256,11 +262,24 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                     {selectedDish.description}
                   </p>
                 )}
+
+                {selectedDish.images && selectedDish.images.length > 0 && (
+                  <div className="mt-3 flex gap-2 overflow-x-auto">
+                    {selectedDish.images.map((src, index) => (
+                      <img
+                        key={index}
+                        src={src}
+                        alt={selectedDish.name}
+                        className="h-24 w-24 object-cover rounded-md flex-shrink-0"
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedDish(null)}
-                className="text-xl leading-none opacity-70 hover:opacity-100"
+                className="text-xl leading-none opacity-70 hover:opacity-100 flex-shrink-0"
                 aria-label="Close dish details"
               >
                 ×
