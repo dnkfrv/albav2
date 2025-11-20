@@ -1,7 +1,6 @@
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
-import { DishModal } from "@/components/DishModal";
 import logoImage from "@/assets/logo.png";
 
 // НОВЫЕ ФОТО + старые (импорты оставляем как есть)
@@ -86,9 +85,6 @@ const desktopImages = [
 
 const Index: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // МОДАЛКА ДЛЯ БЛЮД
-  const [selectedDish, setSelectedDish] = useState<any | null>(null);
 
   // мобильный слайдер
   const [mobileIndex, setMobileIndex] = useState(0);
@@ -195,7 +191,6 @@ const Index: React.FC = () => {
 
   return (
     <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon">
-      
       {/* ДЕСКТОП ФОТО */}
       <div
         className="absolute inset-0 hidden md:block"
@@ -234,9 +229,16 @@ const Index: React.FC = () => {
       >
         <div className="flex h-full w-full" style={mobileTrackStyle}>
           {heroImages.map((img, index) => (
-            <div key={index} className="flex-shrink-0 w-full h-full flex items-center justify-center">
+            <div
+              key={index}
+              className="flex-shrink-0 w-full h-full flex items-center justify-center"
+            >
               <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
-                <img src={img} alt="Restaurant" className="w-full h-auto object-contain" />
+                <img
+                  src={img}
+                  alt="Restaurant"
+                  className="w-full h-auto object-contain"
+                />
                 <div className="absolute inset-0 bg-black/25 pointer-events-none" />
               </div>
             </div>
@@ -247,7 +249,11 @@ const Index: React.FC = () => {
       {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <div className="flex flex-col items-start gap-1 select-none">
-          <img src={logoImage} alt="Alba Bistro Logo" className="h-4 md:h-6 w-auto object-contain"/>
+          <img
+            src={logoImage}
+            alt="Alba Bistro Logo"
+            className="h-4 md:h-6 w-auto object-contain"
+          />
           <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
             BISTRO • SPECIALTY COFFEE • MATCHA BAR
           </p>
@@ -260,13 +266,19 @@ const Index: React.FC = () => {
         style={{ top: 200, left: 200 }}
       >
         <p className="mb-3">
-          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style! Our bright space with a sunny terrace at Rato Square invites you to immerse yourself in an atmosphere of comfort and enjoyment.
+          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
+          Our bright space with a sunny terrace at Rato Square invites you to
+          immerse yourself in an atmosphere of comfort and enjoyment.
         </p>
         <p className="mb-3">
-          Alba Bistro offers a fresh take on breakfast and brunch - our exquisite menu is crafted for those who appreciate subtle taste and originality.
+          Alba Bistro offers a fresh take on breakfast and brunch - our
+          exquisite menu is crafted for those who appreciate subtle taste and
+          originality.
         </p>
         <p>
-          Try our signature coffee cocktails and explore the rich variety of matcha options. Visit us for new gastronomic experiences and comfort! We eagerly await your visit.
+          Try our signature coffee cocktails and explore the rich variety of
+          matcha options. Visit us for new gastronomic experiences and comfort!
+          We eagerly await your visit.
         </p>
 
         <div className="mt-20">
@@ -276,7 +288,7 @@ const Index: React.FC = () => {
 
       {/* КНОПКА МЕНЮ */}
       <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
-        <MenuSheet onSelect={setSelectedDish} />
+        <MenuSheet />
       </div>
 
       {/* Мобильная нижняя инфа */}
@@ -352,12 +364,6 @@ const Index: React.FC = () => {
       <div className="hidden md:block absolute bottom-6 right-8">
         <p className="text-xs text-[#644A42] font-kommon">Created by AlbaFamily</p>
       </div>
-
-      {/* МОДАЛКА БЛЮДА */}
-      <DishModal
-        dish={selectedDish}
-        onClose={() => setSelectedDish(null)}
-      />
     </div>
   );
 };
