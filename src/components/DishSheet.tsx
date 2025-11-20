@@ -7,29 +7,32 @@ export const DishSheet = ({ dish, open, onClose }) => {
   return (
     <div
       className={`
-       fixed top-0 right-0 h-full w-[80vw] max-w-[450px]
-       bg-white z-[999]
-       transform transition-transform duration-300
-       ${open ? "translate-x-0" : "translate-x-full"}
+        fixed top-0 right-[540px]   /* <-- ставим рядом с MenuSheet */
+        h-full w-[420px] 
+        bg-white shadow-xl z-[998]
+        transform transition-transform duration-300
+        ${open ? "translate-x-0" : "translate-x-[110%]"}
       `}
     >
+      {/* HEADER */}
       <div className="flex justify-end p-4">
         <button onClick={onClose}>
           <X size={22} />
         </button>
       </div>
 
+      {/* CONTENT */}
       <div className="p-4 overflow-y-auto h-full">
 
-        {/* ГАЛЕРЕЯ */}
+        {/* Галерея */}
         {Array.isArray(dish.images) && dish.images.length > 0 && (
           <div className="flex gap-3 overflow-x-auto mb-4 pb-2">
-            {dish.images.map((img, index) => (
+            {dish.images.map((img, idx) => (
               <img
-                key={index}
+                key={idx}
                 src={img}
                 alt={dish.name}
-                className="w-[85%] rounded-lg flex-shrink-0 object-cover"
+                className="w-[85%] rounded-lg flex-shrink-0"
               />
             ))}
           </div>
