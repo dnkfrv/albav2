@@ -76,7 +76,7 @@ const menuItems: { category: string; items: Dish[] }[] = [
       {
         name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO",
         description:
-          "savory oatmeal with truffle sauce, poached egg and Prosciutto Crudo",
+          "savory oatmeal with truffle sauce, poached egg and Proscuitto Crudo",
         price: "12",
       },
       {
@@ -231,7 +231,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-8 py-4 pb-36">
+        <div className="space-y-8 py-4 pb-40">
           {menuItems.map((section) => (
             <div key={section.category} className="space-y-4">
               <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
@@ -271,18 +271,18 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <div
             className="
               sticky bottom-0 left-0 right-0
-              bg-background
-              pt-5 pb-6 px-3
+              bg-background/80 backdrop-blur-sm
+              px-0 pb-0 pt-0
             "
           >
             <div
               className="
-                min-h-[320px]
+                min-h-[340px]
                 w-full
-                bg-muted/70
-                rounded-xl
-                border border-border/60
-                shadow-sm
+                bg-muted/80
+                rounded-t-2xl
+                border-t border-border/60
+                shadow-[0_-4px_16px_rgba(0,0,0,0.15)]
                 px-4 py-4
                 flex justify-between items-start gap-4
               "
