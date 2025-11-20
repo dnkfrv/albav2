@@ -9,23 +9,29 @@ import {
 } from "@/components/ui/sheet";
 
 import menuImage from "@/assets/Menu.png";
+import imgA213 from "@/assets/A-213.jpg";
+import imgA216 from "@/assets/A-216.jpg";
 
 // МАССИВ БЛЮД
 const menuItems = [
   {
     category: "MAIN",
     items: [
-      {
-        name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
-        description:
-          "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
-        price: "9",
-        kcal: 410,
-        protein: 22,
-        fat: 18,
-        carbs: 34,
-        allergens: ["eggs", "gluten", "dairy"],
-      },
+     {
+  name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
+  description:
+    "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
+  price: "9",
+  kcal: 410,
+  protein: 22,
+  fat: 18,
+  carbs: 34,
+  allergens: ["eggs", "gluten", "dairy"],
+
+  // ДОБАВЛЯЕМ ФОТОГРАФИИ
+  images: [imgA213, imgA216],
+},
+
       {
         name: "DANISH BREAKFAST",
         description:
