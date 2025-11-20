@@ -1,20 +1,14 @@
 import React from "react";
 import { X } from "lucide-react";
 
-export const DishSheet = ({
-  dish,
-  onClose,
-}: {
-  dish: any;
-  onClose: () => void;
-}) => {
+export const DishSheet = ({ dish, onClose }) => {
   return (
-    <div className="w-[420px] h-full bg-white shadow-xl border-l border-gray-200 flex flex-col relative">
+    <div className="w-[420px] h-full bg-white shadow-xl border-l flex flex-col relative">
 
       {/* CLOSE */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 hover:opacity-70"
+        className="absolute top-4 right-4 hover:opacity-70"
       >
         <X size={22} />
       </button>
@@ -24,7 +18,7 @@ export const DishSheet = ({
 
         {dish.images && (
           <div className="flex gap-3 overflow-x-auto mb-4">
-            {dish.images.map((img: string, i: number) => (
+            {dish.images.map((img, i) => (
               <img key={i} src={img} className="w-[85%] rounded-lg" />
             ))}
           </div>
@@ -36,25 +30,29 @@ export const DishSheet = ({
           <p className="text-sm mb-4">{dish.description}</p>
         )}
 
-        <div className="text-sm mb-4 space-y-1">
+        <div className="text-sm space-y-1 mb-4">
           {dish.kcal && (
             <div>
-              <strong>Calories: </strong>{dish.kcal} kcal
+              <strong>Calories: </strong>
+              {dish.kcal} kcal
             </div>
           )}
           {dish.protein && (
             <div>
-              <strong>Protein: </strong>{dish.protein} g
+              <strong>Protein: </strong>
+              {dish.protein} g
             </div>
           )}
           {dish.fat && (
             <div>
-              <strong>Fat: </strong>{dish.fat} g
+              <strong>Fat: </strong>
+              {dish.fat} g
             </div>
           )}
           {dish.carbs && (
             <div>
-              <strong>Carbs: </strong>{dish.carbs} g
+              <strong>Carbs: </strong>
+              {dish.carbs} g
             </div>
           )}
         </div>
