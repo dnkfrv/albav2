@@ -2,17 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-export const DishSheet = ({ dish, open, onClose }) => {
-  const [menuWidth, setMenuWidth] = useState(540); // fallback
-
-  // находим реальную ширину MenuSheet
-  useEffect(() => {
-    const menuEl = document.querySelector(".alba-menu-sheet");
-    if (menuEl) {
-      setMenuWidth(menuEl.getBoundingClientRect().width);
-    }
-  }, [open]);
-
+export const DishSheet = ({ dish, open, onClose, menuWidth }) => {
   if (!dish) return null;
 
   return (
@@ -20,11 +10,11 @@ export const DishSheet = ({ dish, open, onClose }) => {
       className={`
         fixed top-0
         h-full w-[420px]
-        bg-white shadow-xl z-[998]
+        bg-white shadow-xl z-[999]
         transform transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-[110%]"}
       `}
-      style={{ right: `${menuWidth}px` }} // ← динамическая ширина меню
+      style={{ right: `${menuWidth}px` }}
     >
       {/* HEADER */}
       <div className="flex justify-end p-4">
@@ -50,41 +40,27 @@ export const DishSheet = ({ dish, open, onClose }) => {
           </div>
         )}
 
-        {/* НАЗВАНИЕ */}
         <h2 className="text-xl mb-2">{dish.name}</h2>
 
-        {/* ОПИСАНИЕ */}
         {dish.description && (
           <p className="text-sm mb-4">{dish.description}</p>
         )}
 
-        {/* ХАРАКТЕРИСТИКИ */}
         {(dish.kcal || dish.protein || dish.fat || dish.carbs) && (
           <div className="text-sm mb-4">
-            {dish.kcal && (
-              <div>
-                <strong>Calories:</strong> {dish.kcal} kcal
-              </div>
-            )}
-            {dish.protein && (
-              <div>
-                <strong>Protein:</strong> {dish.protein} g
-              </div>
-            )}
-            {dish.fat && (
-              <div>
-                <strong>Fat:</strong> {dish.fat} g
-              </div>
-            )}
-            {dish.carbs && (
-              <div>
-                <strong>Carbs:</strong> {dish.carbs} g
-              </div>
-            )}
+            {dish.kcal && <div><strong>Calories:</strong> {dish.kcal} kcal</div>}
+            {dish.protein && <div><strong>Protein:</strong> {dish.protein} g</div>}
+            {dish.fat && <div><strong>Fat:</strong> {dish.fat} g</div>}
+            {dish.carbs && <div><strong>Carbs:</strong> {dish.carbs} g</div>}
           </div>
         )}
 
-        {/* АЛЛЕРГЕНЫ */}
         {dish.allergens && dish.allergens.length > 0 && (
           <div className="text-sm">
-            <
+            <strong>Allergens:</strong> {dish.allergens.join(", ")}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
