@@ -9,17 +9,17 @@ export const DishModal = ({ dish, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center z-[200]"
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[999]"
       onClick={handleBackdropClick}
     >
       <div
         className="bg-white rounded-xl shadow-xl w-[90vw] max-w-[480px] p-6 relative"
-        onClick={(e) => e.stopPropagation()} // ← важно!
+        onClick={(e) => e.stopPropagation()} // предотвращает закрытие шторки
       >
-        {/* крестик */}
+        {/* Крестик */}
         <button
           onClick={(e) => {
-            e.stopPropagation(); // ← предотвращает закрытие шторки
+            e.stopPropagation();
             onClose();
           }}
           className="absolute top-4 right-4 text-xl leading-none opacity-70 hover:opacity-100"
