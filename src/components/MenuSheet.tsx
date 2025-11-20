@@ -361,7 +361,10 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
             onClick={() => setPreviewSrc(null)}
           >
             <div
-              className="relative max-w-[90vw] max-h-[90vh]"
+              className="
+                relative max-w-[90vw] max-h-[90vh]
+                md:-translate-y-4
+              "
               onClick={(e) => e.stopPropagation()}
             >
               <img
