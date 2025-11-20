@@ -201,6 +201,12 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
     if (onSelect) onSelect(item);
   };
 
+  const handleImageClick = (src: string) => {
+    if (typeof window !== "undefined") {
+      window.open(src, "_blank");
+    }
+  };
+
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
@@ -269,15 +275,15 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <div
             className="
               sticky bottom-0 left-0 right-0
-              bg-background
-              pt-5 pb-6 px-3
+              bg-black/10 backdrop-blur-[1px]
+              pt-4 pb-5 px-3
             "
           >
             <div
               className="
                 min-h-[320px]
                 w-full
-                bg-muted/70
+                bg-muted/80
                 rounded-xl
                 border border-border/60
                 shadow-sm
@@ -304,12 +310,24 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 {selectedDish.images && selectedDish.images.length > 0 && (
                   <div className="mt-3 flex gap-2 overflow-x-auto">
                     {selectedDish.images.map((src, index) => (
-                      <img
+                      <button
                         key={index}
-                        src={src}
-                        alt={selectedDish.name}
-                        className="h-28 w-28 object-cover rounded-md flex-shrink-0"
-                      />
+                        type="button"
+                        onClick={() => handleImageClick(src)}
+                        className="flex-shrink-0 focus:outline-none"
+                      >
+                        <img
+                          src={src}
+                          alt={selectedDish.name}
+                          className="
+                            h-28 w-28
+                            object-cover rounded-md
+                            cursor-zoom-in
+                            transition-transform
+                            hover:scale-[1.03]
+                          "
+                        />
+                      </button>
                     ))}
                   </div>
                 )}
