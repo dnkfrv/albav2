@@ -2,10 +2,7 @@ import React from "react";
 import { X } from "lucide-react";
 
 export const DishSheet = ({ dish, open, onClose }) => {
-  // если блюдо ещё не выбрано — ничего не рендерим
-  if (!dish) {
-    return null;
-  }
+  if (!dish) return null;
 
   return (
     <div
@@ -24,13 +21,18 @@ export const DishSheet = ({ dish, open, onClose }) => {
 
       <div className="p-4 overflow-y-auto h-full">
 
-        {/* РЕНДЕРИМ ФОТО ТОЛЬКО ЕСЛИ ОНО ЕСТЬ */}
-        {dish.image && (
-          <img
-            src={dish.image}
-            className="w-full rounded-lg mb-4"
-            alt={dish.name}
-          />
+        {/* ГАЛЕРЕЯ */}
+        {Array.isArray(dish.images) && dish.images.length > 0 && (
+          <div className="flex gap-3 overflow-x-auto mb-4 pb-2">
+            {dish.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={dish.name}
+                className="w-[85%] rounded-lg flex-shrink-0 object-cover"
+              />
+            ))}
+          </div>
         )}
 
         <h2 className="text-xl mb-2">{dish.name}</h2>
