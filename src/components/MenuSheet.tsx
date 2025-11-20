@@ -35,7 +35,6 @@ const menuItems: { category: string; items: Dish[] }[] = [
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
         images: [imgA213, imgA216],
-        // значения примерные – потом можно поправить под реальные
         nutrition: {
           kcal: 500,
           protein: 25,
@@ -218,8 +217,8 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
         className="
           w-screen
           max-w-screen
-          sm:w-[800px]
-          sm:max-w-[800px]
+          sm:w-[650px]
+          sm:max-w-[650px]
           overflow-y-auto
         "
         onTouchStart={handleTouchStart}
@@ -230,7 +229,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-8 py-4 pb-32">
+        <div className="space-y-8 py-4 pb-36">
           {menuItems.map((section) => (
             <div key={section.category} className="space-y-4">
               <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
@@ -270,12 +269,22 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <div
             className="
               sticky bottom-0 left-0 right-0
-              bg-background border-t border-border
+              bg-background
               pt-5 pb-6 px-3
-              min-h-[220px]
             "
           >
-            <div className="flex justify-between items-start gap-4">
+            <div
+              className="
+                min-h-[320px]
+                w-full
+                bg-muted/70
+                rounded-xl
+                border border-border/60
+                shadow-sm
+                px-4 py-4
+                flex justify-between items-start gap-4
+              "
+            >
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-4">
                   <h4 className="text-lg font-semibold truncate">
