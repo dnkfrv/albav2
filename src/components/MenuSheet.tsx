@@ -54,14 +54,12 @@ export const MenuSheet: React.FC<{
   onSelect: (item: any) => void;
   selectedDish: any | null;
 }> = ({ onSelect, selectedDish }) => {
-  const [internalOpen, setInternalOpen] = React.useState(false);
-
-  const open = internalOpen || !!selectedDish;
+  const [open, setOpen] = React.useState(false);
 
   const handleOpenChange = (nextOpen: boolean) => {
     // Не даём закрыть меню, пока открыта модалка блюда
     if (!nextOpen && selectedDish) return;
-    setInternalOpen(nextOpen);
+    setOpen(nextOpen);
   };
 
   const startX = React.useRef<number | null>(null);
