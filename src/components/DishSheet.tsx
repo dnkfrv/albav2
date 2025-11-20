@@ -1,55 +1,86 @@
+// src/components/DishSheet.tsx
 import React from "react";
 import { X } from "lucide-react";
 
-export const DishSheet = ({ dish, open, onClose }) => {
+export const DishSheet = ({
+  dish,
+  open,
+  onClose,
+  menuWidth,
+}: {
+  dish: any;
+  open: boolean;
+  onClose: () => void;
+  menuWidth: number;
+}) => {
   if (!dish) return null;
+
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
 
   return (
     <div
       className={`
-        fixed top-0 right-[540px]   /* <-- ставим рядом с MenuSheet */
-        h-full w-[420px] 
+        fixed top-0 
+        ${isDesktop ? `right-[${menuWidth}px]` : "right-0"}
+        h-full w-[420px]
         bg-white shadow-xl z-[998]
         transform transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-[110%]"}
       `}
     >
-      {/* HEADER */}
+      {/* header */}
       <div className="flex justify-end p-4">
-        <button onClick={onClose}>
+        <button onClick={onClose} className="p-1 hover:opacity-70">
           <X size={22} />
         </button>
       </div>
 
-      {/* CONTENT */}
+      {/* content */}
       <div className="p-4 overflow-y-auto h-full">
 
-        {/* Галерея */}
-        {Array.isArray(dish.images) && dish.images.length > 0 && (
+        {dish.images && (
           <div className="flex gap-3 overflow-x-auto mb-4 pb-2">
-            {dish.images.map((img, idx) => (
+            {dish.images.map((img: string, i: number) => (
               <img
-                key={idx}
+                key={i}
                 src={img}
-                alt={dish.name}
-                className="w-[85%] rounded-lg flex-shrink-0"
+                className="w-[85%] rounded-lg flex-shrink-0 object-cover"
               />
             ))}
           </div>
         )}
 
         <h2 className="text-xl mb-2">{dish.name}</h2>
-
         {dish.description && (
           <p className="text-sm mb-4">{dish.description}</p>
         )}
 
         {(dish.kcal || dish.protein || dish.fat || dish.carbs) && (
           <div className="text-sm mb-4">
-            {dish.kcal && <div><strong>Calories:</strong> {dish.kcal} kcal</div>}
-            {dish.protein && <div><strong>Protein:</strong> {dish.protein} g</div>}
-            {dish.fat && <div><strong>Fat:</strong> {dish.fat} g</div>}
-            {dish.carbs && <div><strong>Carbs:</strong> {dish.carbs} g</div>}
+            {dish.kcal && (
+              <div>
+                <strong>Calories: </strong>
+                {dish.kcal} kcal
+              </div>
+            )}
+            {dish.protein && (
+              <div>
+                <strong>Protein: </strong>
+                {dish.protein} g
+              </div>
+            )}
+            {dish.fat && (
+              <div>
+                <strong>Fat: </strong>
+                {dish.fat} g
+              </div>
+            )}
+            {dish.carbs && (
+              <div>
+                <strong>Carbs: </strong>
+                {dish.carbs} g
+              </div>
+            )}
           </div>
         )}
 
