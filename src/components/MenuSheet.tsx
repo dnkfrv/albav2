@@ -9,32 +9,116 @@ import {
 
 import menuImage from "@/assets/Menu.png";
 
-// общий массив блюд
-const menuItems = [
+export type Dish = {
+  name: string;
+  description?: string;
+  price: string;
+};
+
+const menuItems: { category: string; items: Dish[] }[] = [
   {
     category: "MAIN",
     items: [
-      { name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD", description: "creamy scrambled eggs with grated parmesan and toasted sourdough bread", price: "9" },
-      { name: "DANISH BREAKFAST", description: "sourdough bread, gouda cheese, avocado, creamy hard-boiled egg, whipped butter and berry jam", price: "9" },
-      { name: "VEGAN MISO GRANOLA", description: "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water", price: "8" },
-      { name: "FETA VEGAN TOAST", description: "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate", price: "10" },
-      { name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR", description: "cheesy potato croquettes with lemon cream cheese and red caviar", price: "12" },
-      { name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGG", description: "puff roti with lemon cream cheese, salmon, asparagus and boiled egg", price: "12" },
-      { name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO", description: "savory oatmeal with truffle sauce, poached egg and Prosciutto Crudo", price: "12" },
-      { name: "CROQUE MADAME WITH TRUFFLE SAUCE", description: "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce", price: "13" },
-      { name: "EGGS BENEDICT WITH SALMON AND SPINACH", description: "brioche with avocado cream, salmon, poached eggs, yogurt hollandaise and fresh herbs", price: "13" },
-      { name: "OMELETTE WITH MUSHROOMS", description: "French omelette with sliced mushrooms and a hint of truffle", price: "14" },
-      { name: "OMELETTE WITH SHRIMP AND TOMATO", description: "French omelette with shrimp, sun-dried tomatoes and cheese inside, garnished with lemon zest", price: "14" },
-      { name: "GREEN OMLETTE WITH ASPARAGUS", description: "spinach omelette with peas, asparagus, zesty lemon cream and fresh herbs", price: "14" },
+      {
+        name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
+        description:
+          "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
+        price: "9",
+      },
+      {
+        name: "DANISH BREAKFAST",
+        description:
+          "sourdough bread, gouda cheese, avocado, creamy hard-boiled egg, whipped butter and berry jam",
+        price: "9",
+      },
+      {
+        name: "VEGAN MISO GRANOLA",
+        description:
+          "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water",
+        price: "8",
+      },
+      {
+        name: "FETA VEGAN TOAST",
+        description:
+          "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate",
+        price: "10",
+      },
+      {
+        name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR",
+        description:
+          "cheesy potato croquettes with lemon cream cheese and red caviar",
+        price: "12",
+      },
+      {
+        name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGG",
+        description:
+          "puff roti with lemon cream cheese, salmon, asparagus and boiled egg",
+        price: "12",
+      },
+      {
+        name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO",
+        description:
+          "savory oatmeal with truffle sauce, poached egg and Prosciutto Crudo",
+        price: "12",
+      },
+      {
+        name: "CROQUE MADAME WITH TRUFFLE SAUCE",
+        description:
+          "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce",
+        price: "13",
+      },
+      {
+        name: "EGGS BENEDICT WITH SALMON AND SPINACH",
+        description:
+          "brioche with avocado cream, salmon, poached eggs, yogurt hollandaise and fresh herbs",
+        price: "13",
+      },
+      {
+        name: "OMELETTE WITH MUSHROOMS",
+        description:
+          "French omelette with sliced mushrooms and a hint of truffle",
+        price: "14",
+      },
+      {
+        name: "OMELETTE WITH SHRIMP AND TOMATO",
+        description:
+          "French omelette with shrimp, sun-dried tomatoes and cheese inside, garnished with lemon zest",
+        price: "14",
+      },
+      {
+        name: "GREEN OMLETTE WITH ASPARAGUS",
+        description:
+          "spinach omelette with peas, asparagus, zesty lemon cream and fresh herbs",
+        price: "14",
+      },
     ],
   },
   {
     category: "DESSERTS",
     items: [
-      { name: "MATCHA COOKIE", description: "white chocolate custard cream, matcha, and dried raspberry", price: "4" },
-      { name: "CREME BRULEE", description: "classic creme brulee with a crisp caramelized sugar crust", price: "7" },
-      { name: "WHITE CHOCOLATE YOGURT GANACHE WITH BERRY JAM", description: "delicate white chocolate yogurt with berry jam", price: "7" },
-      { name: "RICE PUDDING WITH MANGO AND COCONUT MILK", description: "rice pudding infused with tropical mango and smooth coconut milk", price: "8" },
+      {
+        name: "MATCHA COOKIE",
+        description:
+          "white chocolate custard cream, matcha, and dried raspberry",
+        price: "4",
+      },
+      {
+        name: "CREME BRULEE",
+        description:
+          "classic creme brulee with a crisp caramelized sugar crust",
+        price: "7",
+      },
+      {
+        name: "WHITE CHOCOLATE YOGURT GANACHE WITH BERRY JAM",
+        description: "delicate white chocolate yogurt with berry jam",
+        price: "7",
+      },
+      {
+        name: "RICE PUDDING WITH MANGO AND COCONUT MILK",
+        description:
+          "rice pudding infused with tropical mango and smooth coconut milk",
+        price: "8",
+      },
     ],
   },
   {
@@ -45,18 +129,28 @@ const menuItems = [
       { name: "AMERICANO", price: "3" },
       { name: "BATCH BREW", price: "3.5" },
       { name: "HAND BREW EXCEPTIONAL", price: "7" },
-      { name: "BARISTA SET", description: "espresso, batch brew, cappuccino", price: "6" },
+      {
+        name: "BARISTA SET",
+        description: "espresso, batch brew, cappuccino",
+        price: "6",
+      },
     ],
   },
 ];
 
-export const MenuSheet: React.FC<{
-  onSelect: (item: any) => void;
-}> = ({ onSelect }) => {
+type MenuSheetProps = {
+  onSelect?: (item: Dish) => void;
+};
+
+export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
   const [open, setOpen] = React.useState(false);
+  const [selectedDish, setSelectedDish] = React.useState<Dish | null>(null);
 
   const handleOpenChange = (nextOpen: boolean) => {
     setOpen(nextOpen);
+    if (!nextOpen) {
+      setSelectedDish(null);
+    }
   };
 
   const startX = React.useRef<number | null>(null);
@@ -84,11 +178,20 @@ export const MenuSheet: React.FC<{
     currentX.current = null;
   };
 
+  const handleDishClick = (item: Dish) => {
+    setSelectedDish(item);
+    if (onSelect) onSelect(item);
+  };
+
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
         <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
-          <img src={menuImage} alt="Menu" className="h-4 md:h-6 w-auto object-contain" />
+          <img
+            src={menuImage}
+            alt="Menu"
+            className="h-4 md:h-6 w-auto object-contain"
+          />
         </button>
       </SheetTrigger>
 
@@ -102,7 +205,7 @@ export const MenuSheet: React.FC<{
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-8 py-4">
+        <div className="space-y-8 py-4 pb-24">
           {menuItems.map((section) => (
             <div key={section.category} className="space-y-4">
               <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
@@ -111,18 +214,18 @@ export const MenuSheet: React.FC<{
 
               <div className="space-y-3">
                 {section.items.map((item) => (
-                  <div
+                  <button
                     key={item.name}
-                    className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
-                    onClick={() => {
-                      onSelect(item);
-                      // Sheet остаётся открытым
-                    }}
+                    type="button"
+                    className="w-full text-left flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
+                    onClick={() => handleDishClick(item)}
                   >
                     <div className="flex justify-between items-baseline">
-                      <span className="text-lg text-foreground">{item.name}</span>
+                      <span className="text-lg text-foreground">
+                        {item.name}
+                      </span>
                       <span className="text-lg font-medium text-primary">
-                        {item.price}
+                        €{item.price}
                       </span>
                     </div>
 
@@ -131,12 +234,40 @@ export const MenuSheet: React.FC<{
                         {item.description}
                       </span>
                     )}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
         </div>
+
+        {selectedDish && (
+          <div className="sticky bottom-0 left-0 right-0 bg-background border-t border-border mt-2 pt-4 pb-4 px-3">
+            <div className="flex justify-between items-start gap-4">
+              <div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <h4 className="text-lg font-semibold">{selectedDish.name}</h4>
+                  <span className="text-lg font-medium">
+                    €{selectedDish.price}
+                  </span>
+                </div>
+                {selectedDish.description && (
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {selectedDish.description}
+                  </p>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedDish(null)}
+                className="text-xl leading-none opacity-70 hover:opacity-100"
+                aria-label="Close dish details"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
