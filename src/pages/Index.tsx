@@ -34,20 +34,23 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
-// MOBILE slider photos
+// MOBILE фото
 const heroImages = [
   imgA130, imga17, imgA20, imga54, imgA208, imga94, imga150, imga113, imgA31,
   img1_38, img1_23, imgA11, imga38, imgA55, imgA121, imgA90, imgA73, imga155,
   imga172, imga132, imgA217, imgA23, imgA188, imgA1113, imga5, imga10
 ].filter(Boolean);
 
-// DESKTOP photos
+// DESKTOP фото
 const desktopImages = [
   imgA130, imgA20, imga94, imga150, imga113, img1_38, img1_23, imgA11,
   imgA55, imgA121, imgA90, imga172, imga155, imga132, imga40, imgA1113, imga5
 ].filter(Boolean);
 
 const Index: React.FC = () => {
+
+  // ширина меню (динамическая)
+  const [menuWidth, setMenuWidth] = useState(540);
 
   // SECOND SHEET (DishSheet)
   const [selectedDish, setSelectedDish] = useState(null);
@@ -78,7 +81,6 @@ const Index: React.FC = () => {
 
     const dx = x - lastDesktopMousePos.current.x;
     const dy = y - lastDesktopMousePos.current.y;
-
     const distance = Math.sqrt(dx * dx + dy * dy);
     const threshold = Math.min(rect.width, rect.height) * 0.08;
 
@@ -234,7 +236,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* ABOUT SECTION + JOIN TEAM (DESKTOP) */}
+      {/* ABOUT SECTION */}
       <div
         className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
         style={{ top: 200, left: 200 }}
@@ -261,7 +263,10 @@ const Index: React.FC = () => {
 
       {/* MENU BUTTON */}
       <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
-        <MenuSheet onDishClick={handleOpenDish} />
+        <MenuSheet
+          onDishClick={handleOpenDish}
+          onWidthChange={(w) => setMenuWidth(w)}
+        />
       </div>
 
       {/* MOBILE ADDRESS */}
@@ -283,10 +288,7 @@ const Index: React.FC = () => {
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet />
           <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
-            <a
-              href="https://instagram.com/albabistro.lisbon"
-              target="_blank"
-            >
+            <a href="https://instagram.com/albabistrolisbon" target="_blank">
               Instagram
             </a>
             <span>/</span>
@@ -295,7 +297,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* DESKTOP FOOTER */}
+      {/* DESKTOP FOOTER LEFT */}
       <div className="hidden md:block absolute bottom-6 left-8">
         <div className="flex flex-col text-xs text-[#644A42] leading-[14px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
@@ -318,17 +320,19 @@ const Index: React.FC = () => {
         </div>
       </div>
 
+      {/* DESKTOP FOOTER RIGHT */}
       <div className="hidden md:block absolute bottom-6 right-8">
         <p className="text-xs text-[#644A42] font-kommon">
           Created by AlbaFamily
         </p>
       </div>
 
-      {/* SECOND SHEET: Dish */}
+      {/* SECOND SHEET (DishSheet) */}
       <DishSheet
         dish={selectedDish}
         open={dishSheetOpen}
         onClose={() => setDishSheetOpen(false)}
+        menuWidth={menuWidth}
       />
 
     </div>
