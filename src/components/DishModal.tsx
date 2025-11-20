@@ -1,9 +1,15 @@
 import React from "react";
+import type { Dish } from "@/components/MenuSheet";
 
-export const DishModal = ({ dish, onClose }) => {
+type DishModalProps = {
+  dish: Dish | null;
+  onClose: () => void;
+};
+
+export const DishModal: React.FC<DishModalProps> = ({ dish, onClose }) => {
   if (!dish) return null;
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
   };
 
@@ -11,8 +17,11 @@ export const DishModal = ({ dish, onClose }) => {
     <div
       className="fixed inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center z-[200]"
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dish-modal-title"
     >
-      <div className="bg-white rounded-xl shadow-xl w-[90vw] max-w-[480px] p-6 relative">
+      <div className="bg-background text-foreground rounded-xl shadow-xl w-[90vw] max-w-[480px] p-6 relative">
         
         {/* Кнопка закрытия */}
         <button
@@ -22,7 +31,7 @@ export const DishModal = ({ dish, onClose }) => {
           ×
         </button>
 
-        <h2 className="text-2xl font-semibold mb-2">{dish.name}</h2>
+        <h2 id="dish-modal-title" className="text-2xl font-semibold mb-2">{dish.name}</h2>
 
         {dish.description && (
           <p className="text-sm text-muted-foreground mb-4">
