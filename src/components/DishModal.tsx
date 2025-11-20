@@ -16,7 +16,10 @@ export const DishModal = ({ dish, onClose }) => {
         
         {/* Кнопка закрытия */}
         <button
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
           className="absolute top-4 right-4 text-xl leading-none opacity-70 hover:opacity-100"
         >
           ×
