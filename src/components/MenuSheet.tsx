@@ -16,6 +16,13 @@ export type Dish = {
   description?: string;
   price: string;
   images?: string[];
+  nutrition?: {
+    kcal: number;
+    protein: number; // g
+    fat: number;     // g
+    carbs: number;   // g
+  };
+  allergens?: string[];
 };
 
 const menuItems: { category: string; items: Dish[] }[] = [
@@ -27,7 +34,15 @@ const menuItems: { category: string; items: Dish[] }[] = [
         description:
           "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
-        images: [imgA213, imgA216], // фото для этого блюда
+        images: [imgA213, imgA216],
+        // значения примерные – потом можно поправить под реальные
+        nutrition: {
+          kcal: 500,
+          protein: 25,
+          fat: 30,
+          carbs: 35,
+        },
+        allergens: ["Eggs", "Gluten (wheat)", "Dairy"],
       },
       {
         name: "DANISH BREAKFAST",
@@ -201,9 +216,9 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
 
       <SheetContent
         className="
-          w-full 
-          max-w-[90vw] 
-          sm:w-[800px] 
+          w-screen
+          max-w-screen
+          sm:w-[800px]
           sm:max-w-[800px]
           overflow-y-auto
         "
@@ -215,7 +230,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-8 py-4 pb-28">
+        <div className="space-y-8 py-4 pb-32">
           {menuItems.map((section) => (
             <div key={section.category} className="space-y-4">
               <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
@@ -252,7 +267,14 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
         </div>
 
         {selectedDish && (
-          <div className="sticky bottom-0 left-0 right-0 bg-background border-t border-border pt-4 pb-4 px-3">
+          <div
+            className="
+              sticky bottom-0 left-0 right-0
+              bg-background border-t border-border
+              pt-5 pb-6 px-3
+              min-h-[220px]
+            "
+          >
             <div className="flex justify-between items-start gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-4">
@@ -277,9 +299,30 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                         key={index}
                         src={src}
                         alt={selectedDish.name}
-                        className="h-24 w-24 object-cover rounded-md flex-shrink-0"
+                        className="h-28 w-28 object-cover rounded-md flex-shrink-0"
                       />
                     ))}
+                  </div>
+                )}
+
+                {selectedDish.nutrition && (
+                  <div className="mt-3 text-xs text-muted-foreground space-y-1">
+                    <div>
+                      <span className="font-medium mr-1">Nutrition:</span>
+                      <span>
+                        {selectedDish.nutrition.kcal} kcal ·{" "}
+                        {selectedDish.nutrition.protein} g protein ·{" "}
+                        {selectedDish.nutrition.fat} g fat ·{" "}
+                        {selectedDish.nutrition.carbs} g carbs
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {selectedDish.allergens && selectedDish.allergens.length > 0 && (
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    <span className="font-medium mr-1">Allergens:</span>
+                    <span>{selectedDish.allergens.join(", ")}</span>
                   </div>
                 )}
               </div>
