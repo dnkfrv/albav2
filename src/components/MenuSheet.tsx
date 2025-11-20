@@ -50,10 +50,19 @@ const menuItems = [
   },
 ];
 
-export const MenuSheet: React.FC<{ onSelect: (item: any) => void }> = ({
-  onSelect,
-}) => {
-  const [open, setOpen] = React.useState(false);
+export const MenuSheet: React.FC<{
+  onSelect: (item: any) => void;
+  selectedDish: any | null;
+}> = ({ onSelect, selectedDish }) => {
+  const [internalOpen, setInternalOpen] = React.useState(false);
+
+  const open = internalOpen || !!selectedDish;
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    // Не даём закрыть меню, пока открыта модалка блюда
+    if (!nextOpen && selectedDish) return;
+    setInternalOpen(nextOpen);
+  };
 
   const startX = React.useRef<number | null>(null);
   const currentX = React.useRef<number | null>(null);
@@ -73,7 +82,7 @@ export const MenuSheet: React.FC<{ onSelect: (item: any) => void }> = ({
       currentX.current !== null &&
       currentX.current - startX.current > 70
     ) {
-      setOpen(false);
+      handleOpenChange(false);
     }
 
     startX.current = null;
@@ -81,7 +90,7 @@ export const MenuSheet: React.FC<{ onSelect: (item: any) => void }> = ({
   };
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
         <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
           <img src={menuImage} alt="Menu" className="h-4 md:h-6 w-auto object-contain" />
@@ -110,7 +119,7 @@ export const MenuSheet: React.FC<{ onSelect: (item: any) => void }> = ({
                   <div
                     key={item.name}
                     className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
-                    onClick={() => onSelect(item)} // ← открываем модалку
+                    onClick={() => onSelect(item)}
                   >
                     <div className="flex justify-between items-baseline">
                       <span className="text-lg text-foreground">{item.name}</span>
