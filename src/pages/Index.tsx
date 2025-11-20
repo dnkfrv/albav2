@@ -276,7 +276,7 @@ const Index: React.FC = () => {
 
       {/* КНОПКА МЕНЮ */}
       <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
-        <MenuSheet onSelect={setSelectedDish} /> 
+        <MenuSheet onSelect={setSelectedDish} selectedDish={selectedDish} /> 
       </div>
 
       {/* Мобильная нижняя инфа */}
