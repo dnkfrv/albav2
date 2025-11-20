@@ -52,8 +52,7 @@ const menuItems = [
 
 export const MenuSheet: React.FC<{
   onSelect: (item: any) => void;
-  selectedDish: any | null;
-}> = ({ onSelect, selectedDish }) => {
+}> = ({ onSelect }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpenChange = (nextOpen: boolean) => {
@@ -115,7 +114,10 @@ export const MenuSheet: React.FC<{
                   <div
                     key={item.name}
                     className="flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
-                    onClick={() => onSelect(item)}
+                    onClick={() => {
+                      onSelect(item);
+                      handleOpenChange(false); // сразу закрываем меню при выборе блюда
+                    }}
                   >
                     <div className="flex justify-between items-baseline">
                       <span className="text-lg text-foreground">{item.name}</span>
