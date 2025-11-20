@@ -1,5 +1,4 @@
-// src/components/MenuSheet.tsx
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
   Sheet,
   SheetContent,
@@ -8,11 +7,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { X } from "lucide-react";
 import menuImage from "@/assets/Menu.png";
 import imgA213 from "@/assets/A-213.jpg";
 import imgA216 from "@/assets/A-216.jpg";
 
+// ITEMS
 const menuItems = [
   {
     category: "MAIN",
@@ -29,7 +28,6 @@ const menuItems = [
         allergens: ["eggs", "gluten", "dairy"],
         images: [imgA213, imgA216],
       },
-
       {
         name: "DANISH BREAKFAST",
         description:
@@ -94,89 +92,40 @@ const menuItems = [
   },
 ];
 
-// ---- КОМПОНЕНТ ----
-
-export const MenuSheet: React.FC<{
-  onDishClick: (dish: any) => void;
-  onWidthChange: (width: number) => void;
-}> = ({ onDishClick, onWidthChange }) => {
-  const [open, setOpen] = React.useState(false);
-
-  const sheetRef = useRef<HTMLDivElement | null>(null);
-
-  // динамическая ширина
-  useEffect(() => {
-    if (!sheetRef.current) return;
-
-    const observer = new ResizeObserver(() => {
-      if (sheetRef.current) {
-        onWidthChange(sheetRef.current.offsetWidth);
-      }
-    });
-
-    observer.observe(sheetRef.current);
-    return () => observer.disconnect();
-  }, []);
-
+export const MenuSheet: React.FC<{ onDishClick: (dish: any) => void }> = ({
+  onDishClick,
+}) => {
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80">
-          <img
-            src={menuImage}
-            alt="Menu"
-            className="h-4 md:h-6 w-auto object-contain"
-          />
-        </button>
-      </SheetTrigger>
+    <div className="w-[540px] h-full bg-white shadow-xl overflow-y-auto border-l border-gray-200">
+      <div className="p-6">
+        <h2 className="text-3xl font-semibold mb-6">Menu</h2>
 
-      <SheetContent
-        ref={sheetRef}
-        className="w-full sm:w-[540px] overflow-y-auto"
-      >
-        <div className="flex justify-end w-full mt-2 mb-2 md:hidden">
-          <button onClick={() => setOpen(false)} className="p-1">
-            <X size={22} />
-          </button>
-        </div>
+        {menuItems.map((section) => (
+          <div key={section.category} className="mb-10">
+            <h3 className="text-2xl font-semibold text-primary border-b pb-2">
+              {section.category}
+            </h3>
 
-        <SheetHeader>
-          <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
-        </SheetHeader>
-
-        <div className="space-y-8 py-4">
-          {menuItems.map((section) => (
-            <div key={section.category} className="space-y-4">
-              <h3 className="text-2xl font-semibold text-primary border-b pb-2">
-                {section.category}
-              </h3>
-
-              <div className="space-y-3">
-                {section.items.map((item) => (
-                  <button
-                    key={item.name}
-                    className="w-full text-left flex flex-col gap-1 py-2 px-3 hover:bg-muted/60 rounded-md transition"
-                    onClick={() => onDishClick(item)}
-                  >
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-lg">{item.name}</span>
-                      <span className="text-lg font-medium text-primary">
-                        {item.price}
-                      </span>
-                    </div>
-
-                    {item.description && (
-                      <span className="text-sm text-muted-foreground">
-                        {item.description}
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </div>
+            <div className="mt-4 space-y-3">
+              {section.items.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => onDishClick(item)}
+                  className="w-full text-left py-2 px-3 hover:bg-muted/50 rounded-md transition"
+                >
+                  <div className="flex justify-between text-lg">
+                    <span>{item.name}</span>
+                    <span className="font-medium text-primary">{item.price}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
+                </button>
+              ))}
             </div>
-          ))}
-        </div>
-      </SheetContent>
-    </Sheet>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
