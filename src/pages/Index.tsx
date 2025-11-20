@@ -1,4 +1,3 @@
-// src/pages/Index.tsx
 import React, { useState, useRef, CSSProperties } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
@@ -34,14 +33,14 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
-// MOBILE фото
+// MOBILE
 const heroImages = [
   imgA130, imga17, imgA20, imga54, imgA208, imga94, imga150, imga113, imgA31,
   img1_38, img1_23, imgA11, imga38, imgA55, imgA121, imgA90, imgA73, imga155,
   imga172, imga132, imgA217, imgA23, imgA188, imgA1113, imga5, imga10
 ].filter(Boolean);
 
-// DESKTOP фото
+// DESKTOP
 const desktopImages = [
   imgA130, imgA20, imga94, imga150, imga113, img1_38, img1_23, imgA11,
   imgA55, imgA121, imgA90, imga172, imga155, imga132, imga40, imgA1113, imga5
@@ -49,27 +48,17 @@ const desktopImages = [
 
 const Index: React.FC = () => {
 
-  // ширина меню (динамическая)
-  const [menuWidth, setMenuWidth] = useState(540);
-
-  // SECOND SHEET (DishSheet)
   const [selectedDish, setSelectedDish] = useState(null);
-  const [dishSheetOpen, setDishSheetOpen] = useState(false);
+  const [showDish, setShowDish] = useState(false);
 
-  const handleOpenDish = (dish: any) => {
-    setSelectedDish(dish);
-    setDishSheetOpen(true);
-  };
-
-  // DESKTOP IMAGE SWAP
+  // DESKTOP IMAGE
   const [currentIndex, setCurrentIndex] = useState(0);
   const lastDesktopMousePos = useRef<{ x: number; y: number } | null>(null);
 
+  // SWAP DESKTOP IMAGE
   const handleDesktopMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    if (!desktopImages.length) return;
-
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -81,22 +70,22 @@ const Index: React.FC = () => {
 
     const dx = x - lastDesktopMousePos.current.x;
     const dy = y - lastDesktopMousePos.current.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    const dist = Math.sqrt(dx * dx + dy * dy);
     const threshold = Math.min(rect.width, rect.height) * 0.08;
 
-    if (distance < threshold) return;
+    if (dist < threshold) return;
 
     lastDesktopMousePos.current = { x, y };
 
-    let nextIndex = currentIndex;
-    while (nextIndex === currentIndex) {
-      nextIndex = Math.floor(Math.random() * desktopImages.length);
+    let next = currentIndex;
+    while (next === currentIndex) {
+      next = Math.floor(Math.random() * desktopImages.length);
     }
-
-    setCurrentIndex(nextIndex);
+    setCurrentIndex(next);
   };
 
-  // MOBILE SWIPE
+  // MOBILE SLIDER
   const [mobileIndex, setMobileIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
@@ -126,7 +115,6 @@ const Index: React.FC = () => {
   const endDrag = () => {
     if (dragStartX === null) {
       setIsDragging(false);
-      setDragOffset(0);
       return;
     }
 
@@ -141,200 +129,124 @@ const Index: React.FC = () => {
     setDragOffset(0);
   };
 
-  const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (swipedRef.current) {
-      swipedRef.current = false;
-      return;
-    }
-
-    const rect = mobileRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const x = e.clientX - rect.left;
-    x < rect.width / 2 ? prevMobile() : nextMobile();
-  };
-
-  // MOBILE transform
   const width = mobileRef.current?.offsetWidth ?? 1;
   const dragPercent = (dragOffset / width) * 100;
-  const translate = -mobileIndex * 100 + dragPercent;
 
   const mobileTrackStyle: CSSProperties = {
-    transform: `translateX(${translate}%)`,
+    transform: `translateX(${-mobileIndex * 100 + dragPercent}%)`,
     transition: isDragging ? "none" : "transform 0.4s ease",
   };
 
+  // OPEN DISH
+  const handleOpenDish = (dish: any) => {
+    setSelectedDish(dish);
+    setShowDish(true);
+  };
+
   return (
-    <div className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon">
+    <div className="relative h-svh bg-background font-kommon overflow-hidden">
 
-      {/* DESKTOP IMAGES */}
-      <div
-        className="absolute inset-0 hidden md:block"
-        onMouseMove={handleDesktopMouseMove}
-      >
-        {desktopImages.map((img, index) => (
-          <div
-            key={index}
-            className={`
-              absolute inset-0 flex items-center justify-end
-              transition-opacity duration-700
-              ${index === currentIndex ? "opacity-100" : "opacity-0"}
-            `}
-          >
-            <div className="relative max-h-[100vh] mr-0">
-              <img
-                src={img}
-                alt="Restaurant"
-                className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
-              />
-              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* MAIN CONTENT */}
+      <div className="absolute inset-0 flex">
 
-      {/* MOBILE IMAGES */}
-      <div
-        ref={mobileRef}
-        className="absolute inset-0 block md:hidden overflow-x-hidden"
-        onTouchStart={(e) => startDrag(e.touches[0].clientX)}
-        onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
-        onTouchEnd={endDrag}
-        onClick={handleTap}
-        style={{ touchAction: "pan-x" }}
-      >
-        <div className="flex h-full w-full" style={mobileTrackStyle}>
-          {heroImages.map((img, index) => (
+        {/* DESKTOP IMAGES */}
+        <div
+          className="hidden md:block absolute inset-0"
+          onMouseMove={handleDesktopMouseMove}
+        >
+          {desktopImages.map((img, i) => (
             <div
-              key={index}
-              className="flex-shrink-0 w-full h-full flex items-center justify-center"
+              key={i}
+              className={`
+                absolute inset-0 flex items-center justify-end
+                transition-opacity duration-700
+                ${i === currentIndex ? "opacity-100" : "opacity-0"}
+              `}
             >
-              <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
-                <img
-                  src={img}
-                  alt="Restaurant"
-                  className="w-full h-auto object-contain"
-                />
-                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+              <div className="relative max-h-[100vh]">
+                <img src={img} className="max-h-[100vh] object-contain" />
+                <div className="absolute inset-0 bg-black/25" />
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* LOGO */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <div className="flex flex-col items-start gap-1 select-none">
+        {/* MOBILE IMAGES */}
+        <div
+          ref={mobileRef}
+          className="md:hidden absolute inset-0 overflow-hidden"
+          onTouchStart={(e) => startDrag(e.touches[0].clientX)}
+          onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
+          onTouchEnd={endDrag}
+          style={{ touchAction: "pan-x" }}
+        >
+          <div className="flex h-full w-full" style={mobileTrackStyle}>
+            {heroImages.map((img, i) => (
+              <div
+                key={i}
+                className="w-full h-full flex items-center justify-center"
+              >
+                <img
+                  src={img}
+                  className="w-[93vw] object-contain -translate-y-[10px]"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* LOGO */}
+        <div className="absolute top-4 left-4 md:top-6 md:left-8 z-50">
           <img
             src={logoImage}
-            alt="Alba Bistro Logo"
-            className="h-4 md:h-6 w-auto object-contain"
+            className="h-4 md:h-6 select-none"
           />
-          <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
+          <p className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
             BISTRO • SPECIALTY COFFEE • MATCHA BAR
           </p>
         </div>
-      </div>
 
-      {/* ABOUT SECTION */}
-      <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-[#644A42] leading-relaxed font-kommon"
-        style={{ top: 200, left: 200 }}
-      >
-        <p className="mb-3">
-          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
-          Our bright space with a sunny terrace at Rato Square invites you to
-          immerse yourself in an atmosphere of comfort and enjoyment.
-        </p>
-        <p className="mb-3">
-          Alba Bistro offers a fresh take on breakfast and brunch - our
-          exquisite menu is crafted for those who appreciate subtle taste and
-          originality.
-        </p>
-        <p>
-          Try our signature coffee cocktails and explore the rich variety of
-          matcha options. Visit us for new gastronomic experiences and comfort!
-          We eagerly await your visit.
-        </p>
-        <div className="mt-20">
-          <JoinTeamSheet />
-        </div>
-      </div>
+        {/* ABOUT (DESKTOP) */}
+        <div
+          className="hidden md:block absolute text-[#644A42] top-[200px] left-[200px] max-w-md"
+        >
+          <p className="mb-3 text-sm">
+            Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
+            Our bright space with a sunny terrace at Rato Square invites you to
+            immerse yourself in an atmosphere of comfort and enjoyment.
+          </p>
+          <p className="mb-3 text-sm">
+            Alba Bistro offers a fresh take on breakfast and brunch - our
+            exquisite menu is crafted for those who appreciate subtle taste and
+            originality.
+          </p>
+          <p className="text-sm">
+            Try our signature coffee cocktails and explore the rich variety of
+            matcha options. Visit us for new gastronomic experiences and
+            comfort! We eagerly await your visit.
+          </p>
 
-      {/* MENU BUTTON */}
-      <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
-        <MenuSheet
-          onDishClick={handleOpenDish}
-          onWidthChange={(w) => setMenuWidth(w)}
-        />
-      </div>
-
-      {/* MOBILE ADDRESS */}
-      <div className="absolute bottom-4 left-4 md:hidden">
-        <div className="flex flex-col space-y-1 text-xs text-[#644A42] leading-[18px] font-kommon">
-          <span>Monday - Sunday 9:00 - 17:00</span>
-          <a
-            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Largo do Rato, 4A
-          </a>
-        </div>
-      </div>
-
-      {/* MOBILE JOIN + LINKS */}
-      <div className="absolute bottom-4 right-4 md:hidden">
-        <div className="flex flex-col items-end text-right space-y-1 font-kommon">
-          <JoinTeamSheet />
-          <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
-            <a href="https://instagram.com/albabistrolisbon" target="_blank">
-              Instagram
-            </a>
-            <span>/</span>
-            <a href="mailto:hello@albabistrolisbon.com">Email</a>
+          <div className="mt-20">
+            <JoinTeamSheet />
           </div>
         </div>
-      </div>
 
-      {/* DESKTOP FOOTER LEFT */}
-      <div className="hidden md:block absolute bottom-6 left-8">
-        <div className="flex flex-col text-xs text-[#644A42] leading-[14px] font-kommon">
-          <span>Monday - Sunday 9:00 - 17:00</span>
-          <a
-            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
-            target="_blank"
-          >
-            Largo do Rato, 4A
-          </a>
-          <div className="flex items-center gap-2">
-            <a
-              href="https://instagram.com/albabistrolisbon"
-              target="_blank"
-            >
-              Instagram
-            </a>
-            <span>/</span>
-            <a href="mailto:hello@albabistrolisbon.com">Email</a>
-          </div>
+        {/* RIGHT PANEL => MENU + DISH */}
+        <div className="absolute right-0 top-0 h-full flex z-[999]">
+
+          {/* DISH SHEET (left) */}
+          {showDish && selectedDish && (
+            <DishSheet
+              dish={selectedDish}
+              onClose={() => setShowDish(false)}
+            />
+          )}
+
+          {/* MENU SHEET (right) */}
+          <MenuSheet onDishClick={handleOpenDish} />
         </div>
+
       </div>
-
-      {/* DESKTOP FOOTER RIGHT */}
-      <div className="hidden md:block absolute bottom-6 right-8">
-        <p className="text-xs text-[#644A42] font-kommon">
-          Created by AlbaFamily
-        </p>
-      </div>
-
-      {/* SECOND SHEET (DishSheet) */}
-      <DishSheet
-        dish={selectedDish}
-        open={dishSheetOpen}
-        onClose={() => setDishSheetOpen(false)}
-        menuWidth={menuWidth}
-      />
-
     </div>
   );
 };
