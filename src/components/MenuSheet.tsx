@@ -57,8 +57,6 @@ export const MenuSheet: React.FC<{
   const [open, setOpen] = React.useState(false);
 
   const handleOpenChange = (nextOpen: boolean) => {
-    // Не даём закрыть меню, пока открыта модалка блюда
-    if (!nextOpen && selectedDish) return;
     setOpen(nextOpen);
   };
 
