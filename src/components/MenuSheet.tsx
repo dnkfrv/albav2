@@ -19,7 +19,7 @@ const menuItems = [
       { name: "VEGAN MISO GRANOLA", description: "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water", price: "8" },
       { name: "FETA VEGAN TOAST", description: "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate", price: "10" },
       { name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR", description: "cheesy potato croquettes with lemon cream cheese and red caviar", price: "12" },
-      { name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGG", description: "puff roti with lemon cream cheese, salmon, asparagus and boiled egg", price: "12" },
+      { name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGGS", description: "puff roti with lemon cream cheese, salmon, asparagus and boiled egg", price: "12" },
       { name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO", description: "savory oatmeal with truffle sauce, poached egg and Prosciutto Crudo", price: "12" },
       { name: "CROQUE MADAME WITH TRUFFLE SAUCE", description: "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce", price: "13" },
       { name: "EGGS BENEDICT WITH SALMON AND SPINACH", description: "brioche with avocado cream, salmon, poached eggs, yogurt hollandaise and fresh herbs", price: "13" },
