@@ -7,26 +7,24 @@ export const DishSheet = ({
   open,
   onClose,
   menuWidth,
-}: {
-  dish: any;
-  open: boolean;
-  onClose: () => void;
-  menuWidth: number;
 }) => {
   if (!dish) return null;
 
-  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
+  const isDesktop =
+    typeof window !== "undefined" && window.innerWidth >= 768;
 
   return (
     <div
       className={`
-        fixed top-0 
-        ${isDesktop ? `right-[${menuWidth}px]` : "right-0"}
+        fixed top-0
         h-full w-[420px]
         bg-white shadow-xl z-[998]
         transform transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-[110%]"}
       `}
+      style={{
+        right: isDesktop ? `${menuWidth}px` : "0px",
+      }}
     >
       {/* header */}
       <div className="flex justify-end p-4">
@@ -40,7 +38,7 @@ export const DishSheet = ({
 
         {dish.images && (
           <div className="flex gap-3 overflow-x-auto mb-4 pb-2">
-            {dish.images.map((img: string, i: number) => (
+            {dish.images.map((img, i) => (
               <img
                 key={i}
                 src={img}
@@ -51,6 +49,7 @@ export const DishSheet = ({
         )}
 
         <h2 className="text-xl mb-2">{dish.name}</h2>
+
         {dish.description && (
           <p className="text-sm mb-4">{dish.description}</p>
         )}
