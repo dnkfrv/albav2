@@ -163,11 +163,13 @@ type MenuSheetProps = {
 export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
   const [open, setOpen] = React.useState(false);
   const [selectedDish, setSelectedDish] = React.useState<Dish | null>(null);
+  const [previewSrc, setPreviewSrc] = React.useState<string | null>(null);
 
   const handleOpenChange = (nextOpen: boolean) => {
     setOpen(nextOpen);
     if (!nextOpen) {
       setSelectedDish(null);
+      setPreviewSrc(null);
     }
   };
 
@@ -199,12 +201,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
   const handleDishClick = (item: Dish) => {
     setSelectedDish(item);
     if (onSelect) onSelect(item);
-  };
-
-  const handleImageClick = (src: string) => {
-    if (typeof window !== "undefined") {
-      window.open(src, "_blank");
-    }
   };
 
   return (
@@ -275,15 +271,15 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           <div
             className="
               sticky bottom-0 left-0 right-0
-              bg-black/10 backdrop-blur-[1px]
-              pt-4 pb-5 px-3
+              bg-background
+              pt-5 pb-6 px-3
             "
           >
             <div
               className="
                 min-h-[320px]
                 w-full
-                bg-muted/80
+                bg-muted/70
                 rounded-xl
                 border border-border/60
                 shadow-sm
@@ -310,24 +306,13 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 {selectedDish.images && selectedDish.images.length > 0 && (
                   <div className="mt-3 flex gap-2 overflow-x-auto">
                     {selectedDish.images.map((src, index) => (
-                      <button
+                      <img
                         key={index}
-                        type="button"
-                        onClick={() => handleImageClick(src)}
-                        className="flex-shrink-0 focus:outline-none"
-                      >
-                        <img
-                          src={src}
-                          alt={selectedDish.name}
-                          className="
-                            h-28 w-28
-                            object-cover rounded-md
-                            cursor-zoom-in
-                            transition-transform
-                            hover:scale-[1.03]
-                          "
-                        />
-                      </button>
+                        src={src}
+                        alt={selectedDish.name}
+                        className="h-28 w-28 object-cover rounded-md flex-shrink-0 cursor-pointer"
+                        onClick={() => setPreviewSrc(src)}
+                      />
                     ))}
                   </div>
                 )}
@@ -359,6 +344,45 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 onClick={() => setSelectedDish(null)}
                 className="text-xl leading-none opacity-70 hover:opacity-100 flex-shrink-0"
                 aria-label="Close dish details"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+
+        {previewSrc && (
+          <div
+            className="
+              fixed inset-0 z-[9999]
+              bg-black/70
+              flex items-center justify-center
+            "
+            onClick={() => setPreviewSrc(null)}
+          >
+            <div
+              className="relative max-w-[90vw] max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={previewSrc}
+                alt={selectedDish?.name ?? "Dish"}
+                className="w-full h-full object-contain rounded-lg"
+              />
+              <button
+                type="button"
+                onClick={() => setPreviewSrc(null)}
+                className="
+                  absolute -top-3 -right-3
+                  h-8 w-8
+                  rounded-full
+                  bg-background/90
+                  border border-border
+                  flex items-center justify-center
+                  text-lg leading-none
+                  opacity-80 hover:opacity-100
+                "
+                aria-label="Close image preview"
               >
                 ×
               </button>
