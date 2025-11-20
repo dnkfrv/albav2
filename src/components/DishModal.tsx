@@ -12,11 +12,16 @@ export const DishModal = ({ dish, onClose }) => {
       className="fixed inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center z-[200]"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-xl shadow-xl w-[90vw] max-w-[480px] p-6 relative">
-        
-        {/* Кнопка закрытия */}
+      <div
+        className="bg-white rounded-xl shadow-xl w-[90vw] max-w-[480px] p-6 relative"
+        onClick={(e) => e.stopPropagation()} // ← важно!
+      >
+        {/* крестик */}
         <button
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation(); // ← предотвращает закрытие шторки
+            onClose();
+          }}
           className="absolute top-4 right-4 text-xl leading-none opacity-70 hover:opacity-100"
         >
           ×
@@ -31,7 +36,6 @@ export const DishModal = ({ dish, onClose }) => {
         )}
 
         <p className="text-lg font-medium">€{dish.price}</p>
-
       </div>
     </div>
   );
