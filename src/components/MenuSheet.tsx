@@ -1,5 +1,5 @@
 // src/components/MenuSheet.tsx
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Sheet,
   SheetContent,
@@ -8,29 +8,27 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+import { X } from "lucide-react";
 import menuImage from "@/assets/Menu.png";
 import imgA213 from "@/assets/A-213.jpg";
 import imgA216 from "@/assets/A-216.jpg";
 
-// МАССИВ БЛЮД
 const menuItems = [
   {
     category: "MAIN",
     items: [
-     {
-  name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
-  description:
-    "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
-  price: "9",
-  kcal: 410,
-  protein: 22,
-  fat: 18,
-  carbs: 34,
-  allergens: ["eggs", "gluten", "dairy"],
-
-  // ДОБАВЛЯЕМ ФОТОГРАФИИ
-  images: [imgA213, imgA216],
-},
+      {
+        name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
+        description:
+          "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
+        price: "9",
+        kcal: 410,
+        protein: 22,
+        fat: 18,
+        carbs: 34,
+        allergens: ["eggs", "gluten", "dairy"],
+        images: [imgA213, imgA216],
+      },
 
       {
         name: "DANISH BREAKFAST",
@@ -96,35 +94,29 @@ const menuItems = [
   },
 ];
 
-export const MenuSheet: React.FC<{ onDishClick: (dish: any) => void }> = ({
-  onDishClick,
-}) => {
+// ---- КОМПОНЕНТ ----
+
+export const MenuSheet: React.FC<{
+  onDishClick: (dish: any) => void;
+  onWidthChange: (width: number) => void;
+}> = ({ onDishClick, onWidthChange }) => {
   const [open, setOpen] = React.useState(false);
 
-  const startX = React.useRef<number | null>(null);
-  const currentX = React.useRef<number | null>(null);
+  const sheetRef = useRef<HTMLDivElement | null>(null);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    startX.current = e.touches[0].clientX;
-    currentX.current = e.touches[0].clientX;
-  };
+  // динамическая ширина
+  useEffect(() => {
+    if (!sheetRef.current) return;
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    currentX.current = e.touches[0].clientX;
-  };
+    const observer = new ResizeObserver(() => {
+      if (sheetRef.current) {
+        onWidthChange(sheetRef.current.offsetWidth);
+      }
+    });
 
-  const handleTouchEnd = () => {
-    if (
-      startX.current !== null &&
-      currentX.current !== null &&
-      currentX.current - startX.current > 70
-    ) {
-      setOpen(false);
-    }
-
-    startX.current = null;
-    currentX.current = null;
-  };
+    observer.observe(sheetRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -139,11 +131,15 @@ export const MenuSheet: React.FC<{ onDishClick: (dish: any) => void }> = ({
       </SheetTrigger>
 
       <SheetContent
+        ref={sheetRef}
         className="w-full sm:w-[540px] overflow-y-auto"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
+        <div className="flex justify-end w-full mt-2 mb-2 md:hidden">
+          <button onClick={() => setOpen(false)} className="p-1">
+            <X size={22} />
+          </button>
+        </div>
+
         <SheetHeader>
           <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
         </SheetHeader>
@@ -163,9 +159,7 @@ export const MenuSheet: React.FC<{ onDishClick: (dish: any) => void }> = ({
                     onClick={() => onDishClick(item)}
                   >
                     <div className="flex justify-between items-baseline">
-                      <span className="text-lg text-foreground">
-                        {item.name}
-                      </span>
+                      <span className="text-lg">{item.name}</span>
                       <span className="text-lg font-medium text-primary">
                         {item.price}
                       </span>
