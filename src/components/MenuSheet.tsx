@@ -5,6 +5,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
 
 import menuImage from "@/assets/Menu.png";
@@ -32,7 +33,7 @@ const menuItems: { category: string; items: Dish[] }[] = [
       {
         name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
         description:
-          "creamy scrambled eggs with grated parmesan and toasted sourdough bread",
+          "Creamy scrambled eggs with grated parmesan and toasted sourdough bread",
         price: "9",
         images: [imgA213, imgA216],
         nutrition: {
@@ -222,13 +223,20 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           sm:w-[650px]
           sm:max-w-[650px]
           overflow-y-auto
+          [&>button]:hidden
         "
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <SheetHeader>
-          <SheetTitle className="text-3xl font-bold mb-6">Menu</SheetTitle>
+        <SheetHeader className="flex flex-row items-center justify-between mb-6">
+          <SheetTitle className="text-3xl font-bold">Menu</SheetTitle>
+          <SheetClose
+            className="text-2xl md:text-3xl leading-none opacity-70 hover:opacity-100 transition-colors"
+            aria-label="Close menu"
+          >
+            ×
+          </SheetClose>
         </SheetHeader>
 
         <div className="space-y-8 py-4 pb-40">
