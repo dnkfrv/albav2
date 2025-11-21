@@ -270,22 +270,25 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
         {selectedDish && (
           <div
             className="
-              sticky bottom-0 left-0 right-0
-              bg-background/80 backdrop-blur-sm
-              px-0 pb-0 pt-0
+              fixed inset-0 z-50
+              bg-black/50 backdrop-blur-sm
+              flex items-center justify-center
+              px-4
             "
+            onClick={() => setSelectedDish(null)}
           >
             <div
               className="
                 min-h-[340px]
-                w-full
-                bg-muted/80
-                rounded-t-2xl
-                border-t border-border/60
-                shadow-[0_-4px_16px_rgba(0,0,0,0.15)]
+                w-full max-w-[500px]
+                bg-background
+                rounded-2xl
+                border border-border
+                shadow-xl
                 px-4 py-4
                 flex justify-between items-start gap-4
               "
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-4">
