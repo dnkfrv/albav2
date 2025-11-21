@@ -319,19 +319,14 @@ const Index: React.FC = () => {
               Instagram
             </a>
             <span>/</span>
-            <a
-              href="mailto:hello@albabistrolisbon.com"
-              className="hover:text-[#4B362F] transition-colors"
-            >
-              Email
-            </a>
+            <span>hello@albabistrolisbon.com</span>
           </div>
         </div>
       </div>
 
       {/* ДЕСКТОП — нижний левый угол */}
       <div className="hidden md:block absolute bottom-6 left-8">
-        <div className="flex flex-col space-y-0 text-xs text-[#644A42] leading-[14px] font-kommon">
+        <div className="flex flex-col space-y-0 text-sm text-[#644A42] leading-[16px] font-kommon">
           <span>Monday - Sunday 9:00 - 17:00</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
@@ -351,12 +346,7 @@ const Index: React.FC = () => {
               Instagram
             </a>
             <span>/</span>
-            <a
-              href="mailto:hello@albabistrolisbon.com"
-              className="hover:text-[#4B362F] transition-colors"
-            >
-              Email
-            </a>
+            <span>hello@albabistrolisbon.com</span>
           </div>
         </div>
       </div>
