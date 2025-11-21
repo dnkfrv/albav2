@@ -287,13 +287,13 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           >
             <div
               className="
-                min-h-[340px]
-                w-full max-w-[500px]
+                min-h-[340px] md:min-h-[510px]
+                w-full max-w-[500px] md:max-w-[750px]
                 bg-background
                 rounded-2xl
                 border border-border
                 shadow-xl
-                px-4 py-4
+                px-4 py-4 md:px-6 md:py-6
                 flex justify-between items-start gap-4
               "
               onClick={(e) => e.stopPropagation()}
@@ -322,7 +322,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                   </div>
                 )}
 
-                {/* СНАЧАЛА NUTRITION */}
+                {/* Сначала Nutrition */}
                 {selectedDish.nutrition && (
                   <div className="mt-3 text-sm text-muted-foreground space-y-1">
                     <div>
@@ -337,7 +337,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                   </div>
                 )}
 
-                {/* ПОТОМ ОПИСАНИЕ */}
+                {/* затем описание */}
                 {selectedDish.description && (
                   <p className="mt-3 text-sm text-muted-foreground">
                     {selectedDish.description}
@@ -345,7 +345,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 )}
 
                 {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                  <div className="mt-1 text-sm text-muted-foreground">
+                  <div className="mt-3 text-sm text-muted-foreground">
                     <span className="font-medium mr-1">Allergens:</span>
                     <span>{selectedDish.allergens.join(", ")}</span>
                   </div>
