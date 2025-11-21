@@ -294,70 +294,75 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 border border-border
                 shadow-xl
                 px-4 py-4 md:px-8 md:py-8
-                flex justify-between items-start gap-6
               "
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-4">
+              {/* Заголовок карточки: название, цена, крестик в одной строке */}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 min-w-0">
                   <h4 className="text-lg font-semibold">
                     {selectedDish.name}
                   </h4>
-                  <span className="text-lg font-medium flex-shrink-0">
+                </div>
+                <div className="flex items-center gap-4 flex-shrink-0">
+                  <span className="text-lg font-medium">
                     €{selectedDish.price}
                   </span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedDish(null)}
+                    className="text-3xl leading-none opacity-70 hover:opacity-100"
+                    aria-label="Close dish details"
+                  >
+                    ×
+                  </button>
                 </div>
-
-                {selectedDish.images && selectedDish.images.length > 0 && (
-                  <div className="mt-4 flex gap-3 overflow-x-auto">
-                    {selectedDish.images.map((src, index) => (
-                      <img
-                        key={index}
-                        src={src}
-                        alt={selectedDish.name}
-                        className="h-[36rem] w-[36rem] object-cover rounded-md flex-shrink-0 cursor-pointer"
-                        onClick={() => setPreviewSrc(src)}
-                      />
-                    ))}
-                  </div>
-                )}
-
-                {selectedDish.nutrition && (
-                  <div className="mt-4 text-sm text-muted-foreground space-y-1">
-                    <div>
-                      <span className="font-medium mr-1">Nutrition:</span>
-                      <span>
-                        {selectedDish.nutrition.kcal} kcal ·{" "}
-                        {selectedDish.nutrition.protein} g protein ·{" "}
-                        {selectedDish.nutrition.fat} g fat ·{" "}
-                        {selectedDish.nutrition.carbs} g carbs
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {selectedDish.description && (
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    {selectedDish.description}
-                  </p>
-                )}
-
-                {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                  <div className="mt-4 text-sm text-muted-foreground">
-                    <span className="font-medium mr-1">Allergens:</span>
-                    <span>{selectedDish.allergens.join(", ")}</span>
-                  </div>
-                )}
               </div>
 
-              <button
-                type="button"
-                onClick={() => setSelectedDish(null)}
-                className="text-3xl leading-none opacity-70 hover:opacity-100 flex-shrink-0"
-                aria-label="Close dish details"
-              >
-                ×
-              </button>
+              {/* Фото */}
+              {selectedDish.images && selectedDish.images.length > 0 && (
+                <div className="mt-4 flex gap-3 overflow-x-auto">
+                  {selectedDish.images.map((src, index) => (
+                    <img
+                      key={index}
+                      src={src}
+                      alt={selectedDish.name}
+                      className="h-[36rem] w-[36rem] object-cover rounded-md flex-shrink-0 cursor-pointer"
+                      onClick={() => setPreviewSrc(src)}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Nutrition */}
+              {selectedDish.nutrition && (
+                <div className="mt-4 text-lg text-muted-foreground space-y-1">
+                  <div>
+                    <span className="font-medium mr-1">Nutrition:</span>
+                    <span>
+                      {selectedDish.nutrition.kcal} kcal ·{" "}
+                      {selectedDish.nutrition.protein} g protein ·{" "}
+                      {selectedDish.nutrition.fat} g fat ·{" "}
+                      {selectedDish.nutrition.carbs} g carbs
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Описание */}
+              {selectedDish.description && (
+                <p className="mt-4 text-lg text-muted-foreground">
+                  {selectedDish.description}
+                </p>
+              )}
+
+              {/* Allergens */}
+              {selectedDish.allergens && selectedDish.allergens.length > 0 && (
+                <div className="mt-4 text-lg text-muted-foreground">
+                  <span className="font-medium mr-1">Allergens:</span>
+                  <span>{selectedDish.allergens.join(", ")}</span>
+                </div>
+              )}
             </div>
           </div>
         )}
