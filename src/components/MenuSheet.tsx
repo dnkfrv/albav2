@@ -322,12 +322,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                   </div>
                 )}
 
-                {selectedDish.description && (
-                  <p className="mt-3 text-sm text-muted-foreground">
-                    {selectedDish.description}
-                  </p>
-                )}
-
+                {/* СНАЧАЛА NUTRITION */}
                 {selectedDish.nutrition && (
                   <div className="mt-3 text-sm text-muted-foreground space-y-1">
                     <div>
@@ -340,6 +335,13 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                       </span>
                     </div>
                   </div>
+                )}
+
+                {/* ПОТОМ ОПИСАНИЕ */}
+                {selectedDish.description && (
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    {selectedDish.description}
+                  </p>
                 )}
 
                 {selectedDish.allergens && selectedDish.allergens.length > 0 && (
