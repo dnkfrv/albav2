@@ -291,8 +291,8 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex-1 min-w-0">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h4 className="text-lg font-semibold truncate">
+                <div className="flex items-start justify-between gap-4">
+                  <h4 className="text-lg font-semibold">
                     {selectedDish.name}
                   </h4>
                   <span className="text-lg font-medium flex-shrink-0">
@@ -366,7 +366,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
             <div
               className="
                 relative max-w-[90vw] max-h-[90vh]
-                md:-translate-y-4
               "
               onClick={(e) => e.stopPropagation()}
             >
