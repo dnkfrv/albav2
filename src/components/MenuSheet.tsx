@@ -315,7 +315,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                         key={index}
                         src={src}
                         alt={selectedDish.name}
-                        className="h-72 w-72 object-cover rounded-md flex-shrink-0 cursor-pointer"
+                        className="h-[36rem] w-[36rem] object-cover rounded-md flex-shrink-0 cursor-pointer"
                         onClick={() => setPreviewSrc(src)}
                       />
                     ))}
