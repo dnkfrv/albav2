@@ -297,14 +297,14 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               "
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Заголовок карточки: название, цена, крестик */}
-              <div className="flex items-start md:items-center justify-between gap-4">
+              {/* Заголовок карточки: название, цена, крестик — в одной строке */}
+              <div className="flex items-baseline justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <h4 className="text-lg font-semibold">
                     {selectedDish.name}
                   </h4>
                 </div>
-                <div className="flex items-center gap-4 flex-shrink-0">
+                <div className="flex items-baseline gap-4 flex-shrink-0">
                   <span className="text-lg font-medium">
                     €{selectedDish.price}
                   </span>
@@ -338,9 +338,9 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Nutrition – меньше шрифт на мобиле, плотнее leading на десктопе */}
+              {/* Nutrition – меньше кегль на десктопе, плотный leading */}
               {selectedDish.nutrition && (
-                <div className="mt-4 text-sm md:text-lg md:leading-[1.2] text-muted-foreground space-y-1">
+                <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground space-y-1">
                   <div>
                     <span className="font-medium mr-1">Nutrition:</span>
                     <span>
@@ -353,16 +353,16 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Описание – тоже text-sm на мобиле, плотный leading на десктопе */}
+              {/* Описание */}
               {selectedDish.description && (
-                <p className="mt-4 text-sm md:text-lg md:leading-[1.2] text-muted-foreground">
+                <p className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground">
                   {selectedDish.description}
                 </p>
               )}
 
-              {/* Allergens – аналогично */}
+              {/* Allergens */}
               {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                <div className="mt-4 text-sm md:text-lg md:leading-[1.2] text-muted-foreground">
+                <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground">
                   <span className="font-medium mr-1">Allergens:</span>
                   <span>{selectedDish.allergens.join(", ")}</span>
                 </div>
