@@ -5,7 +5,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
 
 import menuImage from "@/assets/Menu.png";
@@ -231,12 +230,19 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
       >
         <SheetHeader className="flex flex-row items-center justify-between mb-6">
           <SheetTitle className="text-3xl font-bold">Menu</SheetTitle>
-          <SheetClose
-            className="text-2xl md:text-3xl leading-none opacity-70 hover:opacity-100 transition-colors"
+          <button
+            type="button"
+            onClick={() => handleOpenChange(false)}
+            className="
+              flex items-center justify-center
+              text-2xl md:text-3xl leading-none
+              opacity-70 hover:opacity-100
+              w-16
+            "
             aria-label="Close menu"
           >
             ×
-          </SheetClose>
+          </button>
         </SheetHeader>
 
         <div className="space-y-8 py-4 pb-40">
@@ -267,7 +273,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                       <span className="text-lg text-foreground flex-1">
                         {item.name}
                       </span>
-                      <span className="text-lg font-medium text-primary flex-shrink-0 text-right">
+                      <span className="text-lg font-medium text-primary flex-shrink-0 text-right w-16">
                         €{item.price}
                       </span>
                     </div>
