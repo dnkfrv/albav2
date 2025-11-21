@@ -287,14 +287,14 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
           >
             <div
               className="
-                min-h-[340px] md:min-h-[510px]
-                w-full max-w-[500px] md:max-w-[750px]
+                min-h-[340px] md:min-h-[750px]
+                w-full max-w-[500px] md:max-w-[1100px]
                 bg-background
                 rounded-2xl
                 border border-border
                 shadow-xl
-                px-4 py-4 md:px-6 md:py-6
-                flex justify-between items-start gap-4
+                px-4 py-4 md:px-8 md:py-8
+                flex justify-between items-start gap-6
               "
               onClick={(e) => e.stopPropagation()}
             >
@@ -309,22 +309,21 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
 
                 {selectedDish.images && selectedDish.images.length > 0 && (
-                  <div className="mt-3 flex gap-2 overflow-x-auto">
+                  <div className="mt-4 flex gap-3 overflow-x-auto">
                     {selectedDish.images.map((src, index) => (
                       <img
                         key={index}
                         src={src}
                         alt={selectedDish.name}
-                        className="h-64 w-64 object-cover rounded-md flex-shrink-0 cursor-pointer"
+                        className="h-72 w-72 object-cover rounded-md flex-shrink-0 cursor-pointer"
                         onClick={() => setPreviewSrc(src)}
                       />
                     ))}
                   </div>
                 )}
 
-                {/* Сначала Nutrition */}
                 {selectedDish.nutrition && (
-                  <div className="mt-3 text-sm text-muted-foreground space-y-1">
+                  <div className="mt-4 text-sm text-muted-foreground space-y-1">
                     <div>
                       <span className="font-medium mr-1">Nutrition:</span>
                       <span>
@@ -337,15 +336,14 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                   </div>
                 )}
 
-                {/* затем описание */}
                 {selectedDish.description && (
-                  <p className="mt-3 text-sm text-muted-foreground">
+                  <p className="mt-4 text-sm text-muted-foreground">
                     {selectedDish.description}
                   </p>
                 )}
 
                 {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                  <div className="mt-3 text-sm text-muted-foreground">
+                  <div className="mt-4 text-sm text-muted-foreground">
                     <span className="font-medium mr-1">Allergens:</span>
                     <span>{selectedDish.allergens.join(", ")}</span>
                   </div>
