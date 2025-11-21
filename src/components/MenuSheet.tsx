@@ -251,7 +251,16 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                   <button
                     key={item.name}
                     type="button"
-                    className="w-full text-left flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
+                    className="
+                      w-full text-left
+                      flex flex-col gap-1
+                      py-2
+                      hover:bg-muted/50
+                      pl-3 pr-0
+                      rounded-md
+                      transition-colors
+                      cursor-pointer
+                    "
                     onClick={() => handleDishClick(item)}
                   >
                     <div className="flex justify-between items-start gap-4">
@@ -338,7 +347,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Nutrition – меньше кегль на десктопе, плотный leading */}
+              {/* Nutrition */}
               {selectedDish.nutrition && (
                 <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground space-y-1">
                   <div>
