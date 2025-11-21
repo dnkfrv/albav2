@@ -237,7 +237,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               flex items-center justify-center
               text-2xl md:text-3xl leading-none
               opacity-70 hover:opacity-100
-              w-16
             "
             aria-label="Close menu"
           >
@@ -262,21 +261,20 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                       flex flex-col gap-1
                       py-2
                       hover:bg-muted/50
-                      pl-3 pr-0
+                      px-3
                       rounded-md
                       transition-colors
                       cursor-pointer
                     "
                     onClick={() => handleDishClick(item)}
                   >
-                    <div className="flex justify-between items-start gap-4">
-                      <span className="text-lg text-foreground flex-1">
-                        {item.name}
-                      </span>
-                      <span className="text-lg font-medium text-primary flex-shrink-0 text-right w-16">
+                    {/* Название + цена в одной строке */}
+                    <span className="text-lg text-foreground">
+                      {item.name}
+                      <span className="ml-2 text-primary font-medium">
                         €{item.price}
                       </span>
-                    </div>
+                    </span>
 
                     {item.description && (
                       <span className="text-sm text-muted-foreground">
@@ -312,7 +310,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               "
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Заголовок карточки: название, цена, крестик — в одной строке */}
+              {/* Заголовок карточки: название, цена, крестик */}
               <div className="flex items-baseline justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <h4 className="text-lg font-semibold">
