@@ -246,11 +246,11 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                     className="w-full text-left flex flex-col gap-1 py-2 hover:bg-muted/50 px-3 rounded-md transition-colors cursor-pointer"
                     onClick={() => handleDishClick(item)}
                   >
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-lg text-foreground">
+                    <div className="flex justify-between items-start gap-4">
+                      <span className="text-lg text-foreground flex-1">
                         {item.name}
                       </span>
-                      <span className="text-lg font-medium text-primary">
+                      <span className="text-lg font-medium text-primary flex-shrink-0 text-right">
                         €{item.price}
                       </span>
                     </div>
@@ -300,12 +300,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                   </span>
                 </div>
 
-                {selectedDish.description && (
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {selectedDish.description}
-                  </p>
-                )}
-
                 {selectedDish.images && selectedDish.images.length > 0 && (
                   <div className="mt-3 flex gap-2 overflow-x-auto">
                     {selectedDish.images.map((src, index) => (
@@ -313,15 +307,21 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                         key={index}
                         src={src}
                         alt={selectedDish.name}
-                        className="h-48 w-48 object-cover rounded-md flex-shrink-0 cursor-pointer"
+                        className="h-64 w-64 object-cover rounded-md flex-shrink-0 cursor-pointer"
                         onClick={() => setPreviewSrc(src)}
                       />
                     ))}
                   </div>
                 )}
 
+                {selectedDish.description && (
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    {selectedDish.description}
+                  </p>
+                )}
+
                 {selectedDish.nutrition && (
-                  <div className="mt-3 text-xs text-muted-foreground space-y-1">
+                  <div className="mt-3 text-sm text-muted-foreground space-y-1">
                     <div>
                       <span className="font-medium mr-1">Nutrition:</span>
                       <span>
@@ -335,7 +335,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 )}
 
                 {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                  <div className="mt-1 text-xs text-muted-foreground">
+                  <div className="mt-1 text-sm text-muted-foreground">
                     <span className="font-medium mr-1">Allergens:</span>
                     <span>{selectedDish.allergens.join(", ")}</span>
                   </div>
@@ -345,7 +345,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               <button
                 type="button"
                 onClick={() => setSelectedDish(null)}
-                className="text-xl leading-none opacity-70 hover:opacity-100 flex-shrink-0"
+                className="text-3xl leading-none opacity-70 hover:opacity-100 flex-shrink-0"
                 aria-label="Close dish details"
               >
                 ×
