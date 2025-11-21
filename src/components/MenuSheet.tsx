@@ -297,7 +297,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               "
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Заголовок карточки: название, цена, крестик в одной строке */}
+              {/* Заголовок карточки */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <h4 className="text-lg font-semibold">
@@ -319,7 +319,7 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               </div>
 
-              {/* Фото */}
+              {/* Фото – маленькие на мобильном, большие на десктопе */}
               {selectedDish.images && selectedDish.images.length > 0 && (
                 <div className="mt-4 flex gap-3 overflow-x-auto">
                   {selectedDish.images.map((src, index) => (
@@ -327,7 +327,11 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                       key={index}
                       src={src}
                       alt={selectedDish.name}
-                      className="h-[36rem] w-[36rem] object-cover rounded-md flex-shrink-0 cursor-pointer"
+                      className="
+                        h-64 w-64
+                        md:h-[36rem] md:w-[36rem]
+                        object-cover rounded-md flex-shrink-0 cursor-pointer
+                      "
                       onClick={() => setPreviewSrc(src)}
                     />
                   ))}
