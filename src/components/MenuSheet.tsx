@@ -297,8 +297,8 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               "
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Заголовок карточки */}
-              <div className="flex items-start justify-between gap-4">
+              {/* Заголовок карточки: название, цена, крестик */}
+              <div className="flex items-start md:items-center justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <h4 className="text-lg font-semibold">
                     {selectedDish.name}
@@ -338,9 +338,9 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Nutrition */}
+              {/* Nutrition – меньше шрифт на мобиле, плотнее leading на десктопе */}
               {selectedDish.nutrition && (
-                <div className="mt-4 text-lg text-muted-foreground space-y-1">
+                <div className="mt-4 text-sm md:text-lg md:leading-[1.2] text-muted-foreground space-y-1">
                   <div>
                     <span className="font-medium mr-1">Nutrition:</span>
                     <span>
@@ -353,16 +353,16 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Описание */}
+              {/* Описание – тоже text-sm на мобиле, плотный leading на десктопе */}
               {selectedDish.description && (
-                <p className="mt-4 text-lg text-muted-foreground">
+                <p className="mt-4 text-sm md:text-lg md:leading-[1.2] text-muted-foreground">
                   {selectedDish.description}
                 </p>
               )}
 
-              {/* Allergens */}
+              {/* Allergens – аналогично */}
               {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                <div className="mt-4 text-lg text-muted-foreground">
+                <div className="mt-4 text-sm md:text-lg md:leading-[1.2] text-muted-foreground">
                   <span className="font-medium mr-1">Allergens:</span>
                   <span>{selectedDish.allergens.join(", ")}</span>
                 </div>
