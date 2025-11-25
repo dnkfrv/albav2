@@ -9,11 +9,38 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mldkoeyz"; // замени на свой URL из Formspree
+
 export const JoinTeamSheet: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = React.useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // сюда позже можно добавить отправку формы
-    console.log("Join our team form submitted");
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -53,6 +80,7 @@ export const JoinTeamSheet: React.FC = () => {
             </label>
             <input
               type="text"
+              name="fullName"
               required
               className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
             />
@@ -66,6 +94,7 @@ export const JoinTeamSheet: React.FC = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 required
                 className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
               />
@@ -76,6 +105,7 @@ export const JoinTeamSheet: React.FC = () => {
               </label>
               <input
                 type="tel"
+                name="phone"
                 className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
               />
             </div>
@@ -88,6 +118,7 @@ export const JoinTeamSheet: React.FC = () => {
             </label>
             <input
               type="text"
+              name="position"
               placeholder="e.g., Chef, Server, Barista"
               className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
             />
@@ -100,6 +131,7 @@ export const JoinTeamSheet: React.FC = () => {
             </label>
             <textarea
               rows={5}
+              name="experience"
               placeholder="Tell us about your background and why you'd like to join our team..."
               className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42] resize-vertical"
             />
@@ -108,10 +140,23 @@ export const JoinTeamSheet: React.FC = () => {
           {/* Submit */}
           <button
             type="submit"
-            className="mt-2 w-full rounded-md bg-[#3b302b] px-4 py-2.5 text-sm font-semibold text-white tracking-wide hover:bg-[#2b211d] transition-colors"
+            disabled={status === "submitting"}
+            className="mt-2 w-full rounded-md bg-[#3b302b] px-4 py-2.5 text-sm font-semibold text-white tracking-wide hover:bg-[#2b211d] disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
           >
-            Submit Application
+            {status === "submitting" ? "Sending..." : "Submit Application"}
           </button>
+
+          {status === "success" && (
+            <p className="text-xs text-green-700 text-center mt-2">
+              Thank you! Your application has been submitted.
+            </p>
+          )}
+
+          {status === "error" && (
+            <p className="text-xs text-red-700 text-center mt-2">
+              Something went wrong. Please try again later.
+            </p>
+          )}
         </form>
       </SheetContent>
     </Sheet>
