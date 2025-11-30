@@ -89,6 +89,7 @@ const desktopImages = [
 ].filter(Boolean);
 
 const EMAIL = "hello@albabistrolisbon.com";
+const SLIDER_MARGIN = 150; // «мёртвые» зоны сверху и снизу в px
 
 const Index: React.FC = () => {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -112,7 +113,20 @@ const Index: React.FC = () => {
   const nextMobile = () => setMobileIndex((prev) => clampIndex(prev + 1));
   const prevMobile = () => setMobileIndex((prev) => clampIndex(prev - 1));
 
-  const startDrag = (clientX: number) => {
+  const isWithinSliderActiveZone = (clientY: number) => {
+    const viewportHeight =
+      typeof window !== "undefined"
+        ? window.innerHeight
+        : rootRef.current?.getBoundingClientRect().height ?? 0;
+
+    if (viewportHeight === 0) return true;
+    return (
+      clientY > SLIDER_MARGIN && clientY < viewportHeight - SLIDER_MARGIN
+    );
+  };
+
+  const startDrag = (clientX: number, clientY: number) => {
+    if (!isWithinSliderActiveZone(clientY)) return;
     setDragStartX(clientX);
     setIsDragging(true);
     swipedRef.current = false;
@@ -144,6 +158,9 @@ const Index: React.FC = () => {
   };
 
   const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
+    // тапы в верхних/нижних 150 px игнорируются
+    if (!isWithinSliderActiveZone(e.clientY)) return;
+
     if (swipedRef.current) {
       swipedRef.current = false;
       return;
@@ -228,11 +245,9 @@ const Index: React.FC = () => {
         typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
       if (isMobile) {
-        // мобильная версия — тост прямо в точке тапа
         x = e.clientX - rootRect.left;
         y = e.clientY - rootRect.top;
       } else {
-        // десктоп — правее и чуть выше конца email
         const emailRect = e.currentTarget.getBoundingClientRect();
         x = emailRect.right - rootRect.left + 4;
         y = emailRect.top - rootRect.top - 4;
@@ -316,7 +331,9 @@ const Index: React.FC = () => {
       <div
         ref={mobileRef}
         className="absolute inset-0 block md:hidden overflow-x-hidden"
-        onTouchStart={(e) => startDrag(e.touches[0].clientX)}
+        onTouchStart={(e) =>
+          startDrag(e.touches[0].clientX, e.touches[0].clientY)
+        }
         onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
         onTouchEnd={endDrag}
         onClick={handleTap}
@@ -416,7 +433,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
               {EMAIL}
             </span>
@@ -448,7 +465,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
               {EMAIL}
             </span>
@@ -481,8 +498,8 @@ const Index: React.FC = () => {
               bg-[#f5f5f7]/90
               text-[10px] md:text-[11px]
               text-[#111827]
-              px-1 py-0
-              rounded-[2px]
+              px-3 py-1.5
+              rounded-[6px]
               border border-white/70
               shadow-[0_8px_24px_rgba(15,23,42,0.18)]
               backdrop-blur-md
