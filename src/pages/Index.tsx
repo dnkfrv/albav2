@@ -213,14 +213,16 @@ const Index: React.FC = () => {
     };
   }, []);
 
-  // Копирование email + позиция тоста
+  // Копирование email + позиция тоста около конца email-строки
   const handleEmailClick = async (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
   ) => {
+    const emailRect = e.currentTarget.getBoundingClientRect();
     const rootRect = rootRef.current?.getBoundingClientRect();
     if (rootRect) {
-      const x = e.clientX - rootRect.left;
-      const y = e.clientY - rootRect.top;
+      // немного правее и выше последней буквы
+      const x = emailRect.right - rootRect.left + 6;
+      const y = emailRect.top - rootRect.top - 6;
       setCopiedPos({ x, y });
     }
 
@@ -445,17 +447,21 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Tooltip "Copied" в месте клика: нижний левый угол в точке касания */}
-      {copied && copiedPos && (
+      {/* Tooltip "Copied" около конца email-строки */}
+      {copiedPos && (
         <div
-          className="pointer-events-none absolute z-50"
+          className={`
+            pointer-events-none absolute z-50
+            transition-opacity duration-300
+            ${copied ? "opacity-100" : "opacity-0"}
+          `}
           style={{
             left: copiedPos.x,
             top: copiedPos.y,
             transform: "translateY(-100%)",
           }}
         >
-          <div className="rounded-sm bg-[#f4f0eb] text-[11px] md:text-xs text-[#333] px-2 py-1 border border-[#d0c4b6] shadow-sm">
+          <div className="rounded-sm bg-[#f4f0eb]/80 text-[11px] md:text-xs text-[#333]/90 px-2 py-1 border border-[#d0c4b6] shadow-sm">
             Copied
           </div>
         </div>
