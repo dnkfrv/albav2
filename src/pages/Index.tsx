@@ -232,10 +232,10 @@ const Index: React.FC = () => {
         x = e.clientX - rootRect.left;
         y = e.clientY - rootRect.top;
       } else {
-        // десктоп — правее и выше конца email
+        // десктоп — правее и чуть выше конца email
         const emailRect = e.currentTarget.getBoundingClientRect();
-        x = emailRect.right - rootRect.left + 1;
-        y = emailRect.top - rootRect.top - 1;
+        x = emailRect.right - rootRect.left + 4;
+        y = emailRect.top - rootRect.top - 4;
       }
 
       setCopiedPos({ x, y });
@@ -462,12 +462,12 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Tooltip "Copied" */}
+      {/* Tooltip "Copied" в стиле macOS */}
       {copiedPos && (
         <div
           className={`
             pointer-events-none absolute z-50
-            transition-opacity duration-300
+            transition-opacity duration-500 ease-out
             ${copied ? "opacity-100" : "opacity-0"}
           `}
           style={{
@@ -476,7 +476,19 @@ const Index: React.FC = () => {
             transform: "translateY(-100%)", // нижний левый угол в точке
           }}
         >
-          <div className="bg-[#f4f0eb]/80 text-[9px] md:text-xs text-[#333]/90 px-1 py-1 border border-[#d0c4b6] shadow-sm">
+          <div
+            className="
+              bg-[#f5f5f7]/90
+              text-[10px] md:text-[11px]
+              text-[#111827]
+              px-3 py-1.5
+              rounded-[6px]
+              border border-white/70
+              shadow-[0_8px_24px_rgba(15,23,42,0.18)]
+              backdrop-blur-md
+              tracking-[0.02em]
+            "
+          >
             Copied
           </div>
         </div>
