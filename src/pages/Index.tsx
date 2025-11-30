@@ -476,7 +476,7 @@ const Index: React.FC = () => {
             transform: "translateY(-100%)", // нижний левый угол в точке
           }}
         >
-          <div className="rounded-sm bg-[#f4f0eb]/80 text-[11px] md:text-xs text-[#333]/90 px-2 py-1 border border-[#d0c4b6] shadow-sm">
+          <div className="bg-[#f4f0eb]/80 text-[9px] md:text-xs text-[#333]/90 px-1 py-1 border border-[#d0c4b6] shadow-sm">
             Copied
           </div>
         </div>
