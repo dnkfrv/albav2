@@ -268,13 +268,15 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                     "
                     onClick={() => handleDishClick(item)}
                   >
-                    {/* Название + цена в одной строке */}
-                    <span className="text-lg text-foreground">
-                      {item.name}
-                      <span className="ml-2 text-primary font-medium">
+                    {/* Название слева, цена в самом конце строки справа */}
+                    <div className="flex justify-between items-baseline gap-4">
+                      <span className="text-lg text-foreground flex-1">
+                        {item.name}
+                      </span>
+                      <span className="text-lg font-medium text-primary flex-shrink-0 text-right">
                         €{item.price}
                       </span>
-                    </span>
+                    </div>
 
                     {item.description && (
                       <span className="text-sm text-muted-foreground">
