@@ -23,8 +23,14 @@ export type Dish = {
     carbs: number;   // g
   };
   allergens?: string[];
-  // для группировки напитков
-  group?: "BLACK" | "WHITE" | "SIGNATURE";
+  group?:
+    | "BLACK"
+    | "WHITE"
+    | "SIGNATURE"
+    | "MATCHA"
+    | "SOFT"
+    | "TEA"
+    | "WINE";
 };
 
 const menuItems: { category: string; items: Dish[] }[] = [
@@ -177,8 +183,102 @@ const menuItems: { category: string; items: Dish[] }[] = [
         name: "ESPRESSO AFFOGATO",
         price: "6",
         group: "SIGNATURE",
-        description: "stracciatella ice cream, double espresso, pecan, chocolate",
+        description:
+          "stracciatella ice cream, double espresso, pecan, chocolate",
       },
+
+      // CEREMONIAL MATCHA
+      {
+        name: "IKIGAI",
+        price: "4",
+        group: "MATCHA",
+        description:
+          "classic and balanced for every day with grassy, earthy, pine nut notes",
+      },
+      {
+        name: "HOJICHA",
+        price: "4",
+        group: "MATCHA",
+        description: "roasted leaves, notes of complex caramel and nuts",
+      },
+      {
+        name: "YUTORI",
+        price: "5",
+        group: "MATCHA",
+        description: "soft taste with edamame, seaweed, bamboo shoots notes",
+      },
+      {
+        name: "HARU",
+        price: "5",
+        group: "MATCHA",
+        description:
+          "premium creamy matcha with full body and sweet finish, jasmine and umami notes",
+      },
+      {
+        name: "TASTING SET",
+        price: "7",
+        group: "MATCHA",
+        description: "any three varieties of matcha shots",
+      },
+      {
+        name: "OAT MILK",
+        price: "0.5",
+        group: "MATCHA",
+        description: "oat milk add-on",
+      },
+
+      // SOFT DRINKS
+      {
+        name: "STILL WATER",
+        price: "2",
+        group: "SOFT",
+        description: "by Fontelusa",
+      },
+      {
+        name: "SPARKLING WATER",
+        price: "2.5",
+        group: "SOFT",
+        description: "by Fontelusa",
+      },
+      {
+        name: "FRESH ORANGE JUICE",
+        price: "3.5",
+        group: "SOFT",
+      },
+      {
+        name: "GINGER ROSEMARY LEMONADE",
+        price: "4",
+        group: "SOFT",
+      },
+      {
+        name: "CITRUS LEMONADE",
+        price: "4",
+        group: "SOFT",
+      },
+
+      // TEA
+      { name: "ASSAM BLACK", price: "4", group: "TEA" },
+      { name: "CHUN MEE GREEN", price: "4", group: "TEA" },
+      { name: "HERBAL TEA", price: "4", group: "TEA" },
+      {
+        name: "CHERRY",
+        price: "5",
+        group: "TEA",
+        description: "cherry, thyme, lemon",
+      },
+      {
+        name: "PEACH",
+        price: "5",
+        group: "TEA",
+        description: "peach, orange, rosemary, cinnamon",
+      },
+
+      // WINE & CIDERS (упрощённо)
+      { name: "CIDER", price: "6", group: "WINE" },
+      { name: "WHITE", price: "7", group: "WINE" },
+      { name: "ORANGE", price: "7", group: "WINE" },
+      { name: "ROSÉ", price: "7", group: "WINE" },
+      { name: "RED", price: "7", group: "WINE" },
     ],
   },
 ];
@@ -230,10 +330,10 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
     if (onSelect) onSelect(item);
   };
 
-  // общая отрисовка одной позиции меню
+  // отрисовка одной позиции меню
   const renderMenuItem = (item: Dish) => (
     <button
-      key={item.name}
+      key={`${item.group ?? "NOGROUP"}-${item.name}`}
       type="button"
       className="
         w-full text-left
@@ -264,11 +364,19 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
     </button>
   );
 
-  // рендер группы напитков (BLACK / WHITE / SIGNATURE)
+  // рендер группы напитков
   const renderDrinksGroup = (
     items: Dish[],
-    group: "BLACK" | "WHITE" | "SIGNATURE",
+    group:
+      | "BLACK"
+      | "WHITE"
+      | "SIGNATURE"
+      | "MATCHA"
+      | "SOFT"
+      | "TEA"
+      | "WINE",
     label: string,
+    options?: { subtitle?: string },
   ) => {
     const groupItems = items.filter((i) => i.group === group);
     if (!groupItems.length) return null;
@@ -276,9 +384,16 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
     return (
       <div className="space-y-1">
         <div className="pt-1 px-3">
-          <span className="text-lg font-semibold text-black">{label}</span>
+          <span className="text-lg font-semibold text-black">
+            {label}
+          </span>
+          {options?.subtitle && (
+            <div className="text-xs text-muted-foreground mt-0.5">
+              {options.subtitle}
+            </div>
+          )}
         </div>
-        {groupItems.map(renderMenuItem)}
+        {groupItems.map((item) => renderMenuItem(item))}
       </div>
     );
   };
@@ -341,6 +456,20 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                       "SIGNATURE",
                       "SIGNATURE COFFEE",
                     )}
+                    {renderDrinksGroup(section.items, "MATCHA", "CEREMONIAL MATCHA", {
+                      subtitle: "SHOT 30 ml / USUCHA 120 ml",
+                    })}
+                    {renderDrinksGroup(
+                      section.items,
+                      "SOFT",
+                      "SOFT DRINKS",
+                    )}
+                    {renderDrinksGroup(section.items, "TEA", "TEA")}
+                    {renderDrinksGroup(
+                      section.items,
+                      "WINE",
+                      "WINE & CIDERS",
+                    )}
                   </>
                 ) : (
                   section.items.map(renderMenuItem)
@@ -372,7 +501,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               "
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Заголовок карточки: название, цена, крестик */}
               <div className="flex items-baseline justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <h4 className="text-lg font-semibold">
@@ -394,7 +522,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               </div>
 
-              {/* Фото – маленькие на мобильном, большие на десктопе */}
               {selectedDish.images && selectedDish.images.length > 0 && (
                 <div className="mt-4 flex gap-3 overflow-x-auto">
                   {selectedDish.images.map((src, index) => (
@@ -413,7 +540,6 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Nutrition */}
               {selectedDish.nutrition && (
                 <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground space-y-1">
                   <div>
@@ -428,14 +554,12 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
                 </div>
               )}
 
-              {/* Описание */}
               {selectedDish.description && (
                 <p className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground">
                   {selectedDish.description}
                 </p>
               )}
 
-              {/* Allergens */}
               {selectedDish.allergens && selectedDish.allergens.length > 0 && (
                 <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground">
                   <span className="font-medium mr-1">Allergens:</span>
