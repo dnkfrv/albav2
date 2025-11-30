@@ -416,7 +416,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] transition-colors"
             >
               {EMAIL}
             </span>
@@ -448,7 +448,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] transition-colors"
             >
               {EMAIL}
             </span>
