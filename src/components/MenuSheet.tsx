@@ -23,6 +23,8 @@ export type Dish = {
     carbs: number;   // g
   };
   allergens?: string[];
+  // для группировки напитков
+  group?: "BLACK" | "WHITE" | "SIGNATURE";
 };
 
 const menuItems: { category: string; items: Dish[] }[] = [
@@ -142,15 +144,40 @@ const menuItems: { category: string; items: Dish[] }[] = [
   {
     category: "DRINKS",
     items: [
-      { name: "SINGLE ESPRESSO", price: "1.5" },
-      { name: "DOUBLE ESPRESSO", price: "2.5" },
-      { name: "AMERICANO", price: "3" },
-      { name: "BATCH BREW", price: "3.5" },
-      { name: "HAND BREW EXCEPTIONAL", price: "7" },
+      // BLACK COFFEE
+      { name: "SINGLE ESPRESSO", price: "1.5", group: "BLACK" },
+      { name: "DOUBLE ESPRESSO", price: "2.5", group: "BLACK" },
+      { name: "AMERICANO", price: "3", group: "BLACK" },
+      { name: "BATCH BREW", price: "3.5", group: "BLACK" },
+      { name: "HAND BREW EXCEPTIONAL", price: "7", group: "BLACK" },
       {
         name: "BARISTA SET",
         description: "espresso, batch brew, cappuccino",
         price: "6",
+        group: "BLACK",
+      },
+
+      // WHITE COFFEE
+      { name: "MACCHIATO", price: "2.5", group: "WHITE" },
+      { name: "CORTADO", price: "3.5", group: "WHITE" },
+      { name: "CAPPUCINO", price: "3.5", group: "WHITE" },
+      { name: "CAPPUCINO DOUBLE", price: "4.5", group: "WHITE" },
+      { name: "FLAT WHITE", price: "4", group: "WHITE" },
+      { name: "LATTE", price: "4", group: "WHITE" },
+      { name: "OAT MILK", price: "0.5", group: "WHITE" },
+
+      // SIGNATURE COFFEE
+      { name: "RAF VANILLA", price: "6", group: "SIGNATURE" },
+      {
+        name: "LATTE PECAN MAPLE SYROP",
+        price: "6",
+        group: "SIGNATURE",
+      },
+      {
+        name: "ESPRESSO AFFOGATO",
+        price: "6",
+        group: "SIGNATURE",
+        description: "stracciatella ice cream, double espresso, pecan, chocolate",
       },
     ],
   },
@@ -203,6 +230,59 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
     if (onSelect) onSelect(item);
   };
 
+  // общая отрисовка одной позиции меню
+  const renderMenuItem = (item: Dish) => (
+    <button
+      key={item.name}
+      type="button"
+      className="
+        w-full text-left
+        flex flex-col gap-1
+        py-2
+        hover:bg-muted/50
+        px-3
+        rounded-md
+        transition-colors
+        cursor-pointer
+      "
+      onClick={() => handleDishClick(item)}
+    >
+      <div className="flex justify-between items-baseline gap-4">
+        <span className="text-lg text-foreground flex-1">
+          {item.name}
+        </span>
+        <span className="text-lg font-medium text-primary flex-shrink-0 text-right">
+          €{item.price}
+        </span>
+      </div>
+
+      {item.description && (
+        <span className="text-sm text-muted-foreground">
+          {item.description}
+        </span>
+      )}
+    </button>
+  );
+
+  // рендер группы напитков (BLACK / WHITE / SIGNATURE)
+  const renderDrinksGroup = (
+    items: Dish[],
+    group: "BLACK" | "WHITE" | "SIGNATURE",
+    label: string,
+  ) => {
+    const groupItems = items.filter((i) => i.group === group);
+    if (!groupItems.length) return null;
+
+    return (
+      <div className="space-y-1">
+        <div className="pt-1 px-3">
+          <span className="text-lg font-semibold text-black">{label}</span>
+        </div>
+        {groupItems.map(renderMenuItem)}
+      </div>
+    );
+  };
+
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
@@ -252,48 +332,19 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               </h3>
 
               <div className="space-y-3">
-                {/* Подзаголовок для раздела DRINKS */}
-                {section.category === "DRINKS" && (
-                  <div className="pt-1 px-3">
-                    <span className="text-lg font-semibold text-black">
-                      BLACK COFFEE
-                    </span>
-                  </div>
-                )}
-
-                {section.items.map((item) => (
-                  <button
-                    key={item.name}
-                    type="button"
-                    className="
-                      w-full text-left
-                      flex flex-col gap-1
-                      py-2
-                      hover:bg-muted/50
-                      px-3
-                      rounded-md
-                      transition-colors
-                      cursor-pointer
-                    "
-                    onClick={() => handleDishClick(item)}
-                  >
-                    {/* Название слева, цена в самом конце строки справа */}
-                    <div className="flex justify-between items-baseline gap-4">
-                      <span className="text-lg text-foreground flex-1">
-                        {item.name}
-                      </span>
-                      <span className="text-lg font-medium text-primary flex-shrink-0 text-right">
-                        €{item.price}
-                      </span>
-                    </div>
-
-                    {item.description && (
-                      <span className="text-sm text-muted-foreground">
-                        {item.description}
-                      </span>
+                {section.category === "DRINKS" ? (
+                  <>
+                    {renderDrinksGroup(section.items, "BLACK", "BLACK COFFEE")}
+                    {renderDrinksGroup(section.items, "WHITE", "WHITE COFFEE")}
+                    {renderDrinksGroup(
+                      section.items,
+                      "SIGNATURE",
+                      "SIGNATURE COFFEE",
                     )}
-                  </button>
-                ))}
+                  </>
+                ) : (
+                  section.items.map(renderMenuItem)
+                )}
               </div>
             </div>
           ))}
