@@ -89,7 +89,7 @@ const desktopImages = [
 ].filter(Boolean);
 
 const EMAIL = "hello@albabistrolisbon.com";
-const SLIDER_MARGIN = 150; // «мёртвые» зоны сверху и снизу в px
+const SLIDER_MARGIN = 100; // «мёртвые» зоны сверху и снизу в px
 
 const Index: React.FC = () => {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -433,7 +433,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] transition-colors"
             >
               {EMAIL}
             </span>
@@ -465,7 +465,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] transition-colors"
             >
               {EMAIL}
             </span>
