@@ -83,6 +83,8 @@ const desktopImages = [
   imga5,
 ].filter(Boolean);
 
+const EMAIL = "hello@albabistrolisbon.com";
+
 const Index: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -187,6 +189,33 @@ const Index: React.FC = () => {
   const mobileTrackStyle: CSSProperties = {
     transform: `translateX(${translate}%)`,
     transition: isDragging ? "none" : "transform 0.4s ease",
+  };
+
+  // Копирование email в буфер обмена
+  const handleEmailClick = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(EMAIL);
+        return;
+      }
+    } catch {
+      // если не получилось через navigator.clipboard — падаем в запасной вариант ниже
+    }
+
+    try {
+      const textarea = document.createElement("textarea");
+      textarea.value = EMAIL;
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    } catch {
+      // в худшем случае просто тихо ничего не делаем
+    }
   };
 
   return (
@@ -319,7 +348,12 @@ const Index: React.FC = () => {
               Instagram
             </a>
             <span>/</span>
-            <span>hello@albabistrolisbon.com</span>
+            <span
+              onClick={handleEmailClick}
+              className="cursor-pointer hover:text-[#4B362F] transition-colors"
+            >
+              {EMAIL}
+            </span>
           </div>
         </div>
       </div>
@@ -338,7 +372,7 @@ const Index: React.FC = () => {
           </a>
           <div className="flex items-center gap-2">
             <a
-              href="https://instagram.com/albabistrolisbon"
+              href="https://instagram.com/albabistro.lisbon"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4B362F] transition-colors"
@@ -346,13 +380,20 @@ const Index: React.FC = () => {
               Instagram
             </a>
             <span>/</span>
-            <span>hello@albabistrolisbon.com</span>
+            <span
+              onClick={handleEmailClick}
+              className="cursor-pointer hover:text-[#4B362F] transition-colors"
+            >
+              {EMAIL}
+            </span>
           </div>
         </div>
       </div>
 
       <div className="hidden md:block absolute bottom-6 right-8">
-        <p className="text-xs text-[#644A42] font-kommon">Created by AlbaFamily</p>
+        <p className="text-xs text-[#644A42] font-kommon">
+          Created by AlbaFamily
+        </p>
       </div>
     </div>
   );
