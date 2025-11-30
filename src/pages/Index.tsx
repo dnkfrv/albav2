@@ -217,7 +217,6 @@ const Index: React.FC = () => {
   const handleEmailClick = async (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
   ) => {
-    // позиция клика относительно корневого контейнера
     const rootRect = rootRef.current?.getBoundingClientRect();
     if (rootRect) {
       const x = e.clientX - rootRect.left;
@@ -446,14 +445,14 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Tooltip "Copied" в месте клика */}
+      {/* Tooltip "Copied" в месте клика: нижний левый угол в точке касания */}
       {copied && copiedPos && (
         <div
           className="pointer-events-none absolute z-50"
           style={{
             left: copiedPos.x,
-            top: copiedPos.y - 28,
-            transform: "translateX(-50%)",
+            top: copiedPos.y,
+            transform: "translateY(-100%)",
           }}
         >
           <div className="rounded-sm bg-[#f4f0eb] text-[11px] md:text-xs text-[#333] px-2 py-1 border border-[#d0c4b6] shadow-sm">
