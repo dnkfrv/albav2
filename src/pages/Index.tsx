@@ -213,16 +213,31 @@ const Index: React.FC = () => {
     };
   }, []);
 
-  // Копирование email + позиция тоста около конца email-строки
+  // Копирование email + позиция тоста:
+  // - на десктопе — у конца email-строки;
+  // - на мобильных — в точке тапа.
   const handleEmailClick = async (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
   ) => {
-    const emailRect = e.currentTarget.getBoundingClientRect();
     const rootRect = rootRef.current?.getBoundingClientRect();
     if (rootRect) {
-      // немного правее и выше последней буквы
-      const x = emailRect.right - rootRect.left + 2;
-      const y = emailRect.top - rootRect.top - 2;
+      let x: number;
+      let y: number;
+
+      const isMobile =
+        typeof window !== "undefined" ? window.innerWidth < 768 : false;
+
+      if (isMobile) {
+        // мобильная версия — тост прямо в точке тапа
+        x = e.clientX - rootRect.left;
+        y = e.clientY - rootRect.top;
+      } else {
+        // десктоп — правее и выше конца email
+        const emailRect = e.currentTarget.getBoundingClientRect();
+        x = emailRect.right - rootRect.left + 1;
+        y = emailRect.top - rootRect.top - 1;
+      }
+
       setCopiedPos({ x, y });
     }
 
@@ -447,7 +462,7 @@ const Index: React.FC = () => {
         </p>
       </div>
 
-      {/* Tooltip "Copied" около конца email-строки */}
+      {/* Tooltip "Copied" */}
       {copiedPos && (
         <div
           className={`
@@ -458,7 +473,7 @@ const Index: React.FC = () => {
           style={{
             left: copiedPos.x,
             top: copiedPos.y,
-            transform: "translateY(-100%)",
+            transform: "translateY(-100%)", // нижний левый угол в точке
           }}
         >
           <div className="rounded-sm bg-[#f4f0eb]/80 text-[11px] md:text-xs text-[#333]/90 px-2 py-1 border border-[#d0c4b6] shadow-sm">
