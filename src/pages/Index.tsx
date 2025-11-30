@@ -221,8 +221,8 @@ const Index: React.FC = () => {
     const rootRect = rootRef.current?.getBoundingClientRect();
     if (rootRect) {
       // немного правее и выше последней буквы
-      const x = emailRect.right - rootRect.left + 6;
-      const y = emailRect.top - rootRect.top - 6;
+      const x = emailRect.right - rootRect.left + 2;
+      const y = emailRect.top - rootRect.top - 2;
       setCopiedPos({ x, y });
     }
 
