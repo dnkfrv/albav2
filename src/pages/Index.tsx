@@ -481,8 +481,8 @@ const Index: React.FC = () => {
               bg-[#f5f5f7]/90
               text-[10px] md:text-[11px]
               text-[#111827]
-              px-0 py-1
-              rounded-[1px]
+              px-0 py-0
+              rounded-[2px]
               border border-white/70
               shadow-[0_8px_24px_rgba(15,23,42,0.18)]
               backdrop-blur-md
