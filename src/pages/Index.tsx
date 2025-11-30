@@ -1,4 +1,9 @@
-import React, { useState, useRef, CSSProperties } from "react";
+import React, {
+  useState,
+  useRef,
+  CSSProperties,
+  useEffect,
+} from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import logoImage from "@/assets/logo.png";
@@ -191,30 +196,57 @@ const Index: React.FC = () => {
     transition: isDragging ? "none" : "transform 0.4s ease",
   };
 
+  // "Copied" тост
+  const [copied, setCopied] = useState(false);
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+    };
+  }, []);
+
   // Копирование email в буфер обмена
   const handleEmailClick = async () => {
+    let success = false;
+
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(EMAIL);
-        return;
+        success = true;
       }
     } catch {
-      // если не получилось через navigator.clipboard — падаем в запасной вариант ниже
+      success = false;
     }
 
-    try {
-      const textarea = document.createElement("textarea");
-      textarea.value = EMAIL;
-      textarea.style.position = "fixed";
-      textarea.style.left = "-9999px";
-      textarea.style.top = "0";
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-    } catch {
-      // в худшем случае просто тихо ничего не делаем
+    if (!success) {
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = EMAIL;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        textarea.style.top = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        success = true;
+      } catch {
+        success = false;
+      }
+    }
+
+    if (success) {
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+      setCopied(true);
+      copyTimeoutRef.current = setTimeout(() => {
+        setCopied(false);
+      }, 1500);
     }
   };
 
@@ -395,6 +427,15 @@ const Index: React.FC = () => {
           Created by AlbaFamily
         </p>
       </div>
+
+      {/* Toast "Copied" */}
+      {copied && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-16 md:bottom-20 flex justify-center z-50">
+          <div className="rounded-full bg-[#3b302b] text-xs md:text-sm text-white px-4 py-2 shadow-md">
+            Copied
+          </div>
+        </div>
+      )}
     </div>
   );
 };
