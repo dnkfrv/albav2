@@ -254,8 +254,10 @@ export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
               <div className="space-y-3">
                 {/* Подзаголовок для раздела DRINKS */}
                 {section.category === "DRINKS" && (
-                  <div className="pt-1 text-base font-semibold text-black">
-                    BLACK COFFEE
+                  <div className="pt-1 px-3">
+                    <span className="text-lg font-semibold text-black">
+                      BLACK COFFEE
+                    </span>
                   </div>
                 )}
 
