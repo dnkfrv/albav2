@@ -63,11 +63,23 @@ const menuItems: { category: string; items: Dish[] }[] = [
           "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water",
         price: "8",
       },
+       {
+        name: "OATMEAL PORRIDGE WITH PROSCIUTTO COTTO",
+        description:
+          "savory oatmeal with truffle sauce, poached egg and Proscuitto Cotto",
+        price: "9",
+      },
+      {
+        name: "OMELETTE WITH MUSHROOMS",
+        description:
+          "French omelette with sliced mushrooms and a hint of truffle",
+        price: "11",
+      },
       {
         name: "FETA VEGAN TOAST",
         description:
           "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate",
-        price: "10",
+        price: "12",
       },
       {
         name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR",
@@ -82,28 +94,22 @@ const menuItems: { category: string; items: Dish[] }[] = [
         price: "12",
       },
       {
-        name: "OATMEAL PORRIDGE WITH PROSCIUTTO CRUDO",
-        description:
-          "savory oatmeal with truffle sauce, poached egg and Proscuitto Crudo",
-        price: "12",
-      },
-      {
         name: "CROQUE MADAME WITH TRUFFLE SAUCE",
         description:
           "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce",
         price: "13",
       },
       {
-        name: "EGGS BENEDICT WITH SALMON AND SPINACH",
+        name: "EGGS BENEDICT WITH SALMON OR PASTRAMI",
         description:
-          "brioche with avocado cream, salmon, poached eggs, yogurt hollandaise and fresh herbs",
+          "brioche with avocado cream, salted salmon or beef pastrami, poached egg, yogurt hollandaise and fresh herbs",
         price: "13",
       },
       {
-        name: "OMELETTE WITH MUSHROOMS",
+        name: "GREEN OMLETTE WITH ASPARAGUS",
         description:
-          "French omelette with sliced mushrooms and a hint of truffle",
-        price: "14",
+          "spinach omelette with peas, asparagus, zesty lemon cream and fresh herbs",
+        price: "13",
       },
       {
         name: "OMELETTE WITH SHRIMP AND TOMATO",
@@ -111,13 +117,7 @@ const menuItems: { category: string; items: Dish[] }[] = [
           "French omelette with shrimp, sun-dried tomatoes and cheese inside, garnished with lemon zest",
         price: "14",
       },
-      {
-        name: "GREEN OMLETTE WITH ASPARAGUS",
-        description:
-          "spinach omelette with peas, asparagus, zesty lemon cream and fresh herbs",
-        price: "14",
-      },
-    ],
+      ],
   },
   {
     category: "DESSERTS",
@@ -126,18 +126,18 @@ const menuItems: { category: string; items: Dish[] }[] = [
         name: "MATCHA COOKIE",
         description:
           "white chocolate custard cream, matcha, and dried raspberry",
-        price: "4",
+        price: "5",
       },
       {
         name: "CREME BRULEE",
         description:
           "classic creme brulee with a crisp caramelized sugar crust",
-        price: "7",
+        price: "5",
       },
       {
         name: "WHITE CHOCOLATE YOGURT GANACHE WITH BERRY JAM",
         description: "delicate white chocolate yogurt with berry jam",
-        price: "7",
+        price: "6",
       },
       {
         name: "RICE PUDDING WITH MANGO AND COCONUT MILK",
@@ -145,6 +145,19 @@ const menuItems: { category: string; items: Dish[] }[] = [
           "rice pudding infused with tropical mango and smooth coconut milk",
         price: "8",
       },
+      {
+        name: "ESPRESSO AFFOGATO",
+        price: "6.5",
+        description:
+          "vanilla ice cream, double espresso, pecan, chocolate",
+      },
+            {
+        name: "MATCHA AFFOGATO",
+        price: "6.5",
+        description:
+          "vanilla ice cream, Ikigai matcha shot, pistachio, nori",
+      },
+      
     ],
   },
   {
@@ -178,13 +191,6 @@ const menuItems: { category: string; items: Dish[] }[] = [
         name: "LATTE PECAN MAPLE SYROP",
         price: "6",
         group: "SIGNATURE",
-      },
-      {
-        name: "ESPRESSO AFFOGATO",
-        price: "6",
-        group: "SIGNATURE",
-        description:
-          "stracciatella ice cream, double espresso, pecan, chocolate",
       },
 
       // CEREMONIAL MATCHA
