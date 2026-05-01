@@ -381,9 +381,12 @@ const Index: React.FC = () => {
             alt="Alba Bistro Logo"
             className="h-4 md:h-6 w-auto object-contain"
           />
-          <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
-            BISTRO • SPECIALTY COFFEE • MATCHA BAR
-          </p>
+         <p
+            className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#e62d3b]"
+            style={{ fontFamily: '"Maison Neue Extended Demi", sans-serif' }}
+>
+  BISTRO • SPECIALTY COFFEE • MATCHA BAR
+</p>
         </div>
       </div>
 
