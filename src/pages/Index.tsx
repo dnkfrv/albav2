@@ -367,7 +367,7 @@ const Index: React.FC = () => {
             className="h-4 md:h-6 w-auto object-contain"
           />
           <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
-            BISTRO • SPECIALTY COFFEE • MATCHA BAR
+            BRUNCH • COFFEE • MATCHA BAR
           </p>
         </div>
       </div>
@@ -378,12 +378,12 @@ const Index: React.FC = () => {
         style={{ top: 200, left: 200 }}
       >
         <p className="mb-3">
-          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
+          Welcome to Alba, Lisbon&apos;s new corner of taste and style!
           Our bright space with a sunny terrace at Rato Square invites you to
           immerse yourself in an atmosphere of comfort and enjoyment.
         </p>
         <p className="mb-3">
-          Alba Bistro offers a fresh take on breakfast and brunch - our
+          Alba offers a fresh take on breakfast and brunch - our
           exquisite menu is crafted for those who appreciate subtle taste and
           originality.
         </p>
