@@ -7,8 +7,6 @@ export const MenuSheet: React.FC = () => {
   return (
     <a
       href={menuPdf}
-      target="_blank"
-      rel="noopener noreferrer"
       className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none"
       aria-label="Open menu PDF"
     >
