@@ -31,6 +31,14 @@ All colors MUST be HSL.
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Maison Neue Extended Demi";
+  src: url("/MaisonNeueExtendedDemi.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 @layer base {
   :root {
