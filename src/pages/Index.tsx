@@ -37,7 +37,7 @@ import imgA1113 from "@/assets/A-1113.jpg";
 import imga5 from "@/assets/a-5.jpg";
 import imga10 from "@/assets/a-10.jpg";
 
-// все фото для мобильной версии (как было)
+// все фото для мобильной версии
 const heroImages = [
   imgA130,
   imga17,
@@ -67,7 +67,7 @@ const heroImages = [
   imga10,
 ].filter(Boolean);
 
-// ОТДЕЛЬНЫЙ набор фото для десктопа
+// отдельный набор фото для десктопа
 const desktopImages = [
   imgA130,
   imgA20,
@@ -89,7 +89,7 @@ const desktopImages = [
 ].filter(Boolean);
 
 const EMAIL = "hello@albabistrolisbon.com";
-const SLIDER_MARGIN = 100; // «мёртвые» зоны сверху и снизу в px
+const SLIDER_MARGIN = 150;
 
 const Index: React.FC = () => {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -120,6 +120,7 @@ const Index: React.FC = () => {
         : rootRef.current?.getBoundingClientRect().height ?? 0;
 
     if (viewportHeight === 0) return true;
+
     return (
       clientY > SLIDER_MARGIN && clientY < viewportHeight - SLIDER_MARGIN
     );
@@ -127,6 +128,7 @@ const Index: React.FC = () => {
 
   const startDrag = (clientX: number, clientY: number) => {
     if (!isWithinSliderActiveZone(clientY)) return;
+
     setDragStartX(clientX);
     setIsDragging(true);
     swipedRef.current = false;
@@ -134,9 +136,13 @@ const Index: React.FC = () => {
 
   const moveDrag = (clientX: number) => {
     if (dragStartX === null) return;
+
     const delta = clientX - dragStartX;
     setDragOffset(delta);
-    if (Math.abs(delta) > 10) swipedRef.current = true;
+
+    if (Math.abs(delta) > 10) {
+      swipedRef.current = true;
+    }
   };
 
   const endDrag = () => {
@@ -149,8 +155,11 @@ const Index: React.FC = () => {
     const width = mobileRef.current?.offsetWidth ?? 1;
     const threshold = width * 0.2;
 
-    if (dragOffset < -threshold) nextMobile();
-    else if (dragOffset > threshold) prevMobile();
+    if (dragOffset < -threshold) {
+      nextMobile();
+    } else if (dragOffset > threshold) {
+      prevMobile();
+    }
 
     setIsDragging(false);
     setDragStartX(null);
@@ -158,19 +167,23 @@ const Index: React.FC = () => {
   };
 
   const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
-    // тапы в верхних/нижних 150 px игнорируются
     if (!isWithinSliderActiveZone(e.clientY)) return;
 
     if (swipedRef.current) {
       swipedRef.current = false;
       return;
     }
+
     const rect = mobileRef.current?.getBoundingClientRect();
     if (!rect) return;
 
     const x = e.clientX - rect.left;
-    if (x < rect.width / 2) prevMobile();
-    else nextMobile();
+
+    if (x < rect.width / 2) {
+      prevMobile();
+    } else {
+      nextMobile();
+    }
   };
 
   const handleDesktopMouseMove = (
@@ -199,9 +212,11 @@ const Index: React.FC = () => {
 
     if (desktopImages.length > 1) {
       let nextIndex = currentIndex;
+
       while (nextIndex === currentIndex) {
         nextIndex = Math.floor(Math.random() * desktopImages.length);
       }
+
       setCurrentIndex(nextIndex);
     }
   };
@@ -230,13 +245,11 @@ const Index: React.FC = () => {
     };
   }, []);
 
-  // Копирование email + позиция тоста:
-  // - на десктопе — у конца email-строки;
-  // - на мобильных — в точке тапа.
   const handleEmailClick = async (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
   ) => {
     const rootRect = rootRef.current?.getBoundingClientRect();
+
     if (rootRect) {
       let x: number;
       let y: number;
@@ -289,7 +302,9 @@ const Index: React.FC = () => {
       if (copyTimeoutRef.current) {
         clearTimeout(copyTimeoutRef.current);
       }
+
       setCopied(true);
+
       copyTimeoutRef.current = setTimeout(() => {
         setCopied(false);
       }, 1500);
@@ -367,7 +382,7 @@ const Index: React.FC = () => {
             className="h-4 md:h-6 w-auto object-contain"
           />
           <p className="font-kommon text-[8px] md:text-[10px] tracking-[0.16em] text-[#644A42]">
-            BRUNCH • COFFEE • MATCHA BAR
+            BISTRO • SPECIALTY COFFEE • MATCHA BAR
           </p>
         </div>
       </div>
@@ -378,12 +393,12 @@ const Index: React.FC = () => {
         style={{ top: 200, left: 200 }}
       >
         <p className="mb-3">
-          Welcome to Alba, Lisbon&apos;s new corner of taste and style!
+          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
           Our bright space with a sunny terrace at Rato Square invites you to
           immerse yourself in an atmosphere of comfort and enjoyment.
         </p>
         <p className="mb-3">
-          Alba offers a fresh take on breakfast and brunch - our
+          Alba Bistro offers a fresh take on breakfast and brunch - our
           exquisite menu is crafted for those who appreciate subtle taste and
           originality.
         </p>
@@ -399,7 +414,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* КНОПКА МЕНЮ */}
-      <div className="absolute top-4 right-4 md:top-[27px] md:right-8">
+      <div className="absolute top-4 right-4 md:top-[27px] md:right-[calc(33vw+2rem)]">
         <MenuSheet />
       </div>
 
@@ -423,7 +438,7 @@ const Index: React.FC = () => {
           <JoinTeamSheet />
           <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
             <a
-              href="https://instagram.com/alba.lisbon"
+              href="https://instagram.com/albabistro.lisbon"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4B362F] transition-colors"
@@ -433,7 +448,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
               {EMAIL}
             </span>
@@ -455,7 +470,7 @@ const Index: React.FC = () => {
           </a>
           <div className="flex items-center gap-2">
             <a
-              href="https://instagram.com/alba.lisbon"
+              href="https://instagram.com/albabistro.lisbon"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4B362F] transition-colors"
@@ -465,7 +480,7 @@ const Index: React.FC = () => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
-              className="cursor-pointer hover:text-[#4B362F] transition-colors"
+              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
               {EMAIL}
             </span>
@@ -490,7 +505,7 @@ const Index: React.FC = () => {
           style={{
             left: copiedPos.x,
             top: copiedPos.y,
-            transform: "translateY(-100%)", // нижний левый угол в точке
+            transform: "translateY(-100%)",
           }}
         >
           <div
@@ -498,8 +513,8 @@ const Index: React.FC = () => {
               bg-[#f5f5f7]/90
               text-[10px] md:text-[11px]
               text-[#111827]
-              px-1 py-0
-              rounded-[2px]
+              px-3 py-1.5
+              rounded-[6px]
               border border-white/70
               shadow-[0_8px_24px_rgba(15,23,42,0.18)]
               backdrop-blur-md
