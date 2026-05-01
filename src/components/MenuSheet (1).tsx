@@ -1,0 +1,622 @@
+import React from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import menuImage from "@/assets/Menu.png";
+import imgA213 from "@/assets/A-213.jpg";
+import imgA216 from "@/assets/A-216.jpg";
+
+export type Dish = {
+  name: string;
+  description?: string;
+  price: string;
+  images?: string[];
+  nutrition?: {
+    kcal: number;
+    protein: number; // g
+    fat: number;     // g
+    carbs: number;   // g
+  };
+  allergens?: string[];
+  group?:
+    | "BLACK"
+    | "WHITE"
+    | "SIGNATURE"
+    | "MATCHA"
+    | "SOFT"
+    | "TEA"
+    | "WINE";
+};
+
+const menuItems: { category: string; items: Dish[] }[] = [
+  {
+    category: "MAIN",
+    items: [
+      {
+        name: "PERFECT SCRAMBLED EGGS WITH SOURDOUGH BREAD",
+        description:
+          "Creamy scrambled eggs with grated parmesan and toasted sourdough bread",
+        price: "9",
+        images: [imgA213, imgA216],
+        nutrition: {
+          kcal: 500,
+          protein: 25,
+          fat: 30,
+          carbs: 35,
+        },
+        allergens: ["Eggs", "Gluten (wheat)", "Dairy"],
+      },
+      {
+        name: "DANISH BREAKFAST",
+        description:
+          "sourdough bread, gouda cheese, avocado, creamy hard-boiled egg, whipped butter and berry jam",
+        price: "9",
+      },
+      {
+        name: "VEGAN MISO GRANOLA",
+        description:
+          "miso and cinnamon granola, peaches, basil, served with sweet whipped coconut labneh, oat milk, a drizzle of olive oil and rose water",
+        price: "8",
+      },
+       {
+        name: "OATMEAL PORRIDGE WITH PROSCIUTTO COTTO",
+        description:
+          "savory oatmeal with truffle sauce, poached egg and Proscuitto Cotto",
+        price: "9",
+      },
+      {
+        name: "OMELETTE WITH MUSHROOMS",
+        description:
+          "French omelette with sliced mushrooms and a hint of truffle",
+        price: "11",
+      },
+      {
+        name: "FETA VEGAN TOAST",
+        description:
+          "toasted sourdough bread topped with vegan feta dip, quince jam, crushed peas with tahini, shaved asparagus, fresh mint, date molasses and pomegranate",
+        price: "12",
+      },
+      {
+        name: "CROQUETTES WITH SOUR CREAM AND RED CAVIAR",
+        description:
+          "cheesy potato croquettes with lemon cream cheese and red caviar",
+        price: "12",
+      },
+      {
+        name: "ROTI WITH SALMON, ASPARAGUS AND BOILED EGG",
+        description:
+          "puff roti with lemon cream cheese, salmon, asparagus and boiled egg",
+        price: "12",
+      },
+      {
+        name: "CROQUE MADAME WITH TRUFFLE SAUCE",
+        description:
+          "brioche sandwich with prosciutto, gouda, scrambled eggs and a rich truffle sauce",
+        price: "13",
+      },
+      {
+        name: "EGGS BENEDICT WITH SALMON OR PASTRAMI",
+        description:
+          "brioche with avocado cream, salted salmon or beef pastrami, poached egg, yogurt hollandaise and fresh herbs",
+        price: "13",
+      },
+      {
+        name: "GREEN OMLETTE WITH ASPARAGUS",
+        description:
+          "spinach omelette with peas, asparagus, zesty lemon cream and fresh herbs",
+        price: "13",
+      },
+      {
+        name: "OMELETTE WITH SHRIMP AND TOMATO",
+        description:
+          "French omelette with shrimp, sun-dried tomatoes and cheese inside, garnished with lemon zest",
+        price: "14",
+      },
+      ],
+  },
+  {
+    category: "DESSERTS",
+    items: [
+      {
+        name: "MATCHA COOKIE",
+        description:
+          "white chocolate custard cream, matcha, and dried raspberry",
+        price: "5",
+      },
+      {
+        name: "CREME BRULEE",
+        description:
+          "classic creme brulee with a crisp caramelized sugar crust",
+        price: "5",
+      },
+      {
+        name: "WHITE CHOCOLATE YOGURT GANACHE WITH BERRY JAM",
+        description: "delicate white chocolate yogurt with berry jam",
+        price: "6",
+      },
+      {
+        name: "RICE PUDDING WITH MANGO AND COCONUT MILK",
+        description:
+          "rice pudding infused with tropical mango and smooth coconut milk",
+        price: "8",
+      },
+      {
+        name: "ESPRESSO AFFOGATO",
+        price: "6.5",
+        description:
+          "vanilla ice cream, double espresso, pecan, chocolate",
+      },
+            {
+        name: "MATCHA AFFOGATO",
+        price: "6.5",
+        description:
+          "vanilla ice cream, Ikigai matcha shot, pistachio, nori",
+      },
+      
+    ],
+  },
+  {
+    category: "DRINKS",
+    items: [
+      // BLACK COFFEE
+      { name: "SINGLE ESPRESSO", price: "1.5", group: "BLACK" },
+      { name: "DOUBLE ESPRESSO", price: "2.5", group: "BLACK" },
+      { name: "AMERICANO", price: "3", group: "BLACK" },
+      { name: "BATCH BREW", price: "3.5", group: "BLACK" },
+      { name: "HAND BREW EXCEPTIONAL", price: "7", group: "BLACK" },
+      {
+        name: "BARISTA SET",
+        description: "espresso, batch brew, cappuccino",
+        price: "6",
+        group: "BLACK",
+      },
+
+      // WHITE COFFEE
+      { name: "MACCHIATO", price: "2.5", group: "WHITE" },
+      { name: "CORTADO", price: "3.5", group: "WHITE" },
+      { name: "CAPPUCINO", price: "3.5", group: "WHITE" },
+      { name: "CAPPUCINO DOUBLE", price: "4.5", group: "WHITE" },
+      { name: "FLAT WHITE", price: "4", group: "WHITE" },
+      { name: "LATTE", price: "4", group: "WHITE" },
+      { name: "OAT MILK", price: "0.5", group: "WHITE" },
+
+      // SIGNATURE COFFEE
+      { name: "RAF VANILLA", price: "6", group: "SIGNATURE" },
+      {
+        name: "LATTE PECAN MAPLE SYROP",
+        price: "6",
+        group: "SIGNATURE",
+      },
+
+      // CEREMONIAL MATCHA
+      {
+        name: "IKIGAI",
+        price: "4",
+        group: "MATCHA",
+        description:
+          "classic and balanced for every day with grassy, earthy, pine nut notes",
+      },
+      {
+        name: "HOJICHA",
+        price: "4",
+        group: "MATCHA",
+        description: "roasted leaves, notes of complex caramel and nuts",
+      },
+      {
+        name: "YUTORI",
+        price: "5",
+        group: "MATCHA",
+        description: "soft taste with edamame, seaweed, bamboo shoots notes",
+      },
+      {
+        name: "HARU",
+        price: "5",
+        group: "MATCHA",
+        description:
+          "premium creamy matcha with full body and sweet finish, jasmine and umami notes",
+      },
+      {
+        name: "TASTING SET",
+        price: "7",
+        group: "MATCHA",
+        description: "any three varieties of matcha shots",
+      },
+      {
+        name: "OAT MILK",
+        price: "0.5",
+        group: "MATCHA",
+        description: "oat milk add-on",
+      },
+
+      // SOFT DRINKS
+      {
+        name: "STILL WATER",
+        price: "2",
+        group: "SOFT",
+        description: "by Fontelusa",
+      },
+      {
+        name: "SPARKLING WATER",
+        price: "2.5",
+        group: "SOFT",
+        description: "by Fontelusa",
+      },
+      {
+        name: "FRESH ORANGE JUICE",
+        price: "3.5",
+        group: "SOFT",
+      },
+      {
+        name: "GINGER ROSEMARY LEMONADE",
+        price: "4",
+        group: "SOFT",
+      },
+      {
+        name: "CITRUS LEMONADE",
+        price: "4",
+        group: "SOFT",
+      },
+
+      // TEA
+      { name: "ASSAM BLACK", price: "4", group: "TEA" },
+      { name: "CHUN MEE GREEN", price: "4", group: "TEA" },
+      { name: "HERBAL TEA", price: "4", group: "TEA" },
+      {
+        name: "CHERRY",
+        price: "5",
+        group: "TEA",
+        description: "cherry, thyme, lemon",
+      },
+      {
+        name: "PEACH",
+        price: "5",
+        group: "TEA",
+        description: "peach, orange, rosemary, cinnamon",
+      },
+
+      // WINE & CIDERS (упрощённо)
+      { name: "CIDER", price: "6", group: "WINE" },
+      { name: "WHITE", price: "7", group: "WINE" },
+      { name: "ORANGE", price: "7", group: "WINE" },
+      { name: "ROSÉ", price: "7", group: "WINE" },
+      { name: "RED", price: "7", group: "WINE" },
+    ],
+  },
+];
+
+type MenuSheetProps = {
+  onSelect?: (item: Dish) => void;
+};
+
+export const MenuSheet: React.FC<MenuSheetProps> = ({ onSelect }) => {
+  const [open, setOpen] = React.useState(false);
+  const [selectedDish, setSelectedDish] = React.useState<Dish | null>(null);
+  const [previewSrc, setPreviewSrc] = React.useState<string | null>(null);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    setOpen(nextOpen);
+    if (!nextOpen) {
+      setSelectedDish(null);
+      setPreviewSrc(null);
+    }
+  };
+
+  const startX = React.useRef<number | null>(null);
+  const currentX = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startX.current = e.touches[0].clientX;
+    currentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    currentX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (
+      startX.current !== null &&
+      currentX.current !== null &&
+      currentX.current - startX.current > 70
+    ) {
+      handleOpenChange(false);
+    }
+
+    startX.current = null;
+    currentX.current = null;
+  };
+
+  const handleDishClick = (item: Dish) => {
+    setSelectedDish(item);
+    if (onSelect) onSelect(item);
+  };
+
+  // отрисовка одной позиции меню
+  const renderMenuItem = (item: Dish) => (
+    <button
+      key={`${item.group ?? "NOGROUP"}-${item.name}`}
+      type="button"
+      className="
+        w-full text-left
+        flex flex-col gap-1
+        py-2
+        hover:bg-muted/50
+        px-3
+        rounded-md
+        transition-colors
+        cursor-pointer
+      "
+      onClick={() => handleDishClick(item)}
+    >
+      <div className="flex justify-between items-baseline gap-4">
+        <span className="text-lg text-foreground flex-1">
+          {item.name}
+        </span>
+        <span className="text-lg font-medium text-primary flex-shrink-0 text-right">
+          €{item.price}
+        </span>
+      </div>
+
+      {item.description && (
+        <span className="text-sm text-muted-foreground">
+          {item.description}
+        </span>
+      )}
+    </button>
+  );
+
+  // рендер группы напитков
+  const renderDrinksGroup = (
+    items: Dish[],
+    group:
+      | "BLACK"
+      | "WHITE"
+      | "SIGNATURE"
+      | "MATCHA"
+      | "SOFT"
+      | "TEA"
+      | "WINE",
+    label: string,
+    options?: { subtitle?: string },
+  ) => {
+    const groupItems = items.filter((i) => i.group === group);
+    if (!groupItems.length) return null;
+
+    return (
+      <div className="space-y-1">
+        <div className="pt-1 px-3">
+          <span className="text-lg font-semibold text-black">
+            {label}
+          </span>
+          {options?.subtitle && (
+            <div className="text-xs text-muted-foreground mt-0.5">
+              {options.subtitle}
+            </div>
+          )}
+        </div>
+        {groupItems.map((item) => renderMenuItem(item))}
+      </div>
+    );
+  };
+
+  return (
+    <Sheet open={open} onOpenChange={handleOpenChange}>
+      <SheetTrigger asChild>
+        <button className="inline-flex items-center justify-center transition-opacity hover:opacity-80 focus:outline-none">
+          <img
+            src={menuImage}
+            alt="Menu"
+            className="h-4 md:h-6 w-auto object-contain"
+          />
+        </button>
+      </SheetTrigger>
+
+      <SheetContent
+        className="
+          w-screen
+          max-w-screen
+          sm:w-[650px]
+          sm:max-w-[650px]
+          overflow-y-auto
+          [&>button]:hidden
+        "
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <SheetHeader className="flex flex-row items-center justify-between mb-6">
+          <SheetTitle className="text-3xl font-bold">Menu</SheetTitle>
+          <button
+            type="button"
+            onClick={() => handleOpenChange(false)}
+            className="
+              flex items-center justify-center
+              text-2xl md:text-3xl leading-none
+              opacity-70 hover:opacity-100
+            "
+            aria-label="Close menu"
+          >
+            ×
+          </button>
+        </SheetHeader>
+
+        <div className="space-y-8 py-4 pb-40">
+          {menuItems.map((section) => (
+            <div key={section.category} className="space-y-4">
+              <h3 className="text-2xl font-semibold text-primary border-b border-border pb-2">
+                {section.category}
+              </h3>
+
+              <div className="space-y-3">
+                {section.category === "DRINKS" ? (
+                  <>
+                    {renderDrinksGroup(section.items, "BLACK", "BLACK COFFEE")}
+                    {renderDrinksGroup(section.items, "WHITE", "WHITE COFFEE")}
+                    {renderDrinksGroup(
+                      section.items,
+                      "SIGNATURE",
+                      "SIGNATURE COFFEE",
+                    )}
+                    {renderDrinksGroup(section.items, "MATCHA", "CEREMONIAL MATCHA", {
+                      subtitle: "SHOT 30 ml / USUCHA 120 ml",
+                    })}
+                    {renderDrinksGroup(
+                      section.items,
+                      "SOFT",
+                      "SOFT DRINKS",
+                    )}
+                    {renderDrinksGroup(section.items, "TEA", "TEA")}
+                    {renderDrinksGroup(
+                      section.items,
+                      "WINE",
+                      "WINE & CIDERS",
+                    )}
+                  </>
+                ) : (
+                  section.items.map(renderMenuItem)
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {selectedDish && (
+          <div
+            className="
+              fixed inset-0 z-50
+              bg-black/50 backdrop-blur-sm
+              flex items-center justify-center
+              px-4
+            "
+            onClick={() => setSelectedDish(null)}
+          >
+            <div
+              className="
+                min-h-[340px] md:min-h-[750px]
+                w-full max-w-[500px] md:max-w-[1100px]
+                bg-background
+                rounded-2xl
+                border border-border
+                shadow-xl
+                px-4 py-4 md:px-8 md:py-8
+              "
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-baseline justify-between gap-4">
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-lg font-semibold">
+                    {selectedDish.name}
+                  </h4>
+                </div>
+                <div className="flex items-baseline gap-4 flex-shrink-0">
+                  <span className="text-lg font-medium">
+                    €{selectedDish.price}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedDish(null)}
+                    className="text-3xl leading-none opacity-70 hover:opacity-100"
+                    aria-label="Close dish details"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+
+              {selectedDish.images && selectedDish.images.length > 0 && (
+                <div className="mt-4 flex gap-3 overflow-x-auto">
+                  {selectedDish.images.map((src, index) => (
+                    <img
+                      key={index}
+                      src={src}
+                      alt={selectedDish.name}
+                      className="
+                        h-64 w-64
+                        md:h-[36rem] md:w-[36rem]
+                        object-cover rounded-md flex-shrink-0 cursor-pointer
+                      "
+                      onClick={() => setPreviewSrc(src)}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {selectedDish.nutrition && (
+                <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground space-y-1">
+                  <div>
+                    <span className="font-medium mr-1">Nutrition:</span>
+                    <span>
+                      {selectedDish.nutrition.kcal} kcal ·{" "}
+                      {selectedDish.nutrition.protein} g protein ·{" "}
+                      {selectedDish.nutrition.fat} g fat ·{" "}
+                      {selectedDish.nutrition.carbs} g carbs
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {selectedDish.description && (
+                <p className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground">
+                  {selectedDish.description}
+                </p>
+              )}
+
+              {selectedDish.allergens && selectedDish.allergens.length > 0 && (
+                <div className="mt-4 text-sm md:text-base md:leading-[1.2] text-muted-foreground">
+                  <span className="font-medium mr-1">Allergens:</span>
+                  <span>{selectedDish.allergens.join(", ")}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {previewSrc && (
+          <div
+            className="
+              fixed inset-0 z-[9999]
+              bg-black/70
+              flex items-center justify-center
+            "
+            onClick={() => setPreviewSrc(null)}
+          >
+            <div
+              className="
+                relative max-w-[90vw] max-h-[90vh]
+              "
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={previewSrc}
+                alt={selectedDish?.name ?? "Dish"}
+                className="w-full h-full object-contain rounded-lg"
+              />
+              <button
+                type="button"
+                onClick={() => setPreviewSrc(null)}
+                className="
+                  absolute -top-3 -right-3
+                  h-8 w-8
+                  rounded-full
+                  bg-background/90
+                  border border-border
+                  flex items-center justify-center
+                  text-lg leading-none
+                  opacity-80 hover:opacity-100
+                "
+                aria-label="Close image preview"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+      </SheetContent>
+    </Sheet>
+  );
+};
