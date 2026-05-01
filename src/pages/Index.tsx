@@ -417,7 +417,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* КНОПКА МЕНЮ */}
-      <div className="absolute top-4 right-4 md:top-[27px] md:right-[calc(33vw+2rem)]">
+      <div className="absolute top-4 right-4 md:top-[27px] md:right-[calc(33vw+2rem)] text-[#e62d3b]">
         <MenuSheet />
       </div>
 
