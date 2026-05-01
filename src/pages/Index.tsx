@@ -385,7 +385,7 @@ const Index: React.FC = () => {
             className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#e62d3b]"
             style={{ fontFamily: '"Maison Neue Extended Demi", sans-serif' }}
 >
-  BISTRO • SPECIALTY COFFEE • MATCHA BAR
+  BISTRO • COFFEE • MATCHA BAR
 </p>
         </div>
       </div>
