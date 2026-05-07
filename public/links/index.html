@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alba Bistro Lisbon - Links</title>
+    <meta
+      name="description"
+      content="Alba Bistro Lisbon - menu, delivery, reviews, maps and Instagram."
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17843586830"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "AW-17843586830");
+    </script>
+
+    <style>
+      @font-face {
+        font-family: "Times Now Light";
+        src: url("/TimesNow-Light.ttf") format("truetype");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Maison Neue Extended Demi";
+        src: url("/MaisonNeueExtendedDemi.otf") format("opentype");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --bg: #f4f0eb;
+        --text: #111111;
+        --muted: #644a42;
+        --accent: #e62d3b;
+        --border: rgba(17, 17, 17, 0.22);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Times Now Light", serif;
+      }
+
+      .page {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 18px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+      }
+
+      .brand {
+        margin-bottom: 34px;
+      }
+
+      .brand-title {
+        margin: 0;
+        font-family: "Maison Neue Extended Demi", sans-serif;
+        font-size: 34px;
+        line-height: 1;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+      }
+
+      .brand-subtitle {
+        margin: 12px 0 0;
+        font-family: "Maison Neue Extended Demi", sans-serif;
+        font-size: 10px;
+        line-height: 1.35;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text);
+      }
+
+      .slogan {
+        margin: 16px 0 0;
+        font-size: 17px;
+        line-height: 1.35;
+        color: var(--muted);
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .link-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        width: 100%;
+        padding: 14px 18px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.2);
+        color: var(--text);
+        text-decoration: none;
+        font-family: "Maison Neue Extended Demi", sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition:
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .link-button:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #ffffff;
+        transform: translateY(-1px);
+      }
+
+      .footer {
+        margin-top: 34px;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
+      .footer a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 480px) {
+        .page {
+          align-items: flex-start;
+          padding-top: 58px;
+        }
+
+        .brand-title {
+          font-size: 30px;
+        }
+
+        .link-button {
+          min-height: 50px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <section class="card" aria-label="Alba Bistro links">
+        <header class="brand">
+          <h1 class="brand-title">ALBA</h1>
+          <p class="brand-subtitle">Brunch • Coffee • Matcha Bar</p>
+        </header>
+
+        <nav class="links" aria-label="Quick links">
+          <a
+            class="link-button"
+            href="/menu.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Menu
+          </a>
+
+          <a
+            class="link-button"
+            href="https://maps.app.goo.gl/E3xkT8Jj2cx8Wi7G7?g_st=ic"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Find us
+          </a>
+
+          <a
+            class="link-button"
+            href="https://glovo.go.link/open?link_type=store&store_id=567972&adjust_t=s321jkn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Order delivery
+          </a>
+
+          <a
+            class="link-button"
+            href="PASTE_GOOGLE_REVIEW_LINK_HERE"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Leave a review
+          </a>
+
+          <a
+            class="link-button"
+            href="https://instagram.com/albabistro.lisbon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
+        </nav>
+
+        <footer class="footer">
+          <div>Largo do Rato, 4A</div>
+          <a href="mailto:hello@albabistrolisbon.com">
+            hello@albabistrolisbon.com
+          </a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
