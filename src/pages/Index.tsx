@@ -88,7 +88,7 @@ const desktopImages = [
   imga5,
 ].filter(Boolean);
 
-const EMAIL = "hello@albabistrolisbon.com";
+const EMAIL = "hello@albalisbon.com";
 const SLIDER_MARGIN = 150;
 
 const Index: React.FC = () => {
