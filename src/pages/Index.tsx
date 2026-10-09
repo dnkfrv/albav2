@@ -378,14 +378,14 @@ const Index: React.FC = () => {
         <div className="flex flex-col items-start gap-1 select-none">
           <img
             src={logoImage}
-            alt="Alba Bistro Logo"
+            alt="ALBA: brunch • coffee • matcha bar – Alba Lisbon logo"
             className="h-4 md:h-6 w-auto object-contain"
           />
          <p
             className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#e62d3b]"
             style={{ fontFamily: '"Maison Neue Extended Demi", sans-serif' }}
 >
-  BISTRO • COFFEE • MATCHA BAR
+  BRUNCH • COFFEE • MATCHA BAR
 </p>
         </div>
       </div>
