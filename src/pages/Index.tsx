@@ -392,8 +392,8 @@ const Index: React.FC = () => {
 
       {/* ТЕКСТ ДЛЯ ДЕСКТОПА */}
       <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed fontFamily-'"Times Now Light", serif'
-        style={{ top: 200, left: 200 }}
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed"
+        style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
         <p className="mb-3">
           Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
