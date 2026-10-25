@@ -31,7 +31,8 @@
             "en": "Soft scrambled eggs, Greek yogurt, parmesan and toasted sourdough bread",
             "pt": "Ovos mexidos cremosos, iogurte grego, parmesão e pão de fermentação natural tostado"
           },
-          "price": "9"
+          "price": "9",
+          "photo": "scrambled-eggs"
         },
         {
           "name": {
@@ -42,7 +43,8 @@
             "en": "Sourdough bread, cheese, avocado, boiled egg, whipped butter and blueberry jam",
             "pt": "Pão de fermentação natural, queijo, abacate, ovo cozido, manteiga batida e compota de mirtilos"
           },
-          "price": "10"
+          "price": "10",
+          "photo": "breakfast-plate"
         }
       ],
       "extras": {
@@ -191,7 +193,8 @@
             "en": "Add prosciutto cotto – 4",
             "pt": "Adicionar fiambre – 4"
           },
-          "price": "13"
+          "price": "13",
+          "photo": "four-cheese-omelette"
         },
         {
           "name": {
@@ -202,7 +205,8 @@
             "en": "Mushrooms, truffle beurre monté, mozzarella and parmesan",
             "pt": "Cogumelos, manteiga trufada (beurre monté), mozzarella e parmesão"
           },
-          "price": "12"
+          "price": "12",
+          "photo": "truffle-mushroom-omelette"
         },
         {
           "name": {
@@ -217,7 +221,8 @@
             "en": "Add salted salmon – 6 / avocado – 4",
             "pt": "Adicionar salmão curado – 6 / abacate – 4"
           },
-          "price": "12"
+          "price": "12",
+          "photo": "green-omelette"
         }
       ]
     },
@@ -252,7 +257,8 @@
             "en": "Mushroom julienne, gorgonzola cream, spinach, mozzarella and yogurt",
             "pt": "Juliana de cogumelos, creme de gorgonzola, espinafres, mozzarella e iogurte"
           },
-          "price": "12"
+          "price": "12",
+          "photo": "mushroom-gorgonzola-crepe"
         },
         {
           "name": {
@@ -263,7 +269,8 @@
             "en": "Salted salmon, boiled egg, whipped lemon cream cheese and marinated onion",
             "pt": "Salmão curado, ovo cozido, cream cheese batido com limão e cebola marinada"
           },
-          "price": "13"
+          "price": "13",
+          "photo": "salted-salmon-crepe"
         },
         {
           "name": {
@@ -274,7 +281,8 @@
             "en": "Warm crêpes with orange caramel and whipped lemon cream",
             "pt": "Crepes quentes com caramelo de laranja e creme de limão batido"
           },
-          "price": "10"
+          "price": "10",
+          "photo": "crepe-suzette"
         }
       ]
     },
@@ -309,7 +317,11 @@
             "en": "Add avocado – 4",
             "pt": "Adicionar abacate – 4"
           },
-          "price": "14"
+          "price": "14",
+          "photo": [
+            "eggs-benedict-salmon",
+            "eggs-benedict-pastrami"
+          ]
         },
         {
           "name": {
@@ -324,7 +336,8 @@
             "en": "Add green salad – 4",
             "pt": "Adicionar salada verde – 4"
           },
-          "price": "13"
+          "price": "13",
+          "photo": "croque-madame"
         },
         {
           "name": {
@@ -339,7 +352,8 @@
             "en": "Add extra poached egg – 1.50",
             "pt": "Adicionar ovo escalfado extra – 1.50"
           },
-          "price": "11"
+          "price": "11",
+          "photo": "savory-oatmeal"
         },
         {
           "name": {
@@ -350,7 +364,8 @@
             "en": "Creamy oats with orange caramel, blueberry jam, orange and caramelized walnut",
             "pt": "Aveia cremosa com caramelo de laranja, compota de mirtilos, laranja e nozes caramelizadas"
           },
-          "price": "10"
+          "price": "10",
+          "photo": "sweet-oatmeal"
         },
         {
           "name": {
@@ -400,7 +415,8 @@
             "en": "Fresh seasonal fruit with whipped lemon cream",
             "pt": "Fruta fresca da época com creme de limão batido"
           },
-          "price": "5"
+          "price": "5",
+          "photo": "seasonal-fruit-lemon-cream"
         },
         {
           "name": {
@@ -411,7 +427,8 @@
             "en": "Creamy rice pudding with fresh strawberries, strawberry sauce and caramelized walnut",
             "pt": "Arroz doce cremoso com morangos frescos, molho de morango e nozes caramelizadas"
           },
-          "price": "8"
+          "price": "8",
+          "photo": "rice-pudding"
         },
         {
           "name": {
@@ -422,7 +439,8 @@
             "en": "Classic vanilla crème brûlée with a caramelized sugar crust",
             "pt": "Clássico crème brûlée de baunilha com crosta de açúcar caramelizado"
           },
-          "price": "5"
+          "price": "5",
+          "photo": "creme-brulee"
         },
         {
           "name": {
@@ -461,8 +479,8 @@
       "photo": {
         "src": "cappuccino-matcha-latte",
         "alt": {
-          "en": "Cappuccino and matcha latte",
-          "pt": "Cappuccino e matcha latte"
+          "en": "Hojicha latte and matcha latte",
+          "pt": "Hojicha latte e matcha latte"
         }
       },
       "groups": [
@@ -851,8 +869,8 @@
       "photo": {
         "src": "matcha-latte",
         "alt": {
-          "en": "Barista pouring a matcha latte",
-          "pt": "Barista a servir um matcha latte"
+          "en": "Matcha latte in the making",
+          "pt": "Matcha latte em preparação"
         }
       },
       "items": [
@@ -1001,8 +1019,8 @@
       "photo": {
         "src": "herbal-tea",
         "alt": {
-          "en": "Herbal tea with a teapot",
-          "pt": "Chá de ervas com bule"
+          "en": "Cherry tea with thyme",
+          "pt": "Chá de cereja com tomilho"
         }
       },
       "items": [
@@ -1073,7 +1091,8 @@
         "alt": {
           "en": "Guests raising glasses of white wine",
           "pt": "Clientes a brindar com copos de vinho branco"
-        }
+        },
+        "nocaption": true
       },
       "note": {
         "en": "Our wine and sparkling selection changes regularly – please ask our team for today's options.",
