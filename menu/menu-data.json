@@ -1,206 +1,1173 @@
 {
-  "updated": { "en": "17 July 2026", "pt": "22 de julho de 2026" },
+  "updated": {
+    "en": "17 July 2026",
+    "pt": "22 de julho de 2026"
+  },
   "sections": [
     {
       "id": "breakfast",
-      "title": { "en": "Create your own breakfast", "pt": "Crie o seu pequeno-almoço" },
-      "nav": { "en": "Breakfast", "pt": "Pequeno-almoço" },
-      "photo": { "src": "breakfast-plate", "alt": { "en": "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam, with a matcha latte", "pt": "Prato de pequeno-almoço com pão de fermentação natural, ovos cozidos, abacate, manteiga e compota, com matcha latte" } },
+      "title": {
+        "en": "Create your own breakfast",
+        "pt": "Crie o seu pequeno-almoço"
+      },
+      "nav": {
+        "en": "Breakfast",
+        "pt": "Pequeno-almoço"
+      },
+      "photo": {
+        "src": "breakfast-plate",
+        "alt": {
+          "en": "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam, with a matcha latte",
+          "pt": "Prato de pequeno-almoço com pão de fermentação natural, ovos cozidos, abacate, manteiga e compota, com matcha latte"
+        }
+      },
       "items": [
-        { "name": { "en": "Scrambled eggs", "pt": "Ovos mexidos" }, "desc": { "en": "Soft scrambled eggs, Greek yogurt, parmesan and toasted sourdough bread", "pt": "Ovos mexidos cremosos, iogurte grego, parmesão e pão de fermentação natural tostado" }, "price": "9" },
-        { "name": { "en": "Breakfast plate", "pt": "Prato de pequeno-almoço" }, "desc": { "en": "Sourdough bread, cheese, avocado, boiled egg, whipped butter and blueberry jam", "pt": "Pão de fermentação natural, queijo, abacate, ovo cozido, manteiga batida e compota de mirtilos" }, "price": "10" }
+        {
+          "name": {
+            "en": "Scrambled eggs",
+            "pt": "Ovos mexidos"
+          },
+          "desc": {
+            "en": "Soft scrambled eggs, Greek yogurt, parmesan and toasted sourdough bread",
+            "pt": "Ovos mexidos cremosos, iogurte grego, parmesão e pão de fermentação natural tostado"
+          },
+          "price": "9"
+        },
+        {
+          "name": {
+            "en": "Breakfast plate",
+            "pt": "Prato de pequeno-almoço"
+          },
+          "desc": {
+            "en": "Sourdough bread, cheese, avocado, boiled egg, whipped butter and blueberry jam",
+            "pt": "Pão de fermentação natural, queijo, abacate, ovo cozido, manteiga batida e compota de mirtilos"
+          },
+          "price": "10"
+        }
       ],
       "extras": {
-        "title": { "en": "Choose your extras", "pt": "Escolha os seus extras" },
+        "title": {
+          "en": "Choose your extras",
+          "pt": "Escolha os seus extras"
+        },
         "list": [
-          [{ "en": "Boiled egg", "pt": "Ovo cozido" }, "1.50"],
-          [{ "en": "Extra scrambled eggs", "pt": "Extra ovos mexidos" }, "5"],
-          [{ "en": "Salted salmon", "pt": "Salmão curado" }, "6"],
-          [{ "en": "Prosciutto cotto", "pt": "Fiambre" }, "4"],
-          [{ "en": "Beef pastrami", "pt": "Pastrami de vaca" }, "6"],
-          [{ "en": "Butter", "pt": "Manteiga" }, "1"],
-          [{ "en": "Gouda cheese", "pt": "Queijo gouda" }, "2"],
-          [{ "en": "Sliced avocado", "pt": "Abacate fatiado" }, "4"],
-          [{ "en": "Green salad", "pt": "Salada verde" }, "4"],
-          [{ "en": "Lemon cream cheese", "pt": "Creme de queijo com limão" }, "2.50"],
-          [{ "en": "Sourdough bread", "pt": "Pão de fermentação natural" }, "2"],
-          [{ "en": "Brioche", "pt": "Pão brioche" }, "2.50"],
-          [{ "en": "Blueberry jam", "pt": "Compota de mirtilos" }, "1"],
-          [{ "en": "Cherry tomatoes", "pt": "Tomates cherry" }, "2"]
+          [
+            {
+              "en": "Boiled egg",
+              "pt": "Ovo cozido"
+            },
+            "1.50"
+          ],
+          [
+            {
+              "en": "Extra scrambled eggs",
+              "pt": "Extra ovos mexidos"
+            },
+            "5"
+          ],
+          [
+            {
+              "en": "Salted salmon",
+              "pt": "Salmão curado"
+            },
+            "6"
+          ],
+          [
+            {
+              "en": "Prosciutto cotto",
+              "pt": "Fiambre"
+            },
+            "4"
+          ],
+          [
+            {
+              "en": "Beef pastrami",
+              "pt": "Pastrami de vaca"
+            },
+            "6"
+          ],
+          [
+            {
+              "en": "Butter",
+              "pt": "Manteiga"
+            },
+            "1"
+          ],
+          [
+            {
+              "en": "Gouda cheese",
+              "pt": "Queijo gouda"
+            },
+            "2"
+          ],
+          [
+            {
+              "en": "Sliced avocado",
+              "pt": "Abacate fatiado"
+            },
+            "4"
+          ],
+          [
+            {
+              "en": "Green salad",
+              "pt": "Salada verde"
+            },
+            "4"
+          ],
+          [
+            {
+              "en": "Lemon cream cheese",
+              "pt": "Creme de queijo com limão"
+            },
+            "2.50"
+          ],
+          [
+            {
+              "en": "Sourdough bread",
+              "pt": "Pão de fermentação natural"
+            },
+            "2"
+          ],
+          [
+            {
+              "en": "Brioche",
+              "pt": "Pão brioche"
+            },
+            "2.50"
+          ],
+          [
+            {
+              "en": "Blueberry jam",
+              "pt": "Compota de mirtilos"
+            },
+            "1"
+          ],
+          [
+            {
+              "en": "Cherry tomatoes",
+              "pt": "Tomates cherry"
+            },
+            "2"
+          ]
         ]
       }
     },
     {
       "id": "omelettes",
-      "title": { "en": "Omelettes", "pt": "Omeletes" },
-      "nav": { "en": "Omelettes", "pt": "Omeletes" },
-      "note": { "en": "All omelettes are served with green salad. Add bread – 2", "pt": "Todas as omeletes são servidas com salada verde. Adicione pão – 2" },
+      "title": {
+        "en": "Omelettes",
+        "pt": "Omeletes"
+      },
+      "nav": {
+        "en": "Omelettes",
+        "pt": "Omeletes"
+      },
+      "note": {
+        "en": "All omelettes are served with green salad. Add bread – 2",
+        "pt": "Todas as omeletes são servidas com salada verde. Adicione pão – 2"
+      },
       "items": [
-        { "name": { "en": "Prosciutto cotto & tomato jam omelette", "pt": "Omelete de fiambre e doce de tomate" }, "desc": { "en": "Prosciutto cotto, tomato marmalade, mozzarella and grana padano", "pt": "Fiambre, marmelada de tomate, mozzarella e grana padano" }, "price": "13" },
-        { "name": { "en": "Four cheese & onion jam omelette", "pt": "Omelete de quatro queijos e doce de cebola" }, "desc": { "en": "Gorgonzola cream, onion jam, mozzarella, parmesan and caramelized walnut", "pt": "Creme de gorgonzola, compota de cebola, mozzarella, parmesão e nozes caramelizadas" }, "add": { "en": "Add prosciutto cotto – 4", "pt": "Adicionar fiambre – 4" }, "price": "13" },
-        { "name": { "en": "Truffle mushroom omelette", "pt": "Omelete de cogumelos trufados" }, "desc": { "en": "Mushrooms, truffle beurre monté, mozzarella and parmesan", "pt": "Cogumelos, manteiga trufada (beurre monté), mozzarella e parmesão" }, "price": "12" },
-        { "name": { "en": "Green omelette", "pt": "Omelete verde" }, "desc": { "en": "Spinach, lemon cream cheese and mozzarella", "pt": "Espinafres, cream cheese de limão e mozzarella" }, "add": { "en": "Add salted salmon – 6 / avocado – 4", "pt": "Adicionar salmão curado – 6 / abacate – 4" }, "price": "12" }
+        {
+          "name": {
+            "en": "Prosciutto cotto & tomato jam omelette",
+            "pt": "Omelete de fiambre e doce de tomate"
+          },
+          "desc": {
+            "en": "Prosciutto cotto, tomato marmalade, mozzarella and grana padano",
+            "pt": "Fiambre, marmelada de tomate, mozzarella e grana padano"
+          },
+          "price": "13"
+        },
+        {
+          "name": {
+            "en": "Four cheese & onion jam omelette",
+            "pt": "Omelete de quatro queijos e doce de cebola"
+          },
+          "desc": {
+            "en": "Gorgonzola cream, onion jam, mozzarella, parmesan and caramelized walnut",
+            "pt": "Creme de gorgonzola, compota de cebola, mozzarella, parmesão e nozes caramelizadas"
+          },
+          "add": {
+            "en": "Add prosciutto cotto – 4",
+            "pt": "Adicionar fiambre – 4"
+          },
+          "price": "13"
+        },
+        {
+          "name": {
+            "en": "Truffle mushroom omelette",
+            "pt": "Omelete de cogumelos trufados"
+          },
+          "desc": {
+            "en": "Mushrooms, truffle beurre monté, mozzarella and parmesan",
+            "pt": "Cogumelos, manteiga trufada (beurre monté), mozzarella e parmesão"
+          },
+          "price": "12"
+        },
+        {
+          "name": {
+            "en": "Green omelette",
+            "pt": "Omelete verde"
+          },
+          "desc": {
+            "en": "Spinach, lemon cream cheese and mozzarella",
+            "pt": "Espinafres, cream cheese de limão e mozzarella"
+          },
+          "add": {
+            "en": "Add salted salmon – 6 / avocado – 4",
+            "pt": "Adicionar salmão curado – 6 / abacate – 4"
+          },
+          "price": "12"
+        }
       ]
     },
     {
       "id": "crepes",
-      "title": { "en": "Crêpes", "pt": "Crêpes" },
-      "nav": { "en": "Crêpes", "pt": "Crêpes" },
+      "title": {
+        "en": "Crêpes",
+        "pt": "Crêpes"
+      },
+      "nav": {
+        "en": "Crêpes",
+        "pt": "Crêpes"
+      },
       "items": [
-        { "name": { "en": "Pastrami & truffle potato crêpe", "pt": "Crêpe de pastrami, batata e trufa" }, "desc": { "en": "Beef pastrami, mashed potato, truffle sauce, gouda and tomato jam", "pt": "Pastrami de vaca, puré de batata, molho de trufa, queijo gouda e doce de tomate" }, "price": "14" },
-        { "name": { "en": "Mushroom & gorgonzola crêpe", "pt": "Crêpe de cogumelos e gorgonzola" }, "desc": { "en": "Mushroom julienne, gorgonzola cream, spinach, mozzarella and yogurt", "pt": "Juliana de cogumelos, creme de gorgonzola, espinafres, mozzarella e iogurte" }, "price": "12" },
-        { "name": { "en": "Salted salmon crêpe", "pt": "Crêpe de salmão curado" }, "desc": { "en": "Salted salmon, boiled egg, whipped lemon cream cheese and marinated onion", "pt": "Salmão curado, ovo cozido, cream cheese batido com limão e cebola marinada" }, "price": "13" },
-        { "name": { "en": "Crêpe Suzette", "pt": "Crêpe Suzette" }, "desc": { "en": "Warm crêpes with orange caramel and whipped lemon cream", "pt": "Crepes quentes com caramelo de laranja e creme de limão batido" }, "price": "10" }
+        {
+          "name": {
+            "en": "Pastrami & truffle potato crêpe",
+            "pt": "Crêpe de pastrami, batata e trufa"
+          },
+          "desc": {
+            "en": "Beef pastrami, mashed potato, truffle sauce, gouda and tomato jam",
+            "pt": "Pastrami de vaca, puré de batata, molho de trufa, queijo gouda e doce de tomate"
+          },
+          "price": "14"
+        },
+        {
+          "name": {
+            "en": "Mushroom & gorgonzola crêpe",
+            "pt": "Crêpe de cogumelos e gorgonzola"
+          },
+          "desc": {
+            "en": "Mushroom julienne, gorgonzola cream, spinach, mozzarella and yogurt",
+            "pt": "Juliana de cogumelos, creme de gorgonzola, espinafres, mozzarella e iogurte"
+          },
+          "price": "12"
+        },
+        {
+          "name": {
+            "en": "Salted salmon crêpe",
+            "pt": "Crêpe de salmão curado"
+          },
+          "desc": {
+            "en": "Salted salmon, boiled egg, whipped lemon cream cheese and marinated onion",
+            "pt": "Salmão curado, ovo cozido, cream cheese batido com limão e cebola marinada"
+          },
+          "price": "13"
+        },
+        {
+          "name": {
+            "en": "Crêpe Suzette",
+            "pt": "Crêpe Suzette"
+          },
+          "desc": {
+            "en": "Warm crêpes with orange caramel and whipped lemon cream",
+            "pt": "Crepes quentes com caramelo de laranja e creme de limão batido"
+          },
+          "price": "10"
+        }
       ]
     },
     {
       "id": "brunch",
-      "title": { "en": "Brunch plates", "pt": "Pratos de brunch" },
-      "nav": { "en": "Brunch", "pt": "Brunch" },
-      "photo": { "src": "savory-oatmeal-prosciutto", "alt": { "en": "Savory oatmeal with prosciutto cotto, poached egg and grana padano", "pt": "Papas de aveia salgadas com fiambre, ovo escalfado e grana padano" } },
+      "title": {
+        "en": "Brunch plates",
+        "pt": "Pratos de brunch"
+      },
+      "nav": {
+        "en": "Brunch",
+        "pt": "Brunch"
+      },
+      "photo": {
+        "src": "savory-oatmeal-prosciutto",
+        "alt": {
+          "en": "Savory oatmeal with prosciutto cotto, poached egg and grana padano",
+          "pt": "Papas de aveia salgadas com fiambre, ovo escalfado e grana padano"
+        }
+      },
       "items": [
-        { "name": { "en": "Eggs Benedict – salmon or pastrami", "pt": "Ovos Benedict – salmão ou pastrami" }, "desc": { "en": "Brioche, poached eggs, hollandaise and spinach, with your choice of salted salmon or pastrami", "pt": "Brioche, ovos escalfados, molho holandês e espinafres, com salmão curado ou pastrami à escolha" }, "add": { "en": "Add avocado – 4", "pt": "Adicionar abacate – 4" }, "price": "14" },
-        { "name": { "en": "Croque madame", "pt": "Croque madame" }, "desc": { "en": "Toasted sourdough bread (or brioche +0.50), truffle mornay, gouda, prosciutto, onion jam and poached eggs", "pt": "Pão de fermentação natural tostado (ou brioche +0.50), molho mornay de trufa, queijo gouda, prosciutto, doce de cebola e ovos escalfados" }, "add": { "en": "Add green salad – 4", "pt": "Adicionar salada verde – 3" }, "price": "13" },
-        { "name": { "en": "Savory oatmeal with prosciutto cotto", "pt": "Papas de aveia salgadas com fiambre" }, "desc": { "en": "Creamy oats with prosciutto cotto, poached egg, truffle beurre monté and grana padano", "pt": "Aveia cremosa com fiambre, ovo escalfado, manteiga trufada (beurre monté) e grana padano" }, "add": { "en": "Add extra poached egg – 1.50", "pt": "Adicionar ovo escalfado extra – 1.50" }, "price": "11" },
-        { "name": { "en": "Sweet creamy oatmeal with berry jam", "pt": "Papas de aveia doces com compota de mirtilos" }, "desc": { "en": "Creamy oats with orange caramel, blueberry jam, orange and caramelized walnut", "pt": "Aveia cremosa com caramelo de laranja, compota de mirtilos, laranja e nozes caramelizadas" }, "price": "10" },
-        { "name": { "en": "Avocado toast with tuna salad", "pt": "Tosta de abacate com salada de atum" }, "desc": { "en": "Rye bread with seeds, tuna relish with chopped eggs, avocado, marinated onion and lemon oil", "pt": "Pão de centeio com sementes, relish de atum com ovo picado, abacate, cebola marinada e azeite de limão" }, "price": "10" },
-        { "name": { "en": "Avocado toast with vegan feta and tomato jam", "pt": "Tosta de abacate com feta vegan e doce de tomate" }, "desc": { "en": "Rye bread with seeds, vegan feta dip, tomato jam, avocado, lemon oil and chili flakes", "pt": "Pão de centeio com sementes, creme de feta vegan, doce de tomate, abacate, azeite de limão e flocos de chili" }, "tag": { "en": "Vegan", "pt": "Vegan" }, "price": "10" }
+        {
+          "name": {
+            "en": "Eggs Benedict – salmon or pastrami",
+            "pt": "Ovos Benedict – salmão ou pastrami"
+          },
+          "desc": {
+            "en": "Brioche, poached eggs, hollandaise and spinach, with your choice of salted salmon or pastrami",
+            "pt": "Brioche, ovos escalfados, molho holandês e espinafres, com salmão curado ou pastrami à escolha"
+          },
+          "add": {
+            "en": "Add avocado – 4",
+            "pt": "Adicionar abacate – 4"
+          },
+          "price": "14"
+        },
+        {
+          "name": {
+            "en": "Croque madame",
+            "pt": "Croque madame"
+          },
+          "desc": {
+            "en": "Toasted sourdough bread (or brioche +0.50), truffle mornay, gouda, prosciutto, onion jam and poached eggs",
+            "pt": "Pão de fermentação natural tostado (ou brioche +0.50), molho mornay de trufa, queijo gouda, prosciutto, doce de cebola e ovos escalfados"
+          },
+          "add": {
+            "en": "Add green salad – 4",
+            "pt": "Adicionar salada verde – 4"
+          },
+          "price": "13"
+        },
+        {
+          "name": {
+            "en": "Savory oatmeal with prosciutto cotto",
+            "pt": "Papas de aveia salgadas com fiambre"
+          },
+          "desc": {
+            "en": "Creamy oats with prosciutto cotto, poached egg, truffle beurre monté and grana padano",
+            "pt": "Aveia cremosa com fiambre, ovo escalfado, manteiga trufada (beurre monté) e grana padano"
+          },
+          "add": {
+            "en": "Add extra poached egg – 1.50",
+            "pt": "Adicionar ovo escalfado extra – 1.50"
+          },
+          "price": "11"
+        },
+        {
+          "name": {
+            "en": "Sweet creamy oatmeal with berry jam",
+            "pt": "Papas de aveia doces com compota de mirtilos"
+          },
+          "desc": {
+            "en": "Creamy oats with orange caramel, blueberry jam, orange and caramelized walnut",
+            "pt": "Aveia cremosa com caramelo de laranja, compota de mirtilos, laranja e nozes caramelizadas"
+          },
+          "price": "10"
+        },
+        {
+          "name": {
+            "en": "Avocado toast with tuna salad",
+            "pt": "Tosta de abacate com salada de atum"
+          },
+          "desc": {
+            "en": "Rye bread with seeds, tuna relish with chopped eggs, avocado, marinated onion and lemon oil",
+            "pt": "Pão de centeio com sementes, relish de atum com ovo picado, abacate, cebola marinada e azeite de limão"
+          },
+          "price": "10"
+        },
+        {
+          "name": {
+            "en": "Avocado toast with vegan feta and tomato jam",
+            "pt": "Tosta de abacate com feta vegan e doce de tomate"
+          },
+          "desc": {
+            "en": "Rye bread with seeds, vegan feta dip, tomato jam, avocado, lemon oil and chili flakes",
+            "pt": "Pão de centeio com sementes, creme de feta vegan, doce de tomate, abacate, azeite de limão e flocos de chili"
+          },
+          "tag": {
+            "en": "Vegan",
+            "pt": "Vegan"
+          },
+          "price": "10"
+        }
       ]
     },
     {
       "id": "desserts",
-      "title": { "en": "Desserts", "pt": "Sobremesas" },
-      "nav": { "en": "Desserts", "pt": "Sobremesas" },
+      "title": {
+        "en": "Desserts",
+        "pt": "Sobremesas"
+      },
+      "nav": {
+        "en": "Desserts",
+        "pt": "Sobremesas"
+      },
       "items": [
-        { "name": { "en": "Seasonal fruit & lemon cream", "pt": "Fruta da época e creme de limão" }, "desc": { "en": "Fresh seasonal fruit with whipped lemon cream", "pt": "Fruta fresca da época com creme de limão batido" }, "price": "5" },
-        { "name": { "en": "Rice pudding", "pt": "Arroz doce" }, "desc": { "en": "Creamy rice pudding with fresh strawberries, strawberry sauce and caramelized walnut", "pt": "Arroz doce cremoso com morangos frescos, molho de morango e nozes caramelizadas" }, "price": "8" },
-        { "name": { "en": "Crème brûlée", "pt": "Crème brûlée" }, "desc": { "en": "Classic vanilla crème brûlée with a caramelized sugar crust", "pt": "Clássico crème brûlée de baunilha com crosta de açúcar caramelizado" }, "price": "5" },
-        { "name": { "en": "Espresso affogato", "pt": "Espresso affogato" }, "desc": { "en": "Vanilla ice cream, double espresso, pecan, chocolate Nicaragua El Castillero 55%", "pt": "Gelado de baunilha, espresso duplo, nozes-pecã e chocolate Nicarágua El Castillero 55%" }, "price": "6.50" },
-        { "name": { "en": "Matcha affogato", "pt": "Matcha affogato" }, "desc": { "en": "Vanilla ice cream, Ikigai matcha shot, pistachio, nori", "pt": "Gelado de baunilha, shot de matcha Ikigai, pistácio e alga nori" }, "price": "6.50" }
+        {
+          "name": {
+            "en": "Seasonal fruit & lemon cream",
+            "pt": "Fruta da época e creme de limão"
+          },
+          "desc": {
+            "en": "Fresh seasonal fruit with whipped lemon cream",
+            "pt": "Fruta fresca da época com creme de limão batido"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Rice pudding",
+            "pt": "Arroz doce"
+          },
+          "desc": {
+            "en": "Creamy rice pudding with fresh strawberries, strawberry sauce and caramelized walnut",
+            "pt": "Arroz doce cremoso com morangos frescos, molho de morango e nozes caramelizadas"
+          },
+          "price": "8"
+        },
+        {
+          "name": {
+            "en": "Crème brûlée",
+            "pt": "Crème brûlée"
+          },
+          "desc": {
+            "en": "Classic vanilla crème brûlée with a caramelized sugar crust",
+            "pt": "Clássico crème brûlée de baunilha com crosta de açúcar caramelizado"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Espresso affogato",
+            "pt": "Espresso affogato"
+          },
+          "desc": {
+            "en": "Vanilla ice cream, double espresso, pecan, chocolate Nicaragua El Castillero 55%",
+            "pt": "Gelado de baunilha, espresso duplo, nozes-pecã e chocolate Nicarágua El Castillero 55%"
+          },
+          "price": "6.50"
+        },
+        {
+          "name": {
+            "en": "Matcha affogato",
+            "pt": "Matcha affogato"
+          },
+          "desc": {
+            "en": "Vanilla ice cream, Ikigai matcha shot, pistachio, nori",
+            "pt": "Gelado de baunilha, shot de matcha Ikigai, pistácio e alga nori"
+          },
+          "price": "6.50"
+        }
       ]
     },
     {
       "id": "coffee",
-      "title": { "en": "Coffee", "pt": "Café" },
-      "nav": { "en": "Coffee", "pt": "Café" },
-      "photo": { "src": "cappuccino-matcha-latte", "alt": { "en": "Cappuccino and matcha latte", "pt": "Cappuccino e matcha latte" } },
+      "title": {
+        "en": "Coffee",
+        "pt": "Café"
+      },
+      "nav": {
+        "en": "Coffee",
+        "pt": "Café"
+      },
+      "photo": {
+        "src": "cappuccino-matcha-latte",
+        "alt": {
+          "en": "Cappuccino and matcha latte",
+          "pt": "Cappuccino e matcha latte"
+        }
+      },
       "groups": [
         {
-          "title": { "en": "Black", "pt": "Preto" },
+          "title": {
+            "en": "Black",
+            "pt": "Preto"
+          },
           "items": [
-            { "name": { "en": "Single espresso", "pt": "Espresso simples" }, "price": "1.50" },
-            { "name": { "en": "Double espresso", "pt": "Espresso duplo" }, "price": "2.50" },
-            { "name": { "en": "L'espresso", "pt": "L'espresso" }, "desc": { "en": "Not your everyday espresso", "pt": "Não é o espresso do dia a dia" }, "price": "4" },
-            { "name": { "en": "Americano", "pt": "Americano" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "3" },
-            { "name": { "en": "Batch brew", "pt": "Filtro do dia" }, "price": "4" },
-            { "name": { "en": "Cold brew", "pt": "Cold brew" }, "price": "4.50" },
-            { "name": { "en": "Blueberry cold brew", "pt": "Cold brew de mirtilo" }, "price": "6" },
-            { "name": { "en": "Espresso tonic", "pt": "Espresso tónica" }, "price": "6" },
-            { "name": { "en": "Barista set", "pt": "Set do barista" }, "desc": { "en": "Espresso, batch brew and cappuccino", "pt": "Espresso, filtro do dia e cappuccino" }, "price": { "en": "7", "pt": "6" } },
-            { "name": { "en": "Hand brew exceptional", "pt": "Filtro manual excecional" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "7" }
+            {
+              "name": {
+                "en": "Single espresso",
+                "pt": "Espresso simples"
+              },
+              "price": "1.50"
+            },
+            {
+              "name": {
+                "en": "Double espresso",
+                "pt": "Espresso duplo"
+              },
+              "price": "2.50"
+            },
+            {
+              "name": {
+                "en": "L'espresso",
+                "pt": "L'espresso"
+              },
+              "desc": {
+                "en": "Not your everyday espresso",
+                "pt": "Não é o espresso do dia a dia"
+              },
+              "price": "4"
+            },
+            {
+              "name": {
+                "en": "Americano",
+                "pt": "Americano"
+              },
+              "tag": {
+                "en": "Hot or iced",
+                "pt": "Quente ou frio"
+              },
+              "price": "3"
+            },
+            {
+              "name": {
+                "en": "Batch brew",
+                "pt": "Filtro do dia"
+              },
+              "price": "4"
+            },
+            {
+              "name": {
+                "en": "Cold brew",
+                "pt": "Cold brew"
+              },
+              "price": "4.50"
+            },
+            {
+              "name": {
+                "en": "Blueberry cold brew",
+                "pt": "Cold brew de mirtilo"
+              },
+              "price": "6"
+            },
+            {
+              "name": {
+                "en": "Espresso tonic",
+                "pt": "Espresso tónica"
+              },
+              "price": "6"
+            },
+            {
+              "name": {
+                "en": "Barista set",
+                "pt": "Set do barista"
+              },
+              "desc": {
+                "en": "Espresso, batch brew and cappuccino",
+                "pt": "Espresso, filtro do dia e cappuccino"
+              },
+              "price": "7"
+            },
+            {
+              "name": {
+                "en": "Hand brew exceptional",
+                "pt": "Filtro manual excecional"
+              },
+              "tag": {
+                "en": "Hot or iced",
+                "pt": "Quente ou frio"
+              },
+              "price": "7"
+            }
           ]
         },
         {
-          "title": { "en": "White", "pt": "Com leite" },
+          "title": {
+            "en": "White",
+            "pt": "Com leite"
+          },
           "items": [
-            { "name": { "en": "Macchiato", "pt": "Macchiato" }, "price": "2.50" },
-            { "name": { "en": "Cortado", "pt": "Cortado" }, "price": "3.50" },
-            { "name": { "en": "Cappuccino", "pt": "Cappuccino" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "3.50" },
-            { "name": { "en": "Cappuccino double", "pt": "Cappuccino duplo" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "4.50" },
-            { "name": { "en": "Flat white", "pt": "Flat white" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "4" },
-            { "name": { "en": "Latte", "pt": "Latte" }, "desc": { "en": "Extra shot +1.50", "pt": "Shot extra +1.50" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "4" },
-            { "name": { "en": "Raf vanilla", "pt": "Raf de baunilha" }, "price": "6" },
-            { "name": { "en": "Latte with pecan maple syrup", "pt": "Latte de pecã e xarope de ácer" }, "price": "6.50" }
+            {
+              "name": {
+                "en": "Macchiato",
+                "pt": "Macchiato"
+              },
+              "price": "2.50"
+            },
+            {
+              "name": {
+                "en": "Cortado",
+                "pt": "Cortado"
+              },
+              "price": "3.50"
+            },
+            {
+              "name": {
+                "en": "Cappuccino",
+                "pt": "Cappuccino"
+              },
+              "tag": {
+                "en": "Hot or iced",
+                "pt": "Quente ou frio"
+              },
+              "price": "3.50"
+            },
+            {
+              "name": {
+                "en": "Cappuccino double",
+                "pt": "Cappuccino duplo"
+              },
+              "tag": {
+                "en": "Hot or iced",
+                "pt": "Quente ou frio"
+              },
+              "price": "4.50"
+            },
+            {
+              "name": {
+                "en": "Flat white",
+                "pt": "Flat white"
+              },
+              "tag": {
+                "en": "Hot or iced",
+                "pt": "Quente ou frio"
+              },
+              "price": "4"
+            },
+            {
+              "name": {
+                "en": "Latte",
+                "pt": "Latte"
+              },
+              "desc": {
+                "en": "Extra shot +1.50",
+                "pt": "Shot extra +1.50"
+              },
+              "tag": {
+                "en": "Hot or iced",
+                "pt": "Quente ou frio"
+              },
+              "price": "4"
+            },
+            {
+              "name": {
+                "en": "Raf vanilla",
+                "pt": "Raf de baunilha"
+              },
+              "price": "6"
+            },
+            {
+              "name": {
+                "en": "Latte with pecan maple syrup",
+                "pt": "Latte de pecã e xarope de ácer"
+              },
+              "price": "6.50"
+            }
           ]
         }
       ],
-      "note": { "en": "Milk: regular or lactose-free – free, oat milk – 0.50. Syrups: sugar – free, vanilla – 0.50, agave or honey – 1", "pt": "Leite: normal ou sem lactose – grátis, leite de aveia – 0.50. Xaropes: açúcar – grátis, baunilha – 0.50, agave ou mel – 1" }
+      "note": {
+        "en": "Milk: regular or lactose-free – free, oat milk – 0.50. Syrups: sugar – free, vanilla – 0.50, agave or honey – 1",
+        "pt": "Leite: normal ou sem lactose – grátis, leite de aveia – 0.50. Xaropes: açúcar – grátis, baunilha – 0.50, agave ou mel – 1"
+      }
     },
     {
       "id": "matcha",
-      "title": { "en": "Matcha & hojicha", "pt": "Matcha e hojicha" },
-      "nav": { "en": "Matcha", "pt": "Matcha" },
-      "photo": { "src": "strawberry-matcha", "alt": { "en": "Strawberry matcha with whipped strawberry ice cream", "pt": "Matcha de morango com gelado de morango batido" } },
+      "title": {
+        "en": "Matcha & hojicha",
+        "pt": "Matcha e hojicha"
+      },
+      "nav": {
+        "en": "Matcha",
+        "pt": "Matcha"
+      },
+      "photo": {
+        "src": "strawberry-matcha",
+        "alt": {
+          "en": "Strawberry matcha with whipped strawberry ice cream",
+          "pt": "Matcha de morango com gelado de morango batido"
+        }
+      },
       "items": [
-        { "name": { "en": "Flat matcha", "pt": "Flat matcha" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "5" },
-        { "name": { "en": "Flat hojicha", "pt": "Flat hojicha" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "5" },
-        { "name": { "en": "Matcha latte", "pt": "Matcha latte" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "5.50" },
-        { "name": { "en": "Hojicha latte", "pt": "Hojicha latte" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "5.50" },
-        { "name": { "en": "Strawberry matcha", "pt": "Matcha de morango" }, "desc": { "en": "Ikigai matcha latte with whipped strawberry ice cream", "pt": "Ikigai matcha latte com gelado de morango batido" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "6.50" },
-        { "name": { "en": "Coconut matcha", "pt": "Matcha de coco" }, "desc": { "en": "Ikigai matcha latte with coconut purée whipped cream", "pt": "Ikigai matcha latte com chantilly de coco" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "6.50" },
-        { "name": { "en": "Spice whisper", "pt": "Sussurro de especiarias" }, "desc": { "en": "Hojicha latte with black cardamom, coconut cream and nutmeg", "pt": "Hojicha latte com cardamomo preto, creme de coco e noz-moscada" }, "tag": { "en": "Hot or iced", "pt": "Quente ou frio" }, "price": "6.50" }
+        {
+          "name": {
+            "en": "Flat matcha",
+            "pt": "Flat matcha"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Flat hojicha",
+            "pt": "Flat hojicha"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Matcha latte",
+            "pt": "Matcha latte"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "5.50"
+        },
+        {
+          "name": {
+            "en": "Hojicha latte",
+            "pt": "Hojicha latte"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "5.50"
+        },
+        {
+          "name": {
+            "en": "Strawberry matcha",
+            "pt": "Matcha de morango"
+          },
+          "desc": {
+            "en": "Ikigai matcha latte with whipped strawberry ice cream",
+            "pt": "Ikigai matcha latte com gelado de morango batido"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "6.50"
+        },
+        {
+          "name": {
+            "en": "Coconut matcha",
+            "pt": "Matcha de coco"
+          },
+          "desc": {
+            "en": "Ikigai matcha latte with coconut purée whipped cream",
+            "pt": "Ikigai matcha latte com chantilly de coco"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "6.50"
+        },
+        {
+          "name": {
+            "en": "Spice whisper",
+            "pt": "Sussurro de especiarias"
+          },
+          "desc": {
+            "en": "Hojicha latte with black cardamom, coconut cream and nutmeg",
+            "pt": "Hojicha latte com cardamomo preto, creme de coco e noz-moscada"
+          },
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          },
+          "price": "6.50"
+        }
       ]
     },
     {
       "id": "ceremonial",
-      "title": { "en": "Ceremonial matcha by Michi", "pt": "Matcha cerimonial da Michi" },
-      "nav": { "en": "Ceremonial", "pt": "Cerimonial" },
-      "photo": { "src": "matcha-tasting-set", "alt": { "en": "Ceremonial matcha tasting set of three varieties", "pt": "Set de degustação de matcha cerimonial com três variedades" } },
-      "note": { "en": "Shot – 30 ml, usucha – 120 ml", "pt": "Shot – 30 ml, usucha – 120 ml" },
+      "title": {
+        "en": "Ceremonial matcha by Michi",
+        "pt": "Matcha cerimonial da Michi"
+      },
+      "nav": {
+        "en": "Ceremonial",
+        "pt": "Cerimonial"
+      },
+      "photo": {
+        "src": "matcha-tasting-set",
+        "alt": {
+          "en": "Ceremonial matcha tasting set of three varieties",
+          "pt": "Set de degustação de matcha cerimonial com três variedades"
+        }
+      },
+      "note": {
+        "en": "Shot – 30 ml, usucha – 120 ml",
+        "pt": "Shot – 30 ml, usucha – 120 ml"
+      },
       "items": [
-        { "name": { "en": "Ikigai", "pt": "Ikigai" }, "desc": { "en": "Classic and balanced, with grassy, earthy and pine nut notes", "pt": "Clássico e equilibrado, com notas de erva, terra e pinhão" }, "price": "4" },
-        { "name": { "en": "Hojicha", "pt": "Hojicha" }, "desc": { "en": "Roasted leaves with notes of complex caramel and nuts", "pt": "Folhas torradas, com notas de caramelo e frutos secos" }, "price": "4" },
-        { "name": { "en": "Yutori", "pt": "Yutori" }, "desc": { "en": "Soft taste with edamame, seaweed and bamboo shoot notes", "pt": "Sabor suave, com notas de edamame, algas e rebentos de bambu" }, "price": "5" },
-        { "name": { "en": "Haru", "pt": "Haru" }, "desc": { "en": "Premium creamy matcha, full body and a sweet finish with jasmine, fresh green and umami notes", "pt": "Matcha premium cremoso, encorpado e com final doce, com notas de jasmim, frescura verde e umami" }, "price": "5" },
-        { "name": { "en": "Tasting set", "pt": "Set de degustação" }, "desc": { "en": "Any three varieties of matcha shots", "pt": "Três shots de matcha à escolha" }, "price": "8" }
+        {
+          "name": {
+            "en": "Ikigai",
+            "pt": "Ikigai"
+          },
+          "desc": {
+            "en": "Classic and balanced, with grassy, earthy and pine nut notes",
+            "pt": "Clássico e equilibrado, com notas de erva, terra e pinhão"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Hojicha",
+            "pt": "Hojicha"
+          },
+          "desc": {
+            "en": "Roasted leaves with notes of complex caramel and nuts",
+            "pt": "Folhas torradas, com notas de caramelo e frutos secos"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Yutori",
+            "pt": "Yutori"
+          },
+          "desc": {
+            "en": "Soft taste with edamame, seaweed and bamboo shoot notes",
+            "pt": "Sabor suave, com notas de edamame, algas e rebentos de bambu"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Haru",
+            "pt": "Haru"
+          },
+          "desc": {
+            "en": "Premium creamy matcha, full body and a sweet finish with jasmine, fresh green and umami notes",
+            "pt": "Matcha premium cremoso, encorpado e com final doce, com notas de jasmim, frescura verde e umami"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Tasting set",
+            "pt": "Set de degustação"
+          },
+          "desc": {
+            "en": "Any three varieties of matcha shots",
+            "pt": "Três shots de matcha à escolha"
+          },
+          "price": "8"
+        }
       ]
     },
     {
       "id": "specials",
-      "title": { "en": "Summer specials", "pt": "Especiais de verão" },
-      "nav": { "en": "Specials", "pt": "Especiais" },
-      "photo": { "src": "matcha-latte", "alt": { "en": "Barista pouring a matcha latte", "pt": "Barista a servir um matcha latte" } },
+      "title": {
+        "en": "Seasonal specials",
+        "pt": "Especiais da época"
+      },
+      "nav": {
+        "en": "Specials",
+        "pt": "Especiais"
+      },
+      "photo": {
+        "src": "matcha-latte",
+        "alt": {
+          "en": "Barista pouring a matcha latte",
+          "pt": "Barista a servir um matcha latte"
+        }
+      },
       "items": [
-        { "name": { "en": "Mango jasmine iced tea", "pt": "Chá gelado de manga e jasmim" }, "desc": { "en": "Mango, jasmine iced tea, passion fruit, honey", "pt": "Manga, chá gelado de jasmim, maracujá, mel" }, "price": "4.50" },
-        { "name": { "en": "Cherry hibiscus lemonade", "pt": "Limonada de cereja e hibisco" }, "desc": { "en": "Cherry, hibiscus, cinnamon, black pepper", "pt": "Cereja, hibisco, canela, pimenta preta" }, "price": "4" },
-        { "name": { "en": "Ginger rosemary lemonade", "pt": "Limonada de gengibre e alecrim" }, "desc": { "en": "Ginger, rosemary syrup, lemon", "pt": "Gengibre, xarope de alecrim, limão" }, "price": "4" },
-        { "name": { "en": "Banana mango isotonic", "pt": "Isotónico de banana e manga" }, "desc": { "en": "Tropical fruit mix, electrolytes", "pt": "Mistura de frutas tropicais, eletrólitos" }, "add": { "en": "Add a matcha shot – 4", "pt": "Adicionar shot de matcha – 4" }, "price": "3.50" },
-        { "name": { "en": "Coconut iced cacao", "pt": "Cacau gelado de coco" }, "desc": { "en": "Coconut milk, 70% chocolate", "pt": "Leite de coco, chocolate 70%" }, "price": "6.50" },
-        { "name": { "en": "Bumble matcha", "pt": "Bumble matcha" }, "desc": { "en": "Fresh orange juice, matcha shot, agave syrup", "pt": "Sumo de laranja natural, shot de matcha, xarope de agave" }, "price": "6" },
-        { "name": { "en": "Bumble coffee", "pt": "Bumble coffee" }, "desc": { "en": "Fresh orange juice, double espresso, agave syrup", "pt": "Sumo de laranja natural, duplo shot de espresso, xarope de agave" }, "price": "5" },
-        { "name": { "en": "Coconut water", "pt": "Água de coco" }, "desc": { "en": "100% coconut water", "pt": "100% água de coco" }, "price": "3.50" }
+        {
+          "name": {
+            "en": "Mango jasmine iced tea",
+            "pt": "Chá gelado de manga e jasmim"
+          },
+          "desc": {
+            "en": "Mango, jasmine iced tea, passion fruit, honey",
+            "pt": "Manga, chá gelado de jasmim, maracujá, mel"
+          },
+          "price": "4.50"
+        },
+        {
+          "name": {
+            "en": "Cherry hibiscus lemonade",
+            "pt": "Limonada de cereja e hibisco"
+          },
+          "desc": {
+            "en": "Cherry, hibiscus, cinnamon, black pepper",
+            "pt": "Cereja, hibisco, canela, pimenta preta"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Ginger rosemary lemonade",
+            "pt": "Limonada de gengibre e alecrim"
+          },
+          "desc": {
+            "en": "Ginger, rosemary syrup, lemon",
+            "pt": "Gengibre, xarope de alecrim, limão"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Banana mango isotonic",
+            "pt": "Isotónico de banana e manga"
+          },
+          "desc": {
+            "en": "Tropical fruit mix, electrolytes",
+            "pt": "Mistura de frutas tropicais, eletrólitos"
+          },
+          "add": {
+            "en": "Add a matcha shot – 4",
+            "pt": "Adicionar shot de matcha – 4"
+          },
+          "price": "3.50"
+        },
+        {
+          "name": {
+            "en": "Coconut iced cacao",
+            "pt": "Cacau gelado de coco"
+          },
+          "desc": {
+            "en": "Coconut milk, 70% chocolate",
+            "pt": "Leite de coco, chocolate 70%"
+          },
+          "price": "6.50"
+        },
+        {
+          "name": {
+            "en": "Bumble matcha",
+            "pt": "Bumble matcha"
+          },
+          "desc": {
+            "en": "Fresh orange juice, matcha shot, agave syrup",
+            "pt": "Sumo de laranja natural, shot de matcha, xarope de agave"
+          },
+          "price": "6"
+        },
+        {
+          "name": {
+            "en": "Bumble coffee",
+            "pt": "Bumble coffee"
+          },
+          "desc": {
+            "en": "Fresh orange juice, double espresso, agave syrup",
+            "pt": "Sumo de laranja natural, duplo shot de espresso, xarope de agave"
+          },
+          "price": "5"
+        },
+        {
+          "name": {
+            "en": "Coconut water",
+            "pt": "Água de coco"
+          },
+          "desc": {
+            "en": "100% coconut water",
+            "pt": "100% água de coco"
+          },
+          "price": "3.50"
+        }
       ]
     },
     {
       "id": "chocolate",
-      "title": { "en": "Specialty chocolate by Puchero", "pt": "Chocolate especial da Puchero" },
-      "nav": { "en": "Chocolate", "pt": "Chocolate" },
-      "note": { "en": "Venezuela 55%, Madagascar 70%, Tanzania 85%, Venezuela 100%", "pt": "Venezuela 55%, Madagáscar 70%, Tanzânia 85%, Venezuela 100%" },
+      "title": {
+        "en": "Specialty chocolate by Puchero",
+        "pt": "Chocolate especial da Puchero"
+      },
+      "nav": {
+        "en": "Chocolate",
+        "pt": "Chocolate"
+      },
+      "note": {
+        "en": "Venezuela 55%, Madagascar 70%, Tanzania 85%, Venezuela 100%",
+        "pt": "Venezuela 55%, Madagáscar 70%, Tanzânia 85%, Venezuela 100%"
+      },
       "items": [
-        { "name": { "en": "Chocolate shot", "pt": "Shot de chocolate" }, "price": "4.50" },
-        { "name": { "en": "Mocca latte", "pt": "Mocca latte" }, "price": "5.50" },
-        { "name": { "en": "Cacao", "pt": "Cacau" }, "price": "6" }
+        {
+          "name": {
+            "en": "Chocolate shot",
+            "pt": "Shot de chocolate"
+          },
+          "price": "4.50"
+        },
+        {
+          "name": {
+            "en": "Mocca latte",
+            "pt": "Mocca latte"
+          },
+          "price": "5.50"
+        },
+        {
+          "name": {
+            "en": "Cacao",
+            "pt": "Cacau"
+          },
+          "price": "6"
+        }
       ]
     },
     {
       "id": "tea",
-      "title": { "en": "Tea & soft drinks", "pt": "Chá e bebidas" },
-      "nav": { "en": "Tea & soft", "pt": "Chá e bebidas" },
-      "photo": { "src": "herbal-tea", "alt": { "en": "Herbal tea with a teapot", "pt": "Chá de ervas com bule" } },
+      "title": {
+        "en": "Tea & soft drinks",
+        "pt": "Chá e bebidas"
+      },
+      "nav": {
+        "en": "Tea & soft",
+        "pt": "Chá e bebidas"
+      },
+      "photo": {
+        "src": "herbal-tea",
+        "alt": {
+          "en": "Herbal tea with a teapot",
+          "pt": "Chá de ervas com bule"
+        }
+      },
       "items": [
-        { "name": { "en": "Assam", "pt": "Assam" }, "desc": { "en": "Black tea", "pt": "Chá preto" }, "price": "4" },
-        { "name": { "en": "Chun Mee", "pt": "Chun Mee" }, "desc": { "en": "Green tea", "pt": "Chá verde" }, "price": "4" },
-        { "name": { "en": "Herbal tea", "pt": "Chá de ervas" }, "price": "4" },
-        { "name": { "en": "Fresh orange juice", "pt": "Sumo de laranja natural" }, "price": "4" },
-        { "name": { "en": "Still water by FonteLusa", "pt": "Água sem gás da FonteLusa" }, "price": "2" },
-        { "name": { "en": "Sparkling water by FonteLusa", "pt": "Água com gás da FonteLusa" }, "price": "2.50" }
+        {
+          "name": {
+            "en": "Assam",
+            "pt": "Assam"
+          },
+          "desc": {
+            "en": "Black tea",
+            "pt": "Chá preto"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Chun Mee",
+            "pt": "Chun Mee"
+          },
+          "desc": {
+            "en": "Green tea",
+            "pt": "Chá verde"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Herbal tea",
+            "pt": "Chá de ervas"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Fresh orange juice",
+            "pt": "Sumo de laranja natural"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Still water by FonteLusa",
+            "pt": "Água sem gás da FonteLusa"
+          },
+          "price": "2"
+        },
+        {
+          "name": {
+            "en": "Sparkling water by FonteLusa",
+            "pt": "Água com gás da FonteLusa"
+          },
+          "price": "2.50"
+        }
       ]
     },
     {
       "id": "wine",
-      "title": { "en": "Wine", "pt": "Vinho" },
-      "nav": { "en": "Wine", "pt": "Vinho" },
-      "photo": { "src": "wine-toast", "alt": { "en": "Guests raising glasses of white wine", "pt": "Clientes a brindar com copos de vinho branco" } },
-      "note": { "en": "Our wine and sparkling selection changes regularly – please ask our team for today's options.", "pt": "A nossa seleção de vinhos muda regularmente – consulte a nossa equipa." },
+      "title": {
+        "en": "Wine",
+        "pt": "Vinho"
+      },
+      "nav": {
+        "en": "Wine",
+        "pt": "Vinho"
+      },
+      "photo": {
+        "src": "wine-toast",
+        "alt": {
+          "en": "Guests raising glasses of white wine",
+          "pt": "Clientes a brindar com copos de vinho branco"
+        }
+      },
+      "note": {
+        "en": "Our wine and sparkling selection changes regularly – please ask our team for today's options.",
+        "pt": "A nossa seleção de vinhos muda regularmente – consulte a nossa equipa."
+      },
       "items": [
-        { "name": { "en": "Vinha do Mouro", "pt": "Vinha do Mouro" }, "desc": { "en": "White", "pt": "Branco" }, "price": "7" },
-        { "name": { "en": "Palmirinha Azul", "pt": "Palmirinha Azul" }, "desc": { "en": "White", "pt": "Branco" }, "price": "9" },
-        { "name": { "en": "Melshmeier Riesling", "pt": "Melshmeier Riesling" }, "desc": { "en": "White", "pt": "Branco" }, "price": "10" },
-        { "name": { "en": "Chinado", "pt": "Chinado" }, "desc": { "en": "Orange", "pt": "Laranja" }, "price": "11" },
-        { "name": { "en": "Cortina Sidra", "pt": "Cortina Sidra" }, "desc": { "en": "Bubbles", "pt": "Espumante" }, "price": "6" },
-        { "name": { "en": "Passo de Gigante", "pt": "Passo de Gigante" }, "desc": { "en": "Bubbles", "pt": "Espumante" }, "price": "8" },
-        { "name": { "en": "Dolcetto d'Alba 2024", "pt": "Dolcetto d'Alba 2024" }, "desc": { "en": "Red", "pt": "Tinto" }, "price": "9" },
-        { "name": { "en": "Gilda", "pt": "Gilda" }, "desc": { "en": "Red", "pt": "Tinto" }, "price": "11" }
+        {
+          "name": {
+            "en": "Vinha do Mouro",
+            "pt": "Vinha do Mouro"
+          },
+          "desc": {
+            "en": "White",
+            "pt": "Branco"
+          },
+          "price": "7"
+        },
+        {
+          "name": {
+            "en": "Palmirinha Azul",
+            "pt": "Palmirinha Azul"
+          },
+          "desc": {
+            "en": "White",
+            "pt": "Branco"
+          },
+          "price": "9"
+        },
+        {
+          "name": {
+            "en": "Melshmeier Riesling",
+            "pt": "Melshmeier Riesling"
+          },
+          "desc": {
+            "en": "White",
+            "pt": "Branco"
+          },
+          "price": "10"
+        },
+        {
+          "name": {
+            "en": "Chinado",
+            "pt": "Chinado"
+          },
+          "desc": {
+            "en": "Orange",
+            "pt": "Laranja"
+          },
+          "price": "11"
+        },
+        {
+          "name": {
+            "en": "Cortina Sidra",
+            "pt": "Cortina Sidra"
+          },
+          "desc": {
+            "en": "Bubbles",
+            "pt": "Espumante"
+          },
+          "price": "6"
+        },
+        {
+          "name": {
+            "en": "Passo de Gigante",
+            "pt": "Passo de Gigante"
+          },
+          "desc": {
+            "en": "Bubbles",
+            "pt": "Espumante"
+          },
+          "price": "8"
+        },
+        {
+          "name": {
+            "en": "Dolcetto d'Alba 2024",
+            "pt": "Dolcetto d'Alba 2024"
+          },
+          "desc": {
+            "en": "Red",
+            "pt": "Tinto"
+          },
+          "price": "9"
+        },
+        {
+          "name": {
+            "en": "Gilda",
+            "pt": "Gilda"
+          },
+          "desc": {
+            "en": "Red",
+            "pt": "Tinto"
+          },
+          "price": "11"
+        }
       ]
     }
   ]
