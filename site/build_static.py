@@ -79,7 +79,8 @@ def jsonld(lang):
             for item in c["faq"]
         ],
     }
-    return [cafe, faq]
+    # FAQ is not shown on the page yet, so no FAQPage markup (Google requires it to be visible)
+    return [cafe]
 
 
 def page(lang):
@@ -150,10 +151,6 @@ def page(lang):
           <li>Instagram: <a href="https://instagram.com/albabistro.lisbon">@albabistro.lisbon</a></li>
         </ul>
         <p><a href="{c['menuHref']}">{v['menu']}</a></p>
-        <h2>{v['faq']}</h2>
-        <dl>
-{faq}
-        </dl>
         <p><a href="{other['href']}" hreflang="{other['hreflang']}" lang="{other['hreflang']}">{other['title']}</a></p>
       </main>
     </div>

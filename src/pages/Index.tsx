@@ -8,7 +8,6 @@ import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import logoImage from "@/assets/logo.png";
 
-import { FaqList, FaqSheet } from "@/components/Faq";
 import site from "@/content/site.json";
 
 export type Lang = "en" | "pt";
@@ -364,8 +363,8 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       {/* ТЕКСТ ДЛЯ ДЕСКТОПА */}
       <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed max-h-[calc(100svh-150px-120px)] overflow-y-auto pr-3 [scrollbar-width:thin]"
-        style={{ top: 150, left: 200, fontFamily: '"Times Now Light", serif' }}
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed "
+        style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
         {c.welcome.map((text, i) => (
           <p key={i} className={i < c.welcome.length - 1 ? "mb-3" : ""}>
@@ -373,19 +372,10 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           </p>
         ))}
 
-        <div className="mt-12">
+        <div className="mt-20">
           <JoinTeamSheet lang={lang} />
         </div>
 
-        <section className="mt-8" aria-labelledby="faq-title">
-          <h2
-            id="faq-title"
-            className="mb-1 text-xs text-[#644A42] font-kommon"
-          >
-            {c.faqTitle}
-          </h2>
-          <FaqList items={c.faq} />
-        </section>
       </div>
 
       {/* КНОПКА МЕНЮ */}
@@ -423,7 +413,6 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
       <div className="absolute bottom-4 right-4 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet lang={lang} />
-          <FaqSheet items={c.faq} title={c.faqTitle} trigger={c.faqTrigger} />
           <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
             <a
               href="https://instagram.com/albabistro.lisbon"
