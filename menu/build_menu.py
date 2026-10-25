@@ -96,6 +96,8 @@ def item_html(it, lang):
 def section_html(sec, lang):
     photo = sec.get("photo")
     dishes = [ph for it in all_items(sec) for ph in item_photos(it, lang)]
+    if sec.get("extras", {}).get("photo"):
+        dishes.append((f"dishes/{sec['extras']['photo']}", t(sec["extras"]["title"], lang)))
     data_photo = dishes[0][0] if dishes else (photo["src"] if photo else "")
     parts = [f'<section class="sec" id="{sec["id"]}" data-photo="{data_photo}" aria-labelledby="h-{sec["id"]}">']
     parts.append(f'<h2 id="h-{sec["id"]}">{e(t(sec["title"], lang))}</h2>')
@@ -123,10 +125,11 @@ def section_html(sec, lang):
         parts.append(f'<p class="note">{e(t(sec["note"], lang))}</p>')
     if "extras" in sec:
         ex = sec["extras"]
-        parts.append(f'<h3 class="group">{e(t(ex["title"], lang))}</h3><ul class="extras">')
+        dp = f' data-photo="dishes/{ex["photo"]}"' if ex.get("photo") else ""
+        parts.append(f'<div class="extras-block"{dp}><h3 class="group">{e(t(ex["title"], lang))}</h3><ul class="extras">')
         for name, price in ex["list"]:
             parts.append(f'<li><span>{e(t(name, lang))}</span><span class="price">{e(price)}</span></li>')
-        parts.append("</ul>")
+        parts.append("</ul></div>")
     parts.append("</section>")
     return "\n".join(parts)
 
@@ -240,7 +243,7 @@ JS = """
   var imgs={};[].forEach.call(document.querySelectorAll('.panel img'),function(i){imgs[i.dataset.key]=i});
   var cap=document.querySelector('.caption');
   var current=null, shown=(document.querySelector('.panel img.on')||{dataset:{}}).dataset.key;
-  [].forEach.call(document.querySelectorAll('.item[data-photo]'),function(it){
+  [].forEach.call(document.querySelectorAll('.item[data-photo],.extras-block[data-photo]'),function(it){
     it.addEventListener('mouseenter',function(){show(it.dataset.photo)});
   });
   function show(key){
@@ -276,6 +279,8 @@ def page(lang):
     entries, nocap = [], set()
     for s in secs:
         entries += [ph for it in all_items(s) for ph in item_photos(it, lang)]
+        if s.get("extras", {}).get("photo"):
+            entries.append((f"dishes/{s['extras']['photo']}", t(s["extras"]["title"], lang)))
         if s.get("photo"):
             entries.append((s["photo"]["src"], t(s["photo"]["alt"], lang)))
             if s["photo"].get("nocaption"):
