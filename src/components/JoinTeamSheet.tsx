@@ -11,7 +11,43 @@ import {
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mldkoeyz"; // замени на свой URL из Formspree
 
-export const JoinTeamSheet: React.FC = () => {
+const TEXT = {
+  "en": {
+    "trigger": "Join our team",
+    "title": "Join Alba Bistro",
+    "desc": "Join Alba Bistro and be part of a team that values creativity, quality, and community. We're always looking for passionate individuals who share our love for exceptional food, drinks and warm hospitality.",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "position": "Position of Interest",
+    "positionPh": "e.g., Chef, Server, Barista",
+    "exp": "Previous Experience",
+    "expPh": "Tell us about your background and why you'd like to join our team...",
+    "sending": "Sending...",
+    "submit": "Submit Application",
+    "ok": "Thank you! Your application has been submitted.",
+    "err": "Something went wrong. Please try again later."
+  },
+  "pt": {
+    "trigger": "Junte-se à equipa",
+    "title": "Junte-se ao Alba",
+    "desc": "Junte-se ao Alba e faça parte de uma equipa que valoriza a criatividade, a qualidade e a comunidade. Procuramos sempre pessoas apaixonadas que partilhem o nosso gosto por boa comida, boas bebidas e um serviço acolhedor.",
+    "name": "Nome completo",
+    "email": "Email",
+    "phone": "Telefone",
+    "position": "Função pretendida",
+    "positionPh": "ex.: Cozinheiro, Empregado de mesa, Barista",
+    "exp": "Experiência anterior",
+    "expPh": "Fale-nos do seu percurso e porque gostaria de se juntar à nossa equipa...",
+    "sending": "A enviar...",
+    "submit": "Enviar candidatura",
+    "ok": "Obrigado! A sua candidatura foi enviada.",
+    "err": "Algo correu mal. Tente novamente mais tarde."
+  }
+};
+
+export const JoinTeamSheet: React.FC<{ lang?: "en" | "pt" }> = ({ lang = "en" }) => {
+  const tx = TEXT[lang];
   const [status, setStatus] = React.useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -49,12 +85,12 @@ export const JoinTeamSheet: React.FC = () => {
         <button className="font-kommon text-xs md:text-sm focus:outline-none">
           {/* мобильная версия — просто текст-ссылка */}
           <span className="inline-block md:hidden text-[#644A42] hover:text-[#4B362F] transition-colors">
-            Join our team
+            {tx.trigger}
           </span>
 
           {/* десктопная версия — как текст под выделением */}
           <span className="hidden md:inline-block bg-[#644A42] text-[#f4f0eb] px-[0.5px] py-[2px] leading-[1.2]">
-            Join our team
+            {tx.trigger}
           </span>
         </button>
       </SheetTrigger>
@@ -62,13 +98,10 @@ export const JoinTeamSheet: React.FC = () => {
       <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background font-kommon">
         <SheetHeader>
           <SheetTitle className="text-xl font-semibold tracking-wide text-[#644A42]">
-            Join Alba Bistro
+            {tx.title}
           </SheetTitle>
           <SheetDescription className="mt-2 text-sm text-[#644A42]/80 text-center">
-            Join Alba Bistro and be part of a team that values creativity,
-            quality, and community. We&apos;re always looking for passionate
-            individuals who share our love for exceptional food, drinks and
-            warm hospitality.
+            {tx.desc}
           </SheetDescription>
         </SheetHeader>
 
@@ -76,7 +109,7 @@ export const JoinTeamSheet: React.FC = () => {
           {/* Full Name */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-[#644A42]">
-              Full Name
+              {tx.name}
             </label>
             <input
               type="text"
@@ -90,7 +123,7 @@ export const JoinTeamSheet: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className="block text-sm font-medium text-[#644A42]">
-                Email
+                {tx.email}
               </label>
               <input
                 type="email"
@@ -101,7 +134,7 @@ export const JoinTeamSheet: React.FC = () => {
             </div>
             <div className="space-y-1">
               <label className="block text-sm font-medium text-[#644A42]">
-                Phone
+                {tx.phone}
               </label>
               <input
                 type="tel"
@@ -114,12 +147,12 @@ export const JoinTeamSheet: React.FC = () => {
           {/* Position of Interest */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-[#644A42]">
-              Position of Interest
+              {tx.position}
             </label>
             <input
               type="text"
               name="position"
-              placeholder="e.g., Chef, Server, Barista"
+              placeholder={tx.positionPh}
               className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42]"
             />
           </div>
@@ -127,12 +160,12 @@ export const JoinTeamSheet: React.FC = () => {
           {/* Previous Experience */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-[#644A42]">
-              Previous Experience
+              {tx.exp}
             </label>
             <textarea
               rows={5}
               name="experience"
-              placeholder="Tell us about your background and why you'd like to join our team..."
+              placeholder={tx.expPh}
               className="w-full rounded-md border border-[#e0d5cb] bg-background px-3 py-2 text-sm text-[#644A42] placeholder:text-[#b8a89c] focus:outline-none focus:ring-2 focus:ring-[#644A42]/40 focus:border-[#644A42] resize-vertical"
             />
           </div>
@@ -143,18 +176,18 @@ export const JoinTeamSheet: React.FC = () => {
             disabled={status === "submitting"}
             className="mt-2 w-full rounded-md bg-[#3b302b] px-4 py-2.5 text-sm font-semibold text-white tracking-wide hover:bg-[#2b211d] disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
           >
-            {status === "submitting" ? "Sending..." : "Submit Application"}
+            {status === "submitting" ? tx.sending : tx.submit}
           </button>
 
           {status === "success" && (
             <p className="text-xs text-green-700 text-center mt-2">
-              Thank you! Your application has been submitted.
+              {tx.ok}
             </p>
           )}
 
           {status === "error" && (
             <p className="text-xs text-red-700 text-center mt-2">
-              Something went wrong. Please try again later.
+              {tx.err}
             </p>
           )}
         </form>

@@ -8,69 +8,58 @@ import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import logoImage from "@/assets/logo.png";
 
-// Фото Альбы (Instagram и оригиналы, октябрь 2026)
-import photo0 from "@/assets/photos/breakfast-plate-window.jpg";
-import photo1 from "@/assets/photos/flat-matcha-iced.jpg";
-import photo2 from "@/assets/photos/four-cheese-omelette.jpg";
-import photo3 from "@/assets/photos/terrace-breakfast.jpg";
-import photo4 from "@/assets/photos/strawberry-matcha-closeup.jpg";
-import photo5 from "@/assets/photos/figs-lemon-cream.jpg";
-import photo6 from "@/assets/photos/espresso-pour.jpg";
-import photo7 from "@/assets/photos/avocado-toast-two-ways.jpg";
-import photo8 from "@/assets/photos/terrace-largo-do-rato.jpg";
-import photo9 from "@/assets/photos/matcha-to-go.jpg";
-import photo10 from "@/assets/photos/brunch-crepes-scrambled-eggs.jpg";
-import photo11 from "@/assets/photos/coffee-milk-pour.jpg";
-import photo12 from "@/assets/photos/savory-oatmeal.jpg";
-import photo13 from "@/assets/photos/window-table-flower.jpg";
-import photo14 from "@/assets/photos/best-review.jpg";
-import photo15 from "@/assets/photos/creme-brulee-strawberries.jpg";
-import photo16 from "@/assets/photos/filter-coffee-bloom.jpg";
-import photo17 from "@/assets/photos/weekend-set-bellini.jpg";
-import photo18 from "@/assets/photos/wine-passo-de-gigante.jpg";
-import photo19 from "@/assets/photos/wine-fridge.jpg";
-import photo20 from "@/assets/photos/espresso-cups-table.jpg";
-import photo21 from "@/assets/photos/coffee-beans-bona-roasters.jpg";
-import photo22 from "@/assets/photos/takeaway-bag.jpg";
-import photo23 from "@/assets/photos/terrace-chairs.jpg";
-import photo24 from "@/assets/photos/empty-cups.jpg";
+import { FaqList, FaqSheet } from "@/components/Faq";
+import site from "@/content/site.json";
 
-const photos = [
-  { src: photo0, alt: "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam by the window at Alba Lisbon" },
-  { src: photo1, alt: "Iced flat matcha at Alba Lisbon matcha bar" },
-  { src: photo2, alt: "Four cheese and onion jam omelette with green salad" },
-  { src: photo3, alt: "Breakfast on the terrace at Largo do Rato" },
-  { src: photo4, alt: "Strawberry matcha close up – whipped strawberry ice cream over a matcha latte" },
-  { src: photo5, alt: "Seasonal fruit with lemon cream – fresh figs and pistachios" },
-  { src: photo6, alt: "Double espresso pouring at Alba Lisbon" },
-  { src: photo7, alt: "Avocado toast two ways on a wooden chair" },
-  { src: photo8, alt: "Guests on the terrace at Largo do Rato" },
-  { src: photo9, alt: "Iced matcha latte to go in a kraft paper carrier" },
-  { src: photo10, alt: "Brunch spread with scrambled eggs, a savory crêpe and crêpe Suzette" },
-  { src: photo11, alt: "Milk poured into a black coffee" },
-  { src: photo12, alt: "Savory oatmeal with prosciutto cotto and fresh orange juice" },
-  { src: photo13, alt: "Window table with a red carnation" },
-  { src: photo14, alt: "An empty plate – the best review" },
-  { src: photo15, alt: "Crème brûlée and strawberries with cream next to a black coffee" },
-  { src: photo16, alt: "Filter coffee blooming in a paper filter" },
-  { src: photo17, alt: "Weekend set – Bellini with seasonal fruit and cream on the terrace" },
-  { src: photo18, alt: "Passo de Gigante Loureiro white wine at Alba Lisbon" },
-  { src: photo19, alt: "Wine bottles resting in the wine fridge" },
-  { src: photo20, alt: "Espresso cups on a marble table" },
-  { src: photo21, alt: "Specialty coffee beans from Bona Roasters" },
-  { src: photo22, alt: "Takeaway order from Alba Lisbon with fresh orange juice" },
-  { src: photo23, alt: "Rattan terrace chairs at Alba Lisbon" },
-  { src: photo24, alt: "Empty coffee cups after a busy morning" },
-];
+export type Lang = "en" | "pt";
 
-// one set for mobile slider and desktop
-const heroImages = photos;
-const desktopImages = photos;
+// Homepage photos: order, files and alt texts live in src/content/site.json
+const photoFiles = import.meta.glob("/src/assets/photos/*.webp", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+const photoUrl = (file: string) => photoFiles[`/src/assets/photos/${file}.webp`];
+
+/** Keeps time ranges like 9:00–17:00 on one line. */
+const withNowrapTimes = (text: string) =>
+  text.split(/(\d{1,2}:\d{2}\s?–\s?\d{1,2}:\d{2})/).map((part, i) =>
+    i % 2 === 1 ? (
+      <span key={i} className="whitespace-nowrap">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
 
 const EMAIL = "hello@albalisbon.com";
 const SLIDER_MARGIN = 150;
 
-const Index: React.FC = () => {
+const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
+  const c = site[lang];
+  const photos = React.useMemo(
+    () => site.photos.map((p) => ({ src: photoUrl(p.file), alt: p[lang] })),
+    [lang],
+  );
+  const heroImages = photos;
+  const desktopImages = photos;
+
+  // Desktop: only the first photo loads with the page, the rest after it has loaded
+  const [restReady, setRestReady] = useState(false);
+  useEffect(() => {
+    const go = () => setRestReady(true);
+    if (document.readyState === "complete") {
+      const t = setTimeout(go, 300);
+      return () => clearTimeout(t);
+    }
+    window.addEventListener("load", go, { once: true });
+    return () => window.removeEventListener("load", go);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = c.htmlLang;
+  }, [c.htmlLang]);
+
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -168,7 +157,7 @@ const Index: React.FC = () => {
   const handleDesktopMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
-    if (!desktopImages.length) return;
+    if (!desktopImages.length || !restReady) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -311,8 +300,10 @@ const Index: React.FC = () => {
           >
             <div className="relative max-h-[100vh] mr-0">
               <img
-                src={img.src}
+                src={index === 0 || restReady ? img.src : undefined}
                 alt={img.alt}
+                decoding="async"
+                fetchPriority={index === 0 ? "high" : "low"}
                 className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
               />
               <div className="absolute inset-0 bg-black/25 pointer-events-none" />
@@ -343,6 +334,8 @@ const Index: React.FC = () => {
                 <img
                   src={img.src}
                   alt={img.alt}
+                  loading={index < 2 ? "eager" : "lazy"}
+                  decoding="async"
                   className="w-full h-auto object-contain"
                 />
                 <div className="absolute inset-0 bg-black/25 pointer-events-none" />
@@ -371,42 +364,51 @@ const Index: React.FC = () => {
 
       {/* ТЕКСТ ДЛЯ ДЕСКТОПА */}
       <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed"
-        style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
+        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed max-h-[calc(100svh-150px-120px)] overflow-y-auto pr-3 [scrollbar-width:thin]"
+        style={{ top: 150, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
-        <p className="mb-3">
-          Alba is a brunch café and matcha bar on Largo do Rato, two years and
-          counting. Time Out calls our terrace one of the best – and most unlikely – in Lisbon. We agree
-          on both counts.
-        </p>
-        <p className="mb-3">
-          Yes, there&apos;s avocado toast. There&apos;s also a four-cheese
-          omelette with onion jam, crêpe Suzette and savory oatmeal with a
-          poached egg. Brunch every day{" "}
-          <span className="whitespace-nowrap">9:00–17:00</span>, lunch on
-          weekdays <span className="whitespace-nowrap">13:00–15:00</span>. Vegan
-          option and oat milk included.
-        </p>
-        <p>
-          The coffee is specialty, the matcha is ceremonial by Michi – as a
-          shot, a latte or a tasting set of three. Beans from our roasters are
-          on the shelf to take home. Come as you are.
-        </p>
+        {c.welcome.map((text, i) => (
+          <p key={i} className={i < c.welcome.length - 1 ? "mb-3" : ""}>
+            {withNowrapTimes(text)}
+          </p>
+        ))}
 
-        <div className="mt-20">
-          <JoinTeamSheet />
+        <div className="mt-12">
+          <JoinTeamSheet lang={lang} />
         </div>
+
+        <section className="mt-8" aria-labelledby="faq-title">
+          <h2
+            id="faq-title"
+            className="mb-1 text-xs text-[#644A42] font-kommon"
+          >
+            {c.faqTitle}
+          </h2>
+          <FaqList items={c.faq} />
+        </section>
       </div>
 
       {/* КНОПКА МЕНЮ */}
       <div className="absolute top-4 right-4 md:top-[27px] md:right-[calc(33vw+2rem)] text-[#e62d3b]">
-        <MenuSheet />
+        <div className="flex items-center gap-5">
+          <a
+            href={c.otherLang.href}
+            hrefLang={c.otherLang.hreflang}
+            lang={c.otherLang.hreflang}
+            title={c.otherLang.title}
+            className="text-[11px] md:text-xs tracking-[0.16em] text-[#e62d3b] hover:opacity-80 transition-opacity"
+            style={{ fontFamily: '"Maison Neue Extended Demi", sans-serif' }}
+          >
+            {c.otherLang.label}
+          </a>
+          <MenuSheet href={c.menuHref} />
+        </div>
       </div>
 
       {/* Мобильная нижняя инфа */}
       <div className="absolute bottom-4 left-4 md:hidden">
         <div className="flex flex-col space-y-1 text-xs text-[#644A42] leading-[18px] font-kommon">
-          <span>Monday - Sunday 9:00 - 17:00</span>
+          <span>{c.hours}</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
@@ -420,7 +422,8 @@ const Index: React.FC = () => {
 
       <div className="absolute bottom-4 right-4 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
-          <JoinTeamSheet />
+          <JoinTeamSheet lang={lang} />
+          <FaqSheet items={c.faq} title={c.faqTitle} trigger={c.faqTrigger} />
           <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
             <a
               href="https://instagram.com/albabistro.lisbon"
@@ -444,7 +447,7 @@ const Index: React.FC = () => {
       {/* ДЕСКТОП — нижний левый угол */}
       <div className="hidden md:block absolute bottom-6 left-8">
         <div className="flex flex-col space-y-0 text-sm text-[#644A42] leading-[16px] font-kommon">
-          <span>Monday - Sunday 9:00 - 17:00</span>
+          <span>{c.hours}</span>
           <a
             href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
             target="_blank"
@@ -506,7 +509,7 @@ const Index: React.FC = () => {
               tracking-[0.02em]
             "
           >
-            Copied
+            {c.copied}
           </div>
         </div>
       )}
