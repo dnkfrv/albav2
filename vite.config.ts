@@ -15,4 +15,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      // English homepage at /, Portuguese at /pt/ (each with its own crawler HTML)
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        pt: path.resolve(__dirname, "pt/index.html"),
+      },
+    },
+  },
 }));
