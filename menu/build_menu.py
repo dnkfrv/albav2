@@ -61,11 +61,27 @@ def t(v, lang):
     return v[lang] if isinstance(v, dict) else v
 
 
+def item_photos(it, lang):
+    """[(key, alt)] for a dish; key is the path under /menu/img/ without .jpg."""
+    srcs = it.get("photo", [])
+    if isinstance(srcs, str):
+        srcs = [srcs]
+    name = t(it["name"], lang)
+    out = []
+    for src in srcs:
+        alt = name
+        if len(srcs) > 1:  # Eggs Benedict: salmon / pastrami
+            variant = "salmon" if "salmon" in src else "pastrami"
+            alt = f"{name.split(' – ')[0]} – {'salmão' if lang == 'pt' and variant == 'salmon' else variant}"
+        out.append((f"dishes/{src}", alt))
+    return out
+
+
 def item_html(it, lang):
     name = e(t(it["name"], lang))
     tag = f'<span class="tag">{e(t(it["tag"], lang))}</span>' if "tag" in it else ""
     out = [
-        '<div class="item">',
+        f'<div class="item"{" data-photo=" + chr(34) + item_photos(it, lang)[0][0] + chr(34) if it.get("photo") else ""}>',
         f'<p class="item-head"><span class="item-name">{name}</span>{tag}'
         f'<span class="leader" aria-hidden="true"></span><span class="price">{e(t(it["price"], lang))}</span></p>',
     ]
@@ -79,10 +95,18 @@ def item_html(it, lang):
 
 def section_html(sec, lang):
     photo = sec.get("photo")
-    data_photo = photo["src"] if photo else ""
+    dishes = [ph for it in all_items(sec) for ph in item_photos(it, lang)]
+    data_photo = dishes[0][0] if dishes else (photo["src"] if photo else "")
     parts = [f'<section class="sec" id="{sec["id"]}" data-photo="{data_photo}" aria-labelledby="h-{sec["id"]}">']
     parts.append(f'<h2 id="h-{sec["id"]}">{e(t(sec["title"], lang))}</h2>')
-    if photo:
+    if dishes:
+        figs = "".join(
+            f'<figure><img src="/menu/img/{k}.jpg" alt="{e(a)}" width="900" height="1125" loading="lazy" decoding="async">'
+            f'<figcaption>{e(a)}</figcaption></figure>'
+            for k, a in dishes
+        )
+        parts.append(f'<div class="strip">{figs}</div>')
+    elif photo:
         parts.append(
             f'<figure class="inline-photo"><img src="/menu/img/{photo["src"]}.jpg" '
             f'alt="{e(t(photo["alt"], lang))}" width="800" height="600" loading="lazy" decoding="async"></figure>'
@@ -122,6 +146,8 @@ def jsonld(lang):
                   "offers": {"@type": "Offer", "price": t(it["price"], lang), "priceCurrency": "EUR"}}
             if "desc" in it:
                 mi["description"] = t(it["desc"], lang)
+            if it.get("photo"):
+                mi["image"] = [f"{SITE}/menu/img/{k}.jpg" for k, _ in item_photos(it, lang)]
             items.append(mi)
         sections.append({"@type": "MenuSection", "name": t(sec["title"], lang), "hasMenuItem": items})
     return {
@@ -172,6 +198,11 @@ nav.sections a[aria-current="true"]{color:var(--red);border-bottom-color:var(--r
 .inline-photo{margin:0 0 20px}
 .inline-photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .item{padding:11px 0}
+.strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1 * var(--gutter)) 18px;padding:0 var(--gutter);scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{flex:0 0 66%;margin:0;scroll-snap-align:start;scroll-margin-left:var(--gutter)}
+.strip img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.strip figcaption{font-family:"Times Now",Georgia,serif;font-style:italic;font-size:15px;color:var(--cocoa);margin-top:6px}
 .item-head{display:flex;align-items:baseline;gap:10px;margin:0}
 .item-name{font-family:"Times Now",Georgia,serif;font-size:20px;line-height:1.2}
 .tag{font-size:11px;color:var(--cocoa);white-space:nowrap}
@@ -190,7 +221,9 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--rule);color:v
   .content{max-width:none;padding-right:64px}
   .content > :not(nav){max-width:720px}
   h1{margin-top:72px}
-  .inline-photo{display:none}
+  .inline-photo,.strip{display:none}
+  .item[data-photo] .item-name{transition:color .2s}
+  .item[data-photo]:hover .item-name{color:var(--red)}
   .panel{display:block;position:sticky;top:0;height:100vh;overflow:hidden;background:#ddd5cc}
   .panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
   .panel img.on{opacity:1}
@@ -206,7 +239,10 @@ JS = """
   var links={};[].forEach.call(document.querySelectorAll('nav.sections a'),function(a){links[a.getAttribute('href').slice(1)]=a});
   var imgs={};[].forEach.call(document.querySelectorAll('.panel img'),function(i){imgs[i.dataset.key]=i});
   var cap=document.querySelector('.caption');
-  var current=null, shown='breakfast-plate';
+  var current=null, shown=(document.querySelector('.panel img.on')||{dataset:{}}).dataset.key;
+  [].forEach.call(document.querySelectorAll('.item[data-photo]'),function(it){
+    it.addEventListener('mouseenter',function(){show(it.dataset.photo)});
+  });
   function show(key){
     if(!key||key===shown||!imgs[key])return;
     var img=imgs[key]; if(img.loading==='lazy'){img.loading='eager'}
@@ -237,17 +273,23 @@ def page(lang):
     nav = "".join(f'<li><a href="#{s["id"]}">{e(t(s["nav"], lang))}</a></li>' for s in secs)
     body = "\n".join(section_html(s, lang) for s in secs)
 
+    entries = []
+    for s in secs:
+        entries += [ph for it in all_items(s) for ph in item_photos(it, lang)]
+        if s.get("photo"):
+            entries.append((s["photo"]["src"], t(s["photo"]["alt"], lang)))
+    entries.append((DEFAULT_PHOTO["src"], t(DEFAULT_PHOTO["alt"], lang)))
     photos, seen = [], set()
-    for p in [s["photo"] for s in secs if s.get("photo")] + [DEFAULT_PHOTO]:
-        if p["src"] in seen:
+    for key, alt in entries:
+        if key in seen:
             continue
-        seen.add(p["src"])
+        seen.add(key)
         first = not photos
         photos.append(
-            f'<img src="/menu/img/{p["src"]}.jpg" data-key="{p["src"]}" alt="{e(t(p["alt"], lang))}" '
+            f'<img src="/menu/img/{key}.jpg" data-key="{key}" alt="{e(alt)}" '
             f'{"class=\"on\" fetchpriority=\"high\"" if first else "loading=\"lazy\""} decoding="async">'
         )
-    first_alt = e(t(secs[0]["photo"]["alt"], lang))
+    first_alt = e(entries[0][1])
 
     url = f"{SITE}{c['path']}"
     return f"""<!doctype html>
