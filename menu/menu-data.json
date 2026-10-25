@@ -479,8 +479,8 @@
       "photo": {
         "src": "cappuccino-matcha-latte",
         "alt": {
-          "en": "Cappuccino and matcha latte",
-          "pt": "Cappuccino e matcha latte"
+          "en": "Hojicha latte and matcha latte",
+          "pt": "Hojicha latte e matcha latte"
         }
       },
       "groups": [
@@ -869,8 +869,8 @@
       "photo": {
         "src": "matcha-latte",
         "alt": {
-          "en": "Barista pouring a matcha latte",
-          "pt": "Barista a servir um matcha latte"
+          "en": "Matcha latte in the making",
+          "pt": "Matcha latte em preparação"
         }
       },
       "items": [
@@ -1019,8 +1019,8 @@
       "photo": {
         "src": "herbal-tea",
         "alt": {
-          "en": "Herbal tea with a teapot",
-          "pt": "Chá de ervas com bule"
+          "en": "Cherry tea with thyme",
+          "pt": "Chá de cereja com tomilho"
         }
       },
       "items": [
@@ -1091,7 +1091,8 @@
         "alt": {
           "en": "Guests raising glasses of white wine",
           "pt": "Clientes a brindar com copos de vinho branco"
-        }
+        },
+        "nocaption": true
       },
       "note": {
         "en": "Our wine and sparkling selection changes regularly – please ask our team for today's options.",

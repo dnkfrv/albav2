@@ -247,7 +247,7 @@ JS = """
     if(!key||key===shown||!imgs[key])return;
     var img=imgs[key]; if(img.loading==='lazy'){img.loading='eager'}
     imgs[shown].classList.remove('on'); img.classList.add('on'); shown=key;
-    if(cap)cap.textContent=key.indexOf('dishes/')===0?'':img.alt;
+    if(cap)cap.textContent=(key.indexOf('dishes/')===0||img.hasAttribute('data-nocap'))?'':img.alt;
   }
   function activate(sec){
     if(sec===current)return; current=sec;
@@ -273,11 +273,13 @@ def page(lang):
     nav = "".join(f'<li><a href="#{s["id"]}">{e(t(s["nav"], lang))}</a></li>' for s in secs)
     body = "\n".join(section_html(s, lang) for s in secs)
 
-    entries = []
+    entries, nocap = [], set()
     for s in secs:
         entries += [ph for it in all_items(s) for ph in item_photos(it, lang)]
         if s.get("photo"):
             entries.append((s["photo"]["src"], t(s["photo"]["alt"], lang)))
+            if s["photo"].get("nocaption"):
+                nocap.add(s["photo"]["src"])
     entries.append((DEFAULT_PHOTO["src"], t(DEFAULT_PHOTO["alt"], lang)))
     photos, seen = [], set()
     for key, alt in entries:
@@ -286,7 +288,7 @@ def page(lang):
         seen.add(key)
         first = not photos
         photos.append(
-            f'<img src="/menu/img/{key}.jpg" data-key="{key}" alt="{e(alt)}" '
+            f'<img src="/menu/img/{key}.jpg" data-key="{key}" alt="{e(alt)}"{" data-nocap" if key in nocap else ""} '
             f'{"class=\"on\" fetchpriority=\"high\"" if first else "loading=\"lazy\""} decoding="async">'
         )
     first_alt = '' if entries[0][0].startswith('dishes/') else e(entries[0][1])
