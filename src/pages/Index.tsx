@@ -8,85 +8,54 @@ import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import logoImage from "@/assets/logo.png";
 
-// НОВЫЕ ФОТО + старые (импорты оставляем как есть)
-import imgA130 from "@/assets/A-130.jpg";
-import imga17 from "@/assets/a-17.jpg";
-import imgA20 from "@/assets/A-20.jpg";
-import imga54 from "@/assets/a-54.jpg";
-import imgA208 from "@/assets/A-208.jpg";
-import imga94 from "@/assets/a-94.jpg";
-import imga150 from "@/assets/a-150.jpg";
-import imga113 from "@/assets/a-113.jpg";
-import imgA31 from "@/assets/A-31.jpg";
-import img1_38 from "@/assets/1-38.jpg";
-import img1_23 from "@/assets/1-23.jpg";
-import imgA11 from "@/assets/A-11.jpg";
-import imga38 from "@/assets/a-38.jpg";
-import imgA55 from "@/assets/A-55.jpg";
-import imgA121 from "@/assets/A-121.jpg";
-import imgA90 from "@/assets/A-90.jpg";
-import imgA73 from "@/assets/A-73.jpg";
-import imga155 from "@/assets/a-155.jpg";
-import imga172 from "@/assets/a-172.jpg";
-import imga132 from "@/assets/a-132.jpg";
-import imga40 from "@/assets/a-40.jpg";
-import imgA217 from "@/assets/A-217.jpg";
-import imgA23 from "@/assets/A-23.jpg";
-import imgA188 from "@/assets/A-188.jpg";
-import imgA1113 from "@/assets/A-1113.jpg";
-import imga5 from "@/assets/a-5.jpg";
-import imga10 from "@/assets/a-10.jpg";
+// Фото из Instagram @alba.lisbon (октябрь 2026)
+import photo0 from "@/assets/photos/breakfast-plate-window.jpg";
+import photo1 from "@/assets/photos/flat-matcha-iced.jpg";
+import photo2 from "@/assets/photos/four-cheese-omelette.jpg";
+import photo3 from "@/assets/photos/terrace-breakfast.jpg";
+import photo4 from "@/assets/photos/figs-lemon-cream.jpg";
+import photo5 from "@/assets/photos/espresso-pour.jpg";
+import photo6 from "@/assets/photos/avocado-toast-two-ways.jpg";
+import photo7 from "@/assets/photos/terrace-largo-do-rato.jpg";
+import photo8 from "@/assets/photos/brunch-crepes-scrambled-eggs.jpg";
+import photo9 from "@/assets/photos/coffee-milk-pour.jpg";
+import photo10 from "@/assets/photos/savory-oatmeal.jpg";
+import photo11 from "@/assets/photos/window-table-flower.jpg";
+import photo12 from "@/assets/photos/creme-brulee-strawberries.jpg";
+import photo13 from "@/assets/photos/filter-coffee-bloom.jpg";
+import photo14 from "@/assets/photos/weekend-set-bellini.jpg";
+import photo15 from "@/assets/photos/wine-passo-de-gigante.jpg";
+import photo16 from "@/assets/photos/espresso-cups-table.jpg";
+import photo17 from "@/assets/photos/coffee-beans-bona-roasters.jpg";
+import photo18 from "@/assets/photos/terrace-chairs.jpg";
+import photo19 from "@/assets/photos/empty-cups.jpg";
 
-// все фото для мобильной версии
-const heroImages = [
-  imgA130,
-  imga17,
-  imgA20,
-  imga54,
-  imgA208,
-  imga94,
-  imga150,
-  imga113,
-  imgA31,
-  img1_38,
-  img1_23,
-  imgA11,
-  imga38,
-  imgA55,
-  imgA121,
-  imgA90,
-  imgA73,
-  imga155,
-  imga172,
-  imga132,
-  imgA217,
-  imgA23,
-  imgA188,
-  imgA1113,
-  imga5,
-  imga10,
-].filter(Boolean);
+const photos = [
+  { src: photo0, alt: "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam by the window at Alba Lisbon" },
+  { src: photo1, alt: "Iced flat matcha at Alba Lisbon matcha bar" },
+  { src: photo2, alt: "Four cheese and onion jam omelette with green salad" },
+  { src: photo3, alt: "Breakfast on the terrace at Largo do Rato" },
+  { src: photo4, alt: "Seasonal fruit with lemon cream – fresh figs and pistachios" },
+  { src: photo5, alt: "Double espresso pouring at Alba Lisbon" },
+  { src: photo6, alt: "Avocado toast two ways on a wooden chair" },
+  { src: photo7, alt: "Guests on the terrace at Largo do Rato" },
+  { src: photo8, alt: "Brunch spread with scrambled eggs, a savory crêpe and crêpe Suzette" },
+  { src: photo9, alt: "Milk poured into a black coffee" },
+  { src: photo10, alt: "Savory oatmeal with prosciutto cotto and fresh orange juice" },
+  { src: photo11, alt: "Window table with a red carnation" },
+  { src: photo12, alt: "Crème brûlée and strawberries with cream next to a black coffee" },
+  { src: photo13, alt: "Filter coffee blooming in a paper filter" },
+  { src: photo14, alt: "Weekend set – Bellini with seasonal fruit and cream on the terrace" },
+  { src: photo15, alt: "Passo de Gigante white wine at Alba Lisbon" },
+  { src: photo16, alt: "Espresso cups on a marble table" },
+  { src: photo17, alt: "Specialty coffee beans from Bona Roasters" },
+  { src: photo18, alt: "Rattan terrace chairs at Alba Lisbon" },
+  { src: photo19, alt: "Empty coffee cups after a busy morning" },
+];
 
-// отдельный набор фото для десктопа
-const desktopImages = [
-  imgA130,
-  imgA20,
-  imga94,
-  imga150,
-  imga113,
-  img1_38,
-  img1_23,
-  imgA11,
-  imgA55,
-  imgA121,
-  imgA90,
-  imga172,
-  imga155,
-  imga132,
-  imga40,
-  imgA1113,
-  imga5,
-].filter(Boolean);
+// one set for mobile slider and desktop
+const heroImages = photos;
+const desktopImages = photos;
 
 const EMAIL = "hello@albalisbon.com";
 const SLIDER_MARGIN = 150;
@@ -332,8 +301,8 @@ const Index: React.FC = () => {
           >
             <div className="relative max-h-[100vh] mr-0">
               <img
-                src={img}
-                alt="Restaurant"
+                src={img.src}
+                alt={img.alt}
                 className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
               />
               <div className="absolute inset-0 bg-black/25 pointer-events-none" />
@@ -362,8 +331,8 @@ const Index: React.FC = () => {
             >
               <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
                 <img
-                  src={img}
-                  alt="Restaurant"
+                  src={img.src}
+                  alt={img.alt}
                   className="w-full h-auto object-contain"
                 />
                 <div className="absolute inset-0 bg-black/25 pointer-events-none" />
