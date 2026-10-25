@@ -365,8 +365,8 @@ const Index: React.FC = () => {
         style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
         <p className="mb-3">
-          Alba is a brunch café and matcha bar on Largo do Rato. Time Out calls
-          our terrace one of the best – and most unlikely – in Lisbon. We agree
+          Alba is a brunch café and matcha bar on Largo do Rato, two years and
+          counting. Time Out calls our terrace one of the best – and most unlikely – in Lisbon. We agree
           on both counts.
         </p>
         <p className="mb-3">
@@ -374,12 +374,13 @@ const Index: React.FC = () => {
           omelette with onion jam, crêpe Suzette and savory oatmeal with a
           poached egg. Brunch every day{" "}
           <span className="whitespace-nowrap">9:00–17:00</span>, lunch on
-          weekdays <span className="whitespace-nowrap">13:00–15:00</span>.
+          weekdays <span className="whitespace-nowrap">13:00–15:00</span>. Vegan
+          option and oat milk included.
         </p>
         <p>
-          The coffee is specialty, the matcha is ceremonial – Ikigai, Yutori,
-          Haru and Hojicha by Michi, as a shot, a latte or a tasting set of
-          three. Come as you are.
+          The coffee is specialty, the matcha is ceremonial by Michi – as a
+          shot, a latte or a tasting set of three. Beans from our roasters are
+          on the shelf to take home. Come as you are.
         </p>
 
         <div className="mt-20">
