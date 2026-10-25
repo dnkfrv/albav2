@@ -365,19 +365,21 @@ const Index: React.FC = () => {
         style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
         <p className="mb-3">
-          Welcome to Alba Bistro, Lisbon&apos;s new corner of taste and style!
-          Our bright space with a sunny terrace at Rato Square invites you to
-          immerse yourself in an atmosphere of comfort and enjoyment.
+          Alba is a brunch café and matcha bar on Largo do Rato. Time Out calls
+          our terrace one of the best – and most unlikely – in Lisbon. We agree
+          on both counts.
         </p>
         <p className="mb-3">
-          Alba Bistro offers a fresh take on breakfast and brunch - our
-          exquisite menu is crafted for those who appreciate subtle taste and
-          originality.
+          Yes, there&apos;s avocado toast. There&apos;s also a four-cheese
+          omelette with onion jam, crêpe Suzette and savory oatmeal with a
+          poached egg. Brunch every day{" "}
+          <span className="whitespace-nowrap">9:00–17:00</span>, lunch on
+          weekdays <span className="whitespace-nowrap">13:00–15:00</span>.
         </p>
         <p>
-          Try our signature coffee cocktails and explore the rich variety of
-          matcha options. Visit us for new gastronomic experiences and comfort!
-          We eagerly await your visit.
+          The coffee is specialty, the matcha is ceremonial – Ikigai, Yutori,
+          Haru and Hojicha by Michi, as a shot, a latte or a tasting set of
+          three. Come as you are.
         </p>
 
         <div className="mt-20">
