@@ -8,49 +8,59 @@ import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
 import logoImage from "@/assets/logo.png";
 
-// Фото из Instagram @alba.lisbon (октябрь 2026)
+// Фото Альбы (Instagram и оригиналы, октябрь 2026)
 import photo0 from "@/assets/photos/breakfast-plate-window.jpg";
 import photo1 from "@/assets/photos/flat-matcha-iced.jpg";
 import photo2 from "@/assets/photos/four-cheese-omelette.jpg";
 import photo3 from "@/assets/photos/terrace-breakfast.jpg";
-import photo4 from "@/assets/photos/figs-lemon-cream.jpg";
-import photo5 from "@/assets/photos/espresso-pour.jpg";
-import photo6 from "@/assets/photos/avocado-toast-two-ways.jpg";
-import photo7 from "@/assets/photos/terrace-largo-do-rato.jpg";
-import photo8 from "@/assets/photos/brunch-crepes-scrambled-eggs.jpg";
-import photo9 from "@/assets/photos/coffee-milk-pour.jpg";
-import photo10 from "@/assets/photos/savory-oatmeal.jpg";
-import photo11 from "@/assets/photos/window-table-flower.jpg";
-import photo12 from "@/assets/photos/creme-brulee-strawberries.jpg";
-import photo13 from "@/assets/photos/filter-coffee-bloom.jpg";
-import photo14 from "@/assets/photos/weekend-set-bellini.jpg";
-import photo15 from "@/assets/photos/wine-passo-de-gigante.jpg";
-import photo16 from "@/assets/photos/espresso-cups-table.jpg";
-import photo17 from "@/assets/photos/coffee-beans-bona-roasters.jpg";
-import photo18 from "@/assets/photos/terrace-chairs.jpg";
-import photo19 from "@/assets/photos/empty-cups.jpg";
+import photo4 from "@/assets/photos/strawberry-matcha-closeup.jpg";
+import photo5 from "@/assets/photos/figs-lemon-cream.jpg";
+import photo6 from "@/assets/photos/espresso-pour.jpg";
+import photo7 from "@/assets/photos/avocado-toast-two-ways.jpg";
+import photo8 from "@/assets/photos/terrace-largo-do-rato.jpg";
+import photo9 from "@/assets/photos/matcha-to-go.jpg";
+import photo10 from "@/assets/photos/brunch-crepes-scrambled-eggs.jpg";
+import photo11 from "@/assets/photos/coffee-milk-pour.jpg";
+import photo12 from "@/assets/photos/savory-oatmeal.jpg";
+import photo13 from "@/assets/photos/window-table-flower.jpg";
+import photo14 from "@/assets/photos/best-review.jpg";
+import photo15 from "@/assets/photos/creme-brulee-strawberries.jpg";
+import photo16 from "@/assets/photos/filter-coffee-bloom.jpg";
+import photo17 from "@/assets/photos/weekend-set-bellini.jpg";
+import photo18 from "@/assets/photos/wine-passo-de-gigante.jpg";
+import photo19 from "@/assets/photos/wine-fridge.jpg";
+import photo20 from "@/assets/photos/espresso-cups-table.jpg";
+import photo21 from "@/assets/photos/coffee-beans-bona-roasters.jpg";
+import photo22 from "@/assets/photos/takeaway-bag.jpg";
+import photo23 from "@/assets/photos/terrace-chairs.jpg";
+import photo24 from "@/assets/photos/empty-cups.jpg";
 
 const photos = [
   { src: photo0, alt: "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam by the window at Alba Lisbon" },
   { src: photo1, alt: "Iced flat matcha at Alba Lisbon matcha bar" },
   { src: photo2, alt: "Four cheese and onion jam omelette with green salad" },
   { src: photo3, alt: "Breakfast on the terrace at Largo do Rato" },
-  { src: photo4, alt: "Seasonal fruit with lemon cream – fresh figs and pistachios" },
-  { src: photo5, alt: "Double espresso pouring at Alba Lisbon" },
-  { src: photo6, alt: "Avocado toast two ways on a wooden chair" },
-  { src: photo7, alt: "Guests on the terrace at Largo do Rato" },
-  { src: photo8, alt: "Brunch spread with scrambled eggs, a savory crêpe and crêpe Suzette" },
-  { src: photo9, alt: "Milk poured into a black coffee" },
-  { src: photo10, alt: "Savory oatmeal with prosciutto cotto and fresh orange juice" },
-  { src: photo11, alt: "Window table with a red carnation" },
-  { src: photo12, alt: "Crème brûlée and strawberries with cream next to a black coffee" },
-  { src: photo13, alt: "Filter coffee blooming in a paper filter" },
-  { src: photo14, alt: "Weekend set – Bellini with seasonal fruit and cream on the terrace" },
-  { src: photo15, alt: "Passo de Gigante white wine at Alba Lisbon" },
-  { src: photo16, alt: "Espresso cups on a marble table" },
-  { src: photo17, alt: "Specialty coffee beans from Bona Roasters" },
-  { src: photo18, alt: "Rattan terrace chairs at Alba Lisbon" },
-  { src: photo19, alt: "Empty coffee cups after a busy morning" },
+  { src: photo4, alt: "Strawberry matcha close up – whipped strawberry ice cream over a matcha latte" },
+  { src: photo5, alt: "Seasonal fruit with lemon cream – fresh figs and pistachios" },
+  { src: photo6, alt: "Double espresso pouring at Alba Lisbon" },
+  { src: photo7, alt: "Avocado toast two ways on a wooden chair" },
+  { src: photo8, alt: "Guests on the terrace at Largo do Rato" },
+  { src: photo9, alt: "Iced matcha latte to go in a kraft paper carrier" },
+  { src: photo10, alt: "Brunch spread with scrambled eggs, a savory crêpe and crêpe Suzette" },
+  { src: photo11, alt: "Milk poured into a black coffee" },
+  { src: photo12, alt: "Savory oatmeal with prosciutto cotto and fresh orange juice" },
+  { src: photo13, alt: "Window table with a red carnation" },
+  { src: photo14, alt: "An empty plate – the best review" },
+  { src: photo15, alt: "Crème brûlée and strawberries with cream next to a black coffee" },
+  { src: photo16, alt: "Filter coffee blooming in a paper filter" },
+  { src: photo17, alt: "Weekend set – Bellini with seasonal fruit and cream on the terrace" },
+  { src: photo18, alt: "Passo de Gigante Loureiro white wine at Alba Lisbon" },
+  { src: photo19, alt: "Wine bottles resting in the wine fridge" },
+  { src: photo20, alt: "Espresso cups on a marble table" },
+  { src: photo21, alt: "Specialty coffee beans from Bona Roasters" },
+  { src: photo22, alt: "Takeaway order from Alba Lisbon with fresh orange juice" },
+  { src: photo23, alt: "Rattan terrace chairs at Alba Lisbon" },
+  { src: photo24, alt: "Empty coffee cups after a busy morning" },
 ];
 
 // one set for mobile slider and desktop
