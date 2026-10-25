@@ -151,7 +151,8 @@
             },
             "2"
           ]
-        ]
+        ],
+        "photo": "choose-your-extras"
       }
     },
     {
@@ -883,7 +884,8 @@
             "en": "Mango, jasmine iced tea, passion fruit, honey",
             "pt": "Manga, chá gelado de jasmim, maracujá, mel"
           },
-          "price": "4.50"
+          "price": "4.50",
+          "photo": "mango-jasmine-iced-tea"
         },
         {
           "name": {
@@ -894,7 +896,8 @@
             "en": "Cherry, hibiscus, cinnamon, black pepper",
             "pt": "Cereja, hibisco, canela, pimenta preta"
           },
-          "price": "4"
+          "price": "4",
+          "photo": "cherry-hibiscus-lemonade"
         },
         {
           "name": {
@@ -905,7 +908,8 @@
             "en": "Ginger, rosemary syrup, lemon",
             "pt": "Gengibre, xarope de alecrim, limão"
           },
-          "price": "4"
+          "price": "4",
+          "photo": "ginger-rosemary-lemonade"
         },
         {
           "name": {
