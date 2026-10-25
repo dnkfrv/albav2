@@ -102,7 +102,7 @@ def section_html(sec, lang):
     if dishes:
         figs = "".join(
             f'<figure><img src="/menu/img/{k}.jpg" alt="{e(a)}" width="900" height="1125" loading="lazy" decoding="async">'
-            f'<figcaption>{e(a)}</figcaption></figure>'
+            f'</figure>'
             for k, a in dishes
         )
         parts.append(f'<div class="strip">{figs}</div>')
@@ -247,7 +247,7 @@ JS = """
     if(!key||key===shown||!imgs[key])return;
     var img=imgs[key]; if(img.loading==='lazy'){img.loading='eager'}
     imgs[shown].classList.remove('on'); img.classList.add('on'); shown=key;
-    if(cap)cap.textContent=img.alt;
+    if(cap)cap.textContent=key.indexOf('dishes/')===0?'':img.alt;
   }
   function activate(sec){
     if(sec===current)return; current=sec;
@@ -289,7 +289,7 @@ def page(lang):
             f'<img src="/menu/img/{key}.jpg" data-key="{key}" alt="{e(alt)}" '
             f'{"class=\"on\" fetchpriority=\"high\"" if first else "loading=\"lazy\""} decoding="async">'
         )
-    first_alt = e(entries[0][1])
+    first_alt = '' if entries[0][0].startswith('dishes/') else e(entries[0][1])
 
     url = f"{SITE}{c['path']}"
     return f"""<!doctype html>
