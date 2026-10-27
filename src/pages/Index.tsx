@@ -534,7 +534,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           <JoinTeamSheet lang={lang} />
           <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
             <a
-              href="https://instagram.com/albabistro.lisbon"
+              href="https://instagram.com/alba.lisbon"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4B362F] transition-colors"
@@ -566,7 +566,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           </a>
           <div className="flex items-center gap-2">
             <a
-              href="https://instagram.com/albabistro.lisbon"
+              href="https://instagram.com/alba.lisbon"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4B362F] transition-colors"
