@@ -97,6 +97,7 @@ const withNowrapTimes = (text: string) =>
   );
 
 const EMAIL = "hello@albalisbon.com";
+const MAPS_URL = "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8";
 const SLIDER_MARGIN = 150;
 
 const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
@@ -441,6 +442,8 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       </>)}
 
+      <h1 className="sr-only">{c.h1}</h1>
+
       {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <div className="flex flex-col items-start gap-1 select-none">
@@ -463,7 +466,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         className={`hidden md:block absolute z-10 max-w-md text-xs md:text-sm leading-relaxed ${
           HERO_MODE === "full" ? "text-white [text-shadow:0_1px_12px_rgba(0,0,0,.45)]" : "text-black"
         }`}
-        style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
+        style={{ top: HERO_MODE === "full" ? "clamp(120px, 18svh, 200px)" : 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
         {c.welcome.map((text, i) => (
           <p key={i} className={i < c.welcome.length - 1 ? "mb-3" : ""}>
@@ -471,7 +474,24 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           </p>
         ))}
 
-        <div className="mt-20">
+        <section className="mt-8" aria-labelledby="find-us-title">
+          <h2 id="find-us-title" className="mb-1 opacity-80">
+            {c.findUs.title}
+          </h2>
+          <p>
+            {c.findUs.address}. {c.findUs.text}{" "}
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:opacity-80"
+            >
+              {c.findUs.mapLabel}
+            </a>
+          </p>
+        </section>
+
+        <div className="mt-8">
           <JoinTeamSheet lang={lang} />
         </div>
 
@@ -499,7 +519,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         <div className="flex flex-col space-y-1 text-xs text-[#644A42] leading-[18px] font-kommon">
           <span>{c.hours}</span>
           <a
-            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            href={MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#4B362F] transition-colors"
@@ -537,7 +557,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         <div className="flex flex-col space-y-0 text-sm text-[#644A42] leading-[16px] font-kommon">
           <span>{c.hours}</span>
           <a
-            href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"
+            href={MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#4B362F] transition-colors"
