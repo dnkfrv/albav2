@@ -50,7 +50,7 @@ def jsonld(lang):
             "addressLocality": "Lisboa",
             "addressCountry": "PT",
         },
-        "geo": {"@type": "GeoCoordinates", "latitude": 38.7200, "longitude": -9.1558},
+        "geo": {"@type": "GeoCoordinates", "latitude": 38.720438, "longitude": -9.154313},
         "openingHours": "Mo-Su 09:00-17:00",
         "openingHoursSpecification": [{
             "@type": "OpeningHoursSpecification",
