@@ -50,19 +50,22 @@ def jsonld(lang):
             "addressLocality": "Lisboa",
             "addressCountry": "PT",
         },
+        "geo": {"@type": "GeoCoordinates", "latitude": 38.7200, "longitude": -9.1558},
+        "openingHours": "Mo-Su 09:00-17:00",
         "openingHoursSpecification": [{
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             "opens": "09:00",
             "closes": "17:00",
         }],
-        "servesCuisine": ["Brunch", "Breakfast", "Specialty coffee", "Matcha"],
+        "servesCuisine": ["Brunch", "Breakfast", "Coffee", "Matcha"],
         "priceRange": "€€",
         "currenciesAccepted": "EUR",
         "acceptsReservations": False,
         "hasMenu": f"{SITE_URL}{c['menuHref']}",
+        "menu": f"{SITE_URL}{c['menuHref']}",
         "hasMap": "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8",
-        "sameAs": ["https://instagram.com/albabistro.lisbon"],
+        "sameAs": ["https://instagram.com/albabistro.lisbon", "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"],
         "amenityFeature": [
             {"@type": "LocationFeatureSpecification", "name": "Outdoor terrace", "value": True},
             {"@type": "LocationFeatureSpecification", "name": "Dogs allowed", "value": True},
@@ -150,6 +153,8 @@ def page(lang):
           <li>Email: hello@albalisbon.com</li>
           <li>Instagram: <a href="https://instagram.com/albabistro.lisbon">@albabistro.lisbon</a></li>
         </ul>
+        <h2>{e(c['findUs']['title'])}</h2>
+        <p>{e(c['findUs']['address'])}. {e(c['findUs']['text'])} <a href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8">{e(c['findUs']['mapLabel'])}</a></p>
         <p><a href="{c['menuHref']}">{v['menu']}</a></p>
         <p><a href="{other['href']}" hreflang="{other['hreflang']}" lang="{other['hreflang']}">{other['title']}</a></p>
       </main>
