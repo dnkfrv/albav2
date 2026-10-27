@@ -247,7 +247,8 @@
             "en": "Beef pastrami, mashed potato, truffle sauce, gouda and tomato jam",
             "pt": "Pastrami de vaca, puré de batata, molho de trufa, queijo gouda e doce de tomate"
           },
-          "price": "14"
+          "price": "14",
+          "photo": "pastrami-truffle-potato-crepe"
         },
         {
           "name": {
