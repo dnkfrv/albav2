@@ -27,9 +27,20 @@ const HeroVideo: React.FC<{ label: string }> = ({ label }) => {
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
-    v.muted = true; // iOS only autoplays muted video, and React doesn't set the attribute
+    // iOS only autoplays video that is muted *as an attribute*; React sets only the property
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce) v.play().catch(() => {});
+    if (reduce) return;
+    const tryPlay = () => v.play().catch(() => {});
+    tryPlay();
+    // Low Power Mode and some browsers block autoplay: start on the first touch instead
+    const onTouch = () => tryPlay();
+    window.addEventListener("touchstart", onTouch, { once: true, passive: true });
+    v.addEventListener("canplay", tryPlay, { once: true });
+    return () => window.removeEventListener("touchstart", onTouch);
   }, []);
   return (
     <div className="absolute inset-0 flex items-center justify-center md:justify-end pointer-events-none">
@@ -39,13 +50,14 @@ const HeroVideo: React.FC<{ label: string }> = ({ label }) => {
           className="block w-[93vw] h-auto max-h-[calc(100svh-180px)] md:w-[33vw] md:h-[100vh] md:max-h-none md:object-cover object-contain"
           poster="/video/hero-poster.webp"
           muted
+          autoPlay
           loop
           playsInline
           preload="auto"
           aria-label={label}
         >
-          <source src="/video/hero.webm" type="video/webm" />
           <source src="/video/hero.mp4" type="video/mp4" />
+          <source src="/video/hero.webm" type="video/webm" />
         </video>
         <div className="absolute inset-0 bg-black/25" />
       </div>
