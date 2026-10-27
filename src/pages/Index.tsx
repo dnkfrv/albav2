@@ -356,7 +356,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
               <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
             </>
           ) : (
-            <LoopVideo name="hero" label={c.heroVideoLabel} focus="center 75%" className="h-full w-full" />
+            <LoopVideo name="hero-coffee-vertical" label={c.heroVideoCoffeeLabel} focus="center 70%" className="h-full w-full" />
           )}
         </div>
       )}
