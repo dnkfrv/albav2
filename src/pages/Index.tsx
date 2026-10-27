@@ -19,6 +19,71 @@ const photoFiles = import.meta.glob("/src/assets/photos/*.webp", {
 }) as Record<string, string>;
 const photoUrl = (file: string) => photoFiles[`/src/assets/photos/${file}.webp`];
 
+/** What fills the photo area: a looping video, or the photo slider (set back to "photos" to return). */
+const HERO_MODE = "full" as "full" | "video" | "photos";
+
+const LoopVideo: React.FC<{
+  name: string;
+  label: string;
+  className?: string;
+  focus?: string; // object-position when the frame is cropped
+}> = ({ name, label, className = "", focus = "center" }) => {
+  const ref = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    // iOS only autoplays video that is muted *as an attribute*; React sets only the property
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const tryPlay = () => v.play().catch(() => {});
+    tryPlay();
+    // Low Power Mode and some browsers block autoplay: start on the first touch instead
+    const onTouch = () => tryPlay();
+    window.addEventListener("touchstart", onTouch, { once: true, passive: true });
+    v.addEventListener("canplay", tryPlay, { once: true });
+    return () => window.removeEventListener("touchstart", onTouch);
+  }, []);
+  return (
+    <div className={`relative overflow-hidden ${className}`}>
+      <video
+        ref={ref}
+        className="absolute inset-0 block h-full w-full object-cover"
+        style={{ objectPosition: focus }}
+        poster={`/video/${name}-poster.webp`}
+        muted
+        autoPlay
+        loop
+        playsInline
+        preload="auto"
+        aria-label={label}
+      >
+        <source src={`/video/${name}.mp4`} type="video/mp4" />
+        <source src={`/video/${name}.webm`} type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-black/25" />
+    </div>
+  );
+};
+
+/** Two videos stacked: landscape coffee on top, vertical brunch below. */
+const HeroVideos: React.FC<{ coffeeLabel: string; brunchLabel: string }> = ({
+  coffeeLabel,
+  brunchLabel,
+}) => (
+  <div
+    className="pointer-events-none absolute flex flex-col gap-2
+      left-[3.5vw] right-[3.5vw] top-[76px] bottom-[92px]
+      md:left-auto md:right-0 md:top-0 md:bottom-0 md:w-[33vw] md:gap-1.5"
+  >
+    <LoopVideo name="hero-coffee" label={coffeeLabel} className="aspect-video w-full shrink-0" />
+    <LoopVideo name="hero" label={brunchLabel} focus="center 80%" className="min-h-0 w-full flex-1" />
+  </div>
+);
+
 /** Keeps time ranges like 9:00–17:00 on one line. */
 const withNowrapTimes = (text: string) =>
   text.split(/(\d{1,2}:\d{2}\s?–\s?\d{1,2}:\d{2})/).map((part, i) =>
@@ -53,6 +118,17 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
     }
     window.addEventListener("load", go, { once: true });
     return () => window.removeEventListener("load", go);
+  }, []);
+
+  // Full-screen video: phone gets the vertical clip, desktop the landscape one (only one is downloaded)
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const on = () => setIsDesktop(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
   }, []);
 
   useEffect(() => {
@@ -283,7 +359,26 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
       ref={rootRef}
       className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon"
     >
+      {HERO_MODE === "full" && (
+        <div className="pointer-events-none absolute inset-x-0 top-[72px] bottom-[84px] md:top-[92px] md:bottom-[96px]">
+          {/* phone: vertical brunch clip; desktop: landscape coffee clip – each fills its screen shape */}
+          {isDesktop ? (
+            <>
+              <LoopVideo name="hero-coffee-wide" label={c.heroVideoCoffeeLabel} focus="center 60%" className="h-full w-full" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
+            </>
+          ) : (
+            <LoopVideo name="hero-coffee-vertical" label={c.heroVideoCoffeeLabel} focus="center 70%" className="h-full w-full" />
+          )}
+        </div>
+      )}
+
+      {HERO_MODE === "video" && (
+        <HeroVideos coffeeLabel={c.heroVideoCoffeeLabel} brunchLabel={c.heroVideoLabel} />
+      )}
+
       {/* ДЕСКТОП ФОТО */}
+      {HERO_MODE === "photos" && (<>
       <div
         className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
@@ -344,6 +439,8 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         </div>
       </div>
 
+      </>)}
+
       {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <div className="flex flex-col items-start gap-1 select-none">
@@ -363,7 +460,9 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       {/* ТЕКСТ ДЛЯ ДЕСКТОПА */}
       <div
-        className="hidden md:block absolute max-w-md text-xs md:text-sm text-black leading-relaxed "
+        className={`hidden md:block absolute z-10 max-w-md text-xs md:text-sm leading-relaxed ${
+          HERO_MODE === "full" ? "text-white [text-shadow:0_1px_12px_rgba(0,0,0,.45)]" : "text-black"
+        }`}
         style={{ top: 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
         {c.welcome.map((text, i) => (
@@ -379,7 +478,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
       </div>
 
       {/* КНОПКА МЕНЮ */}
-      <div className="absolute top-4 right-4 md:top-[27px] md:right-[calc(33vw+2rem)] text-[#e62d3b]">
+      <div className={`absolute top-4 right-4 md:top-[27px] ${HERO_MODE === "full" ? "md:right-8" : "md:right-[calc(33vw+2rem)]"} text-[#e62d3b]`}>
         <div className="flex items-center gap-5">
           <a
             href={c.otherLang.href}

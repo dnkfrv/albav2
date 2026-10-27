@@ -18,21 +18,52 @@
     "address": "Largo do Rato, 4A",
     "menuHref": "/menu/",
     "menuLabel": "Menu",
-    "otherLang": { "label": "PT", "href": "/pt/", "hreflang": "pt-PT", "title": "Português" },
+    "otherLang": {
+      "label": "PT",
+      "href": "/pt/",
+      "hreflang": "pt-PT",
+      "title": "Português"
+    },
     "faqTitle": "Questions",
     "faqTrigger": "FAQ",
     "createdBy": "Created by AlbaFamily",
     "copied": "Copied",
     "faq": [
-      { "q": "Do I need a reservation?", "a": "No – we don't take reservations, just come by. Tables inside and on the terrace are first come, first served." },
-      { "q": "Can I bring my dog?", "a": "Yes, dogs are welcome inside and on the terrace." },
-      { "q": "Can I work on my laptop?", "a": "On weekdays, yes – there's wi-fi. On weekends we ask you to leave the laptop at home." },
-      { "q": "When do you serve brunch and lunch?", "a": "Brunch every day 9:00–17:00. Lunch on weekdays 13:00–15:00." },
-      { "q": "Do you have vegan options?", "a": "Yes – avocado toast with vegan feta and tomato jam, and oat milk for any drink (+0.50)." },
-      { "q": "Can I take it to go?", "a": "Yes, coffee, matcha and food are all available to take away." },
-      { "q": "Do you sell coffee beans?", "a": "Yes, beans from our roasters are on the shelf to take home." },
-      { "q": "Where are you?", "a": "Largo do Rato, 4A, right by Rato metro station (yellow line). The terrace is on the square." }
-    ]
+      {
+        "q": "Do I need a reservation?",
+        "a": "No – we don't take reservations, just come by. Tables inside and on the terrace are first come, first served."
+      },
+      {
+        "q": "Can I bring my dog?",
+        "a": "Yes, dogs are welcome inside and on the terrace."
+      },
+      {
+        "q": "Can I work on my laptop?",
+        "a": "On weekdays, yes – there's wi-fi. On weekends we ask you to leave the laptop at home."
+      },
+      {
+        "q": "When do you serve brunch and lunch?",
+        "a": "Brunch every day 9:00–17:00. Lunch on weekdays 13:00–15:00."
+      },
+      {
+        "q": "Do you have vegan options?",
+        "a": "Yes – avocado toast with vegan feta and tomato jam, and oat milk for any drink (+0.50)."
+      },
+      {
+        "q": "Can I take it to go?",
+        "a": "Yes, coffee, matcha and food are all available to take away."
+      },
+      {
+        "q": "Do you sell coffee beans?",
+        "a": "Yes, beans from our roasters are on the shelf to take home."
+      },
+      {
+        "q": "Where are you?",
+        "a": "Largo do Rato, 4A, right by Rato metro station (yellow line). The terrace is on the square."
+      }
+    ],
+    "heroVideoLabel": "Sweet creamy oatmeal with berry jam, served on the terrace at Alba Lisbon",
+    "heroVideoCoffeeLabel": "A cappuccino with latte art set down on the marble bar at Alba Lisbon"
   },
   "pt": {
     "path": "/pt/",
@@ -52,47 +83,178 @@
     "address": "Largo do Rato, 4A",
     "menuHref": "/pt/menu/",
     "menuLabel": "Menu",
-    "otherLang": { "label": "EN", "href": "/", "hreflang": "en", "title": "English" },
+    "otherLang": {
+      "label": "EN",
+      "href": "/",
+      "hreflang": "en",
+      "title": "English"
+    },
     "faqTitle": "Perguntas",
     "faqTrigger": "FAQ",
     "createdBy": "Created by AlbaFamily",
     "copied": "Copiado",
     "faq": [
-      { "q": "É preciso reservar?", "a": "Não – não fazemos reservas, basta aparecer. As mesas no interior e na esplanada são por ordem de chegada." },
-      { "q": "Posso levar o meu cão?", "a": "Sim, os cães são bem-vindos no interior e na esplanada." },
-      { "q": "Posso trabalhar com o portátil?", "a": "Nos dias úteis, sim – temos wi-fi. Ao fim de semana pedimos que deixe o portátil em casa." },
-      { "q": "Quando servem brunch e almoço?", "a": "Brunch todos os dias das 9:00 às 17:00. Almoço nos dias úteis das 13:00 às 15:00." },
-      { "q": "Têm opções vegan?", "a": "Sim – tosta de abacate com feta vegan e doce de tomate, e leite de aveia em qualquer bebida (+0.50)." },
-      { "q": "Posso levar para fora?", "a": "Sim, café, matcha e comida estão todos disponíveis para levar." },
-      { "q": "Vendem café em grão?", "a": "Sim, temos café em grão dos nossos torrefatores na prateleira para levar para casa." },
-      { "q": "Onde ficam?", "a": "No Largo do Rato, 4A, junto à estação de metro do Rato (linha amarela). A esplanada fica no largo." }
-    ]
+      {
+        "q": "É preciso reservar?",
+        "a": "Não – não fazemos reservas, basta aparecer. As mesas no interior e na esplanada são por ordem de chegada."
+      },
+      {
+        "q": "Posso levar o meu cão?",
+        "a": "Sim, os cães são bem-vindos no interior e na esplanada."
+      },
+      {
+        "q": "Posso trabalhar com o portátil?",
+        "a": "Nos dias úteis, sim – temos wi-fi. Ao fim de semana pedimos que deixe o portátil em casa."
+      },
+      {
+        "q": "Quando servem brunch e almoço?",
+        "a": "Brunch todos os dias das 9:00 às 17:00. Almoço nos dias úteis das 13:00 às 15:00."
+      },
+      {
+        "q": "Têm opções vegan?",
+        "a": "Sim – tosta de abacate com feta vegan e doce de tomate, e leite de aveia em qualquer bebida (+0.50)."
+      },
+      {
+        "q": "Posso levar para fora?",
+        "a": "Sim, café, matcha e comida estão todos disponíveis para levar."
+      },
+      {
+        "q": "Vendem café em grão?",
+        "a": "Sim, temos café em grão dos nossos torrefatores na prateleira para levar para casa."
+      },
+      {
+        "q": "Onde ficam?",
+        "a": "No Largo do Rato, 4A, junto à estação de metro do Rato (linha amarela). A esplanada fica no largo."
+      }
+    ],
+    "heroVideoLabel": "Papas de aveia doces com compota de mirtilos, servidas na esplanada do Alba Lisboa",
+    "heroVideoCoffeeLabel": "Um cappuccino com latte art pousado no balcão de mármore do Alba Lisboa"
   },
   "photos": [
-    { "file": "breakfast-plate-window", "en": "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam by the window at Alba Lisbon", "pt": "Prato de pequeno-almoço com pão de fermentação natural, ovos cozidos, abacate, manteiga e compota junto à janela no Alba Lisboa" },
-    { "file": "flat-matcha-iced", "en": "Iced flat matcha at Alba Lisbon matcha bar", "pt": "Flat matcha gelado no matcha bar do Alba Lisboa" },
-    { "file": "four-cheese-omelette", "en": "Four cheese and onion jam omelette with green salad", "pt": "Omelete de quatro queijos e doce de cebola com salada verde" },
-    { "file": "terrace-breakfast", "en": "Breakfast on the terrace at Largo do Rato", "pt": "Pequeno-almoço na esplanada do Largo do Rato" },
-    { "file": "strawberry-matcha-closeup", "en": "Strawberry matcha close up – whipped strawberry ice cream over a matcha latte", "pt": "Matcha de morango em grande plano – gelado de morango batido sobre matcha latte" },
-    { "file": "figs-lemon-cream", "en": "Seasonal fruit with lemon cream – fresh figs and pistachios", "pt": "Fruta da época com creme de limão – figos frescos e pistácio" },
-    { "file": "espresso-pour", "en": "Double espresso pouring at Alba Lisbon", "pt": "Espresso duplo a ser extraído no Alba Lisboa" },
-    { "file": "avocado-toast-two-ways", "en": "Avocado toast two ways on a wooden chair", "pt": "Tosta de abacate de duas maneiras numa cadeira de madeira" },
-    { "file": "terrace-largo-do-rato", "en": "Guests on the terrace at Largo do Rato", "pt": "Clientes na esplanada do Largo do Rato" },
-    { "file": "matcha-to-go", "en": "Iced matcha latte to go in a kraft paper carrier", "pt": "Matcha latte gelado para levar num suporte de papel kraft" },
-    { "file": "brunch-crepes-scrambled-eggs", "en": "Brunch spread with scrambled eggs, a savory crêpe and crêpe Suzette", "pt": "Brunch com ovos mexidos, crêpe salgado e crêpe Suzette" },
-    { "file": "coffee-milk-pour", "en": "Milk poured into a black coffee", "pt": "Leite a ser vertido num café" },
-    { "file": "savory-oatmeal", "en": "Savory oatmeal with prosciutto cotto and fresh orange juice", "pt": "Papas de aveia salgadas com fiambre e sumo de laranja natural" },
-    { "file": "window-table-flower", "en": "Window table with a red carnation", "pt": "Mesa junto à janela com um cravo vermelho" },
-    { "file": "best-review", "en": "An empty plate – the best review", "pt": "Um prato vazio – a melhor crítica" },
-    { "file": "creme-brulee-strawberries", "en": "Crème brûlée and strawberries with cream next to a black coffee", "pt": "Crème brûlée e morangos com natas ao lado de um café" },
-    { "file": "filter-coffee-bloom", "en": "Filter coffee blooming in a paper filter", "pt": "Café de filtro a florescer num filtro de papel" },
-    { "file": "weekend-set-bellini", "en": "Weekend set – Bellini with seasonal fruit and cream on the terrace", "pt": "Set de fim de semana – Bellini com fruta da época e natas na esplanada" },
-    { "file": "wine-passo-de-gigante", "en": "Passo de Gigante Loureiro white wine at Alba Lisbon", "pt": "Vinho branco Passo de Gigante Loureiro no Alba Lisboa" },
-    { "file": "wine-fridge", "en": "Wine bottles resting in the wine fridge", "pt": "Garrafas de vinho na garrafeira" },
-    { "file": "espresso-cups-table", "en": "Espresso cups on a marble table", "pt": "Chávenas de espresso numa mesa de mármore" },
-    { "file": "coffee-beans-bona-roasters", "en": "Specialty coffee beans from Bona Roasters", "pt": "Café de especialidade em grão da Bona Roasters" },
-    { "file": "takeaway-bag", "en": "Takeaway order from Alba Lisbon with fresh orange juice", "pt": "Encomenda para levar do Alba Lisboa com sumo de laranja natural" },
-    { "file": "terrace-chairs", "en": "Rattan terrace chairs at Alba Lisbon", "pt": "Cadeiras de rattan da esplanada do Alba Lisboa" },
-    { "file": "empty-cups", "en": "Empty coffee cups after a busy morning", "pt": "Chávenas vazias depois de uma manhã cheia" }
+    {
+      "file": "breakfast-plate-window",
+      "en": "Breakfast plate with sourdough, boiled eggs, avocado, butter and jam by the window at Alba Lisbon",
+      "pt": "Prato de pequeno-almoço com pão de fermentação natural, ovos cozidos, abacate, manteiga e compota junto à janela no Alba Lisboa"
+    },
+    {
+      "file": "flat-matcha-iced",
+      "en": "Iced flat matcha at Alba Lisbon matcha bar",
+      "pt": "Flat matcha gelado no matcha bar do Alba Lisboa"
+    },
+    {
+      "file": "four-cheese-omelette",
+      "en": "Four cheese and onion jam omelette with green salad",
+      "pt": "Omelete de quatro queijos e doce de cebola com salada verde"
+    },
+    {
+      "file": "terrace-breakfast",
+      "en": "Breakfast on the terrace at Largo do Rato",
+      "pt": "Pequeno-almoço na esplanada do Largo do Rato"
+    },
+    {
+      "file": "strawberry-matcha-closeup",
+      "en": "Strawberry matcha close up – whipped strawberry ice cream over a matcha latte",
+      "pt": "Matcha de morango em grande plano – gelado de morango batido sobre matcha latte"
+    },
+    {
+      "file": "figs-lemon-cream",
+      "en": "Seasonal fruit with lemon cream – fresh figs and pistachios",
+      "pt": "Fruta da época com creme de limão – figos frescos e pistácio"
+    },
+    {
+      "file": "espresso-pour",
+      "en": "Double espresso pouring at Alba Lisbon",
+      "pt": "Espresso duplo a ser extraído no Alba Lisboa"
+    },
+    {
+      "file": "avocado-toast-two-ways",
+      "en": "Avocado toast two ways on a wooden chair",
+      "pt": "Tosta de abacate de duas maneiras numa cadeira de madeira"
+    },
+    {
+      "file": "terrace-largo-do-rato",
+      "en": "Guests on the terrace at Largo do Rato",
+      "pt": "Clientes na esplanada do Largo do Rato"
+    },
+    {
+      "file": "matcha-to-go",
+      "en": "Iced matcha latte to go in a kraft paper carrier",
+      "pt": "Matcha latte gelado para levar num suporte de papel kraft"
+    },
+    {
+      "file": "brunch-crepes-scrambled-eggs",
+      "en": "Brunch spread with scrambled eggs, a savory crêpe and crêpe Suzette",
+      "pt": "Brunch com ovos mexidos, crêpe salgado e crêpe Suzette"
+    },
+    {
+      "file": "coffee-milk-pour",
+      "en": "Milk poured into a black coffee",
+      "pt": "Leite a ser vertido num café"
+    },
+    {
+      "file": "savory-oatmeal",
+      "en": "Savory oatmeal with prosciutto cotto and fresh orange juice",
+      "pt": "Papas de aveia salgadas com fiambre e sumo de laranja natural"
+    },
+    {
+      "file": "window-table-flower",
+      "en": "Window table with a red carnation",
+      "pt": "Mesa junto à janela com um cravo vermelho"
+    },
+    {
+      "file": "best-review",
+      "en": "An empty plate – the best review",
+      "pt": "Um prato vazio – a melhor crítica"
+    },
+    {
+      "file": "creme-brulee-strawberries",
+      "en": "Crème brûlée and strawberries with cream next to a black coffee",
+      "pt": "Crème brûlée e morangos com natas ao lado de um café"
+    },
+    {
+      "file": "filter-coffee-bloom",
+      "en": "Filter coffee blooming in a paper filter",
+      "pt": "Café de filtro a florescer num filtro de papel"
+    },
+    {
+      "file": "weekend-set-bellini",
+      "en": "Weekend set – Bellini with seasonal fruit and cream on the terrace",
+      "pt": "Set de fim de semana – Bellini com fruta da época e natas na esplanada"
+    },
+    {
+      "file": "wine-passo-de-gigante",
+      "en": "Passo de Gigante Loureiro white wine at Alba Lisbon",
+      "pt": "Vinho branco Passo de Gigante Loureiro no Alba Lisboa"
+    },
+    {
+      "file": "wine-fridge",
+      "en": "Wine bottles resting in the wine fridge",
+      "pt": "Garrafas de vinho na garrafeira"
+    },
+    {
+      "file": "espresso-cups-table",
+      "en": "Espresso cups on a marble table",
+      "pt": "Chávenas de espresso numa mesa de mármore"
+    },
+    {
+      "file": "coffee-beans-bona-roasters",
+      "en": "Specialty coffee beans from Bona Roasters",
+      "pt": "Café de especialidade em grão da Bona Roasters"
+    },
+    {
+      "file": "takeaway-bag",
+      "en": "Takeaway order from Alba Lisbon with fresh orange juice",
+      "pt": "Encomenda para levar do Alba Lisboa com sumo de laranja natural"
+    },
+    {
+      "file": "terrace-chairs",
+      "en": "Rattan terrace chairs at Alba Lisbon",
+      "pt": "Cadeiras de rattan da esplanada do Alba Lisboa"
+    },
+    {
+      "file": "empty-cups",
+      "en": "Empty coffee cups after a busy morning",
+      "pt": "Chávenas vazias depois de uma manhã cheia"
+    }
   ]
 }
