@@ -22,7 +22,12 @@ const photoUrl = (file: string) => photoFiles[`/src/assets/photos/${file}.webp`]
 /** What fills the photo area: a looping video, or the photo slider (set back to "photos" to return). */
 const HERO_MODE = "video" as "video" | "photos";
 
-const HeroVideo: React.FC<{ label: string }> = ({ label }) => {
+const LoopVideo: React.FC<{
+  name: string;
+  label: string;
+  className?: string;
+  focus?: string; // object-position when the frame is cropped
+}> = ({ name, label, className = "", focus = "center" }) => {
   const ref = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     const v = ref.current;
@@ -32,26 +37,40 @@ const HeroVideo: React.FC<{ label: string }> = ({ label }) => {
     if (!reduce) v.play().catch(() => {});
   }, []);
   return (
-    <div className="absolute inset-0 flex items-center justify-center md:justify-end pointer-events-none">
-      <div className="relative -translate-y-[10px] md:translate-y-0">
-        <video
-          ref={ref}
-          className="block w-[93vw] h-auto max-h-[calc(100svh-180px)] md:w-[33vw] md:h-[100vh] md:max-h-none md:object-cover object-contain"
-          poster="/video/hero-poster.webp"
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-label={label}
-        >
-          <source src="/video/hero.webm" type="video/webm" />
-          <source src="/video/hero.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/25" />
-      </div>
+    <div className={`relative overflow-hidden ${className}`}>
+      <video
+        ref={ref}
+        className="absolute inset-0 block h-full w-full object-cover"
+        style={{ objectPosition: focus }}
+        poster={`/video/${name}-poster.webp`}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label={label}
+      >
+        <source src={`/video/${name}.webm`} type="video/webm" />
+        <source src={`/video/${name}.mp4`} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-black/25" />
     </div>
   );
 };
+
+/** Two videos stacked: landscape coffee on top, vertical brunch below. */
+const HeroVideos: React.FC<{ coffeeLabel: string; brunchLabel: string }> = ({
+  coffeeLabel,
+  brunchLabel,
+}) => (
+  <div
+    className="pointer-events-none absolute flex flex-col gap-2
+      left-[3.5vw] right-[3.5vw] top-[76px] bottom-[92px]
+      md:left-auto md:right-0 md:top-0 md:bottom-0 md:w-[33vw] md:gap-1.5"
+  >
+    <LoopVideo name="hero-coffee" label={coffeeLabel} className="aspect-video w-full shrink-0" />
+    <LoopVideo name="hero" label={brunchLabel} focus="center 80%" className="min-h-0 w-full flex-1" />
+  </div>
+);
 
 /** Keeps time ranges like 9:00–17:00 on one line. */
 const withNowrapTimes = (text: string) =>
@@ -317,7 +336,9 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
       ref={rootRef}
       className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon"
     >
-      {HERO_MODE === "video" && <HeroVideo label={c.heroVideoLabel} />}
+      {HERO_MODE === "video" && (
+        <HeroVideos coffeeLabel={c.heroVideoCoffeeLabel} brunchLabel={c.heroVideoLabel} />
+      )}
 
       {/* ДЕСКТОП ФОТО */}
       {HERO_MODE === "photos" && (<>

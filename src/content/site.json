@@ -62,7 +62,8 @@
         "a": "Largo do Rato, 4A, right by Rato metro station (yellow line). The terrace is on the square."
       }
     ],
-    "heroVideoLabel": "Sweet creamy oatmeal with berry jam, served on the terrace at Alba Lisbon"
+    "heroVideoLabel": "Sweet creamy oatmeal with berry jam, served on the terrace at Alba Lisbon",
+    "heroVideoCoffeeLabel": "A cappuccino with latte art set down on the marble bar at Alba Lisbon"
   },
   "pt": {
     "path": "/pt/",
@@ -126,7 +127,8 @@
         "a": "No Largo do Rato, 4A, junto à estação de metro do Rato (linha amarela). A esplanada fica no largo."
       }
     ],
-    "heroVideoLabel": "Papas de aveia doces com compota de mirtilos, servidas na esplanada do Alba Lisboa"
+    "heroVideoLabel": "Papas de aveia doces com compota de mirtilos, servidas na esplanada do Alba Lisboa",
+    "heroVideoCoffeeLabel": "Um cappuccino com latte art pousado no balcão de mármore do Alba Lisboa"
   },
   "photos": [
     {
