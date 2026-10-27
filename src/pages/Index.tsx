@@ -19,6 +19,40 @@ const photoFiles = import.meta.glob("/src/assets/photos/*.webp", {
 }) as Record<string, string>;
 const photoUrl = (file: string) => photoFiles[`/src/assets/photos/${file}.webp`];
 
+/** What fills the photo area: a looping video, or the photo slider (set back to "photos" to return). */
+const HERO_MODE = "video" as "video" | "photos";
+
+const HeroVideo: React.FC<{ label: string }> = ({ label }) => {
+  const ref = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    v.muted = true; // iOS only autoplays muted video, and React doesn't set the attribute
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce) v.play().catch(() => {});
+  }, []);
+  return (
+    <div className="absolute inset-0 flex items-center justify-center md:justify-end pointer-events-none">
+      <div className="relative -translate-y-[10px] md:translate-y-0">
+        <video
+          ref={ref}
+          className="block w-[93vw] h-auto max-h-[calc(100svh-180px)] md:w-[33vw] md:h-[100vh] md:max-h-none md:object-cover object-contain"
+          poster="/video/hero-poster.webp"
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={label}
+        >
+          <source src="/video/hero.webm" type="video/webm" />
+          <source src="/video/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/25" />
+      </div>
+    </div>
+  );
+};
+
 /** Keeps time ranges like 9:00–17:00 on one line. */
 const withNowrapTimes = (text: string) =>
   text.split(/(\d{1,2}:\d{2}\s?–\s?\d{1,2}:\d{2})/).map((part, i) =>
@@ -283,7 +317,10 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
       ref={rootRef}
       className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon"
     >
+      {HERO_MODE === "video" && <HeroVideo label={c.heroVideoLabel} />}
+
       {/* ДЕСКТОП ФОТО */}
+      {HERO_MODE === "photos" && (<>
       <div
         className="absolute inset-0 hidden md:block"
         onMouseMove={handleDesktopMouseMove}
@@ -343,6 +380,8 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           ))}
         </div>
       </div>
+
+      </>)}
 
       {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
