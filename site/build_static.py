@@ -145,7 +145,8 @@ def page(lang):
          The content below is what search engines and AI crawlers read; React replaces it on load. -->
     <div id="root">
       <main style="max-width:640px;margin:0 auto;padding:32px 16px;font-family:serif;color:#111;line-height:1.5">
-        <h1>{e(c['h1'])}</h1>
+        <h1>{e(c['hook'])}</h1>
+        <p>{e(c['hookSub'])}</p>
 {welcome}
         <h2>{v['h']}</h2>
         <ul>

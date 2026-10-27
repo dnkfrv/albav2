@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { MenuSheet } from "@/components/MenuSheet";
 import { JoinTeamSheet } from "@/components/JoinTeamSheet";
+import { ContactSheet } from "@/components/ContactSheet";
 import logoImage from "@/assets/logo.png";
 
 import site from "@/content/site.json";
@@ -361,7 +362,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
       className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon"
     >
       {HERO_MODE === "full" && (
-        <div className="pointer-events-none absolute inset-x-0 top-[72px] bottom-[84px] md:top-[92px] md:bottom-[96px]">
+        <div className="pointer-events-none absolute inset-x-0 top-[112px] bottom-[64px] md:top-[92px] md:bottom-[96px]">
           {/* phone: vertical brunch clip; desktop: landscape coffee clip – each fills its screen shape */}
           {isDesktop ? (
             <>
@@ -442,8 +443,6 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       </>)}
 
-      <h1 className="sr-only">{c.h1}</h1>
-
       {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
         <div className="flex flex-col items-start gap-1 select-none">
@@ -458,6 +457,13 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 >
   BRUNCH • COFFEE • MATCHA BAR
 </p>
+          <p
+            aria-hidden="true"
+            className="md:hidden mt-1.5 max-w-[52vw] text-[13px] leading-[1.2] text-[#2a211d]"
+            style={{ fontFamily: '"Times Now Light", serif' }}
+          >
+            {c.hook}
+          </p>
         </div>
       </div>
 
@@ -466,15 +472,17 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         className={`hidden md:block absolute z-10 max-w-md text-xs md:text-sm leading-relaxed ${
           HERO_MODE === "full" ? "text-white [text-shadow:0_1px_12px_rgba(0,0,0,.45)]" : "text-black"
         }`}
-        style={{ top: HERO_MODE === "full" ? "clamp(120px, 18svh, 200px)" : 200, left: 200, fontFamily: '"Times Now Light", serif' }}
+        style={{ top: HERO_MODE === "full" ? "clamp(110px, 17svh, 200px)" : 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
+        <h1 className="mb-3 text-[24px] leading-[1.15]">{c.hook}</h1>
+        <p className="mb-4 opacity-90">{c.hookSub}</p>
         {c.welcome.map((text, i) => (
           <p key={i} className={i < c.welcome.length - 1 ? "mb-3" : ""}>
             {withNowrapTimes(text)}
           </p>
         ))}
 
-        <section className="mt-8" aria-labelledby="find-us-title">
+        <section className="mt-6" aria-labelledby="find-us-title">
           <h2 id="find-us-title" className="mb-1 opacity-80">
             {c.findUs.title}
           </h2>
@@ -491,14 +499,18 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           </p>
         </section>
 
-        <div className="mt-8">
+        <div className="mt-6 flex items-center gap-3">
           <JoinTeamSheet lang={lang} />
+          <ContactSheet
+            copy={c.contact}
+            triggerClassName="text-xs md:text-sm bg-[#644A42] text-[#f4f0eb] px-[0.5px] py-[2px] leading-[1.2]"
+          />
         </div>
 
       </div>
 
       {/* КНОПКА МЕНЮ */}
-      <div className={`absolute top-4 right-4 md:top-[27px] ${HERO_MODE === "full" ? "md:right-8" : "md:right-[calc(33vw+2rem)]"} text-[#e62d3b]`}>
+      <div className={`absolute bottom-4 right-4 md:bottom-auto md:top-[27px] ${HERO_MODE === "full" ? "md:right-8" : "md:right-[calc(33vw+2rem)]"} text-[#e62d3b]`}>
         <div className="flex items-center gap-5">
           <a
             href={c.otherLang.href}
@@ -529,9 +541,10 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         </div>
       </div>
 
-      <div className="absolute bottom-4 right-4 md:hidden">
+      <div className="absolute top-4 right-4 md:hidden">
         <div className="flex flex-col items-end text-right space-y-1 font-kommon">
           <JoinTeamSheet lang={lang} />
+          <ContactSheet copy={c.contact} triggerClassName="text-xs text-[#644A42] hover:text-[#4B362F] transition-colors" />
           <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
             <a
               href="https://instagram.com/alba.lisbon"
@@ -547,7 +560,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
               data-track="email_click"
               className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
-              {EMAIL}
+              Email
             </span>
           </div>
         </div>

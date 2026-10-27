@@ -69,6 +69,28 @@
       "address": "Largo do Rato, 4A, 1250-186 Lisboa",
       "text": "A 5-minute walk from Príncipe Real, near Amoreiras. Rato metro station (yellow line) is right outside.",
       "mapLabel": "Open in Google Maps"
+    },
+    "hook": "Brunch on Lisbon's most unlikely terrace.",
+    "hookSub": "Specialty coffee and ceremonial matcha on Largo do Rato. No booking – just walk in.",
+    "contact": {
+      "trigger": "Contact",
+      "title": "Write to us",
+      "intro": "We don't take table reservations – just come by. For everything else, write here.",
+      "reasonLabel": "What is it about?",
+      "reasons": [
+        "My visit",
+        "A group or celebration",
+        "An event or collaboration",
+        "Press",
+        "Something else"
+      ],
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send",
+      "sending": "Sending...",
+      "ok": "Thank you! We'll reply by email.",
+      "err": "Something went wrong. Please write to hello@albalisbon.com."
     }
   },
   "pt": {
@@ -140,6 +162,28 @@
       "address": "Largo do Rato, 4A, 1250-186 Lisboa",
       "text": "A 5 minutos a pé do Príncipe Real, perto das Amoreiras. A estação de metro do Rato (linha amarela) fica mesmo à porta.",
       "mapLabel": "Abrir no Google Maps"
+    },
+    "hook": "Brunch na esplanada mais improvável de Lisboa.",
+    "hookSub": "Café de especialidade e matcha cerimonial no Largo do Rato. Sem reservas – é só aparecer.",
+    "contact": {
+      "trigger": "Contacto",
+      "title": "Escreva-nos",
+      "intro": "Não fazemos reservas de mesa – basta aparecer. Para tudo o resto, escreva aqui.",
+      "reasonLabel": "Sobre o quê?",
+      "reasons": [
+        "A minha visita",
+        "Um grupo ou celebração",
+        "Um evento ou colaboração",
+        "Imprensa",
+        "Outro assunto"
+      ],
+      "name": "Nome",
+      "email": "Email",
+      "message": "Mensagem",
+      "send": "Enviar",
+      "sending": "A enviar...",
+      "ok": "Obrigado! Respondemos por email.",
+      "err": "Algo correu mal. Escreva para hello@albalisbon.com."
     }
   },
   "photos": [
