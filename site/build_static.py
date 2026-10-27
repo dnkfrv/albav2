@@ -114,6 +114,7 @@ def page(lang):
       gtag('js', new Date());
       gtag('config', 'AW-17843586830');
     </script>
+    <script src="/track.js" defer></script>
 
     <meta name="description" content="{e(c['description'])}" />
     <meta name="author" content="Alba Lisbon" />

@@ -321,6 +321,7 @@ def page(lang):
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17843586830"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","AW-17843586830");</script>
+<script src="/track.js" defer></script>
 <script type="application/ld+json">{json.dumps(jsonld(lang), ensure_ascii=False)}</script>
 <style>{CSS}</style>
 </head>
