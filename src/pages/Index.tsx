@@ -544,6 +544,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
+              data-track="email_click"
               className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
               {EMAIL}
@@ -576,6 +577,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
             <span>/</span>
             <span
               onClick={handleEmailClick}
+              data-track="email_click"
               className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
             >
               {EMAIL}
