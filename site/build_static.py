@@ -65,7 +65,7 @@ def jsonld(lang):
         "hasMenu": f"{SITE_URL}{c['menuHref']}",
         "menu": f"{SITE_URL}{c['menuHref']}",
         "hasMap": "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8",
-        "sameAs": ["https://instagram.com/albabistro.lisbon", "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"],
+        "sameAs": ["https://instagram.com/alba.lisbon", "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8"],
         "amenityFeature": [
             {"@type": "LocationFeatureSpecification", "name": "Outdoor terrace", "value": True},
             {"@type": "LocationFeatureSpecification", "name": "Dogs allowed", "value": True},
@@ -151,7 +151,7 @@ def page(lang):
           <li>{v['address']}: Largo do Rato, 4A, 1250-186 Lisboa ({v['metro']})</li>
           <li>{v['open']}: {e(c['hours'])}</li>
           <li>Email: hello@albalisbon.com</li>
-          <li>Instagram: <a href="https://instagram.com/albabistro.lisbon">@albabistro.lisbon</a></li>
+          <li>Instagram: <a href="https://instagram.com/alba.lisbon">@alba.lisbon</a></li>
         </ul>
         <h2>{e(c['findUs']['title'])}</h2>
         <p>{e(c['findUs']['address'])}. {e(c['findUs']['text'])} <a href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8">{e(c['findUs']['mapLabel'])}</a></p>

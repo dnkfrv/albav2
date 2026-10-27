@@ -337,7 +337,7 @@ def page(lang):
 <p class="small">{e(c['small'])}</p>
 <nav class="sections" aria-label="{e(c['nav_label'])}"><ul>{nav}</ul></nav>
 {body}
-<footer><span>{e(c['updated'].format(d=t(DATA['updated'], lang)))}</span><a href="mailto:hello@albalisbon.com">hello@albalisbon.com</a><a href="https://instagram.com/albabistro.lisbon">Instagram</a><a href="/">{e(c['home'])}</a></footer>
+<footer><span>{e(c['updated'].format(d=t(DATA['updated'], lang)))}</span><a href="mailto:hello@albalisbon.com">hello@albalisbon.com</a><a href="https://instagram.com/alba.lisbon">Instagram</a><a href="/">{e(c['home'])}</a></footer>
 </main>
 <aside class="panel" aria-hidden="true">{''.join(photos)}<p class="caption">{first_alt}</p></aside>
 </div>
