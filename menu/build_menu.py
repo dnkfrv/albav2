@@ -216,6 +216,7 @@ def jsonld(lang):
 CSS = """
 @font-face{font-family:"Times Now";src:url("/TimesNow-Light.woff2") format("woff2");font-weight:300;font-display:swap}
 @font-face{font-family:"Times Now";src:url("/TimesNow-LightItalic.woff2") format("woff2");font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:"Times Now";src:url("/TimesNow-SemiLight.woff2") format("woff2");font-weight:350;font-display:swap}
 @font-face{font-family:"Kommon";src:url("/Kommon%20Grotesk%20Ext%20Regular.otf") format("opentype");font-weight:400;font-display:swap}
 @font-face{font-family:"Kommon";src:url("/Kommon%20Grotesk%20Ext%20SemiBold.otf") format("opentype");font-weight:600;font-display:swap}
 @font-face{font-family:"Maison Neue Extended";src:url("/MaisonNeueExtendedDemi.otf") format("opentype");font-weight:600;font-display:swap}
@@ -223,7 +224,7 @@ CSS = """
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Kommon",system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Times Now",Georgia,serif;font-weight:350;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
 .layout{display:block}
@@ -233,19 +234,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset
 .tools{display:flex;gap:16px;font-size:13px;color:var(--cocoa);white-space:nowrap}
 .tools a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
 .tools a:hover{color:var(--ink)}
-h1{font-family:"Times Now",Georgia,serif;font-weight:300;font-size:clamp(64px,17vw,148px);line-height:.86;letter-spacing:-.035em;margin:48px 0 20px;color:var(--ink)}
+h1{font-family:"Maison Neue Extended",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(34px,9vw,64px);line-height:1;margin:48px 0 20px}
 .lede{font-family:"Times Now",Georgia,serif;font-size:19px;line-height:1.35;margin:0 0 8px;max-width:34ch}
-.small{color:var(--cocoa);font-size:12px;margin:0 0 28px;max-width:52ch}
+.small{color:var(--cocoa);font-size:13px;font-style:italic;font-weight:300;margin:0 0 28px;max-width:52ch}
 nav.sections{position:sticky;top:0;z-index:5;background:var(--paper);margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);border-bottom:1px solid var(--rule)}
 nav.sections ul{list-style:none;margin:0;padding:12px 0;display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
 nav.sections ul::-webkit-scrollbar{display:none}
-nav.sections a{display:block;white-space:nowrap;text-decoration:none;color:var(--cocoa);font-size:13px;padding:4px 0;border-bottom:1px solid transparent}
+nav.sections a{display:block;white-space:nowrap;text-decoration:none;color:var(--cocoa);font-family:"Maison Neue Extended",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:10px;padding:4px 0;border-bottom:1px solid transparent}
 nav.sections a:hover{color:var(--ink)}
 nav.sections a[aria-current="true"]{color:var(--red);border-bottom-color:var(--red)}
 .sec{padding-top:44px}
-.sec h2{font-family:"Times Now",Georgia,serif;font-weight:300;font-size:clamp(38px,9vw,56px);line-height:1;letter-spacing:-.02em;margin:0 0 20px}
+.sec h2{font-family:"Maison Neue Extended",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(18px,4.6vw,24px);line-height:1.15;margin:0 0 20px}
 .group{font-family:"Times Now",Georgia,serif;font-style:italic;font-weight:300;font-size:21px;margin:26px 0 4px;color:var(--cocoa)}
-.note{color:var(--cocoa);font-size:13px;margin:0 0 10px;max-width:56ch}
+.note{color:var(--cocoa);font-size:14px;font-style:italic;font-weight:300;margin:0 0 10px;max-width:56ch}
 .inline-photo{margin:0 0 20px}
 .inline-photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .item{padding:11px 0}
@@ -255,12 +256,12 @@ nav.sections a[aria-current="true"]{color:var(--red);border-bottom-color:var(--r
 .strip img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
 .strip figcaption{font-family:"Times Now",Georgia,serif;font-style:italic;font-size:15px;color:var(--cocoa);margin-top:6px}
 .item-head{display:flex;align-items:baseline;gap:10px;margin:0}
-.item-name{font-family:"Times Now",Georgia,serif;font-size:20px;line-height:1.2}
-.tag{font-size:11px;color:var(--cocoa);white-space:nowrap}
-.leader{flex:1;border-bottom:1px dotted rgba(32,26,23,.35);min-width:16px;transform:translateY(-4px)}
-.price{font-variant-numeric:tabular-nums;font-size:15px;white-space:nowrap}
-.desc{margin:3px 0 0;color:var(--cocoa);max-width:52ch}
-.add{margin:2px 0 0;color:var(--cocoa);font-size:12px;font-style:italic;font-family:"Times Now",Georgia,serif;font-size:15px}
+.item-name{font-size:16px;line-height:1.25;text-transform:uppercase;letter-spacing:.01em}
+.tag{font-size:12px;font-style:italic;font-weight:300;color:var(--cocoa);white-space:nowrap}
+.leader{flex:1;border-bottom:1px dotted rgba(32,26,23,.55);min-width:16px;transform:translateY(-4px)}
+.price{font-variant-numeric:tabular-nums;font-size:16px;white-space:nowrap}
+.desc{margin:3px 0 0;color:var(--ink);font-style:italic;font-weight:300;font-size:15px;max-width:52ch}
+.add{margin:2px 0 0;color:var(--red);font-style:italic;font-weight:300;font-size:15px}
 .extras{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr;column-gap:32px}
 .extras li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--rule)}
 footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--rule);color:var(--cocoa);font-size:12px;display:flex;flex-wrap:wrap;gap:8px 24px}

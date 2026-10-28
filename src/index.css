@@ -149,3 +149,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Brand book: headers – Maison Neue (caps), text – Times Now SemiLight, compositions – Times Now Light Italic */
+@font-face{font-family:"Times Now";src:url("/TimesNow-Light.woff2") format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"Times Now";src:url("/TimesNow-SemiLight.woff2") format("woff2");font-weight:350;font-display:swap}
+@font-face{font-family:"Times Now";src:url("/TimesNow-LightItalic.woff2") format("woff2");font-weight:300;font-style:italic;font-display:swap}
+.f-head{font-family:"Maison Neue Extended Demi",sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.f-serif{font-family:"Times Now",Georgia,serif;font-weight:350}
+.f-italic{font-family:"Times Now",Georgia,serif;font-weight:300;font-style:italic}

@@ -377,7 +377,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
   );
 
   return (
-    <div ref={rootRef} className="relative w-full bg-background font-kommon text-[#2a211d]">
+    <div ref={rootRef} className="relative w-full bg-background f-serif text-[#2a211d]">
       {/* HEADER – stays on top while scrolling */}
       <header className="sticky top-0 z-30 flex items-center justify-between bg-background px-4 py-4 md:px-8 md:py-6">
         <a href={lang === "pt" ? "/pt/" : "/"} className="flex flex-col items-start gap-1 select-none">
@@ -417,11 +417,10 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div
-          className="absolute inset-x-4 bottom-16 md:inset-x-auto md:left-8 md:bottom-14 md:max-w-2xl text-white [text-shadow:0_1px_16px_rgba(0,0,0,.35)]"
-          style={{ fontFamily: '"Times Now Light", serif' }}
+          className="absolute inset-x-4 bottom-16 md:inset-x-auto md:left-8 md:bottom-14 md:max-w-3xl text-white [text-shadow:0_1px_16px_rgba(0,0,0,.35)]"
         >
-          <h1 className="text-[40px] md:text-[72px] leading-[0.98] tracking-[-0.02em]">{c.hook}</h1>
-          <p className="mt-3 md:mt-4 max-w-md text-[17px] md:text-[20px] leading-snug opacity-95">{c.hookSub}</p>
+          <h1 className="f-head text-[28px] md:text-[54px] leading-[1.05]">{c.hook}</h1>
+          <p className="f-italic mt-3 md:mt-4 max-w-md text-[18px] md:text-[22px] leading-snug">{c.hookSub}</p>
         </div>
         <a
           href="#menu"
@@ -436,11 +435,11 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       {/* MENU */}
       <section id="menu" className="scroll-mt-16 md:scroll-mt-24 px-4 pt-14 pb-12 md:px-8 md:pt-24 md:pb-20 md:grid md:grid-cols-[1fr_2fr] md:gap-12">
-        <h2 className="text-[40px] md:text-[56px] leading-none tracking-[-0.02em]" style={{ fontFamily: '"Times Now Light", serif' }}>
+        <h2 className="f-head text-[18px] md:text-[24px] leading-tight text-[#e62d3b]">
           {s.menuTitle}
         </h2>
         <div className="mt-5 md:mt-2">
-          <p className="max-w-xl text-[17px] md:text-[19px] leading-[1.4]" style={{ fontFamily: '"Times Now Light", serif' }}>
+          <p className="max-w-xl text-[18px] md:text-[20px] leading-[1.4]">
             {withNowrapTimes(c.welcome[1])}
           </p>
           <ul className="mt-7 -mx-4 flex gap-2 overflow-x-auto px-4 snap-x snap-mandatory [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
@@ -460,7 +459,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           </ul>
           <a
             href={c.menuHref}
-            className="mt-7 inline-block bg-[#2a211d] px-6 py-3 text-sm tracking-wide text-[#f4f0eb] hover:bg-[#4B362F] transition-colors"
+            className="mt-7 inline-block bg-[#2a211d] f-head px-6 py-3 text-[12px] tracking-[0.12em] text-[#f4f0eb] hover:bg-[#4B362F] transition-colors"
           >
             {s.menuCta} →
           </a>
@@ -469,10 +468,10 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       {/* ABOUT */}
       <section className="border-t border-[#2a211d]/10 px-4 py-12 md:px-8 md:py-20 md:grid md:grid-cols-[1fr_2fr] md:gap-12">
-        <h2 className="text-[40px] md:text-[56px] leading-none tracking-[-0.02em]" style={{ fontFamily: '"Times Now Light", serif' }}>
+        <h2 className="f-head text-[18px] md:text-[24px] leading-tight text-[#e62d3b]">
           {s.aboutTitle}
         </h2>
-        <div className="mt-5 md:mt-2 max-w-xl space-y-4 text-[17px] md:text-[19px] leading-[1.4]" style={{ fontFamily: '"Times Now Light", serif' }}>
+        <div className="mt-5 md:mt-2 max-w-xl space-y-4 text-[18px] md:text-[20px] leading-[1.4]">
           <p>{withNowrapTimes(c.welcome[0])}</p>
           <p>{withNowrapTimes(c.welcome[2])}</p>
         </div>
@@ -483,24 +482,24 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         aria-labelledby="find-us-title"
         className="border-t border-[#2a211d]/10 px-4 py-12 md:px-8 md:py-20 md:grid md:grid-cols-[1fr_2fr] md:gap-12"
       >
-        <h2 id="find-us-title" className="text-[40px] md:text-[56px] leading-none tracking-[-0.02em]" style={{ fontFamily: '"Times Now Light", serif' }}>
+        <h2 id="find-us-title" className="f-head text-[18px] md:text-[24px] leading-tight text-[#e62d3b]">
           {s.visitTitle}
         </h2>
         <div className="mt-5 md:mt-2 md:grid md:grid-cols-2 md:gap-10">
-          <div className="space-y-5 text-[15px] leading-[1.5] text-[#644A42]">
+          <div className="space-y-5 text-[17px] leading-[1.45]">
             <p>
-              <span className="block text-[#2a211d]">{c.findUs.address}</span>
+              <span className="f-head mb-1 block text-[11px] tracking-[0.12em] text-[#e62d3b]">{c.findUs.address}</span>
               {c.findUs.text}{" "}
               <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={linkCls}>
                 {c.findUs.mapLabel}
               </a>
             </p>
             <p>
-              <span className="block text-[#2a211d]">{s.hoursLabel}</span>
+              <span className="f-head mb-1 block text-[11px] tracking-[0.12em] text-[#e62d3b]">{s.hoursLabel}</span>
               {withNowrapTimes(c.hours)}
             </p>
             <div>
-              <span className="block text-[#2a211d]">{s.goodTitle}</span>
+              <span className="f-head mb-1 block text-[11px] tracking-[0.12em] text-[#e62d3b]">{s.goodTitle}</span>
               <ul>
                 {s.good.map((g) => (
                   <li key={g}>{g}</li>
@@ -524,7 +523,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         </div>
       </section>
 
-      <footer className="flex justify-between border-t border-[#2a211d]/10 px-4 py-6 text-xs text-[#644A42] md:px-8">
+      <footer className="f-head flex justify-between gap-4 border-t border-[#2a211d]/10 px-4 py-6 text-[9px] md:text-[10px] text-[#644A42] md:px-8">
         <span>ALBA: BRUNCH • COFFEE • MATCHA BAR</span>
         <span>Created by AlbaFamily</span>
       </footer>
