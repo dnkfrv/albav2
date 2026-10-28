@@ -99,6 +99,8 @@ def page(lang):
         f"          <dt>{e(item['q'])}</dt>\n          <dd>{e(item['a'])}</dd>" for item in c["faq"]
     )
     other = c["otherLang"]
+    sx = c["sections"]
+    good = "\n".join(f"          <li>{e(g)}</li>" for g in sx["good"])
     return f"""<!doctype html>
 <html lang="{c['htmlLang']}">
   <head>
@@ -147,17 +149,20 @@ def page(lang):
       <main style="max-width:640px;margin:0 auto;padding:32px 16px;font-family:serif;color:#111;line-height:1.5">
         <h1>{e(c['hook'])}</h1>
         <p>{e(c['hookSub'])}</p>
-{welcome}
-        <h2>{v['h']}</h2>
-        <ul>
-          <li>{v['address']}: Largo do Rato, 4A, 1250-186 Lisboa ({v['metro']})</li>
-          <li>{v['open']}: {e(c['hours'])}</li>
-          <li>Email: hello@albalisbon.com</li>
-          <li>Instagram: <a href="https://instagram.com/alba.lisbon">@alba.lisbon</a></li>
-        </ul>
-        <h2>{e(c['findUs']['title'])}</h2>
+        <h2>{e(sx['menuTitle'])}</h2>
+        <p>{e(c['welcome'][1])}</p>
+        <p><a href="{c['menuHref']}">{e(sx['menuCta'])}</a></p>
+        <h2>{e(sx['aboutTitle'])}</h2>
+        <p>{e(c['welcome'][0])}</p>
+        <p>{e(c['welcome'][2])}</p>
+        <h2>{e(sx['visitTitle'])}</h2>
         <p>{e(c['findUs']['address'])}. {e(c['findUs']['text'])} <a href="https://maps.app.goo.gl/PoeWtCYZqUPiun9E8">{e(c['findUs']['mapLabel'])}</a></p>
-        <p><a href="{c['menuHref']}">{v['menu']}</a></p>
+        <p>{e(sx['hoursLabel'])}: {e(c['hours'])}</p>
+        <h3>{e(sx['goodTitle'])}</h3>
+        <ul>
+{good}
+        </ul>
+        <p>Email: hello@albalisbon.com · Instagram: <a href="https://instagram.com/alba.lisbon">@alba.lisbon</a></p>
         <p><a href="{other['href']}" hreflang="{other['hreflang']}" lang="{other['hreflang']}">{other['title']}</a></p>
       </main>
     </div>

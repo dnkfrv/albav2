@@ -100,6 +100,14 @@ const EMAIL = "hello@albalisbon.com";
 const MAPS_URL = "https://maps.app.goo.gl/PoeWtCYZqUPiun9E8";
 const SLIDER_MARGIN = 150;
 
+// Homepage menu teaser: photos from public/menu/img (the name overlays are part of the photos)
+const MENU_TEASER = [
+  { src: "dishes/four-cheese-omelette", en: "Four-cheese omelette with onion jam", pt: "Omelete de quatro queijos com doce de cebola" },
+  { src: "dishes/eggs-benedict-salmon", en: "Eggs Benedict with salmon", pt: "Ovos Benedict com salmão" },
+  { src: "dishes/crepe-suzette", en: "Crêpe Suzette", pt: "Crêpe Suzette" },
+  { src: "matcha-tasting-set", en: "Ceremonial matcha tasting set", pt: "Set de degustação de matcha cerimonial" },
+];
+
 const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
   const c = site[lang];
   const photos = React.useMemo(
@@ -355,244 +363,171 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
     }
   };
 
+  const s = c.sections;
+  const linkCls = "underline underline-offset-2 hover:opacity-70 transition-opacity";
+  const instagram = (
+    <a href="https://instagram.com/alba.lisbon" target="_blank" rel="noopener noreferrer" className={linkCls}>
+      Instagram
+    </a>
+  );
+  const email = (
+    <span onClick={handleEmailClick} data-track="email_click" className={`cursor-pointer ${linkCls}`}>
+      {EMAIL}
+    </span>
+  );
+
   return (
-    <div
-      ref={rootRef}
-      className="relative h-svh w-full overflow-hidden bg-background overscroll-none font-kommon"
-    >
-      {HERO_MODE === "full" && (
-        <div className="pointer-events-none absolute inset-x-0 top-[72px] bottom-[84px] md:top-[92px] md:bottom-[96px]">
-          {/* phone: vertical brunch clip; desktop: landscape coffee clip – each fills its screen shape */}
-          {isDesktop ? (
-            <>
-              <LoopVideo name="hero-coffee-wide" label={c.heroVideoCoffeeLabel} focus="center 60%" className="h-full w-full" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
-            </>
-          ) : (
-            <LoopVideo name="hero-coffee-vertical" label={c.heroVideoCoffeeLabel} focus="center 70%" className="h-full w-full" />
-          )}
-        </div>
-      )}
-
-      {HERO_MODE === "video" && (
-        <HeroVideos coffeeLabel={c.heroVideoCoffeeLabel} brunchLabel={c.heroVideoLabel} />
-      )}
-
-      {/* ДЕСКТОП ФОТО */}
-      {HERO_MODE === "photos" && (<>
-      <div
-        className="absolute inset-0 hidden md:block"
-        onMouseMove={handleDesktopMouseMove}
-      >
-        {desktopImages.map((img, index) => (
-          <div
-            key={index}
-            className={`
-              absolute inset-0 flex items-center justify-end
-              transition-opacity duration-700
-              ${index === currentIndex ? "opacity-100" : "opacity-0"}
-            `}
-          >
-            <div className="relative max-h-[100vh] mr-0">
-              <img
-                src={index === 0 || restReady ? img.src : undefined}
-                alt={img.alt}
-                decoding="async"
-                fetchPriority={index === 0 ? "high" : "low"}
-                className="w-auto h-auto max-h-[100vh] max-w-full object-contain"
-              />
-              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* МОБИЛЬНЫЙ СЛАЙДЕР */}
-      <div
-        ref={mobileRef}
-        className="absolute inset-0 block md:hidden overflow-x-hidden"
-        onTouchStart={(e) =>
-          startDrag(e.touches[0].clientX, e.touches[0].clientY)
-        }
-        onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
-        onTouchEnd={endDrag}
-        onClick={handleTap}
-        style={{ touchAction: "pan-x" }}
-      >
-        <div className="flex h-full w-full" style={mobileTrackStyle}>
-          {heroImages.map((img, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-full h-full flex items-center justify-center"
-            >
-              <div className="relative w-[93vw] max-w-[93vw] -translate-y-[10px]">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading={index < 2 ? "eager" : "lazy"}
-                  decoding="async"
-                  className="w-full h-auto object-contain"
-                />
-                <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      </>)}
-
-      <h1 className="sr-only md:hidden">{c.hook}</h1>
-
-      {/* ЛОГО */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-8">
-        <div className="flex flex-col items-start gap-1 select-none">
+    <div ref={rootRef} className="relative w-full bg-background font-kommon text-[#2a211d]">
+      {/* HEADER – stays on top while scrolling */}
+      <header className="sticky top-0 z-30 flex items-center justify-between bg-background px-4 py-4 md:px-8 md:py-6">
+        <a href={lang === "pt" ? "/pt/" : "/"} className="flex flex-col items-start gap-1 select-none">
           <img
             src={logoImage}
             alt="ALBA: brunch • coffee • matcha bar – Alba Lisbon logo"
             className="h-4 md:h-6 w-auto object-contain"
           />
-         <p
+          <span
             className="text-[8px] md:text-[10px] tracking-[0.16em] text-[#e62d3b]"
             style={{ fontFamily: '"Maison Neue Extended Demi", sans-serif' }}
->
-  BRUNCH • COFFEE • MATCHA BAR
-</p>
-        </div>
-      </div>
-
-      {/* ТЕКСТ ДЛЯ ДЕСКТОПА */}
-      <div
-        className={`hidden md:block absolute z-10 max-w-md text-xs md:text-sm leading-relaxed ${
-          HERO_MODE === "full" ? "text-white [text-shadow:0_1px_12px_rgba(0,0,0,.45)]" : "text-black"
-        }`}
-        style={{ top: HERO_MODE === "full" ? "clamp(110px, 17svh, 200px)" : 200, left: 200, fontFamily: '"Times Now Light", serif' }}
-      >
-        <h1 className="mb-3 text-[24px] leading-[1.15]">{c.hook}</h1>
-        <p className="mb-4 opacity-90">{c.hookSub}</p>
-        {c.welcome.map((text, i) => (
-          <p key={i} className={i < c.welcome.length - 1 ? "mb-3" : ""}>
-            {withNowrapTimes(text)}
-          </p>
-        ))}
-
-        <section className="mt-6" aria-labelledby="find-us-title">
-          <h2 id="find-us-title" className="mb-1 opacity-80">
-            {c.findUs.title}
-          </h2>
-          <p>
-            {c.findUs.address}. {c.findUs.text}{" "}
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:opacity-80"
-            >
-              {c.findUs.mapLabel}
-            </a>
-          </p>
-        </section>
-
-        <div className="mt-6">
-          <JoinTeamSheet lang={lang} />
-        </div>
-
-      </div>
-
-      {/* КНОПКА МЕНЮ */}
-      <div className={`absolute top-4 right-4 md:top-[27px] ${HERO_MODE === "full" ? "md:right-8" : "md:right-[calc(33vw+2rem)]"} text-[#e62d3b]`}>
-        <div className="flex items-center gap-5">
+          >
+            BRUNCH • COFFEE • MATCHA BAR
+          </span>
+        </a>
+        <div className="flex items-center gap-5 text-[#e62d3b]">
           <a
             href={c.otherLang.href}
             hrefLang={c.otherLang.hreflang}
             lang={c.otherLang.hreflang}
             title={c.otherLang.title}
-            className="text-[11px] md:text-xs tracking-[0.16em] text-[#e62d3b] hover:opacity-80 transition-opacity"
+            className="text-[11px] md:text-xs tracking-[0.16em] hover:opacity-80 transition-opacity"
             style={{ fontFamily: '"Maison Neue Extended Demi", sans-serif' }}
           >
             {c.otherLang.label}
           </a>
           <MenuSheet href={c.menuHref} />
         </div>
-      </div>
+      </header>
 
-      {/* Мобильная нижняя инфа */}
-      <div className="absolute bottom-4 left-4 md:hidden">
-        <div className="flex flex-col space-y-1 text-xs text-[#644A42] leading-[18px] font-kommon">
-          <span>{c.hours}</span>
+      {/* HERO – video with the hook on top */}
+      <section className="relative h-[calc(100svh-64px)] md:h-[calc(100svh-92px)] min-h-[420px] overflow-hidden">
+        {isDesktop ? (
+          <LoopVideo name="hero-coffee-wide" label={c.heroVideoCoffeeLabel} focus="center 60%" className="h-full w-full" />
+        ) : (
+          <LoopVideo name="hero-coffee-vertical" label={c.heroVideoCoffeeLabel} focus="center 70%" className="h-full w-full" />
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+        <div
+          className="absolute inset-x-4 bottom-16 md:inset-x-auto md:left-8 md:bottom-14 md:max-w-2xl text-white [text-shadow:0_1px_16px_rgba(0,0,0,.35)]"
+          style={{ fontFamily: '"Times Now Light", serif' }}
+        >
+          <h1 className="text-[40px] md:text-[72px] leading-[0.98] tracking-[-0.02em]">{c.hook}</h1>
+          <p className="mt-3 md:mt-4 max-w-md text-[17px] md:text-[20px] leading-snug opacity-95">{c.hookSub}</p>
+        </div>
+        <a
+          href="#menu"
+          aria-label={s.scroll}
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/90 hover:text-white motion-safe:animate-bounce"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+      </section>
+
+      {/* MENU */}
+      <section id="menu" className="scroll-mt-16 md:scroll-mt-24 px-4 pt-14 pb-12 md:px-8 md:pt-24 md:pb-20 md:grid md:grid-cols-[1fr_2fr] md:gap-12">
+        <h2 className="text-[40px] md:text-[56px] leading-none tracking-[-0.02em]" style={{ fontFamily: '"Times Now Light", serif' }}>
+          {s.menuTitle}
+        </h2>
+        <div className="mt-5 md:mt-2">
+          <p className="max-w-xl text-[17px] md:text-[19px] leading-[1.4]" style={{ fontFamily: '"Times Now Light", serif' }}>
+            {withNowrapTimes(c.welcome[1])}
+          </p>
+          <ul className="mt-7 -mx-4 flex gap-2 overflow-x-auto px-4 snap-x snap-mandatory [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+            {MENU_TEASER.map((d) => (
+              <li key={d.src} className="w-[44vw] shrink-0 snap-start md:w-auto">
+                <a href={c.menuHref} className="block aspect-[4/5] overflow-hidden bg-[#ddd5cc]">
+                  <img
+                    src={`/menu/img/${d.src}.jpg`}
+                    alt={d[lang]}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
           <a
-            href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#4B362F] transition-colors"
+            href={c.menuHref}
+            className="mt-7 inline-block bg-[#2a211d] px-6 py-3 text-sm tracking-wide text-[#f4f0eb] hover:bg-[#4B362F] transition-colors"
           >
-            Largo do Rato, 4A
+            {s.menuCta} →
           </a>
         </div>
-      </div>
+      </section>
 
-      <div className="absolute bottom-4 right-4 md:hidden">
-        <div className="flex flex-col items-end text-right space-y-1 font-kommon">
-          <JoinTeamSheet lang={lang} />
-          <div className="flex flex-row items-center gap-1 text-xs text-[#644A42]">
-            <a
-              href="https://instagram.com/alba.lisbon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#4B362F] transition-colors"
-            >
-              Instagram
-            </a>
-            <span>/</span>
-            <span
-              onClick={handleEmailClick}
-              data-track="email_click"
-              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
-            >
-              {EMAIL}
-            </span>
-          </div>
+      {/* ABOUT */}
+      <section className="border-t border-[#2a211d]/10 px-4 py-12 md:px-8 md:py-20 md:grid md:grid-cols-[1fr_2fr] md:gap-12">
+        <h2 className="text-[40px] md:text-[56px] leading-none tracking-[-0.02em]" style={{ fontFamily: '"Times Now Light", serif' }}>
+          {s.aboutTitle}
+        </h2>
+        <div className="mt-5 md:mt-2 max-w-xl space-y-4 text-[17px] md:text-[19px] leading-[1.4]" style={{ fontFamily: '"Times Now Light", serif' }}>
+          <p>{withNowrapTimes(c.welcome[0])}</p>
+          <p>{withNowrapTimes(c.welcome[2])}</p>
         </div>
-      </div>
+      </section>
 
-      {/* ДЕСКТОП — нижний левый угол */}
-      <div className="hidden md:block absolute bottom-6 left-8">
-        <div className="flex flex-col space-y-0 text-sm text-[#644A42] leading-[16px] font-kommon">
-          <span>{c.hours}</span>
-          <a
-            href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#4B362F] transition-colors"
-          >
-            Largo do Rato, 4A
-          </a>
-          <div className="flex items-center gap-2">
-            <a
-              href="https://instagram.com/alba.lisbon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#4B362F] transition-colors"
-            >
-              Instagram
-            </a>
-            <span>/</span>
-            <span
-              onClick={handleEmailClick}
-              data-track="email_click"
-              className="cursor-pointer hover:text-[#4B362F] underline underline-offset-2 transition-colors"
-            >
-              {EMAIL}
-            </span>
+      {/* VISIT */}
+      <section
+        aria-labelledby="find-us-title"
+        className="border-t border-[#2a211d]/10 px-4 py-12 md:px-8 md:py-20 md:grid md:grid-cols-[1fr_2fr] md:gap-12"
+      >
+        <h2 id="find-us-title" className="text-[40px] md:text-[56px] leading-none tracking-[-0.02em]" style={{ fontFamily: '"Times Now Light", serif' }}>
+          {s.visitTitle}
+        </h2>
+        <div className="mt-5 md:mt-2 md:grid md:grid-cols-2 md:gap-10">
+          <div className="space-y-5 text-[15px] leading-[1.5] text-[#644A42]">
+            <p>
+              <span className="block text-[#2a211d]">{c.findUs.address}</span>
+              {c.findUs.text}{" "}
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                {c.findUs.mapLabel}
+              </a>
+            </p>
+            <p>
+              <span className="block text-[#2a211d]">{s.hoursLabel}</span>
+              {withNowrapTimes(c.hours)}
+            </p>
+            <div>
+              <span className="block text-[#2a211d]">{s.goodTitle}</span>
+              <ul>
+                {s.good.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            </div>
+            <p className="flex flex-wrap gap-x-2">
+              {instagram}
+              <span>/</span>
+              {email}
+            </p>
+            <JoinTeamSheet lang={lang} />
           </div>
+          <img
+            src="/menu/img/terrace.jpg"
+            alt={s.terraceAlt}
+            loading="lazy"
+            decoding="async"
+            className="mt-8 md:mt-0 aspect-[4/5] w-full object-cover"
+          />
         </div>
-      </div>
+      </section>
 
-      <div className="hidden md:block absolute bottom-6 right-8">
-        <p className="text-xs text-[#644A42] font-kommon">
-          Created by AlbaFamily
-        </p>
-      </div>
+      <footer className="flex justify-between border-t border-[#2a211d]/10 px-4 py-6 text-xs text-[#644A42] md:px-8">
+        <span>ALBA: BRUNCH • COFFEE • MATCHA BAR</span>
+        <span>Created by AlbaFamily</span>
+      </footer>
 
       {/* Tooltip "Copied" в стиле macOS */}
       {copiedPos && (
