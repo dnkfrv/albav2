@@ -14,8 +14,8 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mldkoeyz"; // замени н
 const TEXT = {
   "en": {
     "trigger": "Join our team",
-    "title": "Join Alba Bistro",
-    "desc": "Join Alba Bistro and be part of a team that values creativity, quality, and community. We're always looking for passionate individuals who share our love for exceptional food, drinks and warm hospitality.",
+    "title": "Join Alba",
+    "desc": "Join Alba and be part of a team that values creativity, quality, and community. We're always looking for passionate individuals who share our love for exceptional food, drinks and warm hospitality.",
     "name": "Full Name",
     "email": "Email",
     "phone": "Phone",
