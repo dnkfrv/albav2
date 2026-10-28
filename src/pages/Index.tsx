@@ -102,9 +102,9 @@ const SLIDER_MARGIN = 150;
 
 // Homepage menu teaser: photos from public/menu/img (the name overlays are part of the photos)
 const MENU_TEASER = [
-  { src: "dishes/four-cheese-omelette", en: "Four-cheese omelette with onion jam", pt: "Omelete de quatro queijos com doce de cebola" },
+  { src: "dishes/croque-madame", en: "Croque madame", pt: "Croque madame" },
+  { src: "dishes/pastrami-truffle-potato-crepe", en: "Pastrami & truffle potato crêpe", pt: "Crêpe de pastrami, batata e trufa" },
   { src: "dishes/eggs-benedict-salmon", en: "Eggs Benedict with salmon", pt: "Ovos Benedict com salmão" },
-  { src: "dishes/crepe-suzette", en: "Crêpe Suzette", pt: "Crêpe Suzette" },
   { src: "matcha-tasting-set", en: "Ceremonial matcha tasting set", pt: "Set de degustação de matcha cerimonial" },
 ];
 
