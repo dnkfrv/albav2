@@ -11,7 +11,7 @@
     "h1": "Alba – brunch, specialty coffee and matcha bar in Lisbon",
     "welcome": [
       "Alba is a brunch café, specialty coffee and matcha bar on Largo do Rato, a short walk from Príncipe Real. Two years and counting. Time Out calls our terrace one of the best – and most unlikely – in Lisbon. We agree on both counts.",
-      "Yes, there's avocado toast. There's also a four-cheese omelette with onion jam, crêpe Suzette and savory oatmeal with a poached egg. Brunch every day 9:00–17:00, lunch on weekdays 13:00–15:00. Vegan option and oat milk included.",
+      "Also on the menu: crêpe Suzette, savory oatmeal with a poached egg and eggs Benedict with salmon or pastrami. Brunch every day 9:00–17:00, lunch on weekdays 13:00–15:00. Vegan option and oat milk included.",
       "The coffee is specialty, the matcha is ceremonial by Michi – as a shot, a latte or a tasting set of three. Beans from our roasters are on the shelf to take home. Come as you are."
     ],
     "hours": "Monday – Sunday 9:00 – 17:00",
@@ -70,28 +70,8 @@
       "text": "A 5-minute walk from Príncipe Real, near Amoreiras. Rato metro station (yellow line) is right outside.",
       "mapLabel": "Open in Google Maps"
     },
-    "hook": "Brunch on Lisbon's most unlikely terrace.",
-    "hookSub": "Specialty coffee and ceremonial matcha on Largo do Rato. No booking – just walk in.",
-    "contact": {
-      "trigger": "Contact",
-      "title": "Write to us",
-      "intro": "We don't take table reservations – just come by. For everything else, write here.",
-      "reasonLabel": "What is it about?",
-      "reasons": [
-        "My visit",
-        "A group or celebration",
-        "An event or collaboration",
-        "Press",
-        "Something else"
-      ],
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "send": "Send",
-      "sending": "Sending...",
-      "ok": "Thank you! We'll reply by email.",
-      "err": "Something went wrong. Please write to hello@albalisbon.com."
-    }
+    "hook": "Brunch beyond avocado toast.",
+    "hookSub": "Yes, we have it too. But try the four-cheese omelette with onion jam."
   },
   "pt": {
     "path": "/pt/",
@@ -104,7 +84,7 @@
     "h1": "Alba – brunch, café de especialidade e matcha bar em Lisboa",
     "welcome": [
       "O Alba é um café de brunch, café de especialidade e matcha bar no Largo do Rato, a poucos passos do Príncipe Real. Há dois anos e a contar. A Time Out diz que a nossa esplanada é uma das melhores – e mais improváveis – de Lisboa. Concordamos com ambas as partes.",
-      "Sim, temos tosta de abacate. Mas também temos omelete de quatro queijos com doce de cebola, crêpe Suzette e papas de aveia salgadas com ovo escalfado. Brunch todos os dias 9:00–17:00, almoço nos dias úteis 13:00–15:00. Opção vegan e leite de aveia incluídos.",
+      "Também no menu: crêpe Suzette, papas de aveia salgadas com ovo escalfado e ovos Benedict com salmão ou pastrami. Brunch todos os dias 9:00–17:00, almoço nos dias úteis 13:00–15:00. Opção vegan e leite de aveia incluídos.",
       "O café é de especialidade, o matcha é cerimonial da Michi – em shot, latte ou set de degustação de três. Na prateleira há café em grão dos nossos torrefatores para levar para casa. Apareça como estiver."
     ],
     "hours": "Segunda – domingo 9:00 – 17:00",
@@ -163,28 +143,8 @@
       "text": "A 5 minutos a pé do Príncipe Real, perto das Amoreiras. A estação de metro do Rato (linha amarela) fica mesmo à porta.",
       "mapLabel": "Abrir no Google Maps"
     },
-    "hook": "Brunch na esplanada mais improvável de Lisboa.",
-    "hookSub": "Café de especialidade e matcha cerimonial no Largo do Rato. Sem reservas – é só aparecer.",
-    "contact": {
-      "trigger": "Contacto",
-      "title": "Escreva-nos",
-      "intro": "Não fazemos reservas de mesa – basta aparecer. Para tudo o resto, escreva aqui.",
-      "reasonLabel": "Sobre o quê?",
-      "reasons": [
-        "A minha visita",
-        "Um grupo ou celebração",
-        "Um evento ou colaboração",
-        "Imprensa",
-        "Outro assunto"
-      ],
-      "name": "Nome",
-      "email": "Email",
-      "message": "Mensagem",
-      "send": "Enviar",
-      "sending": "A enviar...",
-      "ok": "Obrigado! Respondemos por email.",
-      "err": "Algo correu mal. Escreva para hello@albalisbon.com."
-    }
+    "hook": "Brunch para além da tosta de abacate.",
+    "hookSub": "Sim, também temos. Mas experimente a omelete de quatro queijos com doce de cebola."
   },
   "photos": [
     {
