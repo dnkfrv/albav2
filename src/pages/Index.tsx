@@ -519,7 +519,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
             </p>
           </div>
           <img
-            src="/menu/img/terrace.jpg"
+            src={photoUrl("terrace-breakfast")}
             alt={s.terraceAlt}
             loading="lazy"
             decoding="async"
