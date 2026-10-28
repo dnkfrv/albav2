@@ -50,7 +50,7 @@ COPY = {
 }
 
 GALLERY = [
-    ("food", {"en": "Food", "pt": "Comida"}, ["breakfast", "omelettes", "crepes", "brunch", "desserts"]),
+    ("food", {"en": "Food", "pt": "Comida"}, ["breakfast", "omelettes", "crepes", "brunch", "lunch", "desserts"]),
     ("matcha", {"en": "Matcha", "pt": "Matcha"}, ["matcha", "ceremonial"]),
     ("drinks", {"en": "Coffee & drinks", "pt": "Café e bebidas"}, ["coffee", "specials", "chocolate", "tea", "wine"]),
 ]

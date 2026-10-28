@@ -151,6 +151,7 @@ def page(lang):
         <p>{e(c['hookSub'])}</p>
         <h2>{e(sx['menuTitle'])}</h2>
         <p>{e(c['welcome'][1])}</p>
+        <p>{e(sx['lunch'])}</p>
         <p><a href="{c['menuHref']}">{e(sx['menuCta'])}</a></p>
         <h2>{e(sx['aboutTitle'])}</h2>
         <p>{e(c['welcome'][0])}</p>

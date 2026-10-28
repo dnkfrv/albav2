@@ -442,6 +442,9 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           <p className="max-w-xl text-[18px] md:text-[20px] leading-[1.4]">
             {withNowrapTimes(c.welcome[1])}
           </p>
+          <p className="mt-3 max-w-xl text-[18px] md:text-[20px] leading-[1.4]">
+            {withNowrapTimes(s.lunch)}
+          </p>
           <ul className="mt-7 -mx-4 flex gap-2 overflow-x-auto px-4 snap-x snap-mandatory [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
             {MENU_TEASER.map((d) => (
               <li key={d.src} className="w-[44vw] shrink-0 snap-start md:w-auto">
@@ -489,7 +492,8 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           <div className="space-y-5 text-[17px] leading-[1.45]">
             <p>
               <span className="f-head mb-1 block text-[11px] tracking-[0.12em] text-[#e62d3b]">{c.findUs.address}</span>
-              {c.findUs.text}{" "}
+              {c.findUs.text}
+              <br />
               <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={linkCls}>
                 {c.findUs.mapLabel}
               </a>
@@ -510,8 +514,9 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
               {instagram}
               <span>/</span>
               {email}
+              <span>/</span>
+              <JoinTeamSheet lang={lang} triggerClassName={linkCls} />
             </p>
-            <JoinTeamSheet lang={lang} />
           </div>
           <img
             src="/menu/img/terrace.jpg"
