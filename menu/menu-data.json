@@ -398,6 +398,84 @@
       ]
     },
     {
+      "id": "lunch",
+      "title": {
+        "en": "Weekday lunch",
+        "pt": "Almoço nos dias úteis"
+      },
+      "nav": {
+        "en": "Lunch",
+        "pt": "Almoço"
+      },
+      "note": {
+        "en": "Monday to Friday, 13:00–15:00. Served with sourdough bread and ginger rosemary lemonade.",
+        "pt": "De segunda a sexta, 13:00–15:00. Servido com pão de fermentação natural e limonada de gengibre e alecrim."
+      },
+      "items": [
+        {
+          "name": {
+            "en": "Niçoise",
+            "pt": "Niçoise"
+          },
+          "desc": {
+            "en": "Mixed greens, young potato, tuna, boiled egg, cherry tomato, olives, marinated onion and dressing",
+            "pt": "Folhas verdes, batata nova, atum, ovo cozido, tomate cherry, azeitonas, cebola marinada e molho"
+          },
+          "price": "12"
+        },
+        {
+          "name": {
+            "en": "Sausage & mash",
+            "pt": "Salsicha com puré"
+          },
+          "desc": {
+            "en": "Pork sausage, creamy mashed potato, gravy, onion jam and green onion",
+            "pt": "Salsicha de porco, puré de batata cremoso, molho gravy, compota de cebola e cebolinho"
+          },
+          "price": "14"
+        }
+      ],
+      "groups": [
+        {
+          "title": {
+            "en": "Add coffee",
+            "pt": "Acrescente café"
+          },
+          "items": [
+            {
+              "name": {
+                "en": "Espresso",
+                "pt": "Espresso"
+              },
+              "price": "1.50"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Add something sweet",
+            "pt": "Acrescente algo doce"
+          },
+          "items": [
+            {
+              "name": {
+                "en": "Seasonal fruit & lemon cream",
+                "pt": "Fruta da época e creme de limão"
+              },
+              "price": "5"
+            },
+            {
+              "name": {
+                "en": "Crème brûlée",
+                "pt": "Crème brûlée"
+              },
+              "price": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "desserts",
       "title": {
         "en": "Desserts",

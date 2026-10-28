@@ -46,7 +46,7 @@ const TEXT = {
   }
 };
 
-export const JoinTeamSheet: React.FC<{ lang?: "en" | "pt" }> = ({ lang = "en" }) => {
+export const JoinTeamSheet: React.FC<{ lang?: "en" | "pt"; triggerClassName?: string }> = ({ lang = "en", triggerClassName }) => {
   const tx = TEXT[lang];
   const [status, setStatus] = React.useState<
     "idle" | "submitting" | "success" | "error"
@@ -82,6 +82,9 @@ export const JoinTeamSheet: React.FC<{ lang?: "en" | "pt" }> = ({ lang = "en" })
   return (
     <Sheet>
       <SheetTrigger asChild>
+        {triggerClassName ? (
+          <button className={triggerClassName}>{tx.trigger}</button>
+        ) : (
         <button className="font-kommon text-xs md:text-sm focus:outline-none">
           {/* мобильная версия — просто текст-ссылка */}
           <span className="inline-block md:hidden text-[#644A42] hover:text-[#4B362F] transition-colors">
@@ -93,6 +96,7 @@ export const JoinTeamSheet: React.FC<{ lang?: "en" | "pt" }> = ({ lang = "en" })
             {tx.trigger}
           </span>
         </button>
+        )}
       </SheetTrigger>
 
       <SheetContent className="w-full sm:w-[540px] overflow-y-auto bg-background font-kommon">
