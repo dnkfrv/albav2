@@ -106,6 +106,7 @@ const MENU_TEASER = [
   { src: "dishes/pastrami-truffle-potato-crepe", en: "Pastrami & truffle potato crêpe", pt: "Crêpe de pastrami, batata e trufa" },
   { src: "dishes/eggs-benedict-salmon", en: "Eggs Benedict with salmon", pt: "Ovos Benedict com salmão" },
   { src: "matcha-tasting-set", en: "Ceremonial matcha tasting set", pt: "Set de degustação de matcha cerimonial" },
+  { src: "strawberry-matcha", en: "Strawberry matcha", pt: "Matcha de morango" },
 ];
 
 const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
@@ -445,7 +446,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           <p className="mt-3 max-w-xl text-[18px] md:text-[20px] leading-[1.4]">
             {withNowrapTimes(s.lunch)}
           </p>
-          <ul className="mt-7 -mx-4 flex gap-2 overflow-x-auto px-4 snap-x snap-mandatory [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+          <ul className="mt-7 -mx-4 flex gap-2 overflow-x-auto px-4 snap-x snap-mandatory [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0">
             {MENU_TEASER.map((d) => (
               <li key={d.src} className="w-[44vw] shrink-0 snap-start md:w-auto">
                 <a href={c.menuHref} className="block aspect-[4/5] overflow-hidden bg-[#ddd5cc]">
