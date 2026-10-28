@@ -442,7 +442,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
 
       </>)}
 
-      <h1 className="sr-only">{c.h1}</h1>
+      <h1 className="sr-only md:hidden">{c.hook}</h1>
 
       {/* ЛОГО */}
       <div className="absolute top-4 left-4 md:top-6 md:left-8">
@@ -466,15 +466,17 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
         className={`hidden md:block absolute z-10 max-w-md text-xs md:text-sm leading-relaxed ${
           HERO_MODE === "full" ? "text-white [text-shadow:0_1px_12px_rgba(0,0,0,.45)]" : "text-black"
         }`}
-        style={{ top: HERO_MODE === "full" ? "clamp(120px, 18svh, 200px)" : 200, left: 200, fontFamily: '"Times Now Light", serif' }}
+        style={{ top: HERO_MODE === "full" ? "clamp(110px, 17svh, 200px)" : 200, left: 200, fontFamily: '"Times Now Light", serif' }}
       >
+        <h1 className="mb-3 text-[24px] leading-[1.15]">{c.hook}</h1>
+        <p className="mb-4 opacity-90">{c.hookSub}</p>
         {c.welcome.map((text, i) => (
           <p key={i} className={i < c.welcome.length - 1 ? "mb-3" : ""}>
             {withNowrapTimes(text)}
           </p>
         ))}
 
-        <section className="mt-8" aria-labelledby="find-us-title">
+        <section className="mt-6" aria-labelledby="find-us-title">
           <h2 id="find-us-title" className="mb-1 opacity-80">
             {c.findUs.title}
           </h2>
@@ -491,7 +493,7 @@ const Index: React.FC<{ lang?: Lang }> = ({ lang = "en" }) => {
           </p>
         </section>
 
-        <div className="mt-8">
+        <div className="mt-6">
           <JoinTeamSheet lang={lang} />
         </div>
 

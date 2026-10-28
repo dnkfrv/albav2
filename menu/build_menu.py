@@ -49,6 +49,54 @@ COPY = {
     },
 }
 
+GALLERY = [
+    ("food", {"en": "Food", "pt": "Comida"}, ["breakfast", "omelettes", "crepes", "brunch", "desserts"]),
+    ("matcha", {"en": "Matcha", "pt": "Matcha"}, ["matcha", "ceremonial"]),
+    ("drinks", {"en": "Coffee & drinks", "pt": "Café e bebidas"}, ["coffee", "specials", "chocolate", "tea", "wine"]),
+]
+GALLERY_COPY = {
+    "en": {"label": "Menu in photos", "close": "Close", "see": "See in the menu", "prev": "Previous", "next": "Next"},
+    "pt": {"label": "Menu em fotografias", "close": "Fechar", "see": "Ver no menu", "prev": "Anterior", "next": "Seguinte"},
+}
+
+
+def section_photos(sec, lang):
+    out = [ph for it in all_items(sec) for ph in item_photos(it, lang)]
+    if sec.get("extras", {}).get("photo"):
+        out.append((f"dishes/{sec['extras']['photo']}", t(sec["extras"]["title"], lang)))
+    if sec.get("photo"):
+        out.append((sec["photo"]["src"], t(sec["photo"]["alt"], lang)))
+    return out
+
+
+def gallery_html(lang):
+    g = GALLERY_COPY[lang]
+    by_id = {sec["id"]: sec for sec in DATA["sections"]}
+    tabs, panels = [], []
+    for i, (gid, label, ids) in enumerate(GALLERY):
+        seen, cells = set(), []
+        for sid in ids:
+            for key, alt in section_photos(by_id[sid], lang):
+                if key in seen:
+                    continue
+                seen.add(key)
+                cells.append(
+                    f'<li><button type="button" class="g-cell" data-key="{key}" data-sec="{sid}" aria-label="{e(alt)}">'
+                    f'<img src="/menu/img/{key}.jpg" alt="" loading="lazy" decoding="async"></button></li>'
+                )
+        sel = "true" if i == 0 else "false"
+        tabs.append(f'<button type="button" role="tab" id="gt-{gid}" aria-controls="gp-{gid}" aria-selected="{sel}"'
+                    f'{"" if i == 0 else " tabindex=\"-1\""}>{e(t(label, lang))} <span>{len(cells)}</span></button>')
+        panels.append(f'<ul role="tabpanel" id="gp-{gid}" aria-labelledby="gt-{gid}" class="g-grid"{"" if i == 0 else " hidden"}>{"".join(cells)}</ul>')
+    return (f'<section class="gallery" aria-label="{e(g["label"])}">'
+            f'<div role="tablist" class="g-tabs">{"".join(tabs)}</div>{"".join(panels)}</section>'
+            f'<dialog class="lb" aria-label="{e(g["label"])}"><figure><img alt=""><figcaption>'
+            f'<span class="lb-cap"></span><a class="lb-see" href="#">{e(g["see"])} ↓</a></figcaption></figure>'
+            f'<button type="button" class="lb-x" aria-label="{e(g["close"])}">×</button>'
+            f'<button type="button" class="lb-prev" aria-label="{e(g["prev"])}">‹</button>'
+            f'<button type="button" class="lb-next" aria-label="{e(g["next"])}">›</button></dialog>')
+
+
 DEFAULT_PHOTO = {"src": "terrace", "alt": {"en": "Alba's terrace on Largo do Rato", "pt": "A esplanada do Alba no Largo do Rato"}}
 
 
@@ -217,6 +265,27 @@ nav.sections a[aria-current="true"]{color:var(--red);border-bottom-color:var(--r
 .extras li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--rule)}
 footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--rule);color:var(--cocoa);font-size:12px;display:flex;flex-wrap:wrap;gap:8px 24px}
 .panel{display:none}
+.gallery{margin:0 0 32px}
+.g-tabs{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.g-tabs button{font:inherit;font-size:13px;color:var(--cocoa);background:none;border:1px solid var(--rule);border-radius:999px;padding:6px 14px;cursor:pointer}
+.g-tabs button span{opacity:.55;font-size:11px;margin-left:2px}
+.g-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.g-grid[hidden]{display:none}
+.g-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.g-cell{display:block;width:100%;padding:0;border:0;background:#ddd5cc;cursor:zoom-in;aspect-ratio:4/5;overflow:hidden}
+.g-cell img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.g-cell:hover img{transform:scale(1.04)}
+dialog.lb{border:0;padding:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:rgba(20,15,12,.97);color:#fff}
+dialog.lb::backdrop{background:transparent}
+.lb figure{margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 12px 24px}
+.lb img{max-width:100%;max-height:calc(100dvh - 140px);object-fit:contain}
+.lb figcaption{margin-top:14px;display:flex;gap:18px;align-items:baseline;font-family:"Times Now",Georgia,serif;font-size:18px}
+.lb-see{font-family:"Kommon",system-ui,sans-serif;font-size:12px;opacity:.8}
+.lb button{position:absolute;background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer;padding:10px 14px}
+.lb-x{top:8px;right:8px}
+.lb-prev{left:4px;top:50%;transform:translateY(-50%)}
+.lb-next{right:4px;top:50%;transform:translateY(-50%)}
+@media (min-width:560px){.g-grid{grid-template-columns:repeat(4,1fr)}}
 @media (min-width:560px){.extras{grid-template-columns:1fr 1fr}}
 @media (min-width:1024px){
   :root{--gutter:56px}
@@ -237,6 +306,31 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--rule);color:v
 """
 
 JS = """
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.g-tabs [role=tab]'));
+  function sel(tb){tabs.forEach(function(x){var on=x===tb;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+    document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+    if(window.gtag)gtag('event','menu_gallery_tab',{tab:tb.id.slice(3)});}
+  tabs.forEach(function(tb,i){tb.addEventListener('click',function(){sel(tb)});
+    tb.addEventListener('keydown',function(ev){var d=ev.key==='ArrowRight'?1:ev.key==='ArrowLeft'?-1:0;
+      if(d){var n=tabs[(i+d+tabs.length)%tabs.length];n.focus();sel(n)}})});
+  var lb=document.querySelector('dialog.lb'); if(!lb)return;
+  var li=lb.querySelector('img'),cap=lb.querySelector('.lb-cap'),see=lb.querySelector('.lb-see'),list=[],pos=0;
+  function open(i){pos=(i+list.length)%list.length;var b=list[pos];li.src=b.querySelector('img').src;
+    li.alt=b.getAttribute('aria-label');cap.textContent=b.dataset.key.indexOf('dishes/')===0?'':li.alt;see.href='#'+b.dataset.sec}
+  document.addEventListener('click',function(ev){var b=ev.target.closest('.g-cell');if(!b)return;
+    list=[].slice.call(b.closest('ul').querySelectorAll('.g-cell'));open(list.indexOf(b));
+    if(lb.showModal)lb.showModal();if(window.gtag)gtag('event','menu_photo_open',{photo:b.dataset.key})});
+  lb.querySelector('.lb-x').onclick=function(){lb.close()};
+  lb.querySelector('.lb-prev').onclick=function(){open(pos-1)};
+  lb.querySelector('.lb-next').onclick=function(){open(pos+1)};
+  see.addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(ev){if(ev.target===lb||ev.target.tagName==='FIGURE')lb.close()});
+  lb.addEventListener('keydown',function(ev){if(ev.key==='ArrowRight')open(pos+1);if(ev.key==='ArrowLeft')open(pos-1)});
+  var sx=null;lb.addEventListener('touchstart',function(ev){sx=ev.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(ev){if(sx===null)return;var dx=ev.changedTouches[0].clientX-sx;sx=null;
+    if(Math.abs(dx)>40)open(pos+(dx<0?1:-1))});
+})();
 (function(){
   var secs=[].slice.call(document.querySelectorAll('.sec'));
   var links={};[].forEach.call(document.querySelectorAll('nav.sections a'),function(a){links[a.getAttribute('href').slice(1)]=a});
@@ -336,6 +430,7 @@ def page(lang):
 <h1>{c['h1']}</h1>
 <p class="lede">{e(c['lede'])}</p>
 <p class="small">{e(c['small'])}</p>
+{gallery_html(lang)}
 <nav class="sections" aria-label="{e(c['nav_label'])}"><ul>{nav}</ul></nav>
 {body}
 <footer><span>{e(c['updated'].format(d=t(DATA['updated'], lang)))}</span><a href="mailto:hello@albalisbon.com">hello@albalisbon.com</a><a href="https://instagram.com/alba.lisbon">Instagram</a><a href="/">{e(c['home'])}</a></footer>
