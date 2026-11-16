@@ -408,8 +408,8 @@
         "pt": "Almoço"
       },
       "note": {
-        "en": "Monday to Friday, 13:00–15:00. Served with sourdough bread and ginger rosemary or cherry hibiscus lemonade.",
-        "pt": "De segunda a sexta, 13:00–15:00. Servido com pão de fermentação natural e limonada de gengibre e alecrim ou de cereja e hibisco."
+        "en": "Monday to Friday, 13:00–15:00. Served with sourdough bread and a drink of your choice: ginger rosemary lemonade, cherry hibiscus lemonade or apple juice.",
+        "pt": "De segunda a sexta, 13:00–15:00. Servido com pão de fermentação natural e uma bebida à escolha: limonada de gengibre e alecrim, limonada de cereja e hibisco ou sumo de maçã."
       },
       "items": [
         {
@@ -421,7 +421,7 @@
             "en": "Mixed greens, young potato, tuna, boiled egg, cherry tomato, olives, marinated onion and dressing",
             "pt": "Folhas verdes, batata nova, atum, ovo cozido, tomate cherry, azeitonas, cebola marinada e molho"
           },
-          "price": "12"
+          "price": "13"
         },
         {
           "name": {
@@ -469,7 +469,7 @@
                 "en": "Crème brûlée",
                 "pt": "Crème brûlée"
               },
-              "price": "4"
+              "price": "5"
             }
           ]
         }
@@ -531,7 +531,8 @@
           "desc": {
             "en": "Classic madeleine with a bright lime and passion fruit centre, coated in matcha white chocolate",
             "pt": "Madalena clássica com um centro vibrante de puré de lima e maracujá, coberta com chocolate branco e matcha"
-          }
+          },
+          "photo": "items/madeleine"
         },
         {
           "name": {
@@ -584,7 +585,8 @@
           "desc": {
             "en": "Latte with caramelized banana purée and brûléed slices",
             "pt": "Latte com puré e rodelas de banana caramelizada"
-          }
+          },
+          "photo": "items/banana-cinnamon-latte"
         },
         {
           "name": {
@@ -595,7 +597,8 @@
           "desc": {
             "en": "Hojicha latte with miso, caramel and nori",
             "pt": "Hojicha latte com miso, caramelo e nori"
-          }
+          },
+          "photo": "items/miso-caramel-hojicha"
         },
         {
           "name": {
@@ -617,7 +620,8 @@
           "desc": {
             "en": "Matcha latte with pistachio and white chocolate foam",
             "pt": "Matcha latte com pistácio e espuma de chocolate branco"
-          }
+          },
+          "photo": "items/white-chocolate-pistachio-matcha"
         },
         {
           "name": {
@@ -639,7 +643,8 @@
           "desc": {
             "en": "Dark chocolate with cardamom and black pepper, orange blossom cream",
             "pt": "Chocolate negro com cardamomo e pimenta preta, creme de flor de laranjeira"
-          }
+          },
+          "photo": "items/spiced-orange-hot-chocolate"
         }
       ]
     },

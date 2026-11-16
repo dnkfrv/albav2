@@ -121,7 +121,8 @@ def item_photos(it, lang):
         if len(srcs) > 1:  # Eggs Benedict: salmon / pastrami
             variant = "salmon" if "salmon" in src else "pastrami"
             alt = f"{name.split(' – ')[0]} – {'salmão' if lang == 'pt' and variant == 'salmon' else variant}"
-        out.append((f"dishes/{src}", alt))
+        # "items/…" photos are clean studio shots without a name overlay; "dishes/…" carry the name on the photo
+        out.append((src if "/" in src else f"dishes/{src}", alt))
     return out
 
 
@@ -152,7 +153,8 @@ def section_html(sec, lang):
     if dishes:
         figs = "".join(
             f'<figure><img src="/menu/img/{k}.jpg" alt="{e(a)}" width="900" height="1125" loading="lazy" decoding="async">'
-            f'</figure>'
+            + ('' if k.startswith('dishes/') else f'<figcaption>{e(a)}</figcaption>')
+            + f'</figure>'
             for k, a in dishes
         )
         parts.append(f'<div class="strip">{figs}</div>')
