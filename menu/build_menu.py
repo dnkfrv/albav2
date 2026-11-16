@@ -52,7 +52,7 @@ COPY = {
 GALLERY = [
     ("food", {"en": "Food", "pt": "Comida"}, ["breakfast", "omelettes", "crepes", "brunch", "lunch", "desserts"]),
     ("matcha", {"en": "Matcha", "pt": "Matcha"}, ["matcha", "ceremonial"]),
-    ("drinks", {"en": "Coffee & drinks", "pt": "Café e bebidas"}, ["coffee", "specials", "chocolate", "tea", "wine"]),
+    ("drinks", {"en": "Coffee & drinks", "pt": "Café e bebidas"}, ["specials", "coffee", "chocolate", "soft", "tea", "wine"]),
 ]
 GALLERY_COPY = {
     "en": {"label": "Menu in photos", "close": "Close", "see": "See in the menu", "prev": "Previous", "next": "Next"},
@@ -194,7 +194,7 @@ def jsonld(lang):
         items = []
         for it in all_items(sec):
             mi = {"@type": "MenuItem", "name": t(it["name"], lang),
-                  "offers": {"@type": "Offer", "price": t(it["price"], lang), "priceCurrency": "EUR"}}
+                  "offers": {"@type": "Offer", "price": t(it["price"], lang).split(" / ")[0], "priceCurrency": "EUR"}}
             if "desc" in it:
                 mi["description"] = t(it["desc"], lang)
             if it.get("photo"):

@@ -1,7 +1,7 @@
 {
   "updated": {
-    "en": "17 July 2026",
-    "pt": "22 de julho de 2026"
+    "en": "30 October 2026",
+    "pt": "3 de novembro de 2026"
   },
   "sections": [
     {
@@ -28,8 +28,8 @@
             "pt": "Ovos mexidos"
           },
           "desc": {
-            "en": "Soft scrambled eggs, Greek yogurt, parmesan and toasted sourdough bread",
-            "pt": "Ovos mexidos cremosos, iogurte grego, parmesão e pão de fermentação natural tostado"
+            "en": "Soft scrambled eggs, Greek yogurt, parmesan and sourdough bread",
+            "pt": "Ovos mexidos cremosos, iogurte grego, parmesão e pão de fermentação natural"
           },
           "price": "9",
           "photo": "scrambled-eggs"
@@ -55,10 +55,10 @@
         "list": [
           [
             {
-              "en": "Boiled egg",
-              "pt": "Ovo cozido"
+              "en": "Boiled egg / fried egg",
+              "pt": "Ovo cozido / ovo estrelado"
             },
-            "1.50"
+            "1.50 / 2"
           ],
           [
             {
@@ -93,7 +93,7 @@
               "en": "Butter",
               "pt": "Manteiga"
             },
-            "1"
+            "1.50"
           ],
           [
             {
@@ -118,8 +118,8 @@
           ],
           [
             {
-              "en": "Lemon cream cheese",
-              "pt": "Creme de queijo com limão"
+              "en": "Whipped lemon cream cheese",
+              "pt": "Creme de queijo batido com limão"
             },
             "2.50"
           ],
@@ -142,7 +142,7 @@
               "en": "Blueberry jam",
               "pt": "Compota de mirtilos"
             },
-            "1"
+            "1.50"
           ],
           [
             {
@@ -176,8 +176,8 @@
             "pt": "Omelete de fiambre e doce de tomate"
           },
           "desc": {
-            "en": "Prosciutto cotto, tomato marmalade, mozzarella and grana padano",
-            "pt": "Fiambre, marmelada de tomate, mozzarella e grana padano"
+            "en": "Prosciutto cotto, tomato jam, mozzarella and grana padano",
+            "pt": "Fiambre, doce de tomate, mozzarella e grana padano"
           },
           "price": "13"
         },
@@ -215,8 +215,8 @@
             "pt": "Omelete verde"
           },
           "desc": {
-            "en": "Spinach, lemon cream cheese and mozzarella",
-            "pt": "Espinafres, cream cheese de limão e mozzarella"
+            "en": "Spinach, whipped lemon cream cheese and mozzarella",
+            "pt": "Espinafres, creme de queijo batido com limão e mozzarella"
           },
           "add": {
             "en": "Add salted salmon – 6 / avocado – 4",
@@ -280,8 +280,8 @@
             "pt": "Crêpe Suzette"
           },
           "desc": {
-            "en": "Warm crêpes with orange caramel and whipped lemon cream",
-            "pt": "Crepes quentes com caramelo de laranja e creme de limão batido"
+            "en": "Warm crêpes with orange caramel and whipped lemon cream cheese",
+            "pt": "Crepes quentes com caramelo de laranja e creme de queijo batido com limão"
           },
           "price": "10",
           "photo": "crepe-suzette"
@@ -331,8 +331,8 @@
             "pt": "Croque madame"
           },
           "desc": {
-            "en": "Toasted sourdough bread (or brioche +0.50), truffle mornay, gouda, prosciutto, onion jam and poached eggs",
-            "pt": "Pão de fermentação natural tostado (ou brioche +0.50), molho mornay de trufa, queijo gouda, prosciutto, doce de cebola e ovos escalfados"
+            "en": "Toasted sourdough bread (or brioche +0.50), truffle mornay, gouda, prosciutto (or pastrami +1.50), onion jam and poached eggs",
+            "pt": "Pão de fermentação natural tostado (ou brioche +0.50), mornay de trufa, gouda, prosciutto (ou pastrami +1.50), doce de cebola e ovos escalfados"
           },
           "add": {
             "en": "Add green salad – 4",
@@ -459,8 +459,8 @@
           "items": [
             {
               "name": {
-                "en": "Seasonal fruit & lemon cream",
-                "pt": "Fruta da época e creme de limão"
+                "en": "Seasonal fruit & lemon cream cheese",
+                "pt": "Fruta da época e creme de queijo com limão"
               },
               "price": "5"
             },
@@ -488,12 +488,12 @@
       "items": [
         {
           "name": {
-            "en": "Seasonal fruit & lemon cream",
-            "pt": "Fruta da época e creme de limão"
+            "en": "Seasonal fruit & lemon cream cheese",
+            "pt": "Fruta da época e creme de queijo com limão"
           },
           "desc": {
-            "en": "Fresh seasonal fruit with whipped lemon cream",
-            "pt": "Fruta fresca da época com creme de limão batido"
+            "en": "Fresh seasonal fruit with whipped lemon cream cheese",
+            "pt": "Fruta fresca da época com creme de queijo batido com limão"
           },
           "price": "5",
           "photo": "seasonal-fruit-lemon-cream"
@@ -524,12 +524,23 @@
         },
         {
           "name": {
+            "en": "Madeleine",
+            "pt": "Madalena"
+          },
+          "price": "2",
+          "desc": {
+            "en": "Classic madeleine with a bright lime and passion fruit centre, coated in matcha white chocolate",
+            "pt": "Madalena clássica com um centro vibrante de puré de lima e maracujá, coberta com chocolate branco e matcha"
+          }
+        },
+        {
+          "name": {
             "en": "Espresso affogato",
             "pt": "Espresso affogato"
           },
           "desc": {
-            "en": "Vanilla ice cream, double espresso, pecan, chocolate Nicaragua El Castillero 55%",
-            "pt": "Gelado de baunilha, espresso duplo, nozes-pecã e chocolate Nicarágua El Castillero 55%"
+            "en": "Vanilla ice cream, double espresso, pecan, specialty chocolate 55%",
+            "pt": "Gelado de baunilha, espresso duplo, nozes-pecã e chocolate especial 55%"
           },
           "price": "6.50"
         },
@@ -539,10 +550,96 @@
             "pt": "Matcha affogato"
           },
           "desc": {
-            "en": "Vanilla ice cream, Ikigai matcha shot, pistachio, nori",
-            "pt": "Gelado de baunilha, shot de matcha Ikigai, pistácio e alga nori"
+            "en": "Vanilla ice cream, Rin matcha shot, pistachio, nori",
+            "pt": "Gelado de baunilha, shot de matcha Rin, pistácio e alga nori"
           },
-          "price": "6.50"
+          "price": "7"
+        }
+      ]
+    },
+    {
+      "id": "specials",
+      "title": {
+        "en": "Seasonal specials",
+        "pt": "Especiais da época"
+      },
+      "nav": {
+        "en": "Specials",
+        "pt": "Especiais"
+      },
+      "photo": {
+        "src": "matcha-latte",
+        "alt": {
+          "en": "Matcha latte in the making",
+          "pt": "Matcha latte em preparação"
+        }
+      },
+      "items": [
+        {
+          "name": {
+            "en": "Banana cinnamon latte",
+            "pt": "Latte de banana e canela"
+          },
+          "price": "5",
+          "desc": {
+            "en": "Latte with caramelized banana purée and brûléed slices",
+            "pt": "Latte com puré e rodelas de banana caramelizada"
+          }
+        },
+        {
+          "name": {
+            "en": "Miso caramel hojicha",
+            "pt": "Hojicha de caramelo de miso"
+          },
+          "price": "5",
+          "desc": {
+            "en": "Hojicha latte with miso, caramel and nori",
+            "pt": "Hojicha latte com miso, caramelo e nori"
+          }
+        },
+        {
+          "name": {
+            "en": "Vanilla raf",
+            "pt": "Raf de baunilha"
+          },
+          "price": "6",
+          "desc": {
+            "en": "Double espresso steamed with cream and vanilla",
+            "pt": "Espresso duplo vaporizado com natas e baunilha"
+          }
+        },
+        {
+          "name": {
+            "en": "White chocolate pistachio matcha",
+            "pt": "Matcha de pistácio e chocolate branco"
+          },
+          "price": "6.50",
+          "desc": {
+            "en": "Matcha latte with pistachio and white chocolate foam",
+            "pt": "Matcha latte com pistácio e espuma de chocolate branco"
+          }
+        },
+        {
+          "name": {
+            "en": "Pecan maple latte",
+            "pt": "Latte de pecã e ácer"
+          },
+          "price": "6.50",
+          "desc": {
+            "en": "Latte with pecan paste and maple syrup, topped with pecan pieces",
+            "pt": "Latte com pasta de pecã e xarope de ácer, com pedaços de pecã por cima"
+          }
+        },
+        {
+          "name": {
+            "en": "Spiced orange hot chocolate",
+            "pt": "Chocolate quente especiado com laranja"
+          },
+          "price": "6.50",
+          "desc": {
+            "en": "Dark chocolate with cardamom and black pepper, orange blossom cream",
+            "pt": "Chocolate negro com cardamomo e pimenta preta, creme de flor de laranjeira"
+          }
         }
       ]
     },
@@ -586,12 +683,8 @@
             },
             {
               "name": {
-                "en": "L'espresso",
-                "pt": "L'espresso"
-              },
-              "desc": {
-                "en": "Not your everyday espresso",
-                "pt": "Não é o espresso do dia a dia"
+                "en": "Special espresso",
+                "pt": "Espresso especial"
               },
               "price": "4"
             },
@@ -600,11 +693,11 @@
                 "en": "Americano",
                 "pt": "Americano"
               },
+              "price": "3",
               "tag": {
                 "en": "Hot or iced",
                 "pt": "Quente ou frio"
-              },
-              "price": "3"
+              }
             },
             {
               "name": {
@@ -622,39 +715,36 @@
             },
             {
               "name": {
-                "en": "Blueberry cold brew",
-                "pt": "Cold brew de mirtilo"
-              },
-              "price": "6"
-            },
-            {
-              "name": {
-                "en": "Espresso tonic",
-                "pt": "Espresso tónica"
-              },
-              "price": "6"
-            },
-            {
-              "name": {
                 "en": "Barista set",
                 "pt": "Set do barista"
               },
+              "price": "7",
               "desc": {
                 "en": "Espresso, batch brew and cappuccino",
                 "pt": "Espresso, filtro do dia e cappuccino"
-              },
-              "price": "7"
+              }
             },
             {
               "name": {
-                "en": "Hand brew exceptional",
-                "pt": "Filtro manual excecional"
+                "en": "Hand brew / exceptional",
+                "pt": "Hand brew / excecional"
               },
+              "price": "5 / 8",
               "tag": {
                 "en": "Hot or iced",
                 "pt": "Quente ou frio"
+              }
+            },
+            {
+              "name": {
+                "en": "Bumble coffee",
+                "pt": "Bumble coffee"
               },
-              "price": "7"
+              "price": "5.50",
+              "desc": {
+                "en": "Fresh orange juice and espresso",
+                "pt": "Sumo de laranja natural e espresso"
+              }
             }
           ]
         },
@@ -683,62 +773,44 @@
                 "en": "Cappuccino",
                 "pt": "Cappuccino"
               },
+              "price": "3.50",
               "tag": {
                 "en": "Hot or iced",
                 "pt": "Quente ou frio"
-              },
-              "price": "3.50"
+              }
             },
             {
               "name": {
                 "en": "Cappuccino double",
                 "pt": "Cappuccino duplo"
               },
+              "price": "4.50",
               "tag": {
                 "en": "Hot or iced",
                 "pt": "Quente ou frio"
-              },
-              "price": "4.50"
+              }
             },
             {
               "name": {
                 "en": "Flat white",
                 "pt": "Flat white"
               },
+              "price": "4",
               "tag": {
                 "en": "Hot or iced",
                 "pt": "Quente ou frio"
-              },
-              "price": "4"
+              }
             },
             {
               "name": {
                 "en": "Latte",
                 "pt": "Latte"
               },
-              "desc": {
-                "en": "Extra shot +1.50",
-                "pt": "Shot extra +1.50"
-              },
+              "price": "4",
               "tag": {
                 "en": "Hot or iced",
                 "pt": "Quente ou frio"
-              },
-              "price": "4"
-            },
-            {
-              "name": {
-                "en": "Raf vanilla",
-                "pt": "Raf de baunilha"
-              },
-              "price": "6"
-            },
-            {
-              "name": {
-                "en": "Latte with pecan maple syrup",
-                "pt": "Latte de pecã e xarope de ácer"
-              },
-              "price": "6.50"
+              }
             }
           ]
         }
@@ -771,91 +843,91 @@
             "en": "Flat matcha",
             "pt": "Flat matcha"
           },
+          "price": "5",
           "tag": {
             "en": "Hot or iced",
             "pt": "Quente ou frio"
-          },
-          "price": "5"
-        },
-        {
-          "name": {
-            "en": "Flat hojicha",
-            "pt": "Flat hojicha"
-          },
-          "tag": {
-            "en": "Hot or iced",
-            "pt": "Quente ou frio"
-          },
-          "price": "5"
+          }
         },
         {
           "name": {
             "en": "Matcha latte",
             "pt": "Matcha latte"
           },
+          "price": "5.50",
           "tag": {
             "en": "Hot or iced",
             "pt": "Quente ou frio"
+          }
+        },
+        {
+          "name": {
+            "en": "Flat hojicha",
+            "pt": "Flat hojicha"
           },
-          "price": "5.50"
+          "price": "5",
+          "tag": {
+            "en": "Hot or iced",
+            "pt": "Quente ou frio"
+          }
         },
         {
           "name": {
             "en": "Hojicha latte",
             "pt": "Hojicha latte"
           },
+          "price": "5.50",
           "tag": {
             "en": "Hot or iced",
             "pt": "Quente ou frio"
-          },
-          "price": "5.50"
+          }
         },
         {
           "name": {
             "en": "Strawberry matcha",
             "pt": "Matcha de morango"
           },
+          "price": "6.50",
           "desc": {
-            "en": "Ikigai matcha latte with whipped strawberry ice cream",
-            "pt": "Ikigai matcha latte com gelado de morango batido"
+            "en": "Matcha latte, strawberry purée, whipped strawberry cream",
+            "pt": "Matcha latte, puré de morango, chantilly de morango"
           },
           "tag": {
             "en": "Hot or iced",
             "pt": "Quente ou frio"
-          },
-          "price": "6.50"
+          }
         },
         {
           "name": {
             "en": "Coconut matcha",
             "pt": "Matcha de coco"
           },
+          "price": "6.50",
           "desc": {
-            "en": "Ikigai matcha latte with coconut purée whipped cream",
-            "pt": "Ikigai matcha latte com chantilly de coco"
+            "en": "Matcha latte, coconut purée, whipped coconut cream",
+            "pt": "Matcha latte, puré de coco, chantilly de coco"
           },
           "tag": {
             "en": "Hot or iced",
             "pt": "Quente ou frio"
-          },
-          "price": "6.50"
+          }
         },
         {
           "name": {
-            "en": "Spice whisper",
-            "pt": "Sussurro de especiarias"
+            "en": "Bumble matcha",
+            "pt": "Bumble matcha"
           },
+          "price": "6.50",
           "desc": {
-            "en": "Hojicha latte with black cardamom, coconut cream and nutmeg",
-            "pt": "Hojicha latte com cardamomo preto, creme de coco e noz-moscada"
-          },
-          "tag": {
-            "en": "Hot or iced",
-            "pt": "Quente ou frio"
-          },
-          "price": "6.50"
+            "en": "Fresh orange juice, matcha shot",
+            "pt": "Sumo de laranja natural, shot de matcha"
+          }
         }
-      ]
+      ],
+      "note": {
+        "en": "Milk: regular or lactose-free – free, oat milk – 0.50. Syrups: sugar – free, vanilla – 0.50, agave or honey – 1",
+        "pt": "Leite: normal ou sem lactose – grátis, leite de aveia – 0.50. Xaropes: açúcar – grátis, baunilha – 0.50, agave ou mel – 1"
+      }
     },
     {
       "id": "ceremonial",
@@ -875,179 +947,64 @@
         }
       },
       "note": {
-        "en": "Shot – 30 ml, usucha – 120 ml",
-        "pt": "Shot – 30 ml, usucha – 120 ml"
+        "en": "Usucha – 120 ml",
+        "pt": "Usucha – 120 ml"
       },
       "items": [
         {
           "name": {
-            "en": "Ikigai",
-            "pt": "Ikigai"
+            "en": "Rin",
+            "pt": "Rin"
           },
+          "price": "4",
           "desc": {
-            "en": "Classic and balanced, with grassy, earthy and pine nut notes",
-            "pt": "Clássico e equilibrado, com notas de erva, terra e pinhão"
-          },
-          "price": "4"
+            "en": "Deep notes of walnut and a delicate, creamy, buttery sweetness",
+            "pt": "Notas profundas de noz e uma doçura delicada, cremosa e amanteigada"
+          }
         },
         {
           "name": {
             "en": "Hojicha",
             "pt": "Hojicha"
           },
+          "price": "4",
           "desc": {
             "en": "Roasted leaves with notes of complex caramel and nuts",
-            "pt": "Folhas torradas, com notas de caramelo e frutos secos"
-          },
-          "price": "4"
+            "pt": "Folhas torradas com notas de caramelo e frutos secos"
+          }
         },
         {
           "name": {
             "en": "Yutori",
             "pt": "Yutori"
           },
+          "price": "5",
           "desc": {
             "en": "Soft taste with edamame, seaweed and bamboo shoot notes",
-            "pt": "Sabor suave, com notas de edamame, algas e rebentos de bambu"
-          },
-          "price": "5"
+            "pt": "Sabor suave com notas de edamame, algas e rebentos de bambu"
+          }
         },
         {
           "name": {
             "en": "Haru",
             "pt": "Haru"
           },
+          "price": "5",
           "desc": {
             "en": "Premium creamy matcha, full body and a sweet finish with jasmine, fresh green and umami notes",
             "pt": "Matcha premium cremoso, encorpado e com final doce, com notas de jasmim, frescura verde e umami"
-          },
-          "price": "5"
+          }
         },
         {
           "name": {
             "en": "Tasting set",
             "pt": "Set de degustação"
           },
+          "price": "9",
           "desc": {
             "en": "Any three varieties of matcha shots",
             "pt": "Três shots de matcha à escolha"
-          },
-          "price": "8"
-        }
-      ]
-    },
-    {
-      "id": "specials",
-      "title": {
-        "en": "Seasonal specials",
-        "pt": "Especiais da época"
-      },
-      "nav": {
-        "en": "Specials",
-        "pt": "Especiais"
-      },
-      "photo": {
-        "src": "matcha-latte",
-        "alt": {
-          "en": "Matcha latte in the making",
-          "pt": "Matcha latte em preparação"
-        }
-      },
-      "items": [
-        {
-          "name": {
-            "en": "Mango jasmine iced tea",
-            "pt": "Chá gelado de manga e jasmim"
-          },
-          "desc": {
-            "en": "Mango, jasmine iced tea, passion fruit, honey",
-            "pt": "Manga, chá gelado de jasmim, maracujá, mel"
-          },
-          "price": "4.50",
-          "photo": "mango-jasmine-iced-tea"
-        },
-        {
-          "name": {
-            "en": "Cherry hibiscus lemonade",
-            "pt": "Limonada de cereja e hibisco"
-          },
-          "desc": {
-            "en": "Cherry, hibiscus, cinnamon, black pepper",
-            "pt": "Cereja, hibisco, canela, pimenta preta"
-          },
-          "price": "4",
-          "photo": "cherry-hibiscus-lemonade"
-        },
-        {
-          "name": {
-            "en": "Ginger rosemary lemonade",
-            "pt": "Limonada de gengibre e alecrim"
-          },
-          "desc": {
-            "en": "Ginger, rosemary syrup, lemon",
-            "pt": "Gengibre, xarope de alecrim, limão"
-          },
-          "price": "4",
-          "photo": "ginger-rosemary-lemonade"
-        },
-        {
-          "name": {
-            "en": "Banana mango isotonic",
-            "pt": "Isotónico de banana e manga"
-          },
-          "desc": {
-            "en": "Tropical fruit mix, electrolytes",
-            "pt": "Mistura de frutas tropicais, eletrólitos"
-          },
-          "add": {
-            "en": "Add a matcha shot – 4",
-            "pt": "Adicionar shot de matcha – 4"
-          },
-          "price": "3.50"
-        },
-        {
-          "name": {
-            "en": "Coconut iced cacao",
-            "pt": "Cacau gelado de coco"
-          },
-          "desc": {
-            "en": "Coconut milk, 70% chocolate",
-            "pt": "Leite de coco, chocolate 70%"
-          },
-          "price": "6.50"
-        },
-        {
-          "name": {
-            "en": "Bumble matcha",
-            "pt": "Bumble matcha"
-          },
-          "desc": {
-            "en": "Fresh orange juice, matcha shot, agave syrup",
-            "pt": "Sumo de laranja natural, shot de matcha, xarope de agave"
-          },
-          "price": "6"
-        },
-        {
-          "name": {
-            "en": "Bumble coffee",
-            "pt": "Bumble coffee"
-          },
-          "desc": {
-            "en": "Fresh orange juice, double espresso, agave syrup",
-            "pt": "Sumo de laranja natural, duplo shot de espresso, xarope de agave"
-          },
-          "price": "5"
-        },
-        {
-          "name": {
-            "en": "Coconut water",
-            "pt": "Água de coco"
-          },
-          "desc": {
-            "en": "100% coconut water",
-            "pt": "100% água de coco"
-          },
-          "price": "3.50"
+          }
         }
       ]
     },
@@ -1075,14 +1032,14 @@
         },
         {
           "name": {
-            "en": "Mocca latte",
-            "pt": "Mocca latte"
+            "en": "Mocha latte",
+            "pt": "Mocha latte"
           },
           "price": "5.50"
         },
         {
           "name": {
-            "en": "Cacao",
+            "en": "Cocoa",
             "pt": "Cacau"
           },
           "price": "6"
@@ -1090,14 +1047,106 @@
       ]
     },
     {
-      "id": "tea",
+      "id": "soft",
       "title": {
-        "en": "Tea & soft drinks",
-        "pt": "Chá e bebidas"
+        "en": "Soft drinks",
+        "pt": "Soft drinks"
       },
       "nav": {
-        "en": "Tea & soft",
-        "pt": "Chá e bebidas"
+        "en": "Soft drinks",
+        "pt": "Soft drinks"
+      },
+      "items": [
+        {
+          "name": {
+            "en": "Mango jasmine iced tea",
+            "pt": "Chá gelado de manga e jasmim"
+          },
+          "price": "4.50",
+          "desc": {
+            "en": "Mango, jasmine iced tea, passion fruit, honey",
+            "pt": "Manga, chá gelado de jasmim, maracujá, mel"
+          },
+          "photo": "mango-jasmine-iced-tea"
+        },
+        {
+          "name": {
+            "en": "Cherry hibiscus lemonade",
+            "pt": "Limonada de cereja e hibisco"
+          },
+          "price": "4",
+          "desc": {
+            "en": "Cherry, hibiscus, cinnamon, black pepper",
+            "pt": "Cereja, hibisco, canela, pimenta preta"
+          },
+          "photo": "cherry-hibiscus-lemonade"
+        },
+        {
+          "name": {
+            "en": "Ginger rosemary lemonade",
+            "pt": "Limonada de gengibre e alecrim"
+          },
+          "price": "4",
+          "desc": {
+            "en": "Ginger, rosemary syrup, lemon",
+            "pt": "Gengibre, xarope de alecrim, limão"
+          },
+          "photo": "ginger-rosemary-lemonade"
+        },
+        {
+          "name": {
+            "en": "Fresh orange juice",
+            "pt": "Sumo de laranja natural"
+          },
+          "price": "4"
+        },
+        {
+          "name": {
+            "en": "Coconut water",
+            "pt": "Água de coco"
+          },
+          "price": "3.50",
+          "desc": {
+            "en": "100% coconut water",
+            "pt": "100% água de coco"
+          }
+        },
+        {
+          "name": {
+            "en": "Banana mango isotonic",
+            "pt": "Isotónico de banana e manga"
+          },
+          "price": "3.50",
+          "desc": {
+            "en": "Tropical fruit mix, electrolytes",
+            "pt": "Mistura de frutas tropicais, eletrólitos"
+          }
+        },
+        {
+          "name": {
+            "en": "Sparkling water by FonteLusa",
+            "pt": "Água com gás da FonteLusa"
+          },
+          "price": "2.50"
+        },
+        {
+          "name": {
+            "en": "Still water by FonteLusa",
+            "pt": "Água sem gás da FonteLusa"
+          },
+          "price": "2"
+        }
+      ]
+    },
+    {
+      "id": "tea",
+      "title": {
+        "en": "Tea",
+        "pt": "Chá"
+      },
+      "nav": {
+        "en": "Tea",
+        "pt": "Chá"
       },
       "photo": {
         "src": "herbal-tea",
@@ -1112,22 +1161,22 @@
             "en": "Assam",
             "pt": "Assam"
           },
+          "price": "4",
           "desc": {
             "en": "Black tea",
             "pt": "Chá preto"
-          },
-          "price": "4"
+          }
         },
         {
           "name": {
             "en": "Chun Mee",
             "pt": "Chun Mee"
           },
+          "price": "4",
           "desc": {
             "en": "Green tea",
             "pt": "Chá verde"
-          },
-          "price": "4"
+          }
         },
         {
           "name": {
@@ -1138,24 +1187,25 @@
         },
         {
           "name": {
-            "en": "Fresh orange juice",
-            "pt": "Sumo de laranja natural"
+            "en": "Cherry tea",
+            "pt": "Chá de cereja"
           },
-          "price": "4"
+          "price": "5",
+          "desc": {
+            "en": "Cherry, thyme, lemon",
+            "pt": "Cereja, tomilho, limão"
+          }
         },
         {
           "name": {
-            "en": "Still water by FonteLusa",
-            "pt": "Água sem gás da FonteLusa"
+            "en": "Peach tea",
+            "pt": "Chá de pêssego"
           },
-          "price": "2"
-        },
-        {
-          "name": {
-            "en": "Sparkling water by FonteLusa",
-            "pt": "Água com gás da FonteLusa"
-          },
-          "price": "2.50"
+          "price": "5",
+          "desc": {
+            "en": "Peach, orange, rosemary, cinnamon",
+            "pt": "Pêssego, laranja, alecrim, canela"
+          }
         }
       ]
     },
@@ -1178,97 +1228,108 @@
         "nocaption": true
       },
       "note": {
-        "en": "Our wine and sparkling selection changes regularly – please ask our team for today's options.",
-        "pt": "A nossa seleção de vinhos muda regularmente – consulte a nossa equipa."
+        "en": "Glass / bottle. Our selection changes regularly – please ask our team for today's options.",
+        "pt": "Copo / garrafa. A nossa seleção muda regularmente – consulte a nossa equipa."
       },
       "items": [
         {
           "name": {
-            "en": "Vinha do Mouro",
-            "pt": "Vinha do Mouro"
+            "en": "Passo de Gigante",
+            "pt": "Passo de Gigante"
           },
-          "desc": {
-            "en": "White",
-            "pt": "Branco"
-          },
-          "price": "7"
-        },
-        {
-          "name": {
-            "en": "Palmirinha Azul",
-            "pt": "Palmirinha Azul"
-          },
-          "desc": {
-            "en": "White",
-            "pt": "Branco"
-          },
-          "price": "9"
-        },
-        {
-          "name": {
-            "en": "Melshmeier Riesling",
-            "pt": "Melshmeier Riesling"
-          },
-          "desc": {
-            "en": "White",
-            "pt": "Branco"
-          },
-          "price": "10"
-        },
-        {
-          "name": {
-            "en": "Chinado",
-            "pt": "Chinado"
-          },
-          "desc": {
-            "en": "Orange",
-            "pt": "Laranja"
-          },
-          "price": "11"
+          "price": "8 / 36",
+          "tag": {
+            "en": "Bubbles · floral",
+            "pt": "Espumante · floral"
+          }
         },
         {
           "name": {
             "en": "Cortina Sidra",
             "pt": "Cortina Sidra"
           },
-          "desc": {
-            "en": "Bubbles",
-            "pt": "Espumante"
-          },
-          "price": "6"
+          "price": "13",
+          "tag": {
+            "en": "Cider · crisp",
+            "pt": "Sidra · fresca"
+          }
         },
         {
           "name": {
-            "en": "Passo de Gigante",
-            "pt": "Passo de Gigante"
+            "en": "Vinha do Mouro",
+            "pt": "Vinha do Mouro"
           },
-          "desc": {
-            "en": "Bubbles",
-            "pt": "Espumante"
-          },
-          "price": "8"
+          "price": "7 / 32",
+          "tag": {
+            "en": "White · round",
+            "pt": "Branco · redondo"
+          }
         },
         {
           "name": {
-            "en": "Dolcetto d'Alba 2024",
-            "pt": "Dolcetto d'Alba 2024"
+            "en": "Palmirinha Azal",
+            "pt": "Palmirinha Azal"
           },
-          "desc": {
-            "en": "Red",
-            "pt": "Tinto"
+          "price": "9 / 43",
+          "tag": {
+            "en": "White · herbal",
+            "pt": "Branco · herbáceo"
+          }
+        },
+        {
+          "name": {
+            "en": "Thörnicher Riesling",
+            "pt": "Thörnicher Riesling"
           },
-          "price": "9"
+          "price": "13 / 58",
+          "tag": {
+            "en": "White · mineral",
+            "pt": "Branco · mineral"
+          }
+        },
+        {
+          "name": {
+            "en": "Chinado",
+            "pt": "Chinado"
+          },
+          "price": "11 / 46",
+          "tag": {
+            "en": "Orange · textured",
+            "pt": "Laranja · texturado"
+          }
+        },
+        {
+          "name": {
+            "en": "Clos Lojen",
+            "pt": "Clos Lojen"
+          },
+          "price": "6 / 28",
+          "tag": {
+            "en": "Red · juicy",
+            "pt": "Tinto · suculento"
+          }
+        },
+        {
+          "name": {
+            "en": "Dolcetto d'Alba",
+            "pt": "Dolcetto d'Alba"
+          },
+          "price": "9 / 40",
+          "tag": {
+            "en": "Red · soft",
+            "pt": "Tinto · suave"
+          }
         },
         {
           "name": {
             "en": "Gilda",
             "pt": "Gilda"
           },
-          "desc": {
-            "en": "Red",
-            "pt": "Tinto"
-          },
-          "price": "11"
+          "price": "11 / 43",
+          "tag": {
+            "en": "Red · earthy",
+            "pt": "Tinto · terroso"
+          }
         }
       ]
     }
